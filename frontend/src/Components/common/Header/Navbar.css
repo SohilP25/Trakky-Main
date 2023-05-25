@@ -1,0 +1,63 @@
+.navbar {
+    width: 90%;
+    display: flex;
+    padding: 1rem 0;
+    margin: 1rem auto;
+    border-bottom: 2px solid purple;
+}
+.logo {
+    float: left;
+    width: 50%;
+    cursor: pointer;
+}
+.button {
+    text-align: right;
+    width: 50%;
+}
+.register-button {
+    text-decoration: none;
+    color: white;
+    padding: 0.5rem 0.7rem;
+    background-color: #3A1596;
+    border-radius: 5px;
+}
+.logo img {
+    width: 7rem;
+}
+.mobile-nav {
+    display: none;
+}
+
+@media screen and (max-width: 490px) {
+    .desktop-nav,
+    .tablet-nav {
+        display: none;
+    }
+    .mobile-nav {
+        display: block;
+    }
+    .navbar {
+        display: flex;
+        flex-direction: column;
+        border-bottom: none;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+    .button {
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem 0;
+        border-bottom: 2px solid #502DA6;
+    }
+    .register-button-mobile {
+        text-decoration: none;
+        color: #502DA6;
+        font-size: 1.3rem;
+    }
+    .logo {
+        width: 100%;
+        padding: 1rem 0;
+    }
+}

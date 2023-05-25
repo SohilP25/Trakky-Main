@@ -1,0 +1,169 @@
+body {
+    font-size: 1rem;
+    font-family: 'Kanit', sans-serif;
+}
+footer {
+    position: relative;
+    color: white;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    left: 0;
+    text-align: center;
+}
+
+/* Upper footer */
+.upper-footer {
+    background-color: #47396A;
+    padding: 1rem 5% 2rem 5%;
+}
+.heading {
+    font-size: 1.5rem;
+    line-height: 4rem;
+    font-weight: 600;
+}
+.upper-footer h2 {
+    padding: 0.5rem 0;
+}
+.upper-footer p {
+    text-align: justify;
+    padding: 0.5rem 0;
+}
+
+/* Lower footer */
+
+.lower-footer {
+    background-color: #08001C;
+}
+.lower-footer-container-1 {
+    display: grid;
+    padding: 2rem 0;
+    grid-template-columns: 7rem auto 1fr;
+    margin: 0 5%;
+    border-bottom: 2px solid white;
+}
+.trakky-white-logo img {
+    width: 7rem;
+}
+.quick-links {
+    align-items: center;
+}
+.quick-links ul {
+    display: flex;
+    padding: 0 2rem;
+}
+.quick-links ul li {
+    padding: 0 0.5rem;
+}
+.quick-links ul li a {
+    color: white;
+}
+.customer-care {
+    justify-self: end;
+}
+
+@media screen and (max-width: 1190px) {
+    .lower-footer-container-1 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .trakky-white-logo {
+        justify-self: start;
+    }
+    .quick-links {
+        justify-self: start;
+    }
+    .quick-links ul {
+        display: grid;
+    }
+    .quick-links ul li {
+        justify-self: start;
+    }
+    .customer-care {
+        display: grid;
+        height: fit-content;
+    }
+    .customer-care span {
+        justify-self: start;
+    }
+    .deligater {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .lower-footer-container-1 {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+    }
+    .trakky-white-logo {
+        grid-column: 1 / span 3;
+    }
+    .quick-links ul,
+    .quick-links ul li {
+        padding: 0;
+    }
+    .quick-links {
+        padding: 1rem 0;
+    }
+    .customer-care {
+        padding: 1rem 0;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .lower-footer-container-1 {
+        grid-template-rows: repeat(3, auto);
+        padding: 2rem 0 0 0;
+        border: none;
+    }
+    .trakky-white-logo {
+        grid-column: unset;
+    }
+    .customer-care {
+        justify-self: start;
+    }
+    .lower-footer-container-2 {
+        padding: 0 0;
+    }
+}
+
+
+/* Lower footer container 2 */
+
+.lower-footer-container-2 {
+    padding: 2rem 0;
+    margin: 0 5%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto;
+}
+.social-media {
+    display: flex;
+    align-items: center;
+}
+.social-media p {
+    font-size: 1.3rem;
+    font-weight: bolder;
+    padding-right: 1rem;
+}
+.social-media-icons ul {
+    display: flex;
+}
+
+.copyright-container {
+    color: grey;
+    text-align: start;
+}
+
+@media screen and (max-width: 1100px) {
+    .lower-footer-container-2 {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }
+    .copyright-container {
+        padding: 1rem 0;
+    }
+    .copyright-container p {
+        padding: 0.5rem 0;
+    }
+}
