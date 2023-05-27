@@ -5,15 +5,18 @@
     justify-content: center;
     margin: 0 auto;
     gap: 2rem;
+    width: 90%;
+    margin-top: 5rem;
 }
 
 .sentence__container {
     display: flex;
     align-items: center;
     justify-content: center;
-    width:39.6875rem;
+    width: 39.6875rem;
     text-align: center;
-
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .sentence__container p {
@@ -23,30 +26,103 @@
     font-size: 2.5rem;
     line-height: 3.4375rem;
     color: #000000;
+    padding: 0 auto;
 }
-input{
-    outline:none;
-    border:none;
-    width: 100%;
-}
+
 .search__container {
     display: flex;
     align-items: center;
     padding: 12px 12px 12px 20px;
     gap: 28px;
     margin: 0 auto;
-    width:40rem;
+    width: 54rem;
     background: #FFFFFF;
     border: 0.5px solid #DEDEDE;
     box-shadow: 0px 0px 28px rgba(59, 59, 59, 0.12);
-    border-radius: 999999px;
+    border-radius: 99px;
+    height: 3rem;
 }
-.search-bar{
+
+.search-bar {
     display: flex;
     align-items: center;
-    gap:1rem;
+    gap: 1rem;
     width: 95%;
 }
-.search__container svg{
+
+.search-bar input {
+    outline: none;
+    border: none;
+    height: 2rem !important;
+    width: 100%;
+}
+
+.search__container img {
     cursor: pointer;
+    height: 2rem;
+    width: auto;
+}
+
+.search-bar img {
+    height: 1.5rem;
+    width: auto;
+}
+
+@media screen and (max-width:820px) {
+    .sentence__container p {
+        font-size: 2rem;
+        padding: 0 5rem;
+        line-height: 2.8rem;
+    }
+
+    .search__container {
+        width: 35rem;
+
+    }
+}
+
+@media screen and (max-width: 1131px) {
+    .sentence__container p {
+        font-size: 2rem;
+        padding: 0 5rem;
+        line-height: 2.8rem;
+    }
+
+    .search__container {
+        width: 40rem;
+
+    }
+}
+
+@media screen and (max-width:769px) {
+    .sentence__container p {
+        font-size: 1.5rem;
+        line-height: 2.4rem;
+    }
+
+    .search__container {
+        width: 30rem;
+    }
+}
+
+@media screen and (max-width:609px) {
+    .search__container {
+        width: 27rem;
+    }
+}
+
+@media screen and (max-width:478px) {
+    .search__container {
+        width: 21rem;
+    }
+
+    .sentence__container p {
+        padding: 0 11rem;
+        font-size: 1.2rem;
+        line-height: 2rem;
+    }
+
+    .hero__container {
+        gap: 0.8rem;
+    }
 }

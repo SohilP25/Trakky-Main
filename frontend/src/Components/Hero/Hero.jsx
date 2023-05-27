@@ -1,7 +1,7 @@
 import React from "react";
 import "./Hero.css";
-import { BiSearch } from "react-icons/bi";
-import { BsFilterLeft } from "react-icons/bs";
+import  Search from './../../Assets/images/icons/search.svg' 
+import  Filters from './../../Assets/images/icons/filters.svg' 
 
 const Hero = () => {
   return (
@@ -12,10 +12,10 @@ const Hero = () => {
         </div>
         <div className="search__container">
           <div className="search-bar">
-            <BiSearch />
-            <input type="text" placeholder="Search"/>
+            <img draggable="false" src={Search} alt="" />
+            <input  type="text" placeholder="Search"/>
           </div>
-          <BsFilterLeft/>
+            <img draggable="false" src={Filters} alt="" />
         </div>
       </div>
     </section>
