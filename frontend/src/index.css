@@ -4,6 +4,21 @@
     box-sizing: border-box;
     text-decoration: none;
     list-style: none;
+    -webkit-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+}
+:root{
+    --transition: .5s ;
+}
+button {
+    text-decoration: none;
+    outline: none;
+    border: none;
+    transition: var(--transition);
+}
+button:active{
+    transform: scale(0.9);
 }
 body {
     display: flex;

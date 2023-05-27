@@ -1,0 +1,48 @@
+.navbar__container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3.9375rem !important;
+    position: absolute;
+    top: 2.5125rem !important;
+    left: 0;
+    padding: 0 5%;
+    margin-bottom: 3rem;
+}
+
+.logo__container img {
+    width: 7.5rem;
+    height: auto;
+    cursor: pointer;
+}
+
+.nav-links__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-links__container li {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    cursor: pointer;
+}
+
+.register-spa button {
+    padding: 10px 20px;
+    border: 1px solid #3D3D3D;
+    border-radius: 30px;
+    background: transparent;
+    cursor: pointer;
+}
+
+@media screen and (max-width:820px) {
+    .nav-links__container {
+        display: none;
+    }
+}
