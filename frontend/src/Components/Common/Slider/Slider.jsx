@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import SpaCard from "../../MainPage/Cards/Cards";
+import SpaCard, { OfferCard } from "../../MainPage/Cards/Cards";
 
 import { motion } from "framer-motion"
 import { useState } from "react";
@@ -19,6 +19,9 @@ const Slider = (props) => {
 
   if (sliderType === "spa") {
     card = <SpaCard />
+  } 
+  else if (sliderType === "offer") {
+    card = <OfferCard />
   }
 
   

@@ -6,10 +6,11 @@ import './Main.css'
 
 // importing components
 import Header from '../Common/Header/Header'
+import Hero from '../Hero/Hero'
 import Slider from '../Common/Slider/Slider'
 
 // importing Data from Data.js
-import { spaNearYou } from '../../data'
+import { spaNearYou, offers } from '../../data'
 
 const Home = () => {
     return (
@@ -17,12 +18,14 @@ const Home = () => {
 
             <Header />
 
+            <Hero />
+
             <div className="slider__outer-container">
                 <div className="slider__header">
-                    <h2>Grab the best deal</h2>
-                    <Link to={'/deals'}>more</Link>
+                    <h2>Grab the best deals</h2>
+                    {/* <Link to={'/deals'}>more</Link> */}
                 </div>
-                <Slider cardList={spaNearYou} _name={"spa"} />
+                <Slider cardList={offers} _name={"offer"} />
             </div>
 
         </div>

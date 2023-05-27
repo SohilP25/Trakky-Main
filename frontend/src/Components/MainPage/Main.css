@@ -1,7 +1,7 @@
 
 .slider__outer-container {
     background-color: transparent;
-    padding: 2rem 5%;
+    padding: 2rem 2%;
     margin: 1rem 3%;
     width: 94%;
     border-radius: 10px;
@@ -12,19 +12,20 @@
     grid-template-rows: 1fr;
     padding-bottom: 1rem;
     align-items: center;
-
 }
 .slider__header h2 {
     position: relative;
+    padding: 0 6px;
+    text-transform: capitalize;
 }
-.slider__header h2::before {
+/* .slider__header h2::before {
     content: '';
     position: absolute;
     border-bottom: 2px solid black;
     width: 30%;
     top: 0;
     bottom: 0;
-}
+} */
 .slider__header a {
     text-transform: uppercase;
     text-decoration: underline;    

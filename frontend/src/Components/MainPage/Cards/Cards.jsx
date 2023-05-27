@@ -29,5 +29,18 @@ const SpaCard = (props) => {
   );
 };
 
+export const OfferCard = (props) => {
+  return (
+    <div className='offer-card'>
+      <Link to={'/offers'}>
+        <img
+          src={require(`../../../Assets/images/offers/${props.cardData}`)}
+          draggable="false"
+          alt="offers"
+        />
+      </Link>
+    </div>
+  )
+}
 
 export default SpaCard;
