@@ -1,9 +1,8 @@
-import "./App.css";
-import Header from "./Components/Common/Header/Header";
+import Router from "./Route/Route";
 
 function App() {
   return <>
-    <Header/>
+    <Router/>
   </>;
 }
 

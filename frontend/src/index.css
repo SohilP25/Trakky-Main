@@ -21,10 +21,8 @@ button:active{
     transform: scale(0.9);
 }
 body {
-    display: flex;
     min-height: 100vh;
     width: auto;
-    align-items: center;
-    justify-content: center;
     background-color: #FAF8ED;
+    font-family: 'Kanit', sans-serif;
 }
