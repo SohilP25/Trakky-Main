@@ -77,3 +77,25 @@
 .footer__copyright p {
     padding: 0 1rem;
 }
+
+@media screen and (max-width: 940px) {
+    .footer__main_container {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 1fr 1fr;
+    }
+    .footer__column1 {
+        grid-column: 1 / span 4;
+    }
+}
+
+
+@media screen and (max-width: 620px) {
+    .footer__main_container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+    .footer__column1 {
+        grid-column: 1 / span 2;
+    }
+
+}
