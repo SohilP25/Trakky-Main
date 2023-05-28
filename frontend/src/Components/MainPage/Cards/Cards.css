@@ -71,49 +71,31 @@
     height: 100%;
 }
 
-.therapy_card__container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.therapy-card {
+    width: 10rem;
+    height: auto;
 }
-
-.therapy_card_item {
-    display: flex;
-    flex-direction: column;
-    row-gap: 0.42rem;
-    width: 8rem;
-    height: 12rem;
-    padding: .5rem;
-    justify-content: center;
-    border: 2px;
-    border-radius: 5px;
-    background: #FFFFFF;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-.therapy_card_img {
-    border-radius: 50%;
-    transform: scale(0.8);
-    pointer-events: none;
+.therapy-card a img {
+    border-radius: 80px;
     width: 100%;
-    height: 70%;
+    height: 100%;
+    pointer-events: none;
+}
+.therapy-card a p {
+    text-align: center;
+    padding: 1rem 0;
     display: flex;
     justify-content: center;
-    align-items: center;
-}
-
-.therapy_card_name {
-    font-size: 1rem;
-    line-height: 20px;
-    text-align: center;
-    height: 30%;
+    color: #2D3134;
+    font-weight: bold;
 }
 
 .offer-card {
     width: 15rem;
     height: auto;
 }
-.offer-card a {
+.offer-card a,
+.therapy-card a {
     cursor: pointer;
 }
 .offer-card a img {

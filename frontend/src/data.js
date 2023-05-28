@@ -222,31 +222,31 @@ export const tags = [
   export const therapy = [
     {
       name: "Swedish Therapy",
-      img: "avatar1.webp",
+      img: "therapy.png",
     },
     {
       name: "Oil Massage Therapy",
-      img: "avatar1.webp",
+      img: "therapy.png",
     },
     {
       name: "Cream Therapy",
-      img: "avatar1.webp",
+      img: "therapy.png",
     },
     {
       name: "Swedish Therapy",
-      img: "avatar1.webp",
+      img: "therapy.png",
     },
     {
       name: "Oil Massage Therapy",
-      img: "avatar1.webp",
+      img: "therapy.png",
     },
     {
       name: "Cream Therapy",
-      img: "avatar1.webp",
+      img: "therapy.png",
     },
     {
       name: "Swedish Therapy",
-      img: "avatar1.webp",
+      img: "therapy.png",
     },
   ];
   

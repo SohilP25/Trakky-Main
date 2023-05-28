@@ -41,6 +41,21 @@ export const OfferCard = (props) => {
       </Link>
     </div>
   )
-}
+};
+
+export const TherapyCard = (props) => {
+  return (
+    <div className="therapy-card">
+      <Link>
+        <img 
+        src={require(`../../../Assets/images/therapy/${props.cardData.img}`)} 
+        draggable={false}
+        alt="therapy" />
+
+        <p>{props.cardData.name}</p>
+      </Link>
+    </div>
+  );
+};
 
 export default SpaCard;
