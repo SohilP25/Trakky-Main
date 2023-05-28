@@ -33,20 +33,24 @@
     color: #000;
 }
 
-.therapy__container .slider__header {
+ .slider__header {
     grid-template-columns: auto auto;
     grid-template-rows: auto auto;
 }
-.therapy__container .slider__header h1 {
+.slider__header h1 {
     font-size: xxx-large;
     color: #2D3134;
+    padding-left: 1rem;
 }
-.therapy__container .slider__header p {
+ .slider__header p {
     color: #5B5F62;
     padding: 1rem 7px;
 }
-.therapy__container .slider__outer-container {
+.slider__outer-container {
     padding: 2rem 5%;
+}
+.offer__container {
+    padding: 1rem 0;
 }
 .slider_buttons {
     justify-content: end;
@@ -62,6 +66,22 @@
     font-size: 1.5rem;
 }
 
+.explore {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 2rem 4rem;
+}
+
+.explore p {
+    text-align: center;
+    font-family: "Kanit", sans-serif;
+    font-style: normal;
+    font-weight: 40;
+    font-size: 1.5rem;
+    line-height: 36px;
+}
 @media screen and (max-width: 700px) {
     .therapy__container .slider__header p {
         padding: 0.5rem 0;

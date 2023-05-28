@@ -12,7 +12,8 @@ import Hero from '../Hero/Hero'
 import Slider from '../Common/Slider/Slider'
 
 // importing Data from Data.js
-import { spaNearYou, offers, therapy } from '../../data'
+import { spaNearYou, offers, therapy, topRatedSpa, LuxuriousSpa } from '../../data'
+import SpaCard from './Cards/Cards'
 
 const Home = () => {
     return (
@@ -22,7 +23,7 @@ const Home = () => {
 
             <Hero />
 
-            <div className="slider__outer-container">
+            <div className="slider__outer-container offer__container">
                 <div className="slider__header">
                     <h2>Grab the best deals</h2>
                     {/* <Link to={'/deals'}>more</Link> */}
@@ -45,6 +46,47 @@ const Home = () => {
                     <Slider cardList={therapy} _name={"therapy"} />
                 </div>
 
+            </div>
+
+            <div className="slider__outer-container">
+                <div className="slider__header">
+                    <h1>Spa Near You</h1>
+                    <div className="slider_buttons">
+                        <p>More</p>
+                        <img src={LeftArrow} alt="" />
+                        <img src={RightArrow} alt="" />
+                    </div>
+                </div>
+                <Slider cardList={spaNearYou} _name={"spa"} />
+            </div>
+
+            <div className="slider__outer-container">
+                <div className="slider__header">
+                    <h1>Top Rated Spa</h1>
+                    <div className="slider_buttons">
+                        <p>More</p>
+                        <img src={LeftArrow} alt="" />
+                        <img src={RightArrow} alt="" />
+                    </div>
+                </div>
+                <Slider cardList={topRatedSpa} _name={"spa"} />
+            </div>
+
+
+            <div className="explore">
+                <p id="quotes">“Find the perfect spa therapy for your needs.”</p>
+            </div>
+
+            <div className="slider__outer-container">
+                <div className="slider__header">
+                    <h1>Luxurious Spa</h1>
+                    <div className="slider_buttons">
+                        <p>More</p>
+                        <img src={LeftArrow} alt="" />
+                        <img src={RightArrow} alt="" />
+                    </div>
+                </div>
+                <Slider cardList={LuxuriousSpa} _name={"spa"} />
             </div>
         </div>
     )
