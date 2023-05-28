@@ -38,7 +38,7 @@
     grid-template-rows: auto auto;
 }
 .therapy__container .slider__header h1 {
-    font-size: -webkit-xxx-large;
+    font-size: xxx-large;
     color: #2D3134;
 }
 .therapy__container .slider__header p {
@@ -60,4 +60,33 @@
 }
 .slider_buttons p {
     font-size: 1.5rem;
+}
+
+@media screen and (max-width: 700px) {
+    .therapy__container .slider__header p {
+        padding: 0.5rem 0;
+    }
+    .slider_buttons img {
+        width: 2.35rem;
+        height: 2.35rem;
+    }
+    .therapy__container .slider_buttons p {
+        font-size: 1rem;
+    }
+    .therapy__container .slider__header h1 {
+        font-size: xx-large;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .therapy__container .slider__header p {
+        padding: 0.5rem 0;
+    }
+    .slider_buttons img {
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+    .therapy__container .slider__header p {
+        font-size: 1rem;
+    }
 }
