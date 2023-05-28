@@ -83,6 +83,64 @@
     font-size: 1.5rem;
     line-height: 36px;
 }
+
+.upper__footer_desktop {
+    display: flex;
+    margin: 1rem 3%;
+    padding: 0 5%;
+}
+.left__container {
+    width: 40%;
+    padding: 1rem;
+    align-items: center;
+    display: grid;
+}
+.left__container a {
+    padding: 1rem;
+    color: white;
+    height: fit-content;
+    background-color: black;
+    border-radius: 8px;
+    justify-self: left;
+}
+.right__container {
+    display: flex;
+    justify-content: end;
+    width: 60%;
+}
+.right__container img {
+    width: 100%;
+}
+.upper__footer_mobile {
+    display: none;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, auto);
+    align-items: center;
+    text-align: center;
+    margin: 1rem 3%;
+    padding: 0 5%;
+}
+.upper__footer_mobile img {
+    width: 100%;
+    margin: 1rem 0;
+}
+.upper__footer_mobile a {
+    padding: 1rem;
+    color: white;
+    width: fit-content;
+    background-color: black;
+    border-radius: 8px;
+    justify-self: center;
+}
+@media screen and (max-width: 980px) {
+    .upper__footer_desktop {
+        display: none;
+    }
+    .upper__footer_mobile {
+        display: grid;
+    }
+}
+
 @media screen and (max-width: 700px) {
     .therapy__container .slider__header p {
         padding: 0.5rem 0;

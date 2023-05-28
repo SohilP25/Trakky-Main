@@ -4,6 +4,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import LeftArrow from '../../Assets/images/icons/Arrow left.svg'
 import RightArrow from '../../Assets/images/icons/Arrow right.svg'
+import GiftCard from '../../Assets/images/other/Gift Cards.png';
 import './Main.css'
 
 // importing components
@@ -14,7 +15,6 @@ import Footer from '../Common/Footer/Footer'
 
 // importing Data from Data.js
 import { spaNearYou, offers, therapy, topRatedSpa, LuxuriousSpa } from '../../data'
-import SpaCard from './Cards/Cards'
 
 const Home = () => {
     return (
@@ -88,6 +88,22 @@ const Home = () => {
                     </div>
                 </div>
                 <Slider cardList={LuxuriousSpa} _name={"spa"} />
+            </div>
+
+            <div className="upper__footer_desktop">
+                <div className="left__container">
+                    <h1>Trakky Experience</h1>
+                    <Link to={'/learn-more'}>Learn more</Link>
+                </div>
+                <div className="right__container">
+                    <img src={GiftCard} alt="" />
+                </div>
+            </div>
+
+            <div className="upper__footer_mobile">
+                <h1>Trakky Experience</h1>
+                <img src={GiftCard} alt="" />
+                <Link to={'/learn-more'}>Learn more</Link>
             </div>
 
             <Footer />
