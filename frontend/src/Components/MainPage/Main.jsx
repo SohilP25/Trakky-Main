@@ -10,6 +10,7 @@ import './Main.css'
 import Header from '../Common/Header/Header'
 import Hero from '../Hero/Hero'
 import Slider from '../Common/Slider/Slider'
+import Footer from '../Common/Footer/Footer'
 
 // importing Data from Data.js
 import { spaNearYou, offers, therapy, topRatedSpa, LuxuriousSpa } from '../../data'
@@ -88,6 +89,8 @@ const Home = () => {
                 </div>
                 <Slider cardList={LuxuriousSpa} _name={"spa"} />
             </div>
+
+            <Footer />
         </div>
     )
 }
