@@ -84,6 +84,23 @@
     line-height: 36px;
 }
 
+.trakky_experiences {
+    margin: 1rem 3%;
+    padding: 0 5%;
+}
+
+.image__container {
+    display: flex;
+}
+.left__,
+.right__ {
+    width: 96%;
+    margin: 1%;
+}
+.image__container img {
+    width: 100%;
+}
+
 .upper__footer_desktop {
     display: flex;
     margin: 1rem 3%;

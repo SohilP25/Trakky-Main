@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import LeftArrow from '../../Assets/images/icons/Arrow left.svg'
 import RightArrow from '../../Assets/images/icons/Arrow right.svg'
 import GiftCard from '../../Assets/images/other/Gift Cards.png';
+import Image from '../../Assets/images/other/image.jpeg'
 import './Main.css'
 
 // importing components
@@ -88,6 +89,18 @@ const Home = () => {
                     </div>
                 </div>
                 <Slider cardList={LuxuriousSpa} _name={"spa"} />
+            </div>
+
+            <div className="trakky_experiences">
+                <h2>Discover Trakky Experiences</h2>
+                <div className="image__container">
+                    <div className="left__">
+                        <img src={Image} alt="" />
+                    </div>
+                    <div className="right__">
+                        <img src={Image} alt="" />
+                    </div>
+                </div>
             </div>
 
             <div className="upper__footer_desktop">
