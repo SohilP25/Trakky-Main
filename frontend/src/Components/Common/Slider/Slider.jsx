@@ -10,12 +10,11 @@ import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 
 import "./Slide.css";
-import { Pagination } from "swiper";
-import "./Slide.css";
-import SwiperCore, { Autoplay } from 'swiper';
+import SwiperCore, { Autoplay, Pagination } from 'swiper';
 
 const Slider = (props) => {
   SwiperCore.use([Autoplay]);
+  
   const sliderType = props._name;
   let card;
 
@@ -47,7 +46,7 @@ const Slider = (props) => {
         className="slider__inner-container mySwiper "
         style={styles.slider__inner_container}
         grabCursor={true}
-        autoplay={{delay:1500,disableOnInteraction:false,stopOnLastSlide:true}}
+        autoplay={{delay:3000,disableOnInteraction:false,stopOnLastSlide:true}}
         slidesPerView={"auto"}
         navigation={true}
         modules={[Autoplay, Pagination]}
