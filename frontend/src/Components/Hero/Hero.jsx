@@ -5,7 +5,7 @@ import Filters from './../../Assets/images/icons/filters.svg'
 
 const Hero = () => {
 
-  const [newName, setNewName] = useState("");
+  const [newName, setNewName] = useState("Discover top-rated massage spa therapies in your area.");
 
   const shuffle = useCallback(() => {
     const headlines = [
