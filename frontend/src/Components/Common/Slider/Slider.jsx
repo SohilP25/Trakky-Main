@@ -76,7 +76,6 @@ const Slider = (props) => {
       });
     }
   }, [isIntersecting]);
-
   return (
     <div
       className="slider__container"
@@ -92,6 +91,7 @@ const Slider = (props) => {
             grabCursor={true}
             autoplay={{
               disableOnInteraction: false,
+              pauseOnMouseEnter: true,
               delay: 1500,
               stopOnLastSlide: true,
             }}

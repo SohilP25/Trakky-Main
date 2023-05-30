@@ -271,3 +271,10 @@ export const topDestinations = [
   "img5.png",
   "img6.png",
 ];
+export const topDestinationsLocations = [
+  "London",
+  "Bangkok",
+  "England",
+  "Singapore",
+  "Italy",
+];

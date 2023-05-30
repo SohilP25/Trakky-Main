@@ -4,11 +4,9 @@ import { Link } from "react-router-dom";
 import "./Cards.css";
 import cardIcons from '../../../Assets/images/icons/card_icons.png';
 
-import { BsFillTelephoneOutboundFill } from "react-icons/bs";
-
 const SpaCard = (props) => {
   return (
-    <div className="card">
+    <div className="card" >
       <div className="card-image">
         <img src={require(`../../../Assets/images/spa/${props.cardData.img}`)} alt="spa" />
       </div>

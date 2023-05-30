@@ -1,11 +1,11 @@
 .card {
     min-width: 19rem;
     height: fit-content;
-    border: 0.5px solid #FFFFFF;
     border-radius: 16px;
-    background-color: rgba(255, 255, 255);
+    background: #FAF8ED;
     margin: 0.5rem;
     color:#2D3134;
+    box-shadow: 0px 20px 9px rgba(192, 188, 161, 0.28);
 }
 .card h3 {
     font-weight: 600;

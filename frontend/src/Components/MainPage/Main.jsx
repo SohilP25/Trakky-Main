@@ -30,6 +30,7 @@ import {
   therapy,
   topRatedSpa,
   LuxuriousSpa,
+  topDestinationsLocations,
 } from "../../data";
 
 // window dimensions
@@ -50,6 +51,7 @@ const Home = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const [isActiveLocation, setActiveLocation] = useState(true);
   return (
     <div className="main__container">
       <Header />
@@ -91,16 +93,14 @@ const Home = () => {
         <Slider cardList={spaNearYou} _name={"spa"} />
       </div>
 
-      <div className="top-destionations__container">
+      <div className="top-destinations__container">
         <div className="top-destinations__header">
           <h1>Top Destinations</h1>
           <p>Sost Brilliant reasons Entrada should be your one-stop-shop! </p>
-          <div className="top-destionations__tags">
-            <li>London</li>
-            <li>Bangkok</li>
-            <li>England</li>
-            <li>Singapore</li>
-            <li>Italy</li>
+          <div className="top-destinations__tags">
+            {topDestinationsLocations.map((location, index) => {
+              return <li key={index}>{location}</li>;
+            })}
           </div>
         </div>
         {{ windowDimensions }.windowDimensions.width >= 725 ? (
