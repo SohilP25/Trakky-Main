@@ -33,10 +33,10 @@ const Hero = () => {
         <div className="search__container">
           <div className="search-bar">
             <img draggable="false" src={Search} alt="" />
-            <input type="text" placeholder="Search" />
+            <input type="text" placeholder="Search" name="search" />
           </div>
-
           <img draggable="false" src={Filters} alt="" />
+
         </div>
       </div>
     </section>

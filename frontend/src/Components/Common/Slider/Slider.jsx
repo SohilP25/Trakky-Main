@@ -88,7 +88,6 @@ const Slider = (props) => {
           <Swiper
             className="slider__inner-container mySwiper "
             style={styles.slider__inner_container}
-            grabCursor={true}
             autoplay={{
               disableOnInteraction: false,
               pauseOnMouseEnter: true,

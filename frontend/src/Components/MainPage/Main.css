@@ -44,7 +44,7 @@
 .slider__header h1 {
     font-size: xxx-large;
     color: #2D3134;
-    padding-left: 1rem;
+    /* padding-left: 1rem; */
 }
 
 .slider__header p {
@@ -180,7 +180,7 @@
 }
 
 @media screen and (max-width: 700px) {
-    .therapy__container .slider__header p {
+    .slider__header p {
         padding: 0.5rem 0;
     }
 
@@ -189,17 +189,17 @@
         height: 2.35rem;
     }
 
-    .therapy__container .slider_buttons p {
+    .slider_buttons p {
         font-size: 1rem;
     }
 
-    .therapy__container .slider__header h1 {
+    .slider__header h1 {
         font-size: xx-large;
     }
 }
 
 @media screen and (max-width: 430px) {
-    .therapy__container .slider__header p {
+    .slider__header p {
         padding: 0.5rem 0;
     }
 
@@ -208,7 +208,7 @@
         height: 1.75rem;
     }
 
-    .therapy__container .slider__header p {
+    .slider__header p {
         font-size: 1rem;
     }
 }

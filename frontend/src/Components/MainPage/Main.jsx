@@ -23,6 +23,7 @@ import i1 from "./../../Assets/images/other/i1.png";
 import i2 from "./../../Assets/images/other/i2.png";
 import i3 from "./../../Assets/images/other/i3.png";
 import i4 from "./../../Assets/images/other/i4.png";
+
 // importing Data from Data.js
 import {
   spaNearYou,
