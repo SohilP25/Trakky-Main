@@ -46,8 +46,6 @@ const Home = () => {
   const [active, setActive] = useState(0);
   return (
     <div className="main__container">
-      <Header />
-
       <Hero />
       {/* Offer Starts------------------- */}
       <div className="slider__outer-container offer__container">
