@@ -51,8 +51,7 @@ const Home = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  const [isActiveLocation, setActiveLocation] = useState(true);
+  const [active, setActive] = useState(0);
   return (
     <div className="main__container">
       <Header />
@@ -93,14 +92,26 @@ const Home = () => {
         </div>
         <Slider cardList={spaNearYou} _name={"spa"} />
       </div>
-
       <div className="top-destinations__container">
         <div className="top-destinations__header">
           <h1>Top Destinations</h1>
           <p>Sost Brilliant reasons Entrada should be your one-stop-shop! </p>
           <div className="top-destinations__tags">
             {topDestinationsLocations.map((location, index) => {
-              return <li key={index}>{location}</li>;
+              return (
+                <li
+                  onClick={() => {
+                    setActive(index);
+                  }}
+                  style={{
+                    color: active == index ? "white" : "#2D3134",
+                    backgroundColor: active == index ? "#2D3134" : "",
+                  }}
+                  key={index}
+                >
+                  {location}
+                </li>
+              );
             })}
           </div>
         </div>

@@ -24,7 +24,7 @@ const Slider = (props) => {
   useEffect(() => {
     setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
   }, []);
-
+  
   let card; // card contains the type of card to be fetched
   const sliderType = props._name;
   // deciding the type of card
@@ -63,7 +63,6 @@ const Slider = (props) => {
       },
       { rootMargin: "-100px" }
     );
-    // console.log(isIntersecting);
     observer.observe(ref.current);
 
     return () => observer.disconnect();
@@ -95,8 +94,8 @@ const Slider = (props) => {
               stopOnLastSlide: true,
             }}
             slidesPerView={"auto"}
-            navigation={true}
             modules={[Autoplay, Pagination]}
+            navigation={true}
           >
             {props.cardList.map((data, index) => {
               return (

@@ -262,10 +262,6 @@
     transform: scale(.9);
 }
 
-.top-destinations__tags li:first-child {
-    background: #2D3134;
-    color: white;
-}
 
 .top-destinations-img__container {
     display: grid;
