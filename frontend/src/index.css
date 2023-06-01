@@ -11,6 +11,7 @@
 :root{
     --transition: .5s ;
 }
+
 button {
     text-decoration: none;
     outline: none;

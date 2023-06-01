@@ -13,16 +13,6 @@ import Header from "../Common/Header/Header";
 import Hero from "../Hero/Hero";
 import Slider from "../Common/Slider/Slider";
 import Footer from "../Common/Footer/Footer";
-import img1 from "./../../Assets/images/other/img1.png";
-import img2 from "./../../Assets/images/other/img2.png";
-import img3 from "./../../Assets/images/other/img3.png";
-import img4 from "./../../Assets/images/other/img4.png";
-import img5 from "./../../Assets/images/other/img5.png";
-import img6 from "./../../Assets/images/other/img6.png";
-import i1 from "./../../Assets/images/other/i1.png";
-import i2 from "./../../Assets/images/other/i2.png";
-import i3 from "./../../Assets/images/other/i3.png";
-import i4 from "./../../Assets/images/other/i4.png";
 
 // importing Data from Data.js
 import {
@@ -32,6 +22,8 @@ import {
   topRatedSpa,
   LuxuriousSpa,
   topDestinationsLocations,
+  topDestinations,
+  topDestinationsSmallDevice,
 } from "../../data";
 
 // window dimensions
@@ -57,7 +49,7 @@ const Home = () => {
       <Header />
 
       <Hero />
-
+      {/* Offer Starts------------------- */}
       <div className="slider__outer-container offer__container">
         <div className="slider__header">
           <h2>Grab the best deals</h2>
@@ -65,7 +57,9 @@ const Home = () => {
         </div>
         <Slider cardList={offers} _name={"offer"} />
       </div>
+      {/* Offer Ends */}
 
+      {/* Therapy Starts------------------- */}
       <div className="therapy__container">
         <div className="slider__outer-container">
           <div className="slider__header">
@@ -80,7 +74,9 @@ const Home = () => {
           <Slider cardList={therapy} _name={"therapy"} />
         </div>
       </div>
+      {/* Therapy Ends */}
 
+      {/* Spa Near You Starts------------------- */}
       <div className="slider__outer-container">
         <div className="slider__header">
           <h1>Spa Near You</h1>
@@ -92,11 +88,15 @@ const Home = () => {
         </div>
         <Slider cardList={spaNearYou} _name={"spa"} />
       </div>
+      {/* Spa Near You Ends */}
+
+      {/* Top Destinations Starts-------------------------- */}
       <div className="top-destinations__container">
         <div className="top-destinations__header">
           <h1>Top Destinations</h1>
           <p>Sost Brilliant reasons Entrada should be your one-stop-shop! </p>
           <div className="top-destinations__tags">
+            {/* Location tags */}
             {topDestinationsLocations.map((location, index) => {
               return (
                 <li
@@ -115,85 +115,50 @@ const Home = () => {
             })}
           </div>
         </div>
+        {/* images starts------------ */}
+
+        {/* Altering Grid layout for smaller devices */}
         {{ windowDimensions }.windowDimensions.width >= 725 ? (
           <div className="top-destinations-img__container">
-            <div className="img1">
-              <img src={img1} alt="spa" />
-              <div className="img-title">
-                <h3>Vietnam</h3>
-                <h5>Worefall</h5>
-              </div>
-            </div>
-            <div className="img2">
-              <img src={img2} alt="spa" />
-              <div className="img-title">
-                <h3>Vietnam</h3>
-                <h5>Worefall</h5>
-              </div>
-            </div>
-            <div className="img3">
-              <img src={img3} alt="spa" />
-              <div className="img-title">
-                <h3>Vietnam</h3>
-                <h5>Worefall</h5>
-              </div>
-            </div>
-            <div className="img4">
-              <img src={img4} alt="spa" />
-              <div className="img-title">
-                <h3>Vietnam</h3>
-                <h5>Worefall</h5>
-              </div>
-            </div>
-            <div className="img5">
-              <img src={img5} alt="spa" />
-              <div className="img-title">
-                <h3>Vietnam</h3>
-                <h5>Worefall</h5>
-              </div>
-            </div>
-            <div className="img6">
-              <img src={img6} alt="spa" />
-              <div className="img-title">
-                <h3>Vietnam</h3>
-                <h5>Worefall</h5>
-              </div>
-            </div>
+            {topDestinations.map(({ img, heading, subHeading }, index) => {
+              return (
+                <div className={img} key={index}>
+                  <img
+                    src={require(`../../Assets/images/other/${img}.png`)}
+                    alt="spa"
+                  />
+                  <div className="img-title">
+                    <h3>{heading}</h3>
+                    <h5>{subHeading}</h5>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         ) : (
           <div className="top-destinations-img__container1">
-            <div className="i1">
-              <img src={i1} alt="spa" />
-              <div className="img-title1">
-                <h3>Vietnam</h3>
-                <h5>Worefall</h5>
-              </div>
-            </div>
-            <div className="i4">
-              <img src={i4} alt="spa" />
-              <div className="img-title1">
-                <h3>Vietnam</h3>
-                <h5>Worefall</h5>
-              </div>
-            </div>
-            <div className="i2">
-              <img src={i2} alt="spa" />
-              <div className="img-title1">
-                <h3>Vietnam</h3>
-                <h5>Worefall</h5>
-              </div>
-            </div>
-            <div className="i3">
-              <img src={i3} alt="spa" />
-              <div className="img-title1">
-                <h3>Vietnam</h3>
-                <h5>Worefall</h5>
-              </div>
-            </div>
+            {topDestinationsSmallDevice.map(
+              ({ img, heading, subHeading }, index) => {
+                return (
+                  <div className={img} key={index}>
+                    <img
+                      src={require(`../../Assets/images/other/${img}.png`)}
+                      alt="spa"
+                    />
+                    <div className="img-title1">
+                      <h3>{heading}</h3>
+                      <h5>{subHeading}</h5>
+                    </div>
+                  </div>
+                );
+              }
+            )}
           </div>
         )}
       </div>
+      {/* Top Destinations Ends*/}
 
+      {/* Top Rated Spa Starts --------------------------------------*/}
       <div className="slider__outer-container">
         <div className="slider__header">
           <h1>Top Rated Spa</h1>
@@ -205,11 +170,13 @@ const Home = () => {
         </div>
         <Slider cardList={topRatedSpa} _name={"spa"} />
       </div>
+      {/* Top Rated Spa Ends */}
 
       <div className="explore">
         <p id="quotes">“Find the perfect spa therapy for your needs.”</p>
       </div>
 
+      {/* Luxurious Spa Starts --------------------------------------*/}
       <div className="slider__outer-container">
         <div className="slider__header">
           <h1>Luxurious Spa</h1>
@@ -221,7 +188,9 @@ const Home = () => {
         </div>
         <Slider cardList={LuxuriousSpa} _name={"spa"} />
       </div>
+      {/* Luxurious Spa Ends */}
 
+      {/* Discover Trakky Experiences Starts --------------------------------------*/}
       <div className="trakky_experiences">
         <h2>Discover Trakky Experiences</h2>
         <div className="image__container">
@@ -233,7 +202,9 @@ const Home = () => {
           </div>
         </div>
       </div>
+      {/* Discover Trakky Experiences Ends */}
 
+      {/* Upper Footer Desktop  Starts --------------------------------------*/}
       <div className="upper__footer_desktop">
         <div className="left__container">
           <h1>Trakky Experience</h1>
@@ -243,13 +214,15 @@ const Home = () => {
           <img src={GiftCard} alt="" />
         </div>
       </div>
+      {/* Upper Footer Desktop Ends */}
 
+      {/* Upper Footer Mobile Starts---------------------------- */}
       <div className="upper__footer_mobile">
         <h1>Trakky Experience</h1>
         <img src={GiftCard} alt="" />
         <Link to={"/learn-more"}>Learn more</Link>
       </div>
-
+      {/* Upper Footer Mobile Ends */}
       <Footer />
     </div>
   );

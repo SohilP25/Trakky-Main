@@ -263,18 +263,65 @@ export const therapy = [
     img: "therapy.png",
   },
 ];
-export const topDestinations = [
-  "img1.png",
-  "img2.png",
-  "img3.png",
-  "img4.png",
-  "img5.png",
-  "img6.png",
-];
 export const topDestinationsLocations = [
   "London",
   "Bangkok",
   "England",
   "Singapore",
   "Italy",
+];
+export const topDestinations = [
+  {
+    img: "img1",
+    heading: "Vietnam",
+    subHeading: "Worefall",
+  },
+  {
+    img: "img2",
+    heading: "Vietnam",
+    subHeading: "Worefall",
+  },
+  {
+    img: "img3",
+    heading: "Vietnam",
+    subHeading: "Worefall",
+  },
+  {
+    img: "img4",
+    heading: "Vietnam",
+    subHeading: "Worefall",
+  },
+  {
+    img: "img5",
+    heading: "Vietnam",
+    subHeading: "Worefall",
+  },
+  {
+    img: "img6",
+    heading: "Vietnam",
+    subHeading: "Worefall",
+  },
+];
+
+export const topDestinationsSmallDevice = [
+  {
+    img: "i1",
+    heading: "Vietnam",
+    subHeading: "Worefall",
+  },
+  {
+    img: "i4",
+    heading: "Vietnam",
+    subHeading: "Worefall",
+  },
+  {
+    img: "i2",
+    heading: "Vietnam",
+    subHeading: "Worefall",
+  },
+  {
+    img: "i3",
+    heading: "Vietnam",
+    subHeading: "Worefall",
+  },
 ];
