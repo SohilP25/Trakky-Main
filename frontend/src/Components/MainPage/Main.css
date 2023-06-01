@@ -216,9 +216,11 @@
 /* ṭop destinations starts */
 
 .top-destinations__container {
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-
 
 .top-destinations__header h1 {
     text-align: center;
@@ -241,7 +243,7 @@
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
-    margin: 1.5rem 3rem;
+    margin: 0rem 3rem 2rem 3rem;
     flex-wrap: wrap;
 }
 
@@ -267,7 +269,6 @@
 
 .top-destinations-img__container {
     display: grid;
-    justify-content: center;
     place-items: center;
     grid-template-columns: 16.875rem 23.125rem 10.625rem 17.75rem;
     grid-template-rows: repeat(2, 15.625rem);
@@ -275,6 +276,7 @@
     grid-auto-flow: row;
     grid-auto-flow: row;
     transform: scale(.9);
+    margin-top: auto;
 }
 
 .img2 {
@@ -405,7 +407,7 @@
     grid-auto-flow: row;
     gap: 1.625rem 1.875rem;
     grid-auto-flow: row;
-    transform: scale(1.2);
+    transform: scale(1.3);
 }
 
 .top-destinations-img__container1 div img {
@@ -488,7 +490,9 @@
         font-size: 2.3rem;
         line-height: 3.125rem;
     }
-
+    .top-destinations__tags{
+        margin-bottom: 0rem;
+    }
     .top-destinations-img__container1 {
         transform: scale(1);
     }
