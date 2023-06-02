@@ -67,12 +67,19 @@ Trakky-Main/
 │  │  │  │  │  ├─ SearchBar.jsx
 │  │  │  │  ├─ Main.css
 │  │  │  │  ├─ Main.jsx
-│  │  │  ├─ SpaNearMePage/
+│  │  │  ├─ SpaPage/
 │  │  │  │  ├─ Hero/
 │  │  │  │  │  ├─ Hero.css
 │  │  │  │  │  ├─ Hero.jsx
-│  │  │  │  ├─ SpaNearMeList.css
-│  │  │  │  ├─ SpaNearMeList.jsx
+|  |  |  |  ├─ SpaList/   
+│  │  │  │  │  ├─ SpaList.css
+│  │  │  │  │  ├─ SpaList.jsx
+|  |  |  |  ├─ SpaProfile/
+│  │  │  │  │  ├─ SpaProfile.jsx
+│  │  │  │  │  ├─ SpaProfile.css
+|  |  |  |  ├─ SpaCard/
+│  │  │  │  │  ├─ SpaCard.jsx
+│  │  │  │  │  ├─ SpaCard.css
 │  │  ├─ Route/
 │  │  │  ├─ Route.jsx
 │  │  ├─ App.js
