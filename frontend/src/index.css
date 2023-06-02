@@ -11,7 +11,9 @@
 :root{
     --transition: .5s ;
 }
-
+.main__container section {
+    background-color: #000;
+}
 button {
     text-decoration: none;
     outline: none;

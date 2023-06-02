@@ -5,20 +5,20 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    column-gap: 0;
-    margin: auto 0;
-    margin-top: -41%;
-    row-gap: 2rem;
     width: 100%;
-    height: auto;
-    padding: auto;
+    top: 200px;
+    color: #FFF;
 }
 .video-bg{
-    opacity: .81;
+    opacity: 0.9;
+    width: 100%;
+    height: 80vh;
+    object-fit: cover;
+    background-color: #000;
+}
+.video-bg video {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-
 }
 .sentence__container {
     display: flex;
@@ -29,43 +29,53 @@
     display: flex;
     flex-wrap: wrap;
 }
-
+.sentence__container h1 {
+    font-family: 'Inter';
+    font-weight: 700;
+    font-size: 2.5em;
+    color: #fff;
+}
 .sentence__container p {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 2.5rem;
-    line-height: 3.1375rem;
-    color: #000000;
-    padding: 0 auto;
+    font-size: larger;
+    line-height: 4rem;
 }
 
 .search__container {
     display: flex;
     align-items: center;
-    padding: 12px 12px 12px 20px;
-    gap: 28px;
+    padding: 5px 10px;
+    gap: 20px;
     margin: 0 auto;
-    width: 54rem;
+    width: 60%;
+    max-width: 54rem;
     background: #FFFFFF;
     border: 0.5px solid #DEDEDE;
     box-shadow: 0px 0px 28px rgba(59, 59, 59, 0.12);
-    border-radius: 99px;
-    height: 3rem;
+    border-radius: 100px;
+    height: fit-content;
 }
 
 .search-bar {
+    color: #000;
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    width: 95%;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 5px;
 }
 
 .search-bar input {
     outline: none;
     border: none;
-    height: 2rem !important;
     width: 100%;
+    color: #717171;
+}
+.search-bar input:active,
+.search-bar input:focus {
+    color: #000000;
+}
+.search-bar input:active #searchLabel,
+.search-bar input:focus #searchLabel {
+    font-size: 1rem;
 }
 
 .search__container img {
@@ -98,10 +108,8 @@
         padding: 0 5rem;
         line-height: 2.8rem;
     }
-
     .search__container {
         width: 40rem;
-
     }
 }
 
@@ -110,7 +118,6 @@
         font-size: 1.5rem;
         line-height: 2.4rem;
     }
-
     .search__container {
         width: 30rem;
     }
@@ -129,7 +136,7 @@
 
     .sentence__container p {
         padding: 0 11rem;
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         line-height: 2rem;
     }
 

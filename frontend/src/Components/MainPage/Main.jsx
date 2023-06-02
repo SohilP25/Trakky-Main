@@ -2,14 +2,11 @@ import React, { useState, useEffect } from "react";
 
 // importing other stuff
 import { Link } from "react-router-dom";
-import LeftArrow from "../../Assets/images/icons/Arrow left.svg";
-import RightArrow from "../../Assets/images/icons/Arrow right.svg";
 import GiftCard from "../../Assets/images/other/Gift Cards.png";
 import Image from "../../Assets/images/other/image.jpeg";
 import "./Main.css";
 
 // importing components
-import Header from "../Common/Header/Header";
 import Hero from "../Hero/Hero";
 import Slider from "../Common/Slider/Slider";
 import Footer from "../Common/Footer/Footer";
@@ -62,11 +59,7 @@ const Home = () => {
         <div className="slider__outer-container">
           <div className="slider__header">
             <h1>Therapies</h1>
-            <div className="slider_buttons">
-              <p>More</p>
-              <img src={LeftArrow} alt="" />
-              <img src={RightArrow} alt="" />
-            </div>
+              <Link to={'/therapies'}>More</Link>
             <p>Here are lots of interesting destinations to visit</p>
           </div>
           <Slider cardList={therapy} _name={"therapy"} />
@@ -79,9 +72,7 @@ const Home = () => {
         <div className="slider__header">
           <h1>Spa Near You</h1>
           <div className="slider_buttons">
-            <p>More</p>
-            <img src={LeftArrow} alt="" />
-            <img src={RightArrow} alt="" />
+            <Link to={'/therapies'}>More</Link>
           </div>
         </div>
         <Slider cardList={spaNearYou} _name={"spa"} />
@@ -102,8 +93,8 @@ const Home = () => {
                     setActive(index);
                   }}
                   style={{
-                    color: active == index ? "white" : "#2D3134",
-                    backgroundColor: active == index ? "#2D3134" : "",
+                    color: active === index ? "white" : "#2D3134",
+                    backgroundColor: active === index ? "#2D3134" : "",
                   }}
                   key={index}
                 >
@@ -161,9 +152,7 @@ const Home = () => {
         <div className="slider__header">
           <h1>Top Rated Spa</h1>
           <div className="slider_buttons">
-            <p>More</p>
-            <img src={LeftArrow} alt="" />
-            <img src={RightArrow} alt="" />
+            <Link to={'/therapies'}>More</Link>
           </div>
         </div>
         <Slider cardList={topRatedSpa} _name={"spa"} />
@@ -179,9 +168,7 @@ const Home = () => {
         <div className="slider__header">
           <h1>Luxurious Spa</h1>
           <div className="slider_buttons">
-            <p>More</p>
-            <img src={LeftArrow} alt="" />
-            <img src={RightArrow} alt="" />
+            <Link to={'/therapies'}>More</Link>
           </div>
         </div>
         <Slider cardList={LuxuriousSpa} _name={"spa"} />

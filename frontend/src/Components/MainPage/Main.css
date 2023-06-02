@@ -6,47 +6,33 @@
     border-radius: 10px;
 
 }
-
-.slider__header {
+.therapy__container .slider__header {
     display: grid;
     grid-template-columns: auto auto;
-    grid-template-rows: 1fr;
-    padding-bottom: 1rem;
+    grid-template-rows: auto;
+}
+.therapy__container .slider__header a {
+    width: fit-content;
+    justify-self: end;
+}
+.slider__header {
+    display: flex;
     align-items: center;
 }
-
 .slider__header h2 {
     position: relative;
     padding: 0 6px;
     text-transform: capitalize;
 }
-
-/* .slider__header h2::before {
-    content: '';
-    position: absolute;
-    border-bottom: 2px solid black;
-    width: 30%;
-    top: 0;
-    bottom: 0;
-} */
 .slider__header a {
-    text-transform: uppercase;
-    text-decoration: underline;
-    justify-self: end;
+    font-size: larger;
     color: #000;
 }
-
-.slider__header {
-    grid-template-columns: auto auto;
-    grid-template-rows: auto auto;
-}
-
 .slider__header h1 {
     font-size: xxx-large;
     color: #2D3134;
-    /* padding-left: 1rem; */
+    width: 90%;    
 }
-
 .slider__header p {
     color: #5B5F62;
     padding: 1rem 7px;
@@ -64,15 +50,14 @@
     justify-content: end;
     display: flex;
     align-items: center;
+    width: 10%;
 }
-
 .slider_buttons img {
     padding: 0 0.3rem;
     width: 3.35rem;
     height: 3.35rem;
     cursor: pointer;
 }
-
 .slider_buttons p {
     font-size: 1.5rem;
 }
@@ -84,7 +69,6 @@
     flex-wrap: wrap;
     margin: 2rem 4rem;
 }
-
 .explore p {
     text-align: center;
     font-family: "Kanit", sans-serif;
@@ -224,9 +208,8 @@
 
 .top-destinations__header h1 {
     text-align: center;
-    font-family: 'inter';
     color: #2D3134;
-    font-size: 3rem;
+    font-size: xxx-large;
     line-height: 4.125rem;
 }
 
@@ -252,7 +235,6 @@
     line-height: 1rem;
     padding: 10px 20px;
     border-radius: 30px;
-    font-family: 'Poppins';
     cursor: pointer;
     border: 1px solid black;
     transition: var(--transition);
@@ -368,9 +350,12 @@
     }
 }
 
-@media screen and (max-width:711px) {
+@media screen and (max-width:700px) {
     .top-destinations__tags li {
         padding: 7.5px 15px;
+    }
+    .top-destinations__header h1 {
+        font-size: xx-large;
     }
 }
 

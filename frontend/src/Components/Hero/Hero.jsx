@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "./Hero.css";
+
 import Search from "./../../Assets/images/icons/search.svg";
 import Filters from "./../../Assets/images/icons/filters.svg";
 import Header from "../Common/Header/Header";
+
 const Hero = () => {
   const [newName, setNewName] = useState(
     "Discover top-rated massage spa therapies in your area."
@@ -23,27 +25,36 @@ const Hero = () => {
     const intervalID = setInterval(shuffle, 3000);
     return () => clearInterval(intervalID);
   }, [shuffle]);
+
+
   return (
     <section>
-      <div className="overlay"></div>
-      <video
-        src={require(`./../../Assets/videos/background_player.mp4`)}
-        className="video-bg"
-        autoPlay
-        loop
-        muted
-      ></video>
+      <div className="video-bg">
+        <video className="video-bg" autoPlay loop muted>
+          <source src={require(`./../../Assets/videos/horizontal_.webm`)} />
+        </video>
+      </div>
+
       <Header />
+
       <div className="hero__container">
         <div className="sentence__container">
-          <p>{newName}</p>
+          <h1>{newName}</h1>
+          <p>Discover and book beauty & wellness professionals near you</p>
         </div>
+
+
         <div className="search__container">
-          <div className="search-bar">
-            <img draggable="false" src={Search} alt="" />
-            <input type="text" placeholder="Search" name="search" />
-          </div>
-          <img draggable="false" src={Filters} alt="" />
+
+          <img draggable="false" src={Search} alt="" />
+
+          <form className="search-bar">
+            <label htmlFor="search" id="searchLabel" style={{ fontWeight: "bold" }}>What to?</label>
+            <input type="text" placeholder="Spa name • Area • City • Therapy" name="search" autoComplete="off" />
+          </form>
+
+          <img draggable="false" src={Filters} alt="" style={{ height: '2.5rem' }} />
+
         </div>
       </div>
     </section>

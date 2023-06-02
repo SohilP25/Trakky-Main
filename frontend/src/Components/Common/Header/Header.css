@@ -5,12 +5,21 @@
     align-items: center;
     justify-content: space-between;
     height: 3.9375rem !important;
-    top: 0.5125rem !important;
+    top: 0 !important;
     left: 0;
-    padding: 0 5%;
-    margin: 1rem 0;
+    padding: 3rem 5%;
+    color: white;
 }
-
+.navbar_search {
+    display: none;
+}
+.hidden {
+    position: fixed;
+    top: -80px;
+    transition: var(--transition);
+    background-color: #000;
+    z-index: 100;
+}
 .logo__container img {
     width: 7.5rem;
     height: auto;
@@ -35,8 +44,9 @@
 
 .register-spa button {
     padding: 10px 20px;
-    border: 1px solid #3D3D3D;
+    border: 1px solid #FFF;
     border-radius: 30px;
+    color: #FFF;
     background: transparent;
     cursor: pointer;
 }
