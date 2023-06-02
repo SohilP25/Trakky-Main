@@ -10,9 +10,12 @@
     padding: 3rem 5%;
     color: white;
 }
-.navbar_search {
+
+.navbar_search-top {
     display: none;
 }
+
+/* hidden properties starts */
 .hidden {
     position: fixed;
     top: -80px;
@@ -20,6 +23,21 @@
     background-color: #000;
     z-index: 100;
 }
+
+.hidden .nav-links__container {
+    display: none;
+}
+
+.hidden .navbar_search-top {
+    display: flex;
+}
+.hidden .search__container {
+    width: 40%;
+    margin:0 auto;
+}
+/* hidden properties ends */
+
+
 .logo__container img {
     width: 7.5rem;
     height: auto;
@@ -53,6 +71,13 @@
 
 @media screen and (max-width:820px) {
     .nav-links__container {
+        display: none;
+    }
+    .hidden .nav-links__container {
+        display: none;
+    }
+    
+    .hidden .navbar_search-top {
         display: none;
     }
 }
