@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "./Hero.css";
 
-import Search from "./../../Assets/images/icons/search.svg";
-import Filters from "./../../Assets/images/icons/filters.svg";
-import Header from "../Common/Header/Header";
+import Header from "../../Common/Header/Header";
+import SearchBar from "./SearchBar";
 
 const Hero = () => {
   const [newName, setNewName] = useState(
@@ -26,16 +25,15 @@ const Hero = () => {
     return () => clearInterval(intervalID);
   }, [shuffle]);
 
-
   return (
     <section>
       <div className="video-bg">
         <video className="video-bg" autoPlay loop muted>
-          <source src={require(`./../../Assets/videos/horizontal_.webm`)} />
+          <source src={require(`./../../../Assets/videos/horizontal_.webm`)} />
         </video>
       </div>
 
-      <Header />
+      <Header page="home" />
 
       <div className="hero__container">
         <div className="sentence__container">
@@ -43,19 +41,7 @@ const Hero = () => {
           <p>Discover and book beauty & wellness professionals near you</p>
         </div>
 
-
-        <div className="search__container">
-
-          <img draggable="false" src={Search} alt="" />
-
-          <form className="search-bar">
-            <label htmlFor="search" id="searchLabel" style={{ fontWeight: "bold" }}>What to?</label>
-            <input type="text" placeholder="Spa name • Area • City • Therapy" name="search" autoComplete="off" />
-          </form>
-
-          <img draggable="false" src={Filters} alt="" style={{ height: '2.5rem' }} />
-
-        </div>
+       <SearchBar/>
       </div>
     </section>
   );

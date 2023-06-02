@@ -62,13 +62,16 @@
 
 .register-spa button {
     padding: 10px 20px;
-    border: 1px solid #FFF;
+    border: 1px solid #968c8c;
     border-radius: 30px;
     color: #FFF;
     background: transparent;
     cursor: pointer;
 }
-
+.none-other{
+    display: flex;
+    width: 28rem;
+}
 @media screen and (max-width:820px) {
     .nav-links__container {
         display: none;
@@ -80,4 +83,8 @@
     .hidden .navbar_search-top {
         display: none;
     }
+    .none-other{
+        display: none;      
+    }
 }
+

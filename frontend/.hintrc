@@ -11,7 +11,8 @@
       {
         "ignore": [
           "width: fit-content",
-          "scroll-behavior"
+          "scroll-behavior",
+          "height: fit-content"
         ]
       }
     ]
