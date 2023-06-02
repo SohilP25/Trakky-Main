@@ -1,12 +1,20 @@
 import React from "react";
-import Hero from "./Hero/Hero";
-import Footer from "./../Common/Footer/Footer";
-import Slider from "../Common/Slider/Slider";
-import { offers } from "../../data";
-const SpaNearMeList = () => {
+
+import Hero from "../Hero/Hero";
+import Footer from "../../Common/Footer/Footer";
+import Slider from "../../Common/Slider/Slider";
+
+import { offers } from "../../../data";
+
+const SpaNearMeList = (props) => {
+
+
+
   return (
     <div>
       <Hero />
+
+       
 
       {/* Offer Starts------------------- */}
       <div

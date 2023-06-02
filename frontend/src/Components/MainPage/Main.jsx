@@ -58,7 +58,7 @@ const Home = () => {
         <div className="slider__outer-container">
           <div className="slider__header">
             <h1>Therapies</h1>
-              <Link to={"/SpaNearMeList"}>More</Link>
+              <Link to={"/spa-list"}>More</Link>
             <p>Here are lots of interesting destinations to visit</p>
           </div>
           <Slider cardList={therapy} _name={"therapy"} />
@@ -71,7 +71,7 @@ const Home = () => {
         <div className="slider__header">
           <h1>Spa Near You</h1>
           <div className="slider_buttons">
-            <Link to={"/SpaNearMeList"}>More</Link>
+            <Link to={"/spa-list"}>More</Link>
           </div>
         </div>
         <Slider cardList={spaNearYou} _name={"spa"} />
@@ -151,7 +151,7 @@ const Home = () => {
         <div className="slider__header">
           <h1>Top Rated Spa</h1>
           <div className="slider_buttons">
-            <Link to={"/SpaNearMeList"}>More</Link>
+            <Link to={"/spa-list"}>More</Link>
           </div>
         </div>
         <Slider cardList={topRatedSpa} _name={"spa"} />
@@ -167,7 +167,7 @@ const Home = () => {
         <div className="slider__header">
           <h1>Luxurious Spa</h1>
           <div className="slider_buttons">
-            <Link to={"/SpaNearMeList"}>More</Link>
+            <Link to={"/spa-list"}>More</Link>
           </div>
         </div>
         <Slider cardList={LuxuriousSpa} _name={"spa"} />

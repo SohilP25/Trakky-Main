@@ -7,7 +7,7 @@
     height: 3.9375rem !important;
     top: 0 !important;
     left: 0;
-    padding: 3rem 5%;
+    padding: 2rem 5%;
     color: white;
 }
 
@@ -62,7 +62,7 @@
 
 .register-spa button {
     padding: 10px 20px;
-    border: 1px solid #968c8c;
+    border: 1px solid #FFF;
     border-radius: 30px;
     color: #FFF;
     background: transparent;

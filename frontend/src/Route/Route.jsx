@@ -1,14 +1,15 @@
 import React from "react";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "../Components/MainPage/Main.jsx";
-import SpaNearMeList from "../Components/SpaNearMePage/SpaNearMeList.jsx";
+import SpaList from "../Components/SpaPage/SpaList/SpaList.jsx";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" index exact Component={Home} />
-        <Route path="/SpaNearMeList" index exact Component={SpaNearMeList} />
+        <Route path="/spa-list" index exact Component={SpaList} />
       </Routes>
     </BrowserRouter>
   );
