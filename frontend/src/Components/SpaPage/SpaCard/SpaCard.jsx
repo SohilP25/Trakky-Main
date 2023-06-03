@@ -8,7 +8,7 @@ import LikeIcon from '../../../Assets/images/icons/like.svg'
 import Man from '../../../Assets/images/icons/man.svg'
 import Star from '../../../Assets/images/icons/star.svg'
 
-
+// SpaCard will appear when screen is large 
 const SpaCard = (props) => {
   return (
     <div className='spa_card'>
@@ -27,7 +27,11 @@ const SpaCard = (props) => {
         </div>
 
         <div className="spa_rating__box">
-          <span>5.0</span>&nbsp;<img src={Star} style={{ width: '1.4rem' }} alt="" />&nbsp;(<span id='spa-review'>318</span>&nbsp;reviews)
+          <span>5.0</span>
+          &nbsp;
+          <img src={Star} style={{ width: '1.4rem' }} alt="" />
+          &nbsp;
+          (<span id='spa-review'>318</span>&nbsp;reviews)
         </div>
       </div>
 
@@ -53,6 +57,7 @@ const SpaCard = (props) => {
   )
 }
 
+// SpaCardMini will appear when screen is of mobile size 
 export const SpaCardMini = () => {
   return (
     <div className="mini_spa_card">

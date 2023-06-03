@@ -9,16 +9,17 @@ import { offers } from "../../../data";
 import SpaCard from "../SpaCard/SpaCard";
 import { SpaCardMini } from "../SpaCard/SpaCard";
 
-const SpaNearMeList = (props) => {
 
+const SpaNearMeList = (props) => {
+  
+  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions())
+  
   function getWindowDimensions() {
     const width = window.innerWidth,
       height = window.innerHeight;
     return { width, height };
   }
-  const [windowDimensions, setWindowDimensions] = useState(
-    getWindowDimensions()
-  );
+
   useEffect(() => {
     function handleResize() {
       setWindowDimensions(getWindowDimensions());
@@ -30,9 +31,12 @@ const SpaNearMeList = (props) => {
   return (
     <div>
       <Hero />
+  
       <div className="spa_list__header">
         <h1>Spa Near Me</h1>
       </div>
+
+      {/* Displays list of cards according to window size */}
       {{ windowDimensions }.windowDimensions.width >= 765 ? (
         <>
           <SpaCard />
@@ -71,12 +75,14 @@ const SpaNearMeList = (props) => {
             <Slider cardList={offers} _name={"offer"} />
           </div>
           {/* Offer Ends */}
+
           <SpaCardMini />
           <SpaCardMini />
           <SpaCardMini />
           <SpaCardMini />
         </>
       )}
+      
       <div className="view_more__button">
         <button>View More</button>
       </div>
