@@ -9,6 +9,7 @@ Trakky-Main/
 │  │  ├─ logo512.png
 │  │  ├─ manifest.json
 │  │  ├─ robots.txt
+│  │  ├─ _redirects
 │  ├─ src/
 │  │  ├─ Assets/
 │  │  │  ├─ images/
@@ -71,13 +72,13 @@ Trakky-Main/
 │  │  │  │  ├─ Hero/
 │  │  │  │  │  ├─ Hero.css
 │  │  │  │  │  ├─ Hero.jsx
-|  |  |  |  ├─ SpaList/   
+│  │  │  │  ├─ SpaList/  
 │  │  │  │  │  ├─ SpaList.css
 │  │  │  │  │  ├─ SpaList.jsx
-|  |  |  |  ├─ SpaProfile/
+│  │  │  │  ├─ SpaProfile/
 │  │  │  │  │  ├─ SpaProfile.jsx
 │  │  │  │  │  ├─ SpaProfile.css
-|  |  |  |  ├─ SpaCard/
+│  │  │  │  ├─ SpaCard/
 │  │  │  │  │  ├─ SpaCard.jsx
 │  │  │  │  │  ├─ SpaCard.css
 │  │  ├─ Route/
