@@ -47,7 +47,7 @@
 }
 
 .slider_buttons {
-    justify-content: end;
+    justify-content: flex-end;
     display: flex;
     align-items: center;
     width: 10%;
@@ -121,7 +121,7 @@
 
 .right__container {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     width: 60%;
 }
 
