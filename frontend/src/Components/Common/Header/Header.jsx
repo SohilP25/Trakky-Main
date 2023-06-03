@@ -37,7 +37,9 @@ const Header = ({ page = "other" }) => {
   return (
     <div
       className={`navbar__container ${show && "hidden"}`}
-      style={{ background: !navState && show ? "#FAF8ED" : "" }}
+      style={{
+        background: !navState && show ? "#FAF8ED" : "",
+        position: show ? "fixed" : !navState ? "relative" : "absolute"}}
     >
       <div className="logo__container">
         {

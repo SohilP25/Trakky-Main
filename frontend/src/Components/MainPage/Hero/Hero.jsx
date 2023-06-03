@@ -40,7 +40,7 @@ const Hero = () => {
           <h1>{newName}</h1>
           <p>Discover and book beauty & wellness professionals near you</p>
         </div>
-
+        
        <SearchBar/>
       </div>
     </section>

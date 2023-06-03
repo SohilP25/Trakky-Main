@@ -28,6 +28,18 @@ export const tags = [
   "Spa in Jagatpur",
 ];
 
+export const filterTags = [
+  "Free cancellation",
+  "Wifi",
+  "Kitchen",
+  "Air conditioning",
+  "Washer",
+  "Iron",
+  "Dedicated workspace",
+  "Free parking",
+  "Dryer"
+]
+
 export const spaNearYou = [
   {
     name: "Aroma The Luxurious Spa",
