@@ -45,12 +45,8 @@ const Header = ({ page = "other" }) => {
       className={`navbar__container ${show && "hidden"}`}
       style={{
         background: !navState && show ? "#FAF8ED" : "",
-<<<<<<< HEAD
-        position: show ? "fixed" : !navState ? "relative" : "absolute"}}
-=======
-        position: show ? "fixed" : !navState ? "relative" : "absolute",
+        position: show ? "fixed" : !navState ? "relative" : "absolute"
       }}
->>>>>>> 344e9bf5ca7edcfe6f48cc904c0207ae1b476d8a
     >
       <div className="logo__container">
         {
