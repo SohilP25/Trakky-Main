@@ -6,10 +6,15 @@ import trakkyPurple from "./../../../Assets/images/logos/Trakky logo purple.png"
 import Search from "../../../Assets/images/icons/search.svg";
 import Filters from "../../../Assets/images/icons/filters.svg";
 
+// default prop of page = "other": which represents navbar of all other pages except home page.
+
+// Rendering Home page Navbar prop of page = "some random text" needs to be passed.
+
 const Header = ({ page = "other" }) => {
+  // show determines whether navbar on scroll is visible or not.
   const [show, setShow] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
-
+  
   const controlNavbar = () => {
     if (typeof window !== "undefined") {
       if (window.scrollY < lastScrollY && lastScrollY >= 330) {
@@ -32,6 +37,7 @@ const Header = ({ page = "other" }) => {
   }, [lastScrollY]);
 
   // navState determines whether it is navbar of home page or of other pages
+  // If navState is true => navbar of home page is rendered.
   const navState = page !== "other";
 
   return (
@@ -39,7 +45,12 @@ const Header = ({ page = "other" }) => {
       className={`navbar__container ${show && "hidden"}`}
       style={{
         background: !navState && show ? "#FAF8ED" : "",
+<<<<<<< HEAD
         position: show ? "fixed" : !navState ? "relative" : "absolute"}}
+=======
+        position: show ? "fixed" : !navState ? "relative" : "absolute",
+      }}
+>>>>>>> 344e9bf5ca7edcfe6f48cc904c0207ae1b476d8a
     >
       <div className="logo__container">
         {
@@ -60,7 +71,9 @@ const Header = ({ page = "other" }) => {
       </div>
 
       <div
-        className={`search__container navbar_search-top ${navState ? "":"none-other"}`} 
+        className={`search__container navbar_search-top ${
+          navState ? "" : "none-other"
+        }`}
       >
         <img draggable="false" src={Search} alt="" />
         <form className="search-bar">

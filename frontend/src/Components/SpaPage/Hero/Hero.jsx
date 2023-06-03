@@ -34,4 +34,18 @@ const Hero = () => {
   );
 };
 
+export const FilterTags = (props) => {
+  return (
+    <>
+      <FilterCard Tag={props} />
+    </>
+  )
+}
+export const FilterCard = ({Tag}) => {
+  return (
+    <div className="filter__card">
+        <p>{Tag}</p>
+    </div>
+  )
+}
 export default Hero;
