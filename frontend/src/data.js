@@ -37,8 +37,8 @@ export const filterTags = [
   "Iron",
   "Dedicated workspace",
   "Free parking",
-  "Dryer"
-]
+  "Dryer",
+];
 
 export const spaNearYou = [
   {
@@ -48,6 +48,10 @@ export const spaNearYou = [
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
     callLink: "/tag",
+    offers: "couple therapy 50% off",
+    ratings: 4,
+    reviewsCount: 138,
+    basePrice: 999,
   },
   {
     name: "Aroma The Luxurious Spa",
@@ -56,6 +60,10 @@ export const spaNearYou = [
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
     callLink: "/tag",
+    offers: "couple therapy 50% off",
+    ratings: 5,
+    reviewsCount: 138,
+    basePrice: 999,
   },
   {
     name: "Aroma The Luxurious Spa",
@@ -64,6 +72,10 @@ export const spaNearYou = [
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
     callLink: "/tag",
+    offers: "couple therapy 50% off",
+    ratings: 5,
+    reviewsCount: 138,
+    basePrice: 999,
   },
   {
     name: "Aroma The Luxurious Spa",
@@ -72,6 +84,10 @@ export const spaNearYou = [
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
     callLink: "/tag",
+    offers: "couple therapy 50% off",
+    ratings: 4,
+    reviewsCount: 138,
+    basePrice: 999,
   },
   {
     name: "Aroma The Luxurious Spa",
@@ -80,6 +96,10 @@ export const spaNearYou = [
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
     callLink: "/tag",
+    offers: "couple therapy 50% off",
+    ratings: 2,
+    reviewsCount: 138,
+    basePrice: 999,
   },
   {
     name: "Aroma The Luxurious Spa",
@@ -88,6 +108,10 @@ export const spaNearYou = [
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
     callLink: "/tag",
+    offers: "couple therapy 50% off",
+    ratings: 5,
+    reviewsCount: 138,
+    basePrice: 999,
   },
   {
     name: "Aroma The Luxurious Spa",
@@ -96,6 +120,10 @@ export const spaNearYou = [
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
     callLink: "/tag",
+    offers: "couple therapy 50% off",
+    ratings: 3,
+    reviewsCount: 138,
+    basePrice: 999,
   },
   {
     name: "Aroma The Luxurious Spa",
@@ -104,6 +132,10 @@ export const spaNearYou = [
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
     callLink: "/tag",
+    offers: "couple therapy 50% off",
+    ratings: 2,
+    reviewsCount: 138,
+    basePrice: 999,
   },
 ];
 

@@ -5,6 +5,7 @@ import trakkyWhite from "./../../../Assets/images/logos/Trakky logo white.png";
 import trakkyPurple from "./../../../Assets/images/logos/Trakky logo purple.png";
 import Search from "../../../Assets/images/icons/search.svg";
 import Filters from "../../../Assets/images/icons/filters.svg";
+import { Link } from "react-router-dom";
 
 // default prop of page = "other": which represents navbar of all other pages except home page.
 
@@ -14,7 +15,7 @@ const Header = ({ page = "other" }) => {
   // show determines whether navbar on scroll is visible or not.
   const [show, setShow] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
-  
+
   const controlNavbar = () => {
     if (typeof window !== "undefined") {
       if (window.scrollY < lastScrollY && lastScrollY >= 330) {
@@ -45,16 +46,18 @@ const Header = ({ page = "other" }) => {
       className={`navbar__container ${show && "hidden"}`}
       style={{
         background: !navState && show ? "#FAF8ED" : "",
-        position: show ? "fixed" : !navState ? "relative" : "absolute"
+        position: show ? "fixed" : !navState ? "relative" : "absolute",
       }}
     >
       <div className="logo__container">
         {
-          <img
-            src={navState ? trakkyWhite : trakkyPurple}
-            draggable="false"
-            alt=""
-          />
+          <Link to="/">
+            <img
+              src={navState ? trakkyWhite : trakkyPurple}
+              draggable="false"
+              alt=""
+            />
+          </Link>
         }
       </div>
       <div

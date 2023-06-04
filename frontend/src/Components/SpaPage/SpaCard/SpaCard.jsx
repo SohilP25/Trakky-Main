@@ -1,50 +1,69 @@
-import React from 'react'
+import React from "react";
 
-import './SpaCard.css'
-import { Link } from 'react-router-dom'
-import SpaImage from '../../../Assets/images/spa/spa.png'
-import CardIcons from '../../../Assets/images/icons/card_icons.png'
-import LikeIcon from '../../../Assets/images/icons/like.svg'
-import Man from '../../../Assets/images/icons/man.svg'
-import Star from '../../../Assets/images/icons/star.svg'
+import "./SpaCard.css";
+import { Link } from "react-router-dom";
+import CardIcons from "../../../Assets/images/icons/card_icons.png";
+import LikeIcon from "../../../Assets/images/icons/like.svg";
+import Man from "../../../Assets/images/icons/man.svg";
+import Star from "../../../Assets/images/icons/star.svg";
 
-// SpaCard will appear when screen is large 
-const SpaCard = (props) => {
+// SpaCard will appear when screen is large
+const SpaCard = ({
+  img,
+  name,
+  offers,
+  location,
+  ratings,
+  reviewsCount,
+  basePrice,
+}) => {
   return (
-    <div className='spa_card'>
+    <div className="spa_card">
       <div className="image__container">
-        <img src={SpaImage} alt="" />
+        <img
+          src={require(`./../../../Assets/images/spa/${img}`)}
+          alt=""
+          draggable="false"
+        />
       </div>
 
       <div className="spa_information__container">
         <div className="spa_name">
-          <h2>Aroma the luxurious spa</h2>
-          <p>Kudasan, Gandhinagar</p>
+          <h2>{name}</h2>
+          <p>{location}</p>
         </div>
 
         <div className="spa_icon__box">
-          <img src={CardIcons} alt="" />
+          <img src={CardIcons} draggable="false" alt="" />
         </div>
 
         <div className="spa_rating__box">
-          <span>5.0</span>
+          <span>{ratings}</span>
           &nbsp;
-          <img src={Star} style={{ width: '1.4rem' }} alt="" />
-          &nbsp;
-          (<span id='spa-review'>318</span>&nbsp;reviews)
+          {Array.from({ length: ratings }, (_, index) => (
+            <img
+              key={index}
+              src={Star}
+              style={{ width: "1.4rem", margin: "auto .3rem" }}
+              draggable="false"
+            />
+          ))}
+          &nbsp; (<span id="spa-review">{reviewsCount}</span>&nbsp;reviews)
         </div>
       </div>
 
       <div className="spa_contact__container">
         <div className="spa_offer_tag__box">
-          <p>couple therapy 50% off</p>
+          <p>{offers}</p>
           <img src={LikeIcon} alt="" />
         </div>
 
         <div className="spa_contact__box">
           <div className="spa_price_tag">
-            <img src={Man} alt="" />
-            <p>&nbsp;₹ <span id='spa-price'>999</span> Onwards</p>
+            <img src={Man} alt="" draggable="false" />
+            <p>
+              &nbsp;₹ <span id="spa-price">{basePrice}</span> Onwards
+            </p>
           </div>
 
           <div className="spa_booking_buttons">
@@ -54,44 +73,69 @@ const SpaCard = (props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-// SpaCardMini will appear when screen is of mobile size 
-export const SpaCardMini = () => {
+// SpaCardMini will appear when screen is of mobile size
+export const SpaCardMini = ({
+  img,
+  name,
+  offers,
+  location,
+  ratings,
+  reviewsCount,
+  basePrice,
+}) => {
+
   return (
     <div className="mini_spa_card">
       <div className="main_mini_spa__container">
         <div className="mini_image__container">
-          <img src={SpaImage} alt="" />
-          <p>couple therapy 50% off</p>
+          <img
+            src={require(`../../../Assets/images/spa/${img}`)}
+            alt=""
+            draggable="false"
+          />
+          <p>{offers}</p>
         </div>
 
         <div className="mini_spa_information__container">
           <div className="spa_name">
-            <h2>Aroma the luxurious spa</h2>
-            <p>Kudasan, Gandhinagar</p>
+            <h2>{name}</h2>
+            <p>{location}</p>
           </div>
 
           <div className="spa_icon__box">
-            <img src={CardIcons} alt="" />
+            <img src={CardIcons} draggable="false" alt="" />
           </div>
 
           <div className="spa_rating__box">
-            <span>5.0</span>&nbsp;<img src={Star} alt="" />&nbsp;(<span id='spa-review'>318</span>&nbsp;reviews)
+            <span>{ratings}</span>&nbsp;
+            {Array.from({ length: ratings }, (_, index) => (
+              <img
+                key={index}
+                src={Star}
+                draggable="false"
+                style={{ width: "1rem", margin: "auto .1rem" }}
+              />
+            ))}
+            &nbsp;(<span id="spa-review">{reviewsCount}</span>&nbsp;reviews)
           </div>
 
           <div className="mini_spa_price__box">
             <div className="mini_spa_price_tag">
-              <img src={Man} alt="" />
-              <p>&nbsp;₹ <span id='spa-price'>999</span> Onwards</p>
+              <img src={Man} alt="" 
+              draggable="false"
+              />
+              <p>
+                &nbsp;₹ <span id="spa-price">{basePrice}</span> Onwards
+              </p>
             </div>
 
             <div className="spa_like__box">
               <img src={LikeIcon} alt="" />
             </div>
           </div>
-
         </div>
       </div>
 
@@ -105,7 +149,7 @@ export const SpaCardMini = () => {
         </div>
       </div>
     </div>
-  )
+  );
 };
 
-export default SpaCard
+export default SpaCard;

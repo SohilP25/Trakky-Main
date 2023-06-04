@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from "react";
-import './SpaList.css'
+import "./SpaList.css";
 
 import Hero from "../Hero/Hero";
 import Footer from "../../Common/Footer/Footer";
 import Slider from "../../Common/Slider/Slider";
 
-import { offers } from "../../../data";
 import SpaCard from "../SpaCard/SpaCard";
 import { SpaCardMini } from "../SpaCard/SpaCard";
-
-
+import { offers, spaNearYou, LuxuriousSpa, topRatedSpa } from "../../../data";
 const SpaNearMeList = (props) => {
-  
-  const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions())
-  
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions()
+  );
+
   function getWindowDimensions() {
     const width = window.innerWidth,
       height = window.innerHeight;
@@ -31,7 +30,7 @@ const SpaNearMeList = (props) => {
   return (
     <div>
       <Hero />
-  
+
       <div className="spa_list__header">
         <h1>Spa Near Me</h1>
       </div>
@@ -39,50 +38,76 @@ const SpaNearMeList = (props) => {
       {/* Displays list of cards according to window size */}
       {{ windowDimensions }.windowDimensions.width >= 765 ? (
         <>
-          <SpaCard />
-          <SpaCard />
-
-          {/* Offer Starts------------------- */}
-          <div
-            className="slider__outer-container offer__container"
-            style={{ width: "90%" }}
-          >
-            <div className="slider__header">
-              <h2>Grab the best deals</h2>
-            </div>
-            <Slider cardList={offers} _name={"offer"} />
-          </div>
-          {/* Offer Ends */}
-          <SpaCard />
-          <SpaCard />
-          <SpaCard />
-          <SpaCard />
-
+          {spaNearYou.map((data, index) => {
+            return (
+              <>
+                {
+                index == 2 ? (
+                  <div
+                    className="slider__outer-container offer__container"
+                    style={{ width: "90%" }}
+                  >
+                    <div className="slider__header">
+                      <h2>Grab the best deals</h2>
+                    </div>
+                    <Slider cardList={offers} _name={"offer"} />
+                  </div>
+                ) : (
+                  <></>
+                )}
+                <>
+                  <SpaCard
+                      key={index}
+                      name={data.name}
+                      img={data.img}
+                      location={data.location}
+                      offers={data.offers}
+                      basePrice={data.basePrice}
+                      ratings={data.ratings}
+                      reviewsCount={data.reviewsCount}
+                    />
+                </>
+              </>
+            );
+          })}
         </>
       ) : (
         <>
-          <SpaCardMini />
-          <SpaCardMini />
-
-          {/* Offer Starts------------------- */}
-          <div
-            className="slider__outer-container offer__container"
-            style={{ width: "90%" }}
-          >
-            <div className="slider__header">
-              <h2>Grab the best deals</h2>
-            </div>
-            <Slider cardList={offers} _name={"offer"} />
-          </div>
-          {/* Offer Ends */}
-
-          <SpaCardMini />
-          <SpaCardMini />
-          <SpaCardMini />
-          <SpaCardMini />
+          {spaNearYou.map((data, index) => {
+            return (
+              <>
+                {
+                index == 2 ? (
+                  <div
+                    className="slider__outer-container offer__container"
+                    style={{ width: "90%" }}
+                  >
+                    <div className="slider__header">
+                      <h2>Grab the best deals</h2>
+                    </div>
+                    <Slider cardList={offers} _name={"offer"} />
+                  </div>
+                ) : (
+                  <></>
+                )}
+                <>
+                  <SpaCardMini
+                      key={index}
+                      name={data.name}
+                      img={data.img}
+                      location={data.location}
+                      offers={data.offers}
+                      basePrice={data.basePrice}
+                      ratings={data.ratings}
+                      reviewsCount={data.reviewsCount}
+                    />
+                </>
+              </>
+            );
+          })}
         </>
       )}
-      
+
       <div className="view_more__button">
         <button>View More</button>
       </div>
@@ -91,6 +116,5 @@ const SpaNearMeList = (props) => {
     </div>
   );
 };
-
 
 export default SpaNearMeList;
