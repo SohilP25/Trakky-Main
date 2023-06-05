@@ -355,11 +355,6 @@
     border-radius: 15px;
 }
 
-@media screen and (max-width: 900px) {
-    .services__container {
-        width: 80%;
-    }
-}
 /* Services css ends  */
 
 /* Spa Offers css starts  */
@@ -413,7 +408,6 @@
 }
 .spa_profile__right_container {
     width: 35%;
-    margin: 0 2%;    
 }
 
 .spa_facility__container {
@@ -451,9 +445,39 @@
 }
 
 
-
 .hr_line {
     width: 80%;
     margin: 0 10%;
     color: #383838;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .spa_profile__right_container {
+        width: 42%;
+    }
+    .spa_profile__left_container {
+        margin: 0 2% 0 5%;
+    }
+}
+
+@media screen and (max-width: 1030px) {
+    .spa_offers-services__container {
+        display: block;
+    }
+    .spa_profile__left_container,
+    .spa_profile__right_container {
+        width: 80%;
+        margin: 2rem 10%;
+    }
+    .spa_offers__container {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+    }
+    .spa_facility__container {
+        margin: 1rem auto;
+        padding: 2rem;
+        width: fit-content;
+    }
 }

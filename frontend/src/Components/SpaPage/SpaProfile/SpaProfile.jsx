@@ -233,7 +233,7 @@ const SpaProfile = () => {
           <Services />
         </div>
 
-        <div className="spa_profile__right_containes">
+        <div className="spa_profile__right_container">
           <Offers />
           <SpaFacilities spaName={spa} />
         </div>
