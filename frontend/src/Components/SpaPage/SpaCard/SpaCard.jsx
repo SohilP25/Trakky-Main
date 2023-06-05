@@ -22,7 +22,7 @@ const SpaCard = ({
       <div className="image__container">
         <img
           src={require(`./../../../Assets/images/spa/${img}`)}
-          alt=""
+          alt="Spa"
           draggable="false"
         />
       </div>
@@ -44,6 +44,7 @@ const SpaCard = ({
             <img
               key={index}
               src={Star}
+              alt=""
               style={{ width: "1.4rem", margin: "auto .3rem" }}
               draggable="false"
             />
@@ -86,14 +87,13 @@ export const SpaCardMini = ({
   reviewsCount,
   basePrice,
 }) => {
-
   return (
     <div className="mini_spa_card">
       <div className="main_mini_spa__container">
         <div className="mini_image__container">
           <img
             src={require(`../../../Assets/images/spa/${img}`)}
-            alt=""
+            alt="Spa"
             draggable="false"
           />
           <p>{offers}</p>
@@ -115,6 +115,7 @@ export const SpaCardMini = ({
               <img
                 key={index}
                 src={Star}
+                alt=""
                 draggable="false"
                 style={{ width: "1rem", margin: "auto .1rem" }}
               />
@@ -124,9 +125,7 @@ export const SpaCardMini = ({
 
           <div className="mini_spa_price__box">
             <div className="mini_spa_price_tag">
-              <img src={Man} alt="" 
-              draggable="false"
-              />
+              <img src={Man} alt="" draggable="false" />
               <p>
                 &nbsp;₹ <span id="spa-price">{basePrice}</span> Onwards
               </p>

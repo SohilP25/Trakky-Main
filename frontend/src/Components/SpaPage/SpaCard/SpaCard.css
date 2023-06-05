@@ -1,13 +1,13 @@
 /* SpaCard css starts */
 .spa_card {
     position: relative;
-    width: 90%;
-    height: fit-content;
+    width: 91%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
-    margin: 1rem 5%;
     color: #6B7280;
+    margin: 1rem 7%;
+    margin-right: 4%;
 }
 
 .image__container {

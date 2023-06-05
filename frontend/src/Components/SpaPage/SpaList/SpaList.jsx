@@ -37,15 +37,15 @@ const SpaNearMeList = (props) => {
 
       {/* Displays list of cards according to window size */}
       {{ windowDimensions }.windowDimensions.width >= 765 ? (
-        <>
+        <div className="spa_list__container">
           {spaNearYou.map((data, index) => {
             return (
               <>
-                {
-                index == 2 ? (
+                {index === 2 ? (
+                  // Offers Starts
                   <div
                     className="slider__outer-container offer__container"
-                    style={{ width: "90%" }}
+                    style={{ width: "130%",padding:"0 7%" }}
                   >
                     <div className="slider__header">
                       <h2>Grab the best deals</h2>
@@ -53,31 +53,31 @@ const SpaNearMeList = (props) => {
                     <Slider cardList={offers} _name={"offer"} />
                   </div>
                 ) : (
+                  // Offers Ends
                   <></>
                 )}
                 <>
                   <SpaCard
-                      key={index}
-                      name={data.name}
-                      img={data.img}
-                      location={data.location}
-                      offers={data.offers}
-                      basePrice={data.basePrice}
-                      ratings={data.ratings}
-                      reviewsCount={data.reviewsCount}
-                    />
+                    key={index}
+                    name={data.name}
+                    img={data.img}
+                    location={data.location}
+                    offers={data.offers}
+                    basePrice={data.basePrice}
+                    ratings={data.ratings}
+                    reviewsCount={data.reviewsCount}
+                  />
                 </>
               </>
             );
           })}
-        </>
+        </div>
       ) : (
         <>
           {spaNearYou.map((data, index) => {
             return (
               <>
-                {
-                index == 2 ? (
+                {index === 2 ? (
                   <div
                     className="slider__outer-container offer__container"
                     style={{ width: "90%" }}
@@ -92,15 +92,15 @@ const SpaNearMeList = (props) => {
                 )}
                 <>
                   <SpaCardMini
-                      key={index}
-                      name={data.name}
-                      img={data.img}
-                      location={data.location}
-                      offers={data.offers}
-                      basePrice={data.basePrice}
-                      ratings={data.ratings}
-                      reviewsCount={data.reviewsCount}
-                    />
+                    key={index}
+                    name={data.name}
+                    img={data.img}
+                    location={data.location}
+                    offers={data.offers}
+                    basePrice={data.basePrice}
+                    ratings={data.ratings}
+                    reviewsCount={data.reviewsCount}
+                  />
                 </>
               </>
             );
@@ -116,5 +116,4 @@ const SpaNearMeList = (props) => {
     </div>
   );
 };
-
 export default SpaNearMeList;
