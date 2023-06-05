@@ -199,3 +199,12 @@
     padding: .5rem 1rem;
     border-radius: 0px 0px 10px 10px;
 }
+
+.spa_therapy_room img {
+    border-radius: 5px;
+}
+
+.spa_therapy_room p {
+    color: #000;
+    font-weight: 500;
+}

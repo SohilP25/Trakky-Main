@@ -8,7 +8,7 @@ import Slider from "../../Common/Slider/Slider";
 import { popularLocations } from "../../../data";
 import SpaCard from "../SpaCard/SpaCard";
 import { SpaCardMini } from "../SpaCard/SpaCard";
-import { offers, spaNearYou, LuxuriousSpa, topRatedSpa } from "../../../data";
+import { offers, spaNearYou } from "../../../data";
 
 
 const SpaNearMeList = (props) => {
@@ -37,7 +37,7 @@ const SpaNearMeList = (props) => {
       <div className="spa_list__header">
         <h1>Spa Near Me</h1>
       </div>
-      <div className="main__container">
+      <div className="spa_list_main__container">
         <div className="spa_list__container">
 
           {/* Displays list of cards according to window size */}

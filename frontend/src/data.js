@@ -379,3 +379,146 @@ export const spaProfile = [
     offers: "COUPLE THERAPY 50% OFF",
   },
 ];
+
+
+export const spaServices = [
+  {
+    therapyName: "Dry Massage Therapy",
+    description: "Best for body relaxation from normal pain in body.",
+    price: 999
+  },
+  {
+    therapyName: "Dry Massage Therapy",
+    description: "Best for body relaxation from normal pain in body.",
+    price: 999
+  },
+  {
+    therapyName: "Dry Massage Therapy",
+    description: "Best for body relaxation from normal pain in body.",
+    price: 999
+  },
+  {
+    therapyName: "Dry Massage Therapy",
+    description: "Best for body relaxation from normal pain in body.",
+    price: 999
+  },
+  {
+    therapyName: "Dry Massage Therapy",
+    description: "Best for body relaxation from normal pain in body.",
+    price: 999
+  },
+  {
+    therapyName: "Dry Massage Therapy",
+    description: "Best for body relaxation from normal pain in body.",
+    price: 999
+  },
+  {
+    therapyName: "Dry Massage Therapy",
+    description: "Best for body relaxation from normal pain in body.",
+    price: 999
+  },
+  {
+    therapyName: "Dry Massage Therapy",
+    description: "Best for body relaxation from normal pain in body.",
+    price: 999
+  }
+]
+
+
+export const spaOffers = [
+  {
+    therapyName: "Dry Massage Therapy",
+    description: "Best for body relaxation from normal pain in body.",
+    price: 999
+  },
+  {
+    therapyName: "Dry Massage Therapy",
+    description: "Best for body relaxation from normal pain in body.",
+    price: 999
+  },
+  {
+    therapyName: "Dry Massage Therapy",
+    description: "Best for body relaxation from normal pain in body.",
+    price: 999
+  }
+]
+
+export const spaFacilitiesData = [
+  {
+    spaname: "Aroma The Luxurious Spa",
+    spafacilities: [
+      {
+        name: "Wifi",
+        iconName: "wifi.svg"
+      },
+      {
+        name: "Central air conditioning",
+        iconName: "air_condition.svg"
+      },
+      {
+        name: "Refrigerator",
+        iconName: "refrigerator.svg"
+      },
+      {
+        name: "Pets allowed",
+        iconName: "pet_allowed.svg"
+      }
+    ]
+  },
+  {
+    spaname: "Sahil The Luxurious Spa",
+    spafacilities: [
+      {
+        name: "Wifi",
+        iconName: "wifi.svg"
+      },
+      {
+        name: "Central air conditioning",
+        iconName: "air_condition.svg"
+      },
+      {
+        name: "Refrigerator",
+        iconName: "refrigerator.svg"
+      },
+      {
+        name: "Pets allowed",
+        iconName: "pet_allowed.svg"
+      },
+      {
+        name: "Dryer",
+        iconName: "dryer.svg"
+      },
+      {
+        name: "Security cameras on property",
+        iconName: "cctv.svg"
+      }
+    ]
+  }
+]
+
+export const spaRoomPhotos = [
+  {
+    roomname: "Thai Room",
+    photo: "spa.png"
+  },
+  {
+    roomname: "Oil Room",
+    photo: "spa.png"
+  },
+  {
+    roomname: "Jacuzzi Room",
+    photo: "spa.png"
+  },
+  {
+    roomname: "Thai Room",
+    photo: "spa.png"
+  },
+  {
+    roomname: "Oil Room",
+    photo: "spa.png"
+  },
+  {
+    roomname: "Jacuzzi Room",
+    photo: "spa.png"
+  }
+]

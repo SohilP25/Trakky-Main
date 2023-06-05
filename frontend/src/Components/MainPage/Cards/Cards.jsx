@@ -96,4 +96,16 @@ export const SpaProfile = (props) => {
   );
 };
 
+export const SpaRoom = (props) => {
+  return (
+    <div className="spa_therapy_room">
+      <img 
+        src={require(`../../../Assets/images/spa/${props.cardData.photo}`)} 
+        alt="" 
+      />
+      <p>{props.cardData.roomname}</p>
+    </div>
+  )
+}
+
 export default SpaCard;

@@ -3,6 +3,7 @@ import SpaCard, {
   OfferCard,
   TherapyCard,
   SpaProfile,
+  SpaRoom,
 } from "../../MainPage/Cards/Cards";
 
 import { motion } from "framer-motion";
@@ -41,6 +42,8 @@ const Slider = (props) => {
     card = <TherapyCard />;
   } else if (sliderType === "spaProfile") {
     card = <SpaProfile />;
+  } else if (sliderType === "spaRooms") {
+    card = <SpaRoom />;
   }
   // including styles
   const styles = {

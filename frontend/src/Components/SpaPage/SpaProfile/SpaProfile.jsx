@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./SpaProfile.css";
-import Hero from "./../Hero/Hero";
-import Footer from "./../../Common/Footer/Footer";
+
 import spaImage1 from "../../../Assets/images/spa/spa-image1.png";
 import spaImage2 from "../../../Assets/images/spa/spa-image2.png";
 import spaImage3 from "../../../Assets/images/spa/spa-image3.png";
@@ -11,10 +11,14 @@ import Star from "./../../../Assets/images/icons/star.svg";
 import Phone from "./../../../Assets/images/icons/phone.svg";
 import Man from "./../../../Assets/images/icons/man.svg";
 import Grids from "./../../../Assets/images/icons/four-grids.svg";
+
+import Hero from "./../Hero/Hero";
+import Footer from "./../../Common/Footer/Footer";
+
 import { BiHeart } from "react-icons/bi";
 import { RiShareBoxLine } from "react-icons/ri";
 import Slider from "../../Common/Slider/Slider";
-import { spaProfile } from "../../../data";
+import { spaProfile, spaServices, spaOffers, spaFacilitiesData, spaRoomPhotos } from "../../../data";
 
 // window dimensions
 function getWindowDimensions() {
@@ -22,6 +26,8 @@ function getWindowDimensions() {
     height = window.innerHeight;
   return { width, height };
 }
+
+
 const SpaProfile = () => {
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
@@ -33,6 +39,12 @@ const SpaProfile = () => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  let spa = "Sahil The Luxurious Spa";
+  // let spa = "Aroma The Luxurious Spa";
+
+  // const [globalSpaName, setGlobalSpaName] = useState(spa)
+
   return (
     <>
       <Hero />
@@ -57,14 +69,14 @@ const SpaProfile = () => {
                 <img src={spaImage5} alt="" />
                 <div className="show-all-photos">
                   <button>
-                    <img src={Grids}></img>Show all photos
+                    <img src={Grids} alt="" />Show all photos
                   </button>
                 </div>
               </div>
             </div>
             <div className="spa-information__container">
               <div className="spa-information-title">
-                <h1>Aroma The Luxurious Spa</h1>
+                <h1>{spa}</h1>
                 <div className="spa-information-like-share">
                   <li className="spa-like">
                     <BiHeart />
@@ -125,11 +137,11 @@ const SpaProfile = () => {
               </div>
             </div>
           </div>
-          
+
         </div>
       ) : (
         <div className="spa-profile-mini__container">
-          <div className="spa-information-title" style={{ margin:"0 .8rem" }}>
+          <div className="spa-information-title" style={{ margin: "0 .8rem" }}>
             <div
               className="spa-information-ratings-reviews"
               style={{ fontSize: "1rem", gap: ".5rem" }}
@@ -157,7 +169,7 @@ const SpaProfile = () => {
           <Slider cardList={spaProfile} _name="spaProfile" />
 
           <div className="spa-information-mini-title">
-            <h2>Aroma The Luxurious Spa</h2>
+            <h2>{spa}</h2>
             <h3
               style={{
                 color: "#6B7280",
@@ -215,9 +227,211 @@ const SpaProfile = () => {
           </div>
         </div>
       )}
+
+      <div className="spa_offers-services__container">
+        <div className="spa_profile__left_container">
+          <Services />
+        </div>
+
+        <div className="spa_profile__right_containes">
+          <Offers />
+          <SpaFacilities spaName={spa} />
+        </div>
+      </div>
+
+      <AboutUsSpa />
+      
+    
+      <hr className="hr_line" />
+
+      <SpaRooms />
+
       <Footer />
     </>
   );
 };
 
+const SpaRooms = () => {
+  return (
+    <div className="spa_rooms_slider__container">
+      <div className="servos__header">
+        <h2>Our Room Photos</h2>
+      </div>
+
+      <Slider cardList={spaRoomPhotos} _name={"spaRooms"} />
+
+    </div>
+  )
+}
+
+
+// I'm giving 'servos' as classname to some divs because there are some
+// properties of services and offers are same, so for them I'm using 
+// 'servos' as a common name 
+
+const Services = () => {
+  return (
+    <div className="services__container">
+      <div className="servos__header">
+        <h2>Services</h2>
+      </div>
+
+      <div className="servos__list">
+        <ul>
+          {
+            spaServices.map((therapy, index) => {
+              return (
+                <li key={index}>
+                  <div className="services_list__container">
+                    <div className="service_list__left_container">
+
+                      <div className="service_name">
+                        <h3>{therapy.therapyName}</h3>
+                      </div>
+                      <div className="service_description">
+                        <p>{therapy.description}</p>
+                      </div>
+                    </div>
+
+                    <div className="service_list__right_container">
+                      <div className="service_price">
+                        <p><span>₹ {therapy.price}</span>  / 60 Min </p>
+                      </div>
+                      <div className="services__button">
+                        <Link>Call Now</Link>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              )
+            })
+          }
+        </ul>
+
+      </div>
+      <div className="view_more__button">
+        <button>View More</button>
+      </div>
+    </div>
+  )
+}
+
+const Offers = () => {
+  return (
+    <div className="spa_offers__container">
+      <div className="servos__header">
+        <h2>Offers</h2>
+      </div>
+
+      <div className="servos__list">
+        <ul>
+          {
+            spaOffers.map((therapy, index) => {
+              return (
+                <li key={index}>
+                  <div className="offers_list__container">
+                    <div className="offers_list__upper_container">
+
+                      <div className="offers_name">
+                        <h3>{therapy.therapyName}</h3>
+                      </div>
+                      <div className="offers_description">
+                        <p>{therapy.description}</p>
+                      </div>
+                    </div>
+
+                    <div className="offers_list__bottom_container">
+                      <div className="offers_price">
+                        <p><span>₹ {therapy.price}</span>  / 60 Min </p>
+                      </div>
+                      <div className="offers__button">
+                        <Link>Call Now</Link>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              )
+            })
+          }
+        </ul>
+
+      </div>
+      <div className="view_more__button">
+        <button>View More</button>
+      </div>
+    </div>
+  )
+}
+
+const SpaFacilities = ({ spaName }) => {
+
+  console.log(spaFacilitiesData)
+
+  const spaData = spaFacilitiesData.find(
+    spa => spa.spaname === spaName
+  );
+
+  const facilities = spaData ? spaData.spafacilities : ["Not found"]
+
+
+
+
+  return (
+    <div className="spa_facility__container">
+      <div className="servos__header">
+        <h2>What this place offers</h2>
+      </div>
+      {console.log(facilities)}
+
+      <div className="spa_facility_list">
+        <ul>
+          {
+            facilities.map((data, index) => {
+              return (
+                <li key={index}>
+
+                  <div className="spa_facility_icon">
+                    <img src={require(`./../../../Assets/images/icons/${data.iconName}`)} alt="" />
+                  </div>
+                  <div className="spa_facility__name">
+                    <p>{data.name}</p>
+                  </div>
+
+                </li>
+              )
+            })
+          }
+        </ul>
+      </div>
+
+    </div>
+  )
+}
+
+
+const AboutUsSpa = () => {
+  return (
+    <div className="spa_about_us__container">
+      <div className="servos__header">
+        <h2>About Us</h2>
+      </div>
+
+      <div className="spa_about_us__description">
+        <p>Come and stay in this superb duplex T2, in the heart of the historic center of Bordeaux.</p>
+
+        <p>Spacious and bright, in a real Bordeaux building in exposed stone, you will enjoy all the charms of the city thanks to its ideal location. Close to many shops, bars and restaurants, you can access the apartment by tram A and C and bus routes 27 and 44.Come and stay in this superb duplex T2, in the heart of the historic center of Bordeaux.</p>
+
+        <p>Spacious and bright, in a real Bordeaux building in exposed stone, you will enjoy all the charms of the city thanks to its ideal location. Close to many shops, bars and restaurants, you can access the apartment by tram A and C and bus routes 27 and 44.</p>
+
+        <p>...</p>
+
+        <p>...</p>
+      </div>
+
+      <div className="spa_show_more__button">
+        <Link>Show more</Link>
+      </div>
+    </div>
+  )
+}
 export default SpaProfile;

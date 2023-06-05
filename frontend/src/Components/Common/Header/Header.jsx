@@ -16,19 +16,21 @@ const Header = ({ page = "other" }) => {
   const [show, setShow] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const controlNavbar = () => {
-    if (typeof window !== "undefined") {
-      if (window.scrollY < lastScrollY && lastScrollY >= 330) {
-        setShow(true);
-      } else {
-        setShow(false);
-      }
 
-      setLastScrollY(window.scrollY);
-    }
-  };
 
   useEffect(() => {
+    const controlNavbar = () => {
+      if (typeof window !== "undefined") {
+        if (window.scrollY < lastScrollY && lastScrollY >= 330) {
+          setShow(true);
+        } else {
+          setShow(false);
+        }
+
+        setLastScrollY(window.scrollY);
+      }
+    };
+
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", controlNavbar);
       return () => {
@@ -70,9 +72,8 @@ const Header = ({ page = "other" }) => {
       </div>
 
       <div
-        className={`search__container navbar_search-top ${
-          navState ? "" : "none-other"
-        }`}
+        className={`search__container navbar_search-top ${navState ? "" : "none-other"
+          }`}
       >
         <img draggable="false" src={Search} alt="" />
         <form className="search-bar">

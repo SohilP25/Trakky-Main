@@ -33,7 +33,7 @@ const SpaCard = ({
       <div className="spa_information__container">
         <div className="row1">
           <div className="spa_name">
-            <h2>{name}</h2>
+            <h2><Link to={'/spa-profile'}>{name}</Link></h2>
             <p>{location}</p>
           </div>
           <div className="spa_offer_tag__box">
@@ -68,7 +68,7 @@ const SpaCard = ({
   );
 };
 
-const Star = ({ stars, reviews }) => {
+export const Star = ({ stars, reviews }) => {
   const ratingStar = Array.from({ length: 5 }, (_, index) => {
     let number = index + 0.5;
 
