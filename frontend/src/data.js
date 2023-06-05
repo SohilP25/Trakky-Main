@@ -1,4 +1,4 @@
-export const tags = [
+export const popularLocations = [
   "Spa in Anandnagar",
   "Spa in Ambli",
   "Spa in Ashram Road",
@@ -13,19 +13,7 @@ export const tags = [
   "Spa in Shilaj",
   "Spa in Gota",
   "Spa in Sola",
-  "Spa in Ashram Road",
-  "Spa in Thaltej",
-  "Spa in Vastrapur",
-  "Spa in Ambli",
-  "Spa in Ashram Road",
-  "Spa in Drive in Road",
-  "Spa in Gota",
-  "Spa in Jagatpur",
-  "Spa in Memnagar",
-  "Spa in Naranpura",
-  "Spa in Prahladnagar",
-  "Spa in Satellite",
-  "Spa in Jagatpur",
+  "Spa in Ashram Road"
 ];
 
 export const filterTags = [
@@ -49,7 +37,7 @@ export const spaNearYou = [
     therapy: "Couple Therapy",
     callLink: "/tag",
     offers: "couple therapy 50% off",
-    ratings: 4,
+    ratings: 4.6,
     reviewsCount: 138,
     basePrice: 999,
   },
