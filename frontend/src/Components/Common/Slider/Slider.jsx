@@ -1,5 +1,10 @@
 import React, { useRef, useState, useEffect } from "react";
-import SpaCard, { OfferCard, TherapyCard } from "../../MainPage/Cards/Cards";
+import SpaCard, {
+  OfferCard,
+  TherapyCard,
+  SpaProfile,
+} from "../../MainPage/Cards/Cards";
+
 import { motion } from "framer-motion";
 
 // Import Swiper React components
@@ -24,7 +29,7 @@ const Slider = (props) => {
   useEffect(() => {
     setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
   }, []);
-  
+
   let card; // card contains the type of card to be fetched
   const sliderType = props._name;
   // deciding the type of card
@@ -34,6 +39,8 @@ const Slider = (props) => {
     card = <OfferCard />;
   } else if (sliderType === "therapy") {
     card = <TherapyCard />;
+  } else if (sliderType === "spaProfile") {
+    card = <SpaProfile />;
   }
   // including styles
   const styles = {

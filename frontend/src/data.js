@@ -357,3 +357,25 @@ export const topDestinationsSmallDevice = [
     subHeading: "Worefall",
   },
 ];
+export const spaProfile = [
+  {
+    img: "spa-image1.png",
+    offers: "COUPLE THERAPY 50% OFF",
+  },
+  {
+    img: "spa-image2.png",
+    offers: "COUPLE THERAPY 50% OFF",
+  },
+  {
+    img: "spa-image3.png",
+    offers: "COUPLE THERAPY 50% OFF",
+  },
+  {
+    img: "spa-image4.png",
+    offers: "COUPLE THERAPY 50% OFF",
+  },
+  {
+    img: "spa-image5.png",
+    offers: "COUPLE THERAPY 50% OFF",
+  },
+];
