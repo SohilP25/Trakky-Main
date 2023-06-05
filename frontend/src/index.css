@@ -4,28 +4,38 @@
     box-sizing: border-box;
     text-decoration: none;
     list-style: none;
-    -webkit-user-select: none; 
-    -ms-user-select: none; 
+    -webkit-user-select: none;
+    -ms-user-select: none;
     user-select: none;
 }
-:root{
-    --transition: .5s ;
+
+a {
+    color: #000;
 }
+
+
+:root {
+    --transition: .5s;
+}
+
 .main__container section {
     background-color: #000;
 }
+
 button {
     text-decoration: none;
     outline: none;
     border: none;
     transition: var(--transition);
 }
-button:active{
+
+button:active {
     transform: scale(0.9);
 }
+
 body {
     min-height: 100vh;
     width: auto;
-    background-color: #FAF8ED;
+    background-color: #FFFFFF;
     font-family: 'Inter', sans-serif;
 }
