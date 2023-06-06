@@ -1,8 +1,13 @@
+// Author : Sohil
+// Purpose : Define Authentication logic that implemented in requests.
 import userModel from "../Models/userModel.js";
+//bcrypt for generating hashed password
 import bcrypt from 'bcrypt'
+//jwt for creating tokens
 import jwt from 'jsonwebtoken'
 
 
+//Logic Function for registering new user 
 export const createUser = async (req, res) => {
     const { username, password} = req.body;
     console.log(req.body)
@@ -28,7 +33,7 @@ export const createUser = async (req, res) => {
     }
 }
 
-// login
+ //Logic Function for Login existing user 
 export const LoginUser = async (req, res) => {
     const { username, password } = req.body;
     try {

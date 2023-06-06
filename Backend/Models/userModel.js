@@ -1,3 +1,5 @@
+// Author : Sohil
+// Purpose : Defining user model/schema.
 import mongoose from "mongoose";
 
 const userScheme = mongoose.Schema(
@@ -14,5 +16,6 @@ const userScheme = mongoose.Schema(
     { timestamps: true }
 )
 
+//Creating Model of schema.
 const userModel = mongoose.model("userModel", userScheme);
 export default userModel;

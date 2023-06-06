@@ -1,6 +1,8 @@
+// Author : Vishal & Rinal
+// Purpose : Define Spa CRUD operation logic that implemented in requests
 import spaModel from "../Models/spaModel.js";
 
-
+//Logic function for receiving all Spas.
 export const getallSpa = async (req, res) => {
     try {
         const data = await spaModel.find();
@@ -10,7 +12,7 @@ export const getallSpa = async (req, res) => {
       }
 };
 
-
+//Logic function for creating(posting) all Spas.
 export const createSpa = async (req, res) => {
     try {
         const data = req.body;
@@ -22,7 +24,7 @@ export const createSpa = async (req, res) => {
       }
 };
 
-
+//Logic function for Updating Spa.
 export const updateSpa = async (req, res) => {
     try {
         const id = req.params.id;
@@ -49,7 +51,7 @@ export const updateSpa = async (req, res) => {
       }
 };
 
-
+//Logic function for Deleting Spa.
 export const deleteSpa = async (req, res) => {
     try {
         const id = req.params.id;
