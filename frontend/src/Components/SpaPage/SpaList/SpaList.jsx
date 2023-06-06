@@ -30,6 +30,18 @@ const SpaNearMeList = (props) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const [visible, setVisible] = useState(4)
+  const [show, setShow] = useState(true)
+  const length = spaNearYou.length
+
+  const showMoreItems = () => {
+    if (visible < length) {
+      setVisible(prevValue => prevValue + 4)
+    } else {
+      setShow(false)
+    }
+  }
+
   return (
     <div>
       <Hero />
@@ -43,7 +55,7 @@ const SpaNearMeList = (props) => {
           {/* Displays list of cards according to window size */}
           {{ windowDimensions }.windowDimensions.width >= 765 ? (
             <div className="spa_list">
-              {spaNearYou.map((data, index) => {
+              {spaNearYou.slice(0, visible).map((data, index) => {
                 return (
                   <>
                     {index === 2 ? (
@@ -69,7 +81,7 @@ const SpaNearMeList = (props) => {
             </div>
           ) : (
             <>
-              {spaNearYou.map((data, index) => {
+              {spaNearYou.slice(0, visible).map((data, index) => {
                 return (
                   <>
                     {index === 2 ? (
@@ -93,8 +105,9 @@ const SpaNearMeList = (props) => {
             </>
           )}
 
-          <div className="view_more__button">
-            <button>View More</button>
+          <div className="view_more__button"
+            style={{ display: show ? "block" : "none" }}>
+            <button onClick={showMoreItems}>View More</button>
           </div>
         </div>
 

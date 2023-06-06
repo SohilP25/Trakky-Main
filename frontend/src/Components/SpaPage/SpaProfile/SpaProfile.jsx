@@ -41,9 +41,6 @@ const SpaProfile = () => {
   }, []);
 
   let spa = "Sahil The Luxurious Spa";
-  // let spa = "Aroma The Luxurious Spa";
-
-  // const [globalSpaName, setGlobalSpaName] = useState(spa)
 
   return (
     <>
@@ -269,7 +266,20 @@ const SpaRooms = () => {
 // properties of services and offers are same, so for them I'm using 
 // 'servos' as a common name 
 
+
 const Services = () => {
+  const [visible, setVisible] = useState(5)
+  const length = spaServices.length
+  const [show, setShow] = useState(true)
+
+  function showMoreItems() {
+    if (visible < length) {
+      setVisible(prevValue => prevValue + 5)
+    } else {
+      setShow(false)
+    }
+  }
+
   return (
     <div className="services__container">
       <div className="servos__header">
@@ -279,7 +289,7 @@ const Services = () => {
       <div className="servos__list">
         <ul>
           {
-            spaServices.map((therapy, index) => {
+            spaServices.slice(0, visible).map((therapy, index) => {
               return (
                 <li key={index}>
                   <div className="services_list__container">
@@ -309,14 +319,27 @@ const Services = () => {
         </ul>
 
       </div>
-      <div className="view_more__button">
-        <button>View More</button>
+      <div className="view_more__button"
+      style={{ display: show ? "block" : "none" }}>
+        <button onClick={showMoreItems}>View More</button>
       </div>
     </div>
   )
 }
 
 const Offers = () => {
+  const [visible, setVisible] = useState(3)
+  const length = spaServices.length
+  const [show, setShow] = useState(true)
+
+  function showMoreItems() {
+    if (visible < length) {
+      setVisible(prevValue => prevValue + 3)
+    } else {
+      setShow(false)
+    }
+  }
+
   return (
     <div className="spa_offers__container">
       <div className="servos__header">
@@ -326,7 +349,7 @@ const Offers = () => {
       <div className="servos__list">
         <ul>
           {
-            spaOffers.map((therapy, index) => {
+            spaOffers.slice(0, visible).map((therapy, index) => {
               return (
                 <li key={index}>
                   <div className="offers_list__container">
@@ -356,8 +379,9 @@ const Offers = () => {
         </ul>
 
       </div>
-      <div className="view_more__button">
-        <button>View More</button>
+      <div className="view_more__button"
+      style={{ display: show ? "block" : "none"}}>
+        <button onClick={showMoreItems}>View More</button>
       </div>
     </div>
   )

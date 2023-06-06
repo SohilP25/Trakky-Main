@@ -440,6 +440,36 @@ export const spaOffers = [
     therapyName: "Dry Massage Therapy",
     description: "Best for body relaxation from normal pain in body.",
     price: 999
+  },
+  {
+    therapyName: "Dry Massage Therapy",
+    description: "Best for body relaxation from normal pain in body.",
+    price: 999
+  },
+  {
+    therapyName: "Dry Massage Therapy",
+    description: "Best for body relaxation from normal pain in body.",
+    price: 999
+  },
+  {
+    therapyName: "Dry Massage Therapy",
+    description: "Best for body relaxation from normal pain in body.",
+    price: 999
+  },
+  {
+    therapyName: "Dry Massage Therapy",
+    description: "Best for body relaxation from normal pain in body.",
+    price: 999
+  },
+  {
+    therapyName: "Dry Massage Therapy",
+    description: "Best for body relaxation from normal pain in body.",
+    price: 999
+  },
+  {
+    therapyName: "Dry Massage Therapy",
+    description: "Best for body relaxation from normal pain in body.",
+    price: 999
   }
 ]
 
