@@ -1,3 +1,5 @@
+// Author : Sohil
+// Purpose : Defining FAQs model/schema.
 import mongoose from "mongoose";
 
 const faqScheme = mongoose.Schema(
@@ -17,5 +19,6 @@ const faqScheme = mongoose.Schema(
     }
 )
 
+//Creating Model of schema.
 const faqModel = mongoose.model("faqModel", faqScheme);
 export default faqModel;

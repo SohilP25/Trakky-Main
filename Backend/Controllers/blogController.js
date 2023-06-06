@@ -1,7 +1,8 @@
+// Author : Sohil
+// Purpose : Define Blog posting and receiving logic that implemented in requests.
 import blogModel from "../Models/blogModel.js";
 
-
-
+//Logic function for receiving blogs
 export const getBlog = async (req, res) => {
    const data = await blogModel.find();
    try {
@@ -17,7 +18,7 @@ export const getBlog = async (req, res) => {
   
 }
 
-
+//Logic function for creating(posting) blogs
 export const postBlog = async (req, res) => {
     let data = req.body;
     

@@ -1,3 +1,5 @@
+// Author : Sohil
+// Purpose : Defining blogs model/schema.
 import mongoose from "mongoose";
 
 const blogScheme = mongoose.Schema(
@@ -21,5 +23,6 @@ const blogScheme = mongoose.Schema(
     }
 )
 
+//Creating Model of schema.
 const blogModel = mongoose.model("blogModel", blogScheme);
 export default blogModel;
