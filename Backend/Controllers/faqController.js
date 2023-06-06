@@ -1,5 +1,8 @@
+// Author : Sohil
+// Purpose : Define FAQs posting and receiving logic that implemented in requests.
 import faqModel from "../Models/faqModel.js";
 
+//Logic function for receiving FAQs
 export const getFaq = async (req, res) => {
   const data = await faqModel.find();
   try {
@@ -15,6 +18,7 @@ export const getFaq = async (req, res) => {
   }
 };
 
+//Logic function for creating(posting) FAQs
 export const postFaq = async (req, res) => {
   let data = req.body;
   data = await faqModel.create(data);

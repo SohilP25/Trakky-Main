@@ -1,3 +1,5 @@
+// Author : Vishal & Rinal
+// Purpose : Defining spa model/schema.
 import mongoose from "mongoose";
 
 const spaSchema = new mongoose.Schema({
@@ -65,6 +67,7 @@ const spaSchema = new mongoose.Schema({
   },
   );
   
+//Creating Model of schema.
   const spaModel = mongoose.model('spaModel', spaSchema);
   
   export default spaModel;

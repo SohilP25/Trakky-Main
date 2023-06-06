@@ -1,5 +1,8 @@
+// Author : Vishal
+// Purpose : Define Search and filter operation logic that implemented in requests.
 import spaModel from "../Models/spaModel.js";
 
+//Logic function for Search spa by name,area and city
 export const searchSpa = async (req, res) => {
   
     try {
@@ -31,7 +34,7 @@ export const searchSpa = async (req, res) => {
 };
 
 
-//Filter by catagory
+//Logic function for Filter spa by catagory
 export const filterSpa = async (req, res) => {
     try {
         const { catagory } = req.query;
