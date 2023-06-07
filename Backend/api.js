@@ -9,7 +9,7 @@ import blogRoute from "./Routes/blogRoute.js";
 import faqRoute from "./Routes/faqRoute.js";
 import spaRoute from "./Routes/spaRoute.js";
 import searchFilterRoute from "./Routes/searchFilterRoute.js";
-
+import Nearaby from "./Routes/Nearby.js";
 const apiv1 = express.Router();
 
 // Define saperate route of invidual one
@@ -23,5 +23,7 @@ apiv1.use("/faqs", faqRoute);
 apiv1.use("/spas", spaRoute);
 //For Filter and search
 apiv1.use("/",searchFilterRoute)
+//For Near By 
+apiv1.use("/",Nearaby)
 
 export default apiv1; 

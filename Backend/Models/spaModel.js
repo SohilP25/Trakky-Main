@@ -31,14 +31,17 @@ const spaSchema = new mongoose.Schema({
       type: [String],
       required: true,
     },
-    latitude: {
-      type: Number,
+    location: {
+    type: {
+      type: String,
+      enum: ['Point'],
       required: true,
     },
-    longitude: {
-      type: Number,
+    coordinates: {
+      type: [Number],
       required: true,
     },
+  },
     openTime: {
       type: String,
       required: true,
@@ -66,8 +69,12 @@ const spaSchema = new mongoose.Schema({
     },
   },
   );
-  
+   
+//creating sphare 
+ SpaSchema.index({location : '2dsphere'})
 //Creating Model of schema.
+   
+  
   const spaModel = mongoose.model('spaModel', spaSchema);
   
   export default spaModel;
