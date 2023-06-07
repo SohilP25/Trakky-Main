@@ -1,11 +1,12 @@
 .card {
-    min-width: 19rem;
+    width: 19rem;
     height: fit-content;
     border-radius: 16px;
     background: #FAF8ED;
-    margin: 0.5rem;
-    color: #2D3134;
-    box-shadow: 0px 10px 9px rgba(192, 188, 161, 0.22);
+    color: #2D3134; 
+    box-sizing: border-box;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0px 24px 90px rgba(192, 188, 161, 0.22);
 }
 
 .card h3 {
@@ -39,7 +40,8 @@
     border-radius: 20px;
     color: white;
     padding: 0.2rem;
-    top: -30px;
+    top: -1.5rem;
+    font-size: smaller;
 }
 
 .card_icons {
@@ -53,10 +55,11 @@
 
 .card_icons img {
     width: 13rem;
+    margin: 0;
 }
 
 .information__container {
-    margin: 0 1rem 1rem 1rem;
+    margin: 0 1rem 0rem 1rem;
 }
 
 .information__container p {
@@ -78,19 +81,6 @@
     display: flex;
     align-items: center;
     column-gap: 0.1rem;
-}
-
-.tags {
-    padding: 2px 0.5rem;
-    cursor: pointer;
-    transition: 0.5s;
-    color: #4D4D4D;
-    background: rgba(255, 255, 255, 0.08);
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 0.28);
-    border-radius: 5px;
-    box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.85);
 }
 
 .information__container_lower div {
@@ -121,7 +111,7 @@
 }
 
 .therapy-card {
-    width: 10rem;
+    width: 8rem;
     height: auto;
 }
 
@@ -138,11 +128,11 @@
     display: flex;
     justify-content: center;
     color: #2D3134;
-    font-weight: bold;
+    font-weight: 500;
 }
 
 .offer-card {
-    width: 15rem;
+    width: 13rem;
     height: auto;
 }
 
@@ -160,21 +150,39 @@
 
 @media screen and (max-width: 700px) {
     .therapy-card {
-        width: 8rem;
+        width: 7rem;
+    }
+    .card {
+        width: 17rem;
+        font-size: smaller;
     }
 
     .offer-card {
-        width: 13rem;
+        width: 10rem;
     }
 }
 
 @media screen and (max-width: 430px) {
     .therapy-card {
-        width: 6rem;
+        width: 5rem;
+    }
+    .therapy-card a p {
+        font-size: smaller;
+    }
+    .card {
+        width: 15rem;
+        font-size: 12px;
     }
 
     .offer-card {
-        width: 12rem;
+        width: 8rem;
+    }
+    .offer-card a p {
+        font-size: smaller;
+    }
+
+    .information__container_lower {
+        margin: 5px 5%;
     }
 }
 

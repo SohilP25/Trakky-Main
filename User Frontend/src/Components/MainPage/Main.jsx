@@ -176,13 +176,21 @@ const Home = () => {
 
       {/* Discover Trakky Experiences Starts --------------------------------------*/}
       <div className="trakky_experiences">
-        <h2>Discover Trakky Experiences</h2>
-        <div className="image__container">
+        <h1>Discover Trakky Experiences</h1>
+        <div className="trakky_experiences_image__container">
           <div className="left__">
             <img src={Image} alt="" />
+            <div className="content_on_image">
+              <p>Things to do on your trip</p>
+              <Link>Experiences</Link>
+            </div>
           </div>
           <div className="right__">
             <img src={Image} alt="" />
+            <div className="content_on_image">
+              <p>Things to do on your trip</p>
+              <Link>Experiences</Link>
+            </div>
           </div>
         </div>
       </div>

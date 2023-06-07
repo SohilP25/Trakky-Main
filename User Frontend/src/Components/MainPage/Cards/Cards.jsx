@@ -26,22 +26,15 @@ const SpaCard = (props) => {
         <div className="information__container">
           <h3>{props.cardData.name}</h3>
           <p>{props.cardData.location}</p>
-
-          {/* 
-        <div className="information__container_lower">
-          <p className="information-phone">
-            <BsFillTelephoneOutboundFill />&nbsp;{props.cardData.phone}
-          </p>
-
-          <span className="tags">{props.cardData.therapy}</span>
-        </div> */}
         </div>
+
         <div className="information__container_lower">
           <div>
             <p id="price-tag">
               <span>$89</span> / Person
             </p>
           </div>
+          
           <div>
             <Link to={props.cardData.callLink} className="card-btn-link">
               Call Now
