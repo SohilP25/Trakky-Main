@@ -6,12 +6,13 @@ import { Header } from '../components';
 
 const Customers = () => {
   const selectionsettings = { persistSelection: true };
-  const toolbarOptions = ['Delete'];
-  const editing = { allowDeleting: true, allowEditing: true };
+  const toolbarOptions = ['Delete','Search','Add','Edit','Cancel'];
+  const searchSettings= { fields: ['CustomerID','CustomerName','Username','Status','Gender','City','RegisteredAt'],  key: '', ignoreCase: true };
+  const editing = { allowAdding:true ,allowDeleting: true, allowEditing: true };
 
   return (
     <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-      <Header category="Page" title="Customers" />
+      <Header  title="Customers" />
       <GridComponent
         dataSource={customersData}
         enableHover={false}
@@ -19,6 +20,7 @@ const Customers = () => {
         pageSettings={{ pageCount: 5 }}
         selectionSettings={selectionsettings}
         toolbar={toolbarOptions}
+        searchSettings={searchSettings}
         editSettings={editing}
         allowSorting
       >

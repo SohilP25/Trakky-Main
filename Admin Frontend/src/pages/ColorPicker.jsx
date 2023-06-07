@@ -11,7 +11,7 @@ const CustomColorPicker = ({ id, mode }) => <ColorPickerComponent id={id} mode={
 
 const ColorPicker = () => (
   <div className="m-2 md:m-10 mt-24 p-2 md:p-10 bg-white rounded-3xl">
-    <Header category="App" title="Color Picker" />
+    <Header  title="Color Picker" />
     <div className="text-center">
       <div id="preview" />
       <div className="flex justify-center items-center gap-20 flex-wrap">
