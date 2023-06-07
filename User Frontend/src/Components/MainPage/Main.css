@@ -28,7 +28,7 @@
     color: #000;
 }
 .slider__header h1 {
-    font-size: xxx-large;
+    font-size: xx-large;
     color: #2D3134;
     width: 90%;    
 }
@@ -82,18 +82,43 @@
     padding: 0 5%;
 }
 
-.image__container {
+.trakky_experiences_image__container {
     display: flex;
+    column-gap: 2rem;
+    margin: 2rem 0;
 }
 
 .left__,
 .right__ {
-    width: 96%;
-    margin: 1%;
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
 
-.image__container img {
+.trakky_experiences_image__container img {
     width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.content_on_image {
+    position: absolute;
+    top: 2rem;
+    left: 4rem;
+    row-gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+.content_on_image p {
+    font-size: 2.5rem;
+    color: #FFF;
+}
+.content_on_image a {
+    width: fit-content;
+    background-color: #FFF;
+    padding: 0.7rem 1.5rem;
+    border-radius: 5px;
 }
 
 .upper__footer_desktop {
@@ -166,6 +191,9 @@
     .slider__header p {
         padding: 0.5rem 0;
     }
+    .slider__header a {
+        font-size: medium;
+    }
 
     .slider_buttons img {
         width: 2.35rem;
@@ -177,7 +205,11 @@
     }
 
     .slider__header h1 {
-        font-size: xx-large;
+        font-size: x-large;
+    }
+    
+    .explore {
+        margin: 2rem;
     }
 }
 
@@ -208,7 +240,7 @@
 .top-destinations__header h1 {
     text-align: center;
     color: #2D3134;
-    font-size: xxx-large;
+    font-size: xx-large;
     line-height: 4.125rem;
 }
 
