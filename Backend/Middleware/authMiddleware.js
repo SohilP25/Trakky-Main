@@ -1,8 +1,11 @@
+// Author : Sohil
+// Purpose : Define Authentication Middleware to authorize requests.
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 
 dotenv.config();
 const secret = process.env.JWT_SCREATE_KEY
+// Define logic function for middleware.
 const authMiddleWare = async (req, res, next) => {
     try {
         console.log(req.headers);

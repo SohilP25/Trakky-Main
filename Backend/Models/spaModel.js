@@ -1,3 +1,5 @@
+// Author : Vishal & Rinal
+// Purpose : Defining spa model/schema.
 import mongoose from "mongoose";
 
 const spaSchema = new mongoose.Schema({
@@ -29,14 +31,17 @@ const spaSchema = new mongoose.Schema({
       type: [String],
       required: true,
     },
-    latitude: {
-      type: Number,
+    location: {
+    type: {
+      type: String,
+      enum: ['Point'],
       required: true,
     },
-    longitude: {
-      type: Number,
+    coordinates: {
+      type: [Number],
       required: true,
     },
+  },
     openTime: {
       type: String,
       required: true,
@@ -64,6 +69,11 @@ const spaSchema = new mongoose.Schema({
     },
   },
   );
+   
+//creating sphare 
+ spaSchema.index({location : '2dsphere'})
+//Creating Model of schema.
+   
   
   const spaModel = mongoose.model('spaModel', spaSchema);
   
