@@ -15,7 +15,8 @@ import Grids from "./../../../Assets/images/icons/four-grids.svg";
 import Hero from "./../Hero/Hero";
 import Footer from "./../../Common/Footer/Footer";
 
-import { BiHeart } from "react-icons/bi";
+import { MdFavoriteBorder } from "react-icons/md";
+import { FcLike } from "react-icons/fc";
 import { RiShareBoxLine } from "react-icons/ri";
 import Slider from "../../Common/Slider/Slider";
 import { spaProfile, spaServices, spaOffers, spaFacilitiesData, spaRoomPhotos } from "../../../data";
@@ -29,6 +30,7 @@ function getWindowDimensions() {
 
 
 const SpaProfile = () => {
+
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
@@ -40,8 +42,8 @@ const SpaProfile = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  let spa = "Sahil The Luxurious Spa";
-
+  let spa = "Aroma The Luxurious Spa";
+  const [isLiked, setIsLiked] = useState(false)
   return (
     <>
       <Hero />
@@ -76,8 +78,19 @@ const SpaProfile = () => {
                 <h1>{spa}</h1>
                 <div className="spa-information-like-share">
                   <li className="spa-like">
-                    <BiHeart />
-                    Like
+                    {
+                      isLiked ? (
+                        <>
+                          <FcLike onClick={() => setIsLiked(false)} />
+                          Liked
+                        </>
+                      ) : (
+                        <>
+                          <MdFavoriteBorder onClick={() => setIsLiked(true)} />
+                          Like
+                        </>
+                      )
+                    }
                   </li>
                   <li className="spa-share">
                     <RiShareBoxLine />
@@ -92,7 +105,7 @@ const SpaProfile = () => {
                     fontWeight: "400",
                     fontSize: "20px",
                     lineHeight: "30px",
-                    width: "50%",
+                    width: "70%",
                   }}
                 >
                   203, Sarthak Pulse Mall, Second Floor, PDPU Circle, Bhajipura,
@@ -154,8 +167,19 @@ const SpaProfile = () => {
               style={{ fontSize: "1rem", gap: ".5rem" }}
             >
               <li className="spa-like">
-                <BiHeart />
-                Like
+                {
+                  isLiked ? (
+                    <>
+                      <FcLike onClick={() => setIsLiked(false)} />
+                      Liked
+                    </>
+                  ) : (
+                    <>
+                      <MdFavoriteBorder onClick={() => setIsLiked(true)} />
+                      Like
+                    </>
+                  )
+                }
               </li>
               <li className="spa-share">
                 <RiShareBoxLine />
@@ -237,8 +261,8 @@ const SpaProfile = () => {
       </div>
 
       <AboutUsSpa />
-      
-    
+
+
       <hr className="hr_line" />
 
       <SpaRooms />
@@ -320,7 +344,7 @@ const Services = () => {
 
       </div>
       <div className="view_more__button"
-      style={{ display: show ? "block" : "none" }}>
+        style={{ display: show ? "block" : "none" }}>
         <button onClick={showMoreItems}>View More</button>
       </div>
     </div>
@@ -380,7 +404,7 @@ const Offers = () => {
 
       </div>
       <div className="view_more__button"
-      style={{ display: show ? "block" : "none"}}>
+        style={{ display: show ? "block" : "none" }}>
         <button onClick={showMoreItems}>View More</button>
       </div>
     </div>

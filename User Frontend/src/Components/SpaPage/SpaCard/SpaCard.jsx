@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./SpaCard.css";
 import { Link } from "react-router-dom";
@@ -7,7 +7,8 @@ import LikeIcon from "../../../Assets/images/icons/like.svg";
 import ManIcon from "../../../Assets/images/icons/man.svg";
 import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import { AiOutlineStar } from "react-icons/ai";
-
+import { BiHeart } from "react-icons/bi";
+import { FcLike } from "react-icons/fc";
 
 // SpaCard will appear when screen is large
 const SpaCard = ({
@@ -19,15 +20,20 @@ const SpaCard = ({
   reviewsCount,
   basePrice
 }) => {
+
+
+  const [isLiked, setIsLiked] = useState(false)
+
   return (
     <div className="spa_card">
       <div className="image__container">
+        <p className="spa_tag">Premium</p>
         <img
           src={require(`../../../Assets/images/spa/${img}`)}
           alt="Spa"
           draggable="false"
         />
-        <p>{offers}</p>
+        <p className="spa_offer_tag">{offers}</p>
       </div>
 
       <div className="spa_information__container">
@@ -37,7 +43,15 @@ const SpaCard = ({
             <p>{location}</p>
           </div>
           <div className="spa_offer_tag__box">
-            <img src={LikeIcon} alt="" />
+            {
+              isLiked 
+              ? <FcLike 
+                  onClick={() => setIsLiked(false)}
+                  style={{ width: "2rem", height: "2rem" }} />
+              : <BiHeart 
+                  onClick={() => setIsLiked(true)}
+                  style={{ width: "2rem", height: "2rem" }}  />
+            }
           </div>
         </div>
 
@@ -88,7 +102,9 @@ export const Star = ({ stars, reviews }) => {
   return (
     <div>
       <span>{stars}</span>&nbsp;{ratingStar}
-      <div>({reviews}&nbsp;reviews)</div>
+      <div style={{
+        display: "inline-block"
+      }}>&nbsp;({reviews}&nbsp;reviews)</div>
     </div>
   )
 }
@@ -106,13 +122,21 @@ export const SpaCardMini = ({
   return (
     <div className="mini_spa_card">
       <div className="main_mini_spa__container">
-        <div className="image__container">
+        <div className="mini_spa_image__container">
+          <p className="spa_tag">Premium</p>
           <img
             src={require(`../../../Assets/images/spa/${img}`)}
             alt="Spa"
             draggable="false"
           />
-          <p>{offers}</p>
+          <p
+            className="spa_offer_tag"
+            style={{
+              width: "98%",
+              bottom: "1%",
+              margin: "0 1%"
+            }}
+          >{offers}</p>
         </div>
 
         <div className="mini_spa_information__container">
@@ -125,7 +149,7 @@ export const SpaCardMini = ({
             <img src={CardIcons} draggable="false" alt="" />
           </div>
 
-          <div className="spa_rating__box">
+          <div className="mini_spa_rating__box spa_rating__box">
             <Star stars={ratings} reviews={reviewsCount} />
           </div>
 
@@ -145,10 +169,11 @@ export const SpaCardMini = ({
       </div>
 
       <div className="mini_spa_buttons">
-        <div>
+        <div
+          style={{ borderRight: "1px solid gray" }}
+        >
           <Link>Book Now</Link>
         </div>
-        <span style={{ alignContent: "center", display: "flex" }}>|</span>
         <div>
           <Link>Call Now</Link>
         </div>

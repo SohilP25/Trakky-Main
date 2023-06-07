@@ -31,7 +31,7 @@ export const filterTags = [
 export const spaNearYou = [
   {
     name: "Aroma The Luxurious Spa",
-    img: "spa.png",
+    img: "spa-image1.png",
     location: "Kudasan, Gandhinagar",
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
@@ -43,7 +43,7 @@ export const spaNearYou = [
   },
   {
     name: "Aroma The Luxurious Spa",
-    img: "spa.png",
+    img: "spa-image1.png",
     location: "Kudasan, Gandhinagar",
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
@@ -55,7 +55,7 @@ export const spaNearYou = [
   },
   {
     name: "Aroma The Luxurious Spa",
-    img: "spa.png",
+    img: "spa-image1.png",
     location: "Kudasan, Gandhinagar",
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
@@ -67,7 +67,7 @@ export const spaNearYou = [
   },
   {
     name: "Aroma The Luxurious Spa",
-    img: "spa.png",
+    img: "spa-image1.png",
     location: "Kudasan, Gandhinagar",
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
@@ -79,7 +79,7 @@ export const spaNearYou = [
   },
   {
     name: "Aroma The Luxurious Spa",
-    img: "spa.png",
+    img: "spa-image1.png",
     location: "Kudasan, Gandhinagar",
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
@@ -91,7 +91,7 @@ export const spaNearYou = [
   },
   {
     name: "Aroma The Luxurious Spa",
-    img: "spa.png",
+    img: "spa-image1.png",
     location: "Kudasan, Gandhinagar",
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
@@ -103,7 +103,7 @@ export const spaNearYou = [
   },
   {
     name: "Aroma The Luxurious Spa",
-    img: "spa.png",
+    img: "spa-image1.png",
     location: "Kudasan, Gandhinagar",
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
@@ -115,7 +115,7 @@ export const spaNearYou = [
   },
   {
     name: "Aroma The Luxurious Spa",
-    img: "spa.png",
+    img: "spa-image1.png",
     location: "Kudasan, Gandhinagar",
     phone: Number("09667050051"),
     therapy: "Couple Therapy",

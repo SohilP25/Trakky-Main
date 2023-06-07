@@ -185,6 +185,12 @@
     .upper__footer_mobile {
         display: grid;
     }
+    .content_on_image {
+        transform: scale(0.6);
+        top: 0;
+        left: -40px;
+        width: fit-content;
+    }
 }
 
 @media screen and (max-width: 700px) {
@@ -211,6 +217,20 @@
     .explore {
         margin: 2rem;
     }
+    .trakky_experiences_image__container {
+        flex-direction: column;
+        row-gap: 1rem;
+    }
+    .content_on_image {
+        transform: scale(1);
+        top: 2rem;
+        left: 2rem;
+        width: 60%;
+    }
+    .content_on_image p {
+        font-size: 2em;
+    }
+    
 }
 
 @media screen and (max-width: 430px) {
@@ -225,6 +245,12 @@
 
     .slider__header p {
         font-size: 1rem;
+    }
+    .content_on_image {
+        transform: scale(0.8);
+        top: 1rem;
+        left: 0;
+        width: fit-content;
     }
 }
 

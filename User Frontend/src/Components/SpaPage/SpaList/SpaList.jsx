@@ -47,7 +47,7 @@ const SpaNearMeList = (props) => {
       <Hero />
 
       <div className="spa_list__header">
-        <h1>Spa Near Me</h1>
+        <h1>Spa near me</h1>
       </div>
       <div className="spa_list_main__container">
         <div className="spa_list__container">
@@ -137,7 +137,7 @@ const PopularLocations = () => {
   return (
     <div className="popular_location__container">
       <div className="popular_location__header">
-        <h2>Searched Popular Localities</h2>
+        <h3>Searched Popular Localities</h3>
       </div>
 
       <div className="popular_location_list">
