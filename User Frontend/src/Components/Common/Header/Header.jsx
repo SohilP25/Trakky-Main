@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Header.css";
 
 import trakkyWhite from "./../../../Assets/images/logos/Trakky logo white.png";
@@ -16,7 +16,7 @@ const Header = ({ page = "other" }) => {
   const [show, setShow] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-
+  const [searchText, setSearchText] = useState("")
 
   useEffect(() => {
     const controlNavbar = () => {
@@ -42,6 +42,9 @@ const Header = ({ page = "other" }) => {
   // navState determines whether it is navbar of home page or of other pages
   // If navState is true => navbar of home page is rendered.
   const navState = page !== "other";
+
+  const [isFocused, setIsFocused] = useState(false)
+  const ref = useRef(null)
 
   return (
     <div
@@ -80,15 +83,24 @@ const Header = ({ page = "other" }) => {
           <label
             htmlFor="search"
             id="searchLabel"
-            style={{ fontWeight: "bold" }}
+            style={{ fontWeight: "bold",
+            display: (isFocused || searchText.length !== 0) ? "none" : "block"  }}
           >
             What to?
           </label>
           <input
+            ref={ref}
             type="text"
             placeholder="Spa name • Area • City • Therapy"
             name="search"
             autoComplete="off"
+            id="search"
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            onChange={(e) => setSearchText(e.target.value)}
+            style={{
+              fontSize: (isFocused || searchText.length !== 0) ? "larger" : ""
+            }}
           />
         </form>
         <img
@@ -98,6 +110,7 @@ const Header = ({ page = "other" }) => {
           style={{ height: "2.5rem" }}
         />
       </div>
+
       <div className="register-spa">
         <button
           style={{
