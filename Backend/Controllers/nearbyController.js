@@ -1,7 +1,7 @@
 // author : vishal patel
 
 import spaModel from "../Models/spaModel.js";
-export const Nearbyspa = async (req, res) => {
+export const nearbySpa = async (req, res) => {
     try {
       const longitude = parseFloat(req.body.longitude);
       const latitude = parseFloat(req.body.latitude);

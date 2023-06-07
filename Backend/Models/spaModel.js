@@ -71,7 +71,7 @@ const spaSchema = new mongoose.Schema({
   );
    
 //creating sphare 
- SpaSchema.index({location : '2dsphere'})
+ spaSchema.index({location : '2dsphere'})
 //Creating Model of schema.
    
   
