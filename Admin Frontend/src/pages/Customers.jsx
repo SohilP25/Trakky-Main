@@ -23,6 +23,7 @@ const Customers = () => {
         searchSettings={searchSettings}
         editSettings={editing}
         allowSorting
+        allowTextWrap={true}
       >
         <ColumnsDirective>
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}

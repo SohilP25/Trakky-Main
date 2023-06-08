@@ -1,4 +1,6 @@
 import React from "react";
+import { enableRipple } from '@syncfusion/ej2-base';
+import { SwitchComponent } from '@syncfusion/ej2-react-buttons';
 import {
   AiOutlineCalendar,
   AiOutlineShoppingCart,
@@ -172,9 +174,9 @@ const customerGridStatus = (props) => (
 const salonGridImage = (props) => (
   <div className="image flex justify-center align-center gap-4">
     <img
-      className='rounded-full w-10 h-10'
+      className="rounded-full w-10 h-10"
       src={props.SalonImage}
-      alt='employee'
+      alt="employee"
     />
     <div>
       <p>{props.SalonName}</p>
@@ -183,12 +185,13 @@ const salonGridImage = (props) => (
 );
 
 const faqsGridDescription = (props) => (
-  <div
-    className="flex text-gray-700 m-0 p-0 "
-    style={{ height: "3rem",overflow:"scroll" ,width: "auto",textAlign:"center" , }}
+  <p
+    className=" text-gray-700 m-0 p-0 "
+   
+    
   >
     {props.Description}
-  </div>
+  </p>
 );
 export const areaPrimaryXAxis = {
   valueType: "DateTime",
@@ -449,9 +452,10 @@ export const customersGrid = [
     isPrimaryKey: true,
   },
   {
+    field:"Name",
+    template: customerGridImage,
     headerText: "Name",
     width: "150",
-    template: customerGridImage,
     textAlign: "Center",
   },
   {
@@ -462,11 +466,11 @@ export const customersGrid = [
   },
   {
     field: "Status",
+    template: customerGridStatus,
     headerText: "Status",
     width: "130",
     format: "yMd",
     textAlign: "Center",
-    template: customerGridStatus,
   },
   {
     field: "Gender",
@@ -531,7 +535,23 @@ export const employeesGrid = [
 ];
 
 export const links = [
+
   {
+    title: "Salons",
+    links:[
+      {
+        name: "Salons",
+        icon: <FaLeaf />,
+      },
+      {
+        name: "Add Salons",
+        icon: <FaLeaf />,
+      },
+    ]
+    
+  },
+  {
+
     links: [
       {
         name: "orders",
@@ -541,10 +561,7 @@ export const links = [
         name: "employees",
         icon: <IoMdContacts />,
       },
-      {
-        name: "Salons",
-        icon: <FaLeaf />,
-      },
+      
       {
         name: "customers",
         icon: <RiContactsLine />,
@@ -977,10 +994,27 @@ export const ordersGrid = [
     textAlign: "Center",
   },
 ];
+const salonGridOpen = (props) => {
+  return <SwitchComponent checked={props.Open} />
+};
+const salonGridVerified = (props) => {
+  return <SwitchComponent checked={props.Verified} />
+};
+const salonGridSalonAcademy = (props) => {
+  return <SwitchComponent checked={props.SalonAcademy} />
+};
+const salonGridPremium = (props) => {
+  return <SwitchComponent checked={props.Premium} />
+};
+const salonGridMakeUpArtist = (props) => {
+  return <SwitchComponent checked={props.MakeUpArtist} />
+};
+
 export const salonsGrid = [
+  { type: "checkbox", width: "50" },
   {
     field: "SalonName",
-    template:salonGridImage,
+    template: salonGridImage,
     headerText: "Name",
     width: "120",
     textAlign: "Center",
@@ -993,13 +1027,37 @@ export const salonsGrid = [
   },
   {
     field: "Open",
+    template:salonGridOpen,
     headerText: "Open",
     width: "140",
     textAlign: "Center",
   },
   {
-    field: "Close",
-    headerText: "Close",
+    field: "Verified",
+    template:salonGridVerified,
+    headerText: "Verified",
+    width: "140",
+    textAlign: "Center",
+  },
+  {
+    field: "SalonAcademy",
+    template:salonGridSalonAcademy,
+    headerText: "Salon Academy",
+    width: "140",
+    textAlign: "Center",
+  },
+  
+  {
+    field: "Premium",
+    template:salonGridPremium,
+    headerText: "Premium",
+    width: "140",
+    textAlign: "Center",
+  },
+  {
+    field: "MakeUpArtist",
+    template:salonGridMakeUpArtist,
+    headerText: "Make Up Artist",
     width: "140",
     textAlign: "Center",
   },
@@ -1026,35 +1084,42 @@ export const salonsData = [
   {
     SalonImage: avatar2,
     SalonName: "Salon 1",
-    Slot:"1",
-    Open: "6/6/23 10 A.M.",
-    Close: "6/6/23 10:29 A.M.",
-    Phone:"9999999999",
-    Status:"Active",
-    UpdatedAt:"21/1/2023",
+    Slot: "1",
+    Open:true,
+    Verified:true,
+    Premium:false,
+    SalonAcademy:true,
+    MakeUpArtist:false,    
+    Phone: "9999999999",
+    Status: "Active",
+    UpdatedAt: "21/1/2023",
   },
   {
     SalonImage: avatar2,
     SalonName: "Salon 2",
-    Slot:"1",
-    Open: "6/6/23 10 A.M.",
-    Close: "6/6/23 10:29 A.M.",
-    Phone:"9999999999",
-    Status:"Active",
-    UpdatedAt:"21/1/2023",
+    Slot: "1",
+    Open:true,
+    Verified:true,
+    SalonAcademy:true,
+    Premium:false,
+    MakeUpArtist:false,
+    Phone: "9999999999",
+    Status: "Active",
+    UpdatedAt: "21/1/2023",
   },
   {
     SalonImage: avatar2,
     SalonName: "Salon 3",
-    Slot:"1",
-    Open: "6/6/23 10 A.M.",
-    Close: "6/6/23 10:29 A.M.",
-    Phone:"9999999999",
-    Status:"Active",
-    UpdatedAt:"21/1/2023",
+    Slot: "1",
+    Open:false,
+    Verified:true,
+    SalonAcademy:true,
+    Premium:false,
+    MakeUpArtist:false,
+    Phone: "9999999999",
+    Status: "Active",
+    UpdatedAt: "21/1/2023",
   },
-
-
 ];
 export const customersData = [
   {
@@ -1577,27 +1642,26 @@ export const customersData = [
   },
 ];
 export const faqsGrid = [
+  { type: "checkbox", width: "50" },
   {
     field: "FaqID",
     headerText: "FaqID",
-    width: "100",
+    width: "60",
     textAlign: "Center",
     isPrimaryKey: true,
   },
   {
     field: "FaqGroupName",
     headerText: "Faq Group Name",
-    width: "100",
-    textAlign: "Center",
+    width: "70",
   },
   {
     field: "Title",
     headerText: "Title",
-    width: "130",
-    textAlign: "Center",
+    width: "100",
   },
   {
-    template: faqsGridDescription,
+    field:"Description",
     headerText: "Description",
     width: "160",
   },
@@ -1605,16 +1669,15 @@ export const faqsGrid = [
     field: "UpdatedAt",
     headerText: "Updated at",
     width: "90",
-    textAlign: "Center",
   },
 ];
 export const faqsData = [
   {
     FaqID: 1,
     FaqGroupName: "Payments",
-    Title: "What Kinds of Payments mmode are accepted",
+    Title: "What Kinds of Payments \g\nmode are accepted",
     Description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. \g\n\gPossimus consequuntur explicabo quas, voluptatem alias reiciendis a excepturi! ",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. \g\ngPossimus consequuntur explicabo quas, voluptatem alias reiciendis a excepturi! ",
     UpdatedAt: "01-01-2023",
   },
   {
@@ -1622,7 +1685,7 @@ export const faqsData = [
     FaqGroupName: "Payments",
     Title: "What Kinds of Payments mmode are accepted",
     Description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. \nPossimus consequuntur explicabo quas, voluptatem alias reiciendis a excepturi! ",
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. \nPossimus consequuntur explicabo quas, voluptatem alias reiciendis a excepturi! lorem djnd43jnc34jnj3nj2ex2ex  2dj2xb2jx24",
     UpdatedAt: "01-01-2023",
   },
   {

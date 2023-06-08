@@ -11,7 +11,6 @@ import {
   Sort,
   Filter,
 } from "@syncfusion/ej2-react-grids";
-
 import { salonsData, salonsGrid } from "../data/dummy";
 import { Header } from "../components";
 
@@ -50,10 +49,10 @@ const Salons = () => {
         searchSettings={searchSettings}
         editSettings={editing}
         allowSorting
+        allowTextWrap={true}
       >
-        <ColumnsDirective >
+        <ColumnsDirective>
           {salonsGrid.map((item, index) => (
-                
             <ColumnDirective key={index} {...item} />
           ))}
         </ColumnsDirective>
