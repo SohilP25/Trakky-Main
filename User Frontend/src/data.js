@@ -1,3 +1,11 @@
+export const spaImages = [
+  "spa-image1.png",
+  "spa-image2.png",
+  "spa-image3.png",
+  "spa-image4.png",
+  "spa-image5.png",
+]
+
 export const popularLocations = [
   "Spa in Anandnagar",
   "Spa in Ambli",

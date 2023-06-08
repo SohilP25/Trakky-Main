@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import "./Hero.css";
 
 import Header from "../../Common/Header/Header";
@@ -6,25 +6,6 @@ import SearchBar from "./SearchBar";
 import Typed from 'react-typed';
 
 const Hero = () => {
-  const [newName, setNewName] = useState(
-    "Discover top-rated massage spa therapies in your area."
-  );
-
-  const shuffle = useCallback(() => {
-    const headlines = [
-      "Discover top-rated massage spa therapies in your area.",
-      "Everything happening around me is very random",
-      "I believe life is an intelligent thing: that things aren't random.",
-      "United, we alter the world with random acts of kindness.",
-    ];
-    const index = Math.floor(Math.random() * headlines.length);
-    setNewName(headlines[index]);
-  }, []);
-
-  useEffect(() => {
-    const intervalID = setInterval(shuffle, 3000);
-    return () => clearInterval(intervalID);
-  }, [shuffle]);
 
   return (
     <section>

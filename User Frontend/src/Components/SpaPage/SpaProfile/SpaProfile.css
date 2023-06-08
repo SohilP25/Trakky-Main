@@ -94,7 +94,7 @@
 
 @media screen and (max-width:875px) {
     .spa-profile__container {
-        transform: scale(.625)  translateY(-18%);
+        transform: scale(.625) translateY(-18%);
     }
 }
 
@@ -107,13 +107,13 @@
 
 @media screen and (max-width:737px) {
     .spa-profile__container {
-        transform: scale(.53)  translateY(-25%);
+        transform: scale(.53) translateY(-25%);
     }
 }
 
 @media screen and (max-width:675px) {
     .spa-profile__container {
-        transform: scale(.49)  translateY(-25%);
+        transform: scale(.49) translateY(-25%);
     }
 }
 
@@ -125,7 +125,8 @@
     gap: 0.6rem;
 }
 
-.spa-information-title, .spa-information-subtitle {
+.spa-information-title,
+.spa-information-subtitle {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -141,7 +142,8 @@
     line-height: 20px;
 }
 
-.spa-like, .spa-share {
+.spa-like,
+.spa-share {
     display: flex;
     cursor: pointer;
     align-items: center;
@@ -150,7 +152,8 @@
     width: 5rem;
 }
 
-.spa-information-ratings-reviews, .spa-information-phone-price {
+.spa-information-ratings-reviews,
+.spa-information-phone-price {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -164,7 +167,10 @@
     width: 1.25rem;
 }
 
-.spa-ratings, .spa-reviews, .spa-phone, .spa-price {
+.spa-ratings,
+.spa-reviews,
+.spa-phone,
+.spa-price {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -277,6 +283,7 @@
     font-size: 18px;
     line-height: 25px;
 }
+
 @media screen and (max-width:475px) {
     .spa-information-bookings li {
         font-size: .7rem;
@@ -296,10 +303,12 @@
     width: 100%;
     margin-bottom: 2rem;
 }
+
 .servos__list ul li {
     padding: 1rem 0;
     border-bottom: 2px solid #D2D2D2;
 }
+
 /* Spa services and offers container css ends  */
 
 
@@ -321,6 +330,7 @@
     display: flex;
     align-items: center;
 }
+
 .service_description p,
 .offers_description p {
     color: #383838;
@@ -384,11 +394,13 @@
 .offers_price {
     width: 50%;
 }
+
 .offers__button {
     width: 50%;
     display: flex;
     justify-content: flex-end;
 }
+
 .offers__button a {
     display: unset;
     padding: 0 1.5rem;
@@ -397,22 +409,25 @@
     border-radius: 15px;
     color: #FFF;
 }
+
 .offers_list__container {
     line-height: 2.5rem;
 }
+
 /* Spa Offers css ends  */
 
 .spa_profile__left_container {
     width: 46%;
     margin: 0 5% 0 10%;
 }
+
 .spa_profile__right_container {
     width: 35%;
 }
 
 .spa_facility__container {
     margin: 1rem 0;
-    padding: 2rem;    
+    padding: 2rem;
 }
 
 .spa_facility_list ul li {
@@ -429,7 +444,7 @@
     align-items: center;
 }
 
-.spa_about_us__container, 
+.spa_about_us__container,
 .spa_rooms_slider__container {
     width: 80%;
     margin: 2rem 10%;
@@ -438,6 +453,7 @@
 .spa_about_us__description p {
     padding: 0.5rem 0;
 }
+
 .spa_show_more__button {
     color: black;
     text-decoration: underline;
@@ -456,6 +472,7 @@
     .spa_profile__right_container {
         width: 42%;
     }
+
     .spa_profile__left_container {
         margin: 0 2% 0 5%;
     }
@@ -465,16 +482,19 @@
     .spa_offers-services__container {
         display: block;
     }
+
     .spa_profile__left_container,
     .spa_profile__right_container {
         width: 80%;
         margin: 2rem 10%;
     }
+
     .spa_offers__container {
         border: none;
         box-shadow: none;
         padding: 0;
     }
+
     .spa_facility__container {
         margin: 1rem auto;
         padding: 2rem;

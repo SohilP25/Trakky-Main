@@ -102,3 +102,12 @@ export const SpaRoom = (props) => {
 }
 
 export default SpaCard;
+
+
+export const ImageCard = (props) => {
+  return (
+    <div className="slider_image_card">
+      <img src={require(`../../../Assets/images/spa/${props.cardData}`)} alt="" />
+    </div>
+  )
+}

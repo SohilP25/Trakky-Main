@@ -4,6 +4,7 @@ import SpaCard, {
   TherapyCard,
   SpaProfile,
   SpaRoom,
+  ImageCard,
 } from "../../MainPage/Cards/Cards";
 
 import { motion } from "framer-motion";
@@ -44,6 +45,8 @@ const Slider = (props) => {
     card = <SpaProfile />;
   } else if (sliderType === "spaRooms") {
     card = <SpaRoom />;
+  } else if (sliderType === "spaImages") {
+    card = <ImageCard />;
   }
   // including styles
   const styles = {

@@ -19,7 +19,8 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { FcLike } from "react-icons/fc";
 import { RiShareBoxLine } from "react-icons/ri";
 import Slider from "../../Common/Slider/Slider";
-import { spaProfile, spaServices, spaOffers, spaFacilitiesData, spaRoomPhotos } from "../../../data";
+import { spaProfile, spaServices, spaOffers, spaFacilitiesData, spaRoomPhotos, spaImages } from "../../../data";
+import Popup from "../../Common/Popup/Popup";
 
 // window dimensions
 function getWindowDimensions() {
@@ -30,6 +31,7 @@ function getWindowDimensions() {
 
 
 const SpaProfile = () => {
+
 
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
@@ -43,10 +45,34 @@ const SpaProfile = () => {
   }, []);
 
   let spa = "Aroma The Luxurious Spa";
+
   const [isLiked, setIsLiked] = useState(false)
+
+  const [spaProfilePhotosTrigger, setSpaProfilePhotosTrigger] = useState(false)
+
   return (
     <>
       <Hero />
+
+      <div className="showPhotos">
+        <Popup trigger={spaProfilePhotosTrigger}>
+          <h1>Sahil</h1>
+          
+          <Slider cardList={spaImages} _name="spaImages" />
+
+          <button 
+            onClick={() => setSpaProfilePhotosTrigger(false)}
+            style={{
+              padding: "1rem 1.5rem",
+              fontSize: "large",
+              borderRadius: "10px",
+              color: "white",
+              backgroundColor: "purple"
+            }}
+            >Close</button>
+        </Popup>
+      </div>
+
       {/* Altering Grid layout for smaller devices */}
       {{ windowDimensions }.windowDimensions.width >= 600 ? (
         <div className="spa-profile__container">
@@ -67,7 +93,7 @@ const SpaProfile = () => {
               <div className="image-5">
                 <img src={spaImage5} alt="" />
                 <div className="show-all-photos">
-                  <button>
+                  <button onClick={() => setSpaProfilePhotosTrigger(true)}>
                     <img src={Grids} alt="" />Show all photos
                   </button>
                 </div>
@@ -413,8 +439,6 @@ const Offers = () => {
 
 const SpaFacilities = ({ spaName }) => {
 
-  console.log(spaFacilitiesData)
-
   const spaData = spaFacilitiesData.find(
     spa => spa.spaname === spaName
   );
@@ -429,7 +453,6 @@ const SpaFacilities = ({ spaName }) => {
       <div className="servos__header">
         <h2>What this place offers</h2>
       </div>
-      {console.log(facilities)}
 
       <div className="spa_facility_list">
         <ul>
