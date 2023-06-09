@@ -1,24 +1,19 @@
 import React, { useState } from "react";
 import "./Page.css";
 
-import { InquiryData } from "../data/mockData";
+import { AiFillDelete } from "react-icons/ai";
+import { FaEdit } from "react-icons/fa";
 
-const Inquiry = () => {
+import { CitiesData } from "../data/mockData";
+
+const Cities = () => {
   // table header data
-  const tableHeaders = [
-    "Spa name",
-    "Username",
-    "Url slug",
-    "Time",
-    "Date",
-    "Service",
-    "Category",
-  ];
+  const tableHeaders = ["Name", "Priority", "Updated At", "Actions"];
 
   // Handling view more button
   const [visible, setVisible] = useState(10);
   const [show, setShow] = useState(true);
-  const length = InquiryData.length;
+  const length = CitiesData.length;
 
   const showMoreItems = () => {
     if (visible < length) {
@@ -36,17 +31,14 @@ const Inquiry = () => {
     const searchTerm = event.target.value;
     setSearchTerm(searchTerm);
 
-    const results = InquiryData.filter(
+    const results = CitiesData.filter(
       (item) =>
         item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.area.toLowerCase().includes(searchTerm.toLowerCase())
+        item.city.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     setSearchResults(results);
   };
-
-  // Handling the more button
 
   return (
     <div className="main_list__container">
@@ -65,6 +57,7 @@ const Inquiry = () => {
           </button>
         </form>
       </div>
+
       <div className="list__container">
         <table className="table table-striped custom-table">
           <thead>
@@ -78,21 +71,21 @@ const Inquiry = () => {
           </thead>
 
           <tbody>
-            {(searchTerm.length !== 0 ? searchResults : InquiryData)
+            {(searchTerm.length !== 0 ? searchResults : CitiesData)
               .slice(0, visible)
-              .map((inquiry, index) => {
+              .map((city, index) => {
                 return (
-                  <>
-                    <tr key={index}>
-                      <td>{inquiry.spaname}</td>
-                      <td>{inquiry.username}</td>
-                      <td>{inquiry.urlslug}</td>
-                      <td>{inquiry.time}</td>
-                      <td>{inquiry.date}</td>
-                      <td>{inquiry.service}</td>
-                      <td>{inquiry.category}</td>
-                    </tr>
-                  </>
+                  <tr key={index}>
+                    <td>{city.name}</td>
+                    <td>{city.priority}</td>
+                    <td>{city.date}</td>
+
+                    <td>
+                      <AiFillDelete />
+                      &nbsp;&nbsp;
+                      <FaEdit />
+                    </td>
+                  </tr>
                 );
               })}
           </tbody>
@@ -109,4 +102,4 @@ const Inquiry = () => {
   );
 };
 
-export default Inquiry;
+export default Cities;

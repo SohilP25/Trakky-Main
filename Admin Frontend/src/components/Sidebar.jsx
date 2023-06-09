@@ -1,29 +1,14 @@
 import { useState } from "react";
-// import { ProSidebarProvider, Menu, MenuItem } from "react-pro-sidebar";
-// import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { NavLink } from "react-router-dom";
-// import "react-sidebar/dist/css/styles.css";
-// import { tokens } from "../../theme";
-
-// import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-// import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
-// import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
-// import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
-// import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-// import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
-// import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-// import BarChartOutlinedIcon from "@mui/icons-material/BarChartOutlined";
-// import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutlined";
-// import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
-// import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-// import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
 // My imports
 import "./Sidebar.css";
 import { AiOutlineMenu } from "react-icons/ai";
 import { AiOutlineUnorderedList } from "react-icons/ai";
 import { GrAdd } from "react-icons/gr";
+
 import trakkyLogo from "../assets/Trakky logo white.png";
+
 
 const Sidebar = () => {
   const [isActive, setIsActive] = useState(true);
@@ -111,7 +96,31 @@ const Sidebar = () => {
                   </NavLink>
                 </div>
               </div>
+              
+              <div className="sidebar__topic_box">
+                <p className="sidebar_topic_title">Cities</p>
+                <div className="sidebar_links">
+                  <NavLink to={"/cities"}>
+                    <AiOutlineUnorderedList />
+                    &nbsp;&nbsp; List Cities
+                  </NavLink>
+                  <NavLink to={"/areas"}>
+                    <AiOutlineUnorderedList />
+                    &nbsp;&nbsp; List Areas
+                  </NavLink>
+                </div>
+              </div>
 
+              <div className="sidebar__topic_box">
+                <p className="sidebar_topic_title">Inquiry</p>
+                <div className="sidebar_links">
+                  <NavLink to={"/Inquiries"}>
+                    <AiOutlineUnorderedList />
+                    &nbsp;&nbsp; List Inquiry
+                  </NavLink>
+                </div>
+              </div>
+              
               <div className="sidebar__topic_box">
                 <p className="sidebar_topic_title">Blogs</p>
                 <div className="sidebar_links">
@@ -133,19 +142,10 @@ const Sidebar = () => {
                     <AiOutlineUnorderedList />
                     &nbsp;&nbsp; List FAQs
                   </NavLink>
-                  {/* <NavLink to={'/answer-faqs'}><GrAdd />&nbsp;&nbsp; Answer FAQs </NavLink> */}
                 </div>
               </div>
 
-              <div className="sidebar__topic_box">
-                <p className="sidebar_topic_title">Inquiry</p>
-                <div className="sidebar_links">
-                  <NavLink to={"/Inquiries"}>
-                    <AiOutlineUnorderedList />
-                    &nbsp;&nbsp; List Inquiry
-                  </NavLink>
-                </div>
-              </div>
+
             </div>
           </div>
         </div>

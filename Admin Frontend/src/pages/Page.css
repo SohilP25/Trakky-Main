@@ -16,6 +16,7 @@
     display: flex;
     align-items: center;
 }
+
 .mini_navbar__container form {
     width: fit-content;
     height: 2rem;
@@ -30,6 +31,7 @@
 .custom-table tr {
     display: flex;
 }
+
 .custom-table td,
 .custom-table th {
     width: 150px;
@@ -42,6 +44,7 @@
     width: 100%;
     text-align: center;
 }
+
 .view_more__button button {
     background-color: transparent;
     padding: 0.5rem 2rem;
@@ -54,6 +57,7 @@
 .more_spa_detail__container {
     width: 100%;
 }
-.image__container img{
+
+.image__container img {
     width: 10rem;
 }

@@ -3,17 +3,6 @@ import "./forms.css";
 
 const SpaForm = () => {
 
-    function handleDrop(e) {
-        if (this.disabled) return;
-        const files = e.target.files || e.dataTransfer.files;
-        if (files.length > 6) {
-            alert('You are only allowed to upload a maximum of 6 files at a time');
-        }
-        if (!files.length) return;
-        for (let i = 0; i < Math.min(files.length, 6); i++) {
-            this.fileCallback(files[i])
-        }
-    }
 
     return (
         <div className="main-container">
@@ -21,7 +10,7 @@ const SpaForm = () => {
                 <form method="post">
                     <h1>Spa</h1>
                     <div className="form-group">
-                        <label htmlFor="name">Name *</label>
+                        <label htmlFor="name">Name of Spa *</label>
                         <input
                             className="form-control"
                             type="text"
@@ -29,19 +18,10 @@ const SpaForm = () => {
                             id="name"
                             placeholder="Enter Name"
                             required
+                            autoComplete="off"
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="slug">Slug *</label>
-                        <input
-                            className="form-control"
-                            type="text"
-                            name="text"
-                            id="slug"
-                            placeholder="Enter slug"
-                            required
-                        />
-                    </div>
+                    
                     <div className="form-group">
                         <label htmlFor="phone">Phone Number *</label>
                         <input
@@ -53,11 +33,12 @@ const SpaForm = () => {
                             id="phone"
                             placeholder="Enter Phone Number"
                             required
+                            autoComplete="off"
                         />
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="booknow">WhatsApp Number *</label>
+                        <label htmlFor="booknow">WhatsApp Number For Booking *</label>
                         <input
                             className="form-control"
                             type="number"
@@ -67,6 +48,7 @@ const SpaForm = () => {
                             id="booknow"
                             placeholder="Enter WhatsApp Number"
                             required
+                            autoComplete="off"
                         />
                     </div>
 
@@ -80,6 +62,35 @@ const SpaForm = () => {
                             contentEditable={false}
                             placeholder="Enter Google Maps Link"
                             required
+                            autoComplete="off"
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="directionlink">Latitude  *</label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            name="latitude"
+                            id="directionlink"
+                            contentEditable={false}
+                            placeholder="Enter Latitude"
+                            required
+                            autoComplete="off"
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="directionlink">Longitude *</label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            name="directionlink"
+                            id="directionlink"
+                            contentEditable={false}
+                            placeholder="Enter Longitude"
+                            required
+                            autoComplete="off"
                         />
                     </div>
                     <div className="form-group">
@@ -94,6 +105,7 @@ const SpaForm = () => {
                                     id="timings"
                                     placeholder="Enter Timings"
                                     required
+                                    autoComplete="off"
                                 />
                             </div>
                             <div className="to-time">
@@ -105,6 +117,7 @@ const SpaForm = () => {
                                     id="timings"
                                     placeholder="Enter Timings"
                                     required
+                                    autoComplete="off"
                                 />
                             </div>
                         </div>
@@ -119,6 +132,33 @@ const SpaForm = () => {
                             id="address"
                             placeholder="Enter address"
                             required
+                            autoComplete="off"
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="landmark">Landmark *</label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            name="landmark"
+                            id="landmark"
+                            placeholder="Enter Landmark"
+                            required
+                            autoComplete="off"
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="priority">Priority *</label>
+                        <input
+                            className="form-control"
+                            type="number"
+                            name="priority"
+                            id="priority"
+                            placeholder="Enter Priority"
+                            required
+                            autoComplete="off"
                         />
                     </div>
 
@@ -127,12 +167,23 @@ const SpaForm = () => {
                         <label htmlFor="area">Area *</label>
                         <input
                             className="form-control"
-                            type="text"
-                            name="Area"
-                            id="Area"
-                            placeholder="Enter Address"
+                            type="dropdown"
+                            name="area"
+                            list="areas"
+                            id="area"
+                            placeholder="Select Area"
                             required
+                            autoComplete="off"
                         />
+
+                        <datalist id="areas">
+                            <option value="Area 1" />
+                            <option value="Area 2" />
+                            <option value="Area 3" />
+                            <option value="Area 4" />
+                            <option value="Area 5" />
+                            <option value="Area 6" />
+                        </datalist>
                     </div>
 
                     <div className="form-group">
@@ -145,6 +196,7 @@ const SpaForm = () => {
                             id="city"
                             placeholder="Select City"
                             required
+                            autoComplete="off"
                         />
 
                         <datalist id="cities">
@@ -158,6 +210,19 @@ const SpaForm = () => {
                     </div>
 
                     <div className="form-group">
+                        <label htmlFor="slug">Slug *</label>
+                        <input
+                            className="form-control"
+                            type="text"
+                            name="text"
+                            id="slug"
+                            placeholder="Enter slug"
+                            required
+                            autoComplete="off"
+                        />
+                    </div>
+
+                    <div className="form-group">
                         <label htmlFor="image">Image *</label>
                         <input
                             className="form-control"
@@ -165,9 +230,10 @@ const SpaForm = () => {
                             type="file"
                             name="image"
                             id="image"
-                            onChange={handleDrop}
+                            // onChange={handleDrop}
                             multiple
                             required
+                            autoComplete="off"
                         />
                     </div>
 

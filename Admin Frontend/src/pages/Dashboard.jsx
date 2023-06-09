@@ -1,5 +1,5 @@
 import React from 'react'
-import { SpaData } from '../data/mockData.js'
+import { SpaData, CitiesData, InquiryData } from '../data/mockData.js'
 import './Dashboard.css'
 
 const Dashboard = () => {
@@ -7,18 +7,18 @@ const Dashboard = () => {
     <div className='dashboard__container'>
       <div className="spa_data_labels">
         <div className="data__container">
-          <p>No of Spa</p>
+          <p>No of Spas</p>
           <h1>{SpaData.length}</h1>
         </div>
 
         <div className="data__container">
-          <p>No of Daily Logs</p>
-          <h1>10</h1>
+          <p>No of Cities Covered</p>
+          <h1>{CitiesData.length}</h1>
         </div>
 
         <div className="data__container">
-          <p>No of Weekly Logs</p>
-          <h1>70</h1>
+          <p>Inquiries</p>
+          <h1>{InquiryData.length}</h1>
         </div>
       </div>
     </div>

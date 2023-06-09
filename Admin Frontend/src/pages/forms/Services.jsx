@@ -1,5 +1,5 @@
 import React from "react";
-import './forms.css'
+import "./forms.css";
 
 const ServicesForm = () => {
   return (
@@ -8,6 +8,7 @@ const ServicesForm = () => {
         <div className="container">
           <form method="post">
             <h1>Services</h1>
+
             <div className="form-group">
               <label htmlFor="spa">Select Spa *</label>
               <input
@@ -17,8 +18,8 @@ const ServicesForm = () => {
                 list="spa"
                 id="name"
                 placeholder="Select Spa"
+                autoComplete="off"
               />
-
               <datalist id="spa">
                 <option value="Spa 1" />
                 <option value="Spa 2" />
@@ -28,16 +29,53 @@ const ServicesForm = () => {
                 <option value="Spa 6" />
               </datalist>
             </div>
+
             <div className="form-group">
-              <label htmlFor="name">Name *</label>
+              <label htmlFor="name">Service Name *</label>
               <input
                 className="form-control"
                 type="text"
                 name="text"
-                id="slug"
-                placeholder="Enter Name"
+                id="service"
+                placeholder="Enter Service Name"
+                autoComplete="off"
               />
             </div>
+
+            <div className="form-group">
+              <label htmlFor="name">Service Time *</label>
+              <input
+                className="form-control"
+                type="dropdown"
+                list="servicetime"
+                name="text"
+                id="time"
+                placeholder="Select Service time"
+                required
+                autoComplete="off"
+              />
+              <datalist id="servicetime">
+                <option value="30 min" />
+                <option value="45 min" />
+                <option value="60 min" />
+                <option value="90 min" />
+                <option value="120 min" />
+                <option value="180 min" />
+              </datalist>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="name">Description *</label>
+              <input
+                className="form-control"
+                type="text"
+                name="text"
+                id="description"
+                placeholder="Enter Description"
+                autoComplete="off"
+              />
+            </div>
+
             <div className="form-group">
               <label htmlFor="price">Price *</label>
               <input
@@ -46,8 +84,11 @@ const ServicesForm = () => {
                 name="text"
                 id="text"
                 placeholder="Enter Price"
+                required
+                autoComplete="off"
               />
             </div>
+
             <div className="form-group">
               <label htmlFor="therapies">Therapies (Category) *</label>
               <input
@@ -57,8 +98,9 @@ const ServicesForm = () => {
                 list="therapies"
                 id="therapy"
                 placeholder="Select Therapy"
+                required
+                autoComplete="off"
               />
-
               <datalist id="therapies">
                 <option value="therapy 1" />
                 <option value="therapy 2" />
@@ -68,6 +110,7 @@ const ServicesForm = () => {
                 <option value="therapy 6" />
               </datalist>
             </div>
+
             <button className="submit-btn" type="submit">
               Add Service
             </button>
