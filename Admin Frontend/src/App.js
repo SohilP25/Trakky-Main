@@ -1,129 +1,78 @@
-import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { FiSettings } from "react-icons/fi";
-import { TooltipComponent } from "@syncfusion/ej2-react-popups";
-
-import { Navbar, Footer, Sidebar, ThemeSettings } from "./components";
-import {
-  Ecommerce,
-  Orders,
-  Calendar,
-  Employees,
-  Stacked,
-  Pyramid,
-  Customers,
-  Kanban,
-  Line,
-  Area,
-  Bar,
-  Pie,
-  Financial,
-  ColorPicker,
-  ColorMapping,
-  Editor,
-} from "./pages";
-import "./App.css";
-
-import { useStateContext } from "./contexts/ContextProvider";
-import Faqs from "./pages/Faqs";
-import Salons from "./pages/Salons";
-import Offers from "./pages/Offers";
+// import { useState } from "react";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+// import Topbar from "./scenes/global/Topbar";
+import Sidebar from "./components/Sidebar";
+// import Dashboard from "./scenes/dashboard";
+// import Team from "./scenes/team";
+// import Invoices from "./scenes/invoices";
+// import Contacts from "./scenes/contacts";
+// import Bar from "./scenes/bar";
+// import Form from "./scenes/form";
+// import Line from "./scenes/line";
+// import Pie from "./scenes/pie";
+// import FAQ from "./scenes/faq";
+// import Geography from "./scenes/geography";
+// import { CssBaseline, ThemeProvider } from "@mui/material";
+// import { ColorModeContext, useMode } from "./theme";
+// import Calendar from "./scenes/calendar/calendar";
 
 
-const App = () => {
-  const {
-    setCurrentColor,
-    setCurrentMode,
-    currentMode,
-    activeMenu,
-    currentColor,
-    themeSettings,
-    setThemeSettings,
-  } = useStateContext();
+import Dashboard from "./pages/Dashboard.jsx"
+import Blog from './pages/Blog.jsx'
+import Inquiry from './pages/Inquiry.jsx'
+import Faq from './pages/Faq.jsx'
+import Offer from './pages/Offer.jsx'
+import Spa from './pages/Spa.jsx'
+import SpaForm from "./pages/forms/Spa.jsx"
+import Therapy from './pages/Therapy.jsx'
+import Services from './pages/Services.jsx'
+import TherapyForm from "./pages/forms/Therapy";
+import OffersForm from "./pages/forms/Offer";
+import ServicesForm from "./pages/forms/Services";
+import Navbar from "./components/Navbar";
+import BlogForm from "./pages/forms/BlogForm";
 
-  useEffect(() => {
-    const currentThemeColor = localStorage.getItem("colorMode");
-    const currentThemeMode = localStorage.getItem("themeMode");
-    if (currentThemeColor && currentThemeMode) {
-      setCurrentColor(currentThemeColor);
-      setCurrentMode(currentThemeMode);
-    }
-  }, []);
+
+
+function App() {
+  // const [theme, colorMode] = useMode();
+  // const [isSidebar, setIsSidebar] = useState(true);
 
   return (
-    <div className={currentMode === "Dark" ? "dark" : ""}>
-      <BrowserRouter>
-        <div className="flex relative dark:bg-main-dark-bg">
-          <div className="fixed right-4 bottom-4" style={{ zIndex: "1000" }}>
-            <TooltipComponent content="Settings" position="Top">
-              <button
-                type="button"
-                onClick={() => setThemeSettings(true)}
-                style={{ background: currentColor, borderRadius: "50%" }}
-                className="text-3xl text-white p-3 hover:drop-shadow-xl hover:bg-light-gray"
-              >
-                <FiSettings />
-              </button>
-            </TooltipComponent>
-          </div>
-          {activeMenu ? (
-            <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
-              <Sidebar />
-            </div>
-          ) : (
-            <div className="w-0 dark:bg-secondary-dark-bg">
-              <Sidebar />
-            </div>
-          )}
-          <div
-            className={
-              activeMenu
-                ? "dark:bg-main-dark-bg  bg-main-bg min-h-screen md:ml-72 w-full  "
-                : "bg-main-bg dark:bg-main-dark-bg  w-full min-h-screen flex-2 "
-            }
-          >
-            <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
-              <Navbar />
-            </div>
-            <div>
-              {themeSettings && <ThemeSettings />}
+    <BrowserRouter>
+      <Sidebar />
+      {/* <Topbar /> */}
+      <div className='main__container'>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          
 
-              <Routes>
-                {/* dashboard  */}
-                <Route path="/" element={<Ecommerce />} />
-                <Route path="/ecommerce" element={<Ecommerce />} />
+          <Route path="/offer" element={<Offer />} />
+          <Route path="/add-offer" element={<OffersForm />} />
 
-                {/* pages  */}
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/employees" element={<Employees />} />
-                <Route path="/customers" element={<Customers />} />
-                <Route path="/Faqs" element={<Faqs />} />
-                <Route path="/Salons" element={<Salons />} />
-                <Route path="/Offers" element={<Offers />} />
+          <Route path="/spas" element={<Spa />} />
+          <Route path="/add-spa" element={<SpaForm />} />
 
-                {/* apps  */}
-                <Route path="/kanban" element={<Kanban />} />
-                <Route path="/editor" element={<Editor />} />
-                <Route path="/calendar" element={<Calendar />} />
-                <Route path="/color-picker" element={<ColorPicker />} />
+          <Route path="/therapies" element={<Therapy />} />
+          <Route path="/add-therapy" element={<TherapyForm />} />
+          
+          <Route path="/services" element={<Services />} />
+          <Route path="/add-service" element={<ServicesForm />} />
 
-                {/* charts  */}
-                <Route path="/line" element={<Line />} />
-                <Route path="/area" element={<Area />} />
-                <Route path="/bar" element={<Bar />} />
-                <Route path="/pie" element={<Pie />} />
-                <Route path="/financial" element={<Financial />} />
-                <Route path="/color-mapping" element={<ColorMapping />} />
-                <Route path="/pyramid" element={<Pyramid />} />
-                <Route path="/stacked" element={<Stacked />} />
-              </Routes>
-            </div>
-            <Footer />
-          </div>
-        </div>
-      </BrowserRouter>
-    </div>
+          <Route path="/blogs" element={<Blog />} />
+          <Route path="/add-blog" element={<BlogForm />} />
+
+          <Route path="/Inquiries" element={<Inquiry />} />
+          
+          <Route path="/faqs" element={<Faq />} />
+          <Route path="*" element={<Dashboard />} />
+          {/* <Route path="/answer-faqs" element={<FaqForm />} /> */}
+        </Routes>
+      </div>
+
+    </BrowserRouter>
   );
-};
+}
 
 export default App;
