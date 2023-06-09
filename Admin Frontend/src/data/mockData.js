@@ -1,158 +1,20 @@
-export const SpaData = [
-  {
-    name: "Aroma The Luxurious Spa in Gandhinagar",
-    username : "6541321",
-    phoneno: 7894561132,
-    city: "Gandhinagar",
-    area: "Kudasan",
-    status: "on",
+const SpaData = [];
+
+for (let i = 1; i <= 20; i++) {
+  const spa = {
+    name: `Spa ${i}`,
+    username: `654132${i}`,
+    phoneno: Math.floor(Math.random() * 9000000000) + 1000000000,
+    city: i % 2 === 0 ? "Gandhinagar" : "Ahmedabad",
+    area: i % 2 === 0 ? "Kudasan" : "alpha one mall",
+    status: true,
     verified: "no",
     spaAcademy: "no",
     premium: "no",
     image: 'user.png'
-  },
-  {
-    name: "Sahil The Luxurious Spa in Gandhinagar",
-    username : "6541321",
-    phoneno: 4896532157,
-    city: "Ahmedabad",
-    area: "alpha one mall",
-    status: "on",
-    verified: "no",
-    spaAcademy: "no",
-    premium: "no",
-    image: 'user.png'
-  },
-  {
-    name: "Parampara The Luxurious Spa in Surat",
-    username : "6541321",
-    phoneno: 1594563852,
-    city: "Surat",
-    area: "Gandhi Choak",
-    status: "on",
-    verified: "no",
-    spaAcademy: "no",
-    premium: "no",
-    image: 'user.png'
-  },
-  {
-    name: "Aroma The Luxurious Spa in Gandhinagar",
-    username : "6541321",
-    phoneno: 7894561132,
-    city: "Gandhinagar",
-    area: "Kudasan",
-    status: "on",
-    verified: "no",
-    spaAcademy: "no",
-    premium: "no",
-    image: 'user.png'
-  },
-  {
-    name: "Aroma The Luxurious Spa in Gandhinagar",
-    username : "6541321",
-    phoneno: 7894561132,
-    city: "Gandhinagar",
-    area: "Kudasan",
-    status: "on",
-    verified: "no",
-    spaAcademy: "no",
-    premium: "no",
-    image: 'user.png'
-  },
-  {
-    name: "Aroma The Luxurious Spa in Gandhinagar",
-    username : "6541321",
-    phoneno: 7894561132,
-    city: "Gandhinagar",
-    area: "Kudasan",
-    status: "on",
-    verified: "no",
-    spaAcademy: "no",
-    premium: "no",
-    image: 'user.png'
-  },
-  {
-    name: "Aroma The Luxurious Spa in Gandhinagar",
-    username : "6541321",
-    phoneno: 7894561132,
-    city: "Gandhinagar",
-    area: "Kudasan",
-    status: "on",
-    verified: "no",
-    spaAcademy: "no",
-    premium: "no",
-    image: 'user.png'
-  },
-  {
-    name: "Aroma The Luxurious Spa in Gandhinagar",
-    username : "6541321",
-    phoneno: 7894561132,
-    city: "Gandhinagar",
-    area: "Kudasan",
-    status: "on",
-    verified: "no",
-    spaAcademy: "no",
-    premium: "no",
-    image: 'user.png'
-  },
-  {
-    name: "Aroma The Luxurious Spa in Gandhinagar",
-    username : "6541321",
-    phoneno: 7894561132,
-    city: "Gandhinagar",
-    area: "Kudasan",
-    status: "on",
-    verified: "no",
-    spaAcademy: "no",
-    premium: "no",
-    image: 'user.png'
-  },
-  {
-    name: "Aroma The Luxurious Spa in Gandhinagar",
-    username : "6541321",
-    phoneno: 7894561132,
-    city: "Gandhinagar",
-    area: "Kudasan",
-    status: "on",
-    verified: "no",
-    spaAcademy: "no",
-    premium: "no",
-    image: 'user.png'
-  },
-  {
-    name: "Aroma The Luxurious Spa in Gandhinagar",
-    username : "6541321",
-    phoneno: 7894561132,
-    city: "Gandhinagar",
-    area: "Kudasan",
-    status: "on",
-    verified: "no",
-    spaAcademy: "no",
-    premium: "no",
-    image: 'user.png'
-  },
-  {
-    name: "Aroma The Luxurious Spa in Gandhinagar",
-    username : "6541321",
-    phoneno: 7894561132,
-    city: "Gandhinagar",
-    area: "Kudasan",
-    status: "on",
-    verified: "no",
-    spaAcademy: "no",
-    premium: "no",
-    image: 'user.png'
-  },
-  {
-    name: "Aroma The Luxurious Spa in Gandhinagar",
-    username : "6541321",
-    phoneno: 7894561132,
-    city: "Gandhinagar",
-    area: "Kudasan",
-    status: "on",
-    verified: "no",
-    spaAcademy: "no",
-    premium: "no",
-    image: 'user.png'
-  },
-]
+  };
+
+  SpaData.push(spa);
+}
+
+export { SpaData };

@@ -10,8 +10,13 @@ import { SpaData } from '../data/mockData';
 
 const Spa = () => {
 
-  const [isDropdown, setIsDropdown] = useState(true)
+  // table header data
+  const tableHeaders = [
+    'Name', 'Username', 'Phone No.', 'City', 'Area', 'Status',
+    'More', 'Verified', 'Spa Academy', 'Premium', 'Action'
+  ];
 
+  // Handling view more button
   const [visible, setVisible] = useState(10)
   const [show, setShow] = useState(true)
   const length = SpaData.length
@@ -24,9 +29,9 @@ const Spa = () => {
     }
   }
 
+  // Handling Searchbar events 
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-
 
   const handleSearch = (event) => {
     const searchTerm = event.target.value;
@@ -41,6 +46,26 @@ const Spa = () => {
     setSearchResults(results);
   };
 
+  // Handling the more button
+  const [expandedRow, setExpandedRow] = useState(null);
+  const [isDropdown, setIsDropdown] = useState(null)
+
+  // Handling all the switches
+  // const [isStatus, setIsStatus] = useState(false)
+  // const [isVerified, setIsVerified] = useState(false)
+  // const [isPremium, setIsPremium] = useState(false)
+  // const [hasSalonAcademy, sethasSalonAcademy] = useState(false)
+
+  // const [isSwitchOn, setIsSwitchOn] = useState();
+
+  // const handleSwitchToggle = () => {
+  //   setIsSwitchOn(!isSwitchOn);
+
+  // };
+
+  // const handleSwitchToggle = () => {
+  //   setIsSwitchOn(!isSwitchOn);
+  // };
 
   return (
     <div className="main_list__container">
@@ -56,17 +81,11 @@ const Spa = () => {
         <table className='table table-striped custom-table'>
           <thead>
             <tr>
-              <th scope="col" className='padded-cell'>Name</th>
-              <th scope="col">Username</th>
-              <th scope="col">Phone No.</th>
-              <th scope="col">City</th>
-              <th scope="col">Area</th>
-              <th scope="col">Status</th>
-              <th scope="col">More</th>
-              <th scope="col">Verified</th>
-              <th scope="col">Spa Academy</th>
-              <th scope="col">Premium</th>
-              <th scope="col">Action</th>
+              {tableHeaders.map((header, index) => (
+                <th key={index} scope="col">
+                  {header}
+                </th>
+              ))}
             </tr>
           </thead>
 
@@ -90,16 +109,31 @@ const Spa = () => {
                           </div>
                         </td>
                         <td>
-                          {
-                            isDropdown
-                              ? <IoIosArrowDropdown onClick={() => setIsDropdown(!isDropdown)} />
-                              : <IoIosArrowDropup onClick={() => setIsDropdown(!isDropdown)} />
-                          }
+                          {isDropdown === null ? (
+                            <IoIosArrowDropdown
+                              onClick={() => {
+                                setExpandedRow(index)
+                                setIsDropdown(index)
+                              }}
+                            />
+                          ) : (
+                            <IoIosArrowDropup onClick={() => {
+                              setExpandedRow(null)
+                              setIsDropdown(null)
+                            }} />
+                          )}
                         </td>
                         <td>
                           <div class="form-check form-switch">
                             <label class="form-check-label" for="flexSwitchCheckDefault"></label>
                             <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+                            {/* <input
+                              class="form-check-input"
+                              type="checkbox"
+                              id="flexSwitchCheckDefault"
+                              checked={isSwitchOn}
+                              onChange={handleSwitchToggle}
+                            /> */}
                           </div>
                         </td>
                         <td>
@@ -117,10 +151,12 @@ const Spa = () => {
                         <td><AiFillDelete />&nbsp;&nbsp;<FaEdit /></td>
 
                       </tr>
-                      <div className="more_spa_detail__container"
-                      style={{
-                        display: isDropdown ? "none" : "block"
-                      }}>
+                      <div
+                        className="more_spa_detail__container"
+                        style={{
+                          display: expandedRow === index ? "block" : "none"
+                        }}
+                      >
                         <div className="image__container">
                           <img src={require(`../assets/${spa.image}`)} alt="" />
                         </div>
