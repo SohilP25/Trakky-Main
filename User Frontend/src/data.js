@@ -1,10 +1,21 @@
+import Img1 from "./Assets/images/spa/spa-image1.png";
+import Img2 from "./Assets/images/spa/spa-image2.png";
+import Img3 from "./Assets/images/spa/spa-image3.png";
+import Img4 from "./Assets/images/spa/spa-image4.png";
+import Img5 from "./Assets/images/other/img1.png";
+import Img6 from "./Assets/images/other/img2.png";
+import Img7 from "./Assets/images/other/img3.png";
+import Img8 from "./Assets/images/other/img4.png";
+import Img9 from "./Assets/images/other/img5.png";
+
+
 export const spaImages = [
   "spa-image1.png",
   "spa-image2.png",
   "spa-image3.png",
   "spa-image4.png",
   "spa-image5.png",
-]
+];
 
 export const popularLocations = [
   "Spa in Anandnagar",
@@ -21,7 +32,7 @@ export const popularLocations = [
   "Spa in Shilaj",
   "Spa in Gota",
   "Spa in Sola",
-  "Spa in Ashram Road"
+  "Spa in Ashram Road",
 ];
 
 export const filterTags = [
@@ -388,98 +399,96 @@ export const spaProfile = [
   },
 ];
 
-
 export const spaServices = [
   {
     therapyName: "Dry Massage Therapy",
     description: "Best for body relaxation from normal pain in body.",
-    price: 999
+    price: 999,
   },
   {
     therapyName: "Dry Massage Therapy",
     description: "Best for body relaxation from normal pain in body.",
-    price: 999
+    price: 999,
   },
   {
     therapyName: "Dry Massage Therapy",
     description: "Best for body relaxation from normal pain in body.",
-    price: 999
+    price: 999,
   },
   {
     therapyName: "Dry Massage Therapy",
     description: "Best for body relaxation from normal pain in body.",
-    price: 999
+    price: 999,
   },
   {
     therapyName: "Dry Massage Therapy",
     description: "Best for body relaxation from normal pain in body.",
-    price: 999
+    price: 999,
   },
   {
     therapyName: "Dry Massage Therapy",
     description: "Best for body relaxation from normal pain in body.",
-    price: 999
+    price: 999,
   },
   {
     therapyName: "Dry Massage Therapy",
     description: "Best for body relaxation from normal pain in body.",
-    price: 999
+    price: 999,
   },
   {
     therapyName: "Dry Massage Therapy",
     description: "Best for body relaxation from normal pain in body.",
-    price: 999
-  }
-]
-
+    price: 999,
+  },
+];
 
 export const spaOffers = [
   {
     therapyName: "Dry Massage Therapy",
     description: "Best for body relaxation from normal pain in body.",
-    price: 999
+    price: 999,
   },
   {
     therapyName: "Dry Massage Therapy",
     description: "Best for body relaxation from normal pain in body.",
-    price: 999
+    price: 999,
   },
   {
     therapyName: "Dry Massage Therapy",
     description: "Best for body relaxation from normal pain in body.",
-    price: 999
+    price: 999,
   },
   {
     therapyName: "Dry Massage Therapy",
     description: "Best for body relaxation from normal pain in body.",
-    price: 999
+    price: 999,
   },
   {
     therapyName: "Dry Massage Therapy",
     description: "Best for body relaxation from normal pain in body.",
-    price: 999
+    price: 999,
   },
   {
     therapyName: "Dry Massage Therapy",
     description: "Best for body relaxation from normal pain in body.",
-    price: 999
+    price: 999,
   },
   {
     therapyName: "Dry Massage Therapy",
     description: "Best for body relaxation from normal pain in body.",
-    price: 999
+    price: 999,
   },
   {
     therapyName: "Dry Massage Therapy",
     description: "Best for body relaxation from normal pain in body.",
-    price: 999
+    price: 999,
   },
   {
     therapyName: "Dry Massage Therapy",
     description: "Best for body relaxation from normal pain in body.",
-    price: 999
-  }
-]
+    price: 999,
+  },
+];
 
 export const spaFacilitiesData = [
   {
@@ -487,76 +496,116 @@ export const spaFacilitiesData = [
     spafacilities: [
       {
         name: "Wifi",
-        iconName: "wifi.svg"
+        iconName: "wifi.svg",
       },
       {
         name: "Central air conditioning",
-        iconName: "air_condition.svg"
+        iconName: "air_condition.svg",
       },
       {
         name: "Refrigerator",
-        iconName: "refrigerator.svg"
+        iconName: "refrigerator.svg",
       },
       {
         name: "Pets allowed",
-        iconName: "pet_allowed.svg"
-      }
-    ]
+        iconName: "pet_allowed.svg",
+      },
+    ],
   },
   {
     spaname: "Sahil The Luxurious Spa",
     spafacilities: [
       {
         name: "Wifi",
-        iconName: "wifi.svg"
+        iconName: "wifi.svg",
       },
       {
         name: "Central air conditioning",
-        iconName: "air_condition.svg"
+        iconName: "air_condition.svg",
       },
       {
         name: "Refrigerator",
-        iconName: "refrigerator.svg"
+        iconName: "refrigerator.svg",
       },
       {
         name: "Pets allowed",
-        iconName: "pet_allowed.svg"
+        iconName: "pet_allowed.svg",
       },
       {
         name: "Dryer",
-        iconName: "dryer.svg"
+        iconName: "dryer.svg",
       },
       {
         name: "Security cameras on property",
-        iconName: "cctv.svg"
-      }
-    ]
-  }
-]
+        iconName: "cctv.svg",
+      },
+    ],
+  },
+];
+
+
+export const spaProfilePhotos = [
+  {
+    id: 1,
+    imgSrc: Img1,
+  },
+  {
+    id: 2,
+    imgSrc: Img2,
+  },
+  {
+    id: 3,
+    imgSrc: Img3,
+  },
+  {
+    id: 4,
+    imgSrc: Img4,
+  },
+  {
+    id: 5,
+    imgSrc: Img5,
+  },
+  {
+    id: 6,
+    imgSrc: Img6,
+  },
+  {
+    id: 7,
+    imgSrc: Img7,
+  },
+  {
+    id: 8,
+    imgSrc: Img8,
+  },
+  {
+    id: 9,
+    imgSrc: Img9,
+  },
+];
 
 export const spaRoomPhotos = [
   {
     roomname: "Thai Room",
-    photo: "spa.png"
+    photo: "spa.png",
   },
   {
     roomname: "Oil Room",
-    photo: "spa.png"
+    photo: "spa.png",
   },
   {
     roomname: "Jacuzzi Room",
-    photo: "spa.png"
+    photo: "spa.png",
   },
   {
     roomname: "Thai Room",
-    photo: "spa.png"
+    photo: "spa.png",
   },
   {
     roomname: "Oil Room",
-    photo: "spa.png"
+    photo: "spa.png",
   },
   {
     roomname: "Jacuzzi Room",
-    photo: "spa.png"
-  }
-]
+    photo: "spa.png",
+  },
+];

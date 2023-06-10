@@ -1,106 +1,62 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { FiSettings } from 'react-icons/fi';
-import { TooltipComponent } from '@syncfusion/ej2-react-popups';
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 
-import { Navbar, Footer, Sidebar, ThemeSettings } from './components';
-import { Ecommerce, Orders, Calendar, Employees, Stacked, Pyramid, Customers, Kanban, Line, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor } from './pages';
-import './App.css';
+import Sidebar from "./components/Sidebar";
+import Navbar from "./components/Navbar";
 
-import { useStateContext } from './contexts/ContextProvider';
-import Faqs from './pages/Faqs';
-import Salons from './pages/Salons';
+import Dashboard from "./pages/Dashboard.jsx";
+import Spa from "./pages/Spa.jsx";
+import SpaForm from "./pages/forms/Spa.jsx";
+import Therapy from "./pages/Therapy.jsx";
+import TherapyForm from "./pages/forms/Therapy";
+import Offer from "./pages/Offer.jsx";
+import OffersForm from "./pages/forms/Offer";
+import Services from "./pages/Services.jsx";
+import ServicesForm from "./pages/forms/Services";
+import Cities from "./pages/Cities";
+import Areas from './pages/Areas'
+import Blog from "./pages/Blog.jsx";
+import BlogForm from "./pages/forms/BlogForm";
+import Faq from "./pages/Faq.jsx";
+import Inquiry from "./pages/Inquiry.jsx";
+import Signin from "./pages/Signin";
 
-const App = () => {
-  const { setCurrentColor, setCurrentMode, currentMode, activeMenu, currentColor, themeSettings, setThemeSettings } = useStateContext();
 
-  useEffect(() => {
-    const currentThemeColor = localStorage.getItem('colorMode');
-    const currentThemeMode = localStorage.getItem('themeMode');
-    if (currentThemeColor && currentThemeMode) {
-      setCurrentColor(currentThemeColor);
-      setCurrentMode(currentThemeMode);
-    }
-  }, []);
+function App() {
 
   return (
-    <div className={currentMode === 'Dark' ? 'dark' : ''}>
-      <BrowserRouter>
-        <div className="flex relative dark:bg-main-dark-bg">
-          <div className="fixed right-4 bottom-4" style={{ zIndex: '1000' }}>
-            <TooltipComponent
-              content="Settings"
-              position="Top"
-            >
-              <button
-                type="button"
-                onClick={() => setThemeSettings(true)}
-                style={{ background: currentColor, borderRadius: '50%' }}
-                className="text-3xl text-white p-3 hover:drop-shadow-xl hover:bg-light-gray"
-              >
-                <FiSettings />
-              </button>
+    <BrowserRouter>
+      <Sidebar />
+      <div className="main__container">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/offers" element={<Offer />} />
+          <Route path="/add-offer" element={<OffersForm />} />
 
-            </TooltipComponent>
-          </div>
-          {activeMenu ? (
-            <div className="w-72 fixed sidebar dark:bg-secondary-dark-bg bg-white ">
-              <Sidebar />
-            </div>
-          ) : (
-            <div className="w-0 dark:bg-secondary-dark-bg">
-              <Sidebar />
-            </div>
-          )}
-          <div
-            className={
-              activeMenu
-                ? 'dark:bg-main-dark-bg  bg-main-bg min-h-screen md:ml-72 w-full  '
-                : 'bg-main-bg dark:bg-main-dark-bg  w-full min-h-screen flex-2 '
-            }
-          >
-            <div className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full ">
-              <Navbar />
-            </div>
-            <div>
-              {themeSettings && (<ThemeSettings />)}
+          <Route path="/spas" element={<Spa />} />
+          <Route path="/add-spa" element={<SpaForm />} />
 
-              <Routes>
-                {/* dashboard  */}
-                <Route path="/" element={(<Ecommerce />)} />
-                <Route path="/ecommerce" element={(<Ecommerce />)} />
+          <Route path="/therapies" element={<Therapy />} />
+          <Route path="/add-therapy" element={<TherapyForm />} />
 
-                {/* pages  */}
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/employees" element={<Employees />} />
-                <Route path="/customers" element={<Customers />} />
-                <Route path="/Faqs" element={<Faqs />} />
-                <Route path="/Salons" element={<Salons />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/add-service" element={<ServicesForm />} />
 
-                {/* apps  */}
-                <Route path="/kanban" element={<Kanban />} />
-                <Route path="/editor" element={<Editor />} />
-                <Route path="/calendar" element={<Calendar />} />
-                <Route path="/color-picker" element={<ColorPicker />} />
+          <Route path="/cities" element={<Cities />} />
+          <Route path="/areas" element={<Areas />} />
 
-                {/* charts  */}
-                <Route path="/line" element={<Line />} />
-                <Route path="/area" element={<Area />} />
-                <Route path="/bar" element={<Bar />} />
-                <Route path="/pie" element={<Pie />} />
-                <Route path="/financial" element={<Financial />} />
-                <Route path="/color-mapping" element={<ColorMapping />} />
-                <Route path="/pyramid" element={<Pyramid />} />
-                <Route path="/stacked" element={<Stacked />} />
+          <Route path="/blogs" element={<Blog />} />
+          <Route path="/add-blog" element={<BlogForm />} />
 
-              </Routes>
-            </div>
-            <Footer />
-          </div>
-        </div>
-      </BrowserRouter>
-    </div>
+          <Route path="/inquiries" element={<Inquiry />} />
+          <Route path="/faqs" element={<Faq />} />
+          <Route path="/signin" element={<Signin />} />
+
+          <Route path="*" element={<Dashboard />} />
+          {/* <Route path="/answer-faqs" element={<FaqForm />} />{" "} */}
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
-};
-
+}
 export default App;

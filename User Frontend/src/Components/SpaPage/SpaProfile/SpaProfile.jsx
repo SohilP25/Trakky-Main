@@ -19,8 +19,9 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { FcLike } from "react-icons/fc";
 import { RiShareBoxLine } from "react-icons/ri";
 import Slider from "../../Common/Slider/Slider";
-import { spaProfile, spaServices, spaOffers, spaFacilitiesData, spaRoomPhotos, spaImages } from "../../../data";
+import { spaProfile, spaServices, spaOffers, spaFacilitiesData, spaRoomPhotos, spaProfilePhotos } from "../../../data";
 import Popup from "../../Common/Popup/Popup";
+import Gallery from "../../Common/Gallery/Gallery";
 
 // window dimensions
 function getWindowDimensions() {
@@ -56,20 +57,27 @@ const SpaProfile = () => {
 
       <div className="showPhotos">
         <Popup trigger={spaProfilePhotosTrigger}>
-          <h1>Sahil</h1>
-          
-          <Slider cardList={spaImages} _name="spaImages" />
+          <div className="topbar"
+          style={{
+            width: "98%",
+            margin: "1rem 1%",
+            display: "flex",
+            justifyContent: "flex-end"
+          }}>
 
           <button 
             onClick={() => setSpaProfilePhotosTrigger(false)}
             style={{
-              padding: "1rem 1.5rem",
-              fontSize: "large",
+              padding: "0.7rem 1.2rem",
               borderRadius: "10px",
               color: "white",
-              backgroundColor: "purple"
+              backgroundColor: "#512DC8"
             }}
             >Close</button>
+          </div>
+
+          <Gallery photos={spaProfilePhotos} />
+
         </Popup>
       </div>
 
@@ -406,7 +414,7 @@ const Offers = () => {
                     <div className="offers_list__upper_container">
 
                       <div className="offers_name">
-                        <h3>{therapy.therapyName}</h3>
+                        <h3>{therapy.offerName}</h3>
                       </div>
                       <div className="offers_description">
                         <p>{therapy.description}</p>
