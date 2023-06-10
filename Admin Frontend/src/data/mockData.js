@@ -1,3 +1,5 @@
+
+// Spa----------------------------------------------------------------------------
 const SpaData = [];
 
 for (let i = 1; i <= 43; i++) {
@@ -17,6 +19,7 @@ for (let i = 1; i <= 43; i++) {
   SpaData.push(spa);
 }
 
+// Therapy----------------------------------------------------------------------------
 const TherapyData = [];
 
 for (let i = 1; i <= 20; i++) {
@@ -24,24 +27,30 @@ for (let i = 1; i <= 20; i++) {
     name: `Therapy ${i}`,
     priority: i,
     slug: i % 2 === 0 ? "Swedish" : "Oil massage",
-    gender: i % 3 === 0 ? "Male" : i % 2 === 0 ? "Female" : "Both",
+    // gender: i % 3 === 0 ? "Male" : i % 2 === 0 ? "Female" : "Both",
     image: "user.png",
   };
 
   TherapyData.push(therapy);
 }
 
-const OfferData = [];
+// Offers----------------------------------------------------------------------------
+const OffersData = [];
 
 for (let i = 1; i <= 20; i++) {
-  const offer = {
+  const offers = {
     name: `Offer ${i}`,
-    discount: i % 2 === 0 ? "60%" : "50%",
+    spaName: `Spa ${i}`,
+    priority: i,
+    // gender: i % 3 === 0 ? "Male" : i % 2 === 0 ? "Female" : "Both",
+    slug: i % 2 === 0 ? "Swedish" : "Oil massage",
+    // discount: i % 2 === 0 ? "60%" : "50%",
+    image: "user.png",
   };
-
-  OfferData.push(offer);
+  OffersData.push(offers);
 }
 
+// Inquiry----------------------------------------------------------------------------
 const InquiryData = [];
 
 for (let i = 1; i <= 17; i++) {
@@ -58,6 +67,7 @@ for (let i = 1; i <= 17; i++) {
   InquiryData.push(inquiry);
 }
 
+// Cities----------------------------------------------------------------------------
 const CitiesData = [];
 
 for (let i = 1; i <= 5; i++) {
@@ -70,6 +80,7 @@ for (let i = 1; i <= 5; i++) {
   CitiesData.push(city);
 }
 
+// Areas----------------------------------------------------------------------------
 const AreasData = [];
 
 for (let i = 1; i <= 20; i++) {
@@ -83,4 +94,12 @@ for (let i = 1; i <= 20; i++) {
   AreasData.push(area);
 }
 
-export { InquiryData, OfferData, TherapyData, SpaData, CitiesData, AreasData };
+// Exports----------------------------------------------------------------------------
+export {
+  AreasData,
+  CitiesData,
+  InquiryData,
+  OffersData,
+  SpaData,
+  TherapyData,
+};

@@ -14,7 +14,6 @@ const Therapy = () => {
     "Name",
     "Priority",
     "Slug",
-    "Gender",
     "More",
     "Actions",
   ];
@@ -92,7 +91,6 @@ const Therapy = () => {
                       <td>{therapy.name}</td>
                       <td>{therapy.priority}</td>
                       <td>{therapy.slug}</td>
-                      <td>{therapy.gender}</td>
                       <td>
                         {isDropdown === null ? (
                           <IoIosArrowDropdown

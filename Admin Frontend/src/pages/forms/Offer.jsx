@@ -40,6 +40,18 @@ const OffersForm = () => {
               </select>
             </div>
             <div className="form-group">
+              <label htmlFor="priority">Priority *</label>
+              <input
+                className="form-control"
+                type="number"
+                name="number"
+                id="priority"
+                placeholder="Enter Priority"
+                required
+              />
+            </div>
+            
+            <div className="form-group">
               <label htmlFor="image">Image *</label>
               <input
                 className="form-control"
