@@ -88,6 +88,17 @@ const ServicesForm = () => {
                 autoComplete="off"
               />
             </div>
+            <div className="form-group">
+              <label htmlFor="price">Disount</label>
+              <input
+                className="form-control"
+                type="text"
+                name="text"
+                id="text"
+                placeholder="Enter Discount"
+                autoComplete="off"
+              />
+            </div>
 
             <div className="form-group">
               <label htmlFor="therapies">Therapies (Category) *</label>

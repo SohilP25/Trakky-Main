@@ -8,7 +8,7 @@ import { CitiesData } from "../data/mockData";
 
 const Cities = () => {
   // table header data
-  const tableHeaders = ["Name", "Priority", "Updated At", "Actions"];
+  const tableHeaders = ["City Name", "Priority", "Updated At", "Actions"];
 
   // Handling view more button
   const [visible, setVisible] = useState(10);
@@ -33,8 +33,7 @@ const Cities = () => {
 
     const results = CitiesData.filter(
       (item) =>
-        item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.city.toLowerCase().includes(searchTerm.toLowerCase())
+        item.cityName.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     setSearchResults(results);
@@ -76,7 +75,7 @@ const Cities = () => {
               .map((city, index) => {
                 return (
                   <tr key={index}>
-                    <td>{city.name}</td>
+                    <td>{city.cityName}</td>
                     <td>{city.priority}</td>
                     <td>{city.date}</td>
 
