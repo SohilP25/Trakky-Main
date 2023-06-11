@@ -223,13 +223,27 @@ const SpaForm = () => {
                     </div>
 
                     <div className="form-group">
+                        <label htmlFor="image">Main Image *</label>
+                        <input
+                            className="form-control"
+                            style={{ padding: "0.5rem" }}
+                            type="file"
+                            name="image"
+                            id="mainimage"
+                            // onChange={handleDrop}
+                            required
+                            autoComplete="off"
+                        />
+                    </div>
+
+                    <div className="form-group">
                         <label htmlFor="image">Image *</label>
                         <input
                             className="form-control"
                             style={{ padding: "0.5rem" }}
                             type="file"
                             name="image"
-                            id="image"
+                            id="multipleimage"
                             // onChange={handleDrop}
                             multiple
                             required

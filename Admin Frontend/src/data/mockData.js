@@ -1,4 +1,3 @@
-
 // Spa----------------------------------------------------------------------------
 const SpaData = [];
 
@@ -38,8 +37,8 @@ for (let i = 1; i <= 20; i++) {
 const OffersData = [];
 
 for (let i = 1; i <= 20; i++) {
-  const offers = {
-    name: `Offer ${i}`,
+  const offer = {
+    offerName: `Offer ${i}`,
     spaName: `Spa ${i}`,
     priority: i,
     // gender: i % 3 === 0 ? "Male" : i % 2 === 0 ? "Female" : "Both",
@@ -47,32 +46,45 @@ for (let i = 1; i <= 20; i++) {
     // discount: i % 2 === 0 ? "60%" : "50%",
     image: "user.png",
   };
-  OffersData.push(offers);
+  OffersData.push(offer);
 }
 
-// Inquiry----------------------------------------------------------------------------
-const InquiryData = [];
+// CallNow----------------------------------------------------------------------------
+const CallNowData = [];
 
 for (let i = 1; i <= 17; i++) {
-  const inquiry = {
-    spaname: `spa ${i}`,
-    username: `654132${i}`,
-    urlslug: "swedish therapy",
+  const callnow = {
+    spaName: `spa ${i}`,
+    urlSlug: "swedish therapy",
     time: "00:00:00",
     date: "1/1/2023",
     service: "offer",
     category: "category",
   };
 
-  InquiryData.push(inquiry);
+  CallNowData.push(callnow);
 }
 
+//BookNow----------------------------------------------------------------------------
+const BookNowData = [];
+
+for (let i = 1; i <= 17; i++) {
+  const booknow = {
+    spaName: `spa ${i}`,
+    urlSlug: "swedish therapy",
+    time: "00:00:00",
+    date: "1/1/2023",
+    service: "offer",
+    category: "category",
+  };
+  BookNowData.push(booknow);
+}
 // Cities----------------------------------------------------------------------------
 const CitiesData = [];
 
 for (let i = 1; i <= 5; i++) {
   const city = {
-    name: `City ${i}`,
+    cityName: `City ${i}`,
     priority: i,
     date: "1/1/2023",
   };
@@ -85,7 +97,7 @@ const AreasData = [];
 
 for (let i = 1; i <= 20; i++) {
   const area = {
-    areaname: `Area ${i}`,
+    areaName: `Area ${i}`,
     city: `City`,
     priority: i,
     date: "1/1/2023",
@@ -94,12 +106,31 @@ for (let i = 1; i <= 20; i++) {
   AreasData.push(area);
 }
 
+// Services----------------------------------------------------------------------------
+const ServicesData = [];
+
+for (let i = 1; i <= 20; i++) {
+  const service = {
+    serviceName: `service ${i}`,
+    category: `category ${i}`,
+    price: 69 * (i * 5),
+    time: "00:00:00",
+    discount: i * 69,
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis aperiam vero.",
+  };
+
+  ServicesData.push(service);
+}
+
 // Exports----------------------------------------------------------------------------
 export {
   AreasData,
   CitiesData,
-  InquiryData,
+  CallNowData,
+  BookNowData,
   OffersData,
+  ServicesData,
   SpaData,
   TherapyData,
 };

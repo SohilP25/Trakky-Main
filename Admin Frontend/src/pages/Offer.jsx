@@ -11,7 +11,7 @@ import { OffersData } from "../data/mockData";
 const Offer = () => {
   // table header data
   const tableHeaders = [
-    "Name",
+    "Offer Name",
     "Spa Name",
     "Priority",
     "Slug",
@@ -43,9 +43,9 @@ const Offer = () => {
 
     const results = OffersData.filter(
       (item) =>
-        item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.area.toLowerCase().includes(searchTerm.toLowerCase())
+        item.offerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.spaName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.slug.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     setSearchResults(results);
@@ -92,7 +92,7 @@ const Offer = () => {
                 return (
                   <>
                     <tr key={index}>
-                      <td>{spa.name}</td>
+                      <td>{spa.offerName}</td>
                       <td>{spa.spaName}</td>
                       <td>{spa.priority}</td>
                       <td>{spa.slug}</td>

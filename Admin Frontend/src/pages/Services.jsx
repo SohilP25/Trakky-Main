@@ -1,33 +1,27 @@
 import React, { useState } from "react";
 import "./Page.css";
 
-import { IoIosArrowDropdown } from "react-icons/io";
-import { IoIosArrowDropup } from "react-icons/io";
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 
-import { SpaData } from "../data/mockData";
+import { ServicesData } from "../data/mockData";
 
 const Services = () => {
   // table header data
   const tableHeaders = [
-    "Name",
-    "Username",
-    "Phone No.",
-    "City",
-    "Area",
-    "Status",
-    "More",
-    "Verified",
-    "Spa Academy",
-    "Premium",
+    "Service Name",
+    "category",
+    "price",
+    "time",
+    "discount",
+    "description",
     "Action",
   ];
 
   // Handling view more button
   const [visible, setVisible] = useState(10);
   const [show, setShow] = useState(true);
-  const length = SpaData.length;
+  const length = ServicesData.length;
 
   const showMoreItems = () => {
     if (visible < length) {
@@ -45,19 +39,16 @@ const Services = () => {
     const searchTerm = event.target.value;
     setSearchTerm(searchTerm);
 
-    const results = SpaData.filter(
+    const results = ServicesData.filter(
       (item) =>
-        item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.area.toLowerCase().includes(searchTerm.toLowerCase())
+        item.serviceName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.time.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.description.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     setSearchResults(results);
   };
-
-  // Handling the more button
-  const [expandedRow, setExpandedRow] = useState(null);
-  const [isDropdown, setIsDropdown] = useState(null);
 
   return (
     <div className="main_list__container">
@@ -90,108 +81,24 @@ const Services = () => {
           </thead>
 
           <tbody>
-            {(searchTerm.length !== 0 ? searchResults : SpaData)
+            {(searchTerm.length !== 0 ? searchResults : ServicesData)
               .slice(0, visible)
-              .map((spa, index) => {
+              .map((service, index) => {
                 return (
                   <>
                     <tr key={index}>
-                      <td>{spa.name}</td>
-                      <td>{spa.username}</td>
-                      <td>{spa.phoneno}</td>
-                      <td>{spa.city}</td>
-                      <td>{spa.area}</td>
-                      <td>
-                        <div class="form-check form-switch">
-                          <label
-                            class="form-check-label"
-                            for="flexSwitchCheckDefault"
-                          ></label>
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="flexSwitchCheckDefault"
-                          />
-                        </div>
-                      </td>
-
-                      <td>
-                        {isDropdown === null ? (
-                          <IoIosArrowDropdown
-                            onClick={() => {
-                              setExpandedRow(index);
-                              setIsDropdown(index);
-                            }}
-                          />
-                        ) : (
-                          <IoIosArrowDropup
-                            onClick={() => {
-                              setExpandedRow(null);
-                              setIsDropdown(null);
-                            }}
-                          />
-                        )}
-                      </td>
-
-                      <td>
-                        <div class="form-check form-switch">
-                          <label
-                            class="form-check-label"
-                            for="flexSwitchCheckDefault"
-                          ></label>
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="flexSwitchCheckDefault"
-                          />
-                        </div>
-                      </td>
-
-                      <td>
-                        <div class="form-check form-switch">
-                          <label
-                            class="form-check-label"
-                            for="flexSwitchCheckDefault"
-                          ></label>
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="flexSwitchCheckDefault"
-                          />
-                        </div>
-                      </td>
-
-                      <td>
-                        <div class="form-check form-switch">
-                          <label
-                            class="form-check-label"
-                            for="flexSwitchCheckDefault"
-                          ></label>
-                          <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="flexSwitchCheckDefault"
-                          />
-                        </div>
-                      </td>
-
+                      <td>{service.serviceName}</td>
+                      <td>{service.category}</td>
+                      <td>{service.price}</td>
+                      <td>{service.time}</td>
+                      <td>{service.discount}</td>
+                      <td>{service.description}</td>
                       <td>
                         <AiFillDelete />
                         &nbsp;&nbsp;
                         <FaEdit />
                       </td>
                     </tr>
-
-                    <div
-                      className="more_spa_detail__container"
-                      style={{
-                        display: expandedRow === index ? "block" : "none",
-                      }}
-                    >
-                      <div className="image__container">
-                        <img src={require(`../assets/${spa.image}`)} alt="" />
-                      </div>
-                    </div>
                   </>
                 );
               })}
@@ -208,5 +115,4 @@ const Services = () => {
     </div>
   );
 };
-
 export default Services;
