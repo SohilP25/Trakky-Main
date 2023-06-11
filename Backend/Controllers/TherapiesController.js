@@ -1,8 +1,8 @@
   // Author : Vishal patel
   // Purpose : Define Offers posting and receiving logic that implemented in requests.
   import fs from "fs";
-  import ThearpyModel from "../Models/ThearpyModel.js";
   import path from "path";
+import TherapyModel from "../Models/ThearpyModel.js";
   
   //Logic function for receiving offers
   export const getThearpies = async (req, res) => {
@@ -27,26 +27,29 @@
 
   export const postTheparies =  async (req, res) => {
     try {
-      const { Name, Price } = req.body;
-      const { buffer, mimetype } = req.file;
-  
-      const newTherapy = new ThearpyModel({
-        Name,
-        Image: {
-          data: buffer,
-          contentType: mimetype,
-        },
-        Price,
-      });
-  
-      await newTherapy.save();
-  
-      res.status(201).json({ message: 'Therapy created successfully', therapy: newTherapy });
+        const { Name , Slug , Priority } = req.body;
+        const { buffer, mimetype } = req.file;
+
+        const newTherapy = new TherapyModel({
+            Name,
+            Slug,
+            Priority,
+            Image: {
+                data: buffer,
+                contentType: mimetype,
+            },
+        });
+
+        await newTherapy.save();
+
+        res.status(201).json({ message: 'Therapy created successfully', therapy: newTherapy });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Failed to create therapy' });
+        console.error(error);
+        res.status(500).json({ error: 'Failed to create therapy' });
     }
-  };
+};
+
+// Utility function to generate slug from the therapy name
   
   // delete the therapy
 
