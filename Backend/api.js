@@ -10,6 +10,7 @@ import faqRoute from "./Routes/faqRoute.js";
 import spaRoute from "./Routes/spaRoute.js";
 import searchFilterRoute from "./Routes/searchFilterRoute.js";
 import nearbyRoute from "./Routes/nearbyRoute.js";
+import discoverRoute from './Routes/discoverRoute.js'
 import offerRouter from "./Routes/OfferRoute.js";
 import ThearpyRouter from "./Routes/ThrapiesRoute.js";
 import servicesrouter from "./Routes/ServicesRoute.js";
@@ -42,6 +43,10 @@ apiv1.use("/services",servicesrouter);
 apiv1.use("/", searchFilterRoute);
 //For Near By
 apiv1.use("/", nearbyRoute);
+//For Discover experience
+apiv1.use("/discover-experiences", discoverRoute);
+//For City and area
+apiv1.use("/", );
 
 
 export default apiv1;
