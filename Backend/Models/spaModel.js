@@ -68,8 +68,16 @@ const spaSchema = new mongoose.Schema({
     required: true,
   },
   priority: {
-    type: Number,
-    default: 0,
+    type : Number,
+    required : true,
+    validate: {
+        validator: async function (priority) {
+          // Check if any other therapy already has this priority assigned
+          const count = await mongoose.models.spaModel.countDocuments({ Priority: priority });
+          return count === 0; // Return true if no other therapy has this priority assigned
+        },
+        message: "Priority already assigned to another therapy.",
+      },
   },
   aboutUs: {
     type: String,
