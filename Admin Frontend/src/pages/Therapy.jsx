@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Page.css";
 
 import { IoIosArrowDropdown } from "react-icons/io";
@@ -6,9 +6,12 @@ import { IoIosArrowDropup } from "react-icons/io";
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 
-import { TherapyData } from "../data/mockData";
+// import { TherapyData } from "../data/mockData";
 
 const Therapy = () => {
+  const [TherapyData, setTherapyData] = useState([])
+
+
   // table header data
   const tableHeaders = [
     "Name",
@@ -17,6 +20,25 @@ const Therapy = () => {
     "More",
     "Actions",
   ];
+  
+  // Getting Therapy Data 
+  useEffect(() => {
+    const requestOption = {
+      method: "GET",
+      header: { 'Content-Type': 'application/json' }
+    }
+    fetch("http://localhost:8080/api/v1/therapy", requestOption)
+    .then(res => res.json())
+    .then(data => setTherapyData(data.data))
+    .catch(err => console.log(err))
+  }, [])
+
+  // Deleting Therapy Data
+
+  const deleteTherapy = (id) => {
+    fetch("http://localhost:8080/api/v1/therapy")
+  }
+
 
   // Handling view more button
   const [visible, setVisible] = useState(10);
@@ -48,6 +70,7 @@ const Therapy = () => {
     setSearchResults(results);
   };
 
+
   // Handling the more button
   const [expandedRow, setExpandedRow] = useState(null);
   const [isDropdown, setIsDropdown] = useState(null);
@@ -55,16 +78,16 @@ const Therapy = () => {
   return (
     <div className="main_list__container">
       <div className="mini_navbar__container">
-        <form class="d-flex" onSubmit={(e) => e.preventDefault()}>
+        <form className="d-flex" onSubmit={(e) => e.preventDefault()}>
           <input
-            class="form-control me-2"
+            className="form-control me-2"
             type="search"
             placeholder="Search"
             aria-label="Search"
             value={searchTerm}
             onChange={handleSearch}
           />
-          <button class="btn btn-outline-success" type="submit">
+          <button className="btn btn-outline-success" type="submit">
             Search
           </button>
         </form>
@@ -88,9 +111,9 @@ const Therapy = () => {
                 return (
                   <>
                     <tr key={index}>
-                      <td>{therapy.name}</td>
-                      <td>{therapy.priority}</td>
-                      <td>{therapy.slug}</td>
+                      <td>{therapy.Name}</td>
+                      <td>{therapy.Priority}</td>
+                      <td>{therapy.Slug}</td>
                       <td>
                         {isDropdown === null ? (
                           <IoIosArrowDropdown
@@ -109,7 +132,7 @@ const Therapy = () => {
                         )}
                       </td>
                       <td>
-                        <AiFillDelete />
+                        <AiFillDelete onClick={() => deleteTherapy(therapy.Id)} />
                         &nbsp;&nbsp;
                         <FaEdit />
                       </td>
@@ -122,7 +145,8 @@ const Therapy = () => {
                       }}
                     >
                       <div className="image__container">
-                        <img src={require(`../assets/${therapy.image}`)} alt="" />
+                        {/* <img src={require(`../assets/${therapy.Image}`)} alt="" /> */}
+                        Here image will appear
                       </div>
                     </div>
                   </>
