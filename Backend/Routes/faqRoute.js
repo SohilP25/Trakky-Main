@@ -8,7 +8,7 @@ import authMiddleWare from "../Middleware/authMiddleware.js";
 const faqRoute = express.Router();
 
 //Define Request For getting FAQs.
-faqRoute.get("/", authMiddleWare, getFaq);
+faqRoute.get("/", getFaq);
 //Define Request For creating FAQs.
 faqRoute.post("/", postFaq);
 
