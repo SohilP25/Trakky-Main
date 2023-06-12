@@ -6,39 +6,41 @@ import { IoIosArrowDropup } from "react-icons/io";
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 
-// import { TherapyData } from "../data/mockData";
-
 const Therapy = () => {
-  const [TherapyData, setTherapyData] = useState([])
+  // Getting Therapy Data
+  const [TherapyData, setTherapyData] = useState([]);
 
-
-  // table header data
-  const tableHeaders = [
-    "Name",
-    "Priority",
-    "Slug",
-    "More",
-    "Actions",
-  ];
-  
-  // Getting Therapy Data 
-  useEffect(() => {
+  const getTherapy = () => {
     const requestOption = {
       method: "GET",
-      header: { 'Content-Type': 'application/json' }
-    }
+      header: { "Content-Type": "application/json" },
+    };
     fetch("http://localhost:8080/api/v1/therapy", requestOption)
-    .then(res => res.json())
-    .then(data => setTherapyData(data.data))
-    .catch(err => console.log(err))
-  }, [])
+      .then((res) => res.json())
+      .then((data) => setTherapyData(data.data))
+      .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    getTherapy();
+  }, []);
 
   // Deleting Therapy Data
-
   const deleteTherapy = (id) => {
-    fetch("http://localhost:8080/api/v1/therapy")
-  }
+    console.log("delete called")
+    fetch(`http://localhost:8080/api/v1/therapy/${id}`, {
+      method: "DELETE"
+    })
+      .then((result) => {
+        result.json().then((resp) => {
+          console.warn(resp);
+          getTherapy();
+        });
+      })
+      .catch((err) => console.log(err));
+  };
 
+  // table header data
+  const tableHeaders = ["Name", "Priority", "Slug", "More", "Actions"];
 
   // Handling view more button
   const [visible, setVisible] = useState(10);
@@ -69,7 +71,6 @@ const Therapy = () => {
 
     setSearchResults(results);
   };
-
 
   // Handling the more button
   const [expandedRow, setExpandedRow] = useState(null);
@@ -132,7 +133,12 @@ const Therapy = () => {
                         )}
                       </td>
                       <td>
-                        <AiFillDelete onClick={() => deleteTherapy(therapy.Id)} />
+                        <AiFillDelete
+                          onClick={() => deleteTherapy(therapy._id)}
+                          style={{
+                            cursor: "pointer"
+                          }}
+                        />
                         &nbsp;&nbsp;
                         <FaEdit />
                       </td>
