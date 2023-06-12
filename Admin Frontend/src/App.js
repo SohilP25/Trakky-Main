@@ -20,6 +20,8 @@ import Faq from "./pages/Faq.jsx";
 import Signin from "./pages/Signin";
 import BookNow from "./pages/BookNow.jsx";
 import CallNow from "./pages/CallNow";
+import AreaForm from "./pages/forms/AreaForm";
+import CityForm from "./pages/forms/CityForm";
 
 
 function App() {
@@ -44,7 +46,10 @@ function App() {
           <Route path="/addservice" element={<ServicesForm />} />
 
           <Route path="/cities" element={<Cities />} />
+          <Route path="/addcity" element={<CityForm />} />
+
           <Route path="/areas" element={<Areas />} />
+          <Route path="/addarea" element={<AreaForm />} />
 
           <Route path="/blogs" element={<Blog />} />
           <Route path="/addblog" element={<BlogForm />} />

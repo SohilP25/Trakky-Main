@@ -26,17 +26,17 @@ const Therapy = () => {
 
   // Deleting Therapy Data
   const deleteTherapy = (id) => {
-    console.log("delete called")
+    console.log("delete called");
     fetch(`http://localhost:8080/api/v1/therapy/${id}`, {
       method: "DELETE"
     })
       .then((result) => {
         result.json().then((resp) => {
           console.warn(resp);
-          getTherapy();
         });
       })
       .catch((err) => console.log(err));
+      getTherapy();
   };
 
   // table header data
@@ -136,7 +136,7 @@ const Therapy = () => {
                         <AiFillDelete
                           onClick={() => deleteTherapy(therapy._id)}
                           style={{
-                            cursor: "pointer"
+                            cursor: "pointer",
                           }}
                         />
                         &nbsp;&nbsp;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Page.css";
 
 import { IoIosArrowDropdown } from "react-icons/io";
@@ -6,15 +6,36 @@ import { IoIosArrowDropup } from "react-icons/io";
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 
-import { SpaData } from "../data/mockData";
 
 const Spa = () => {
+
+  // Getting spa details
+  const [SpaData, setSpaData] = useState([])
+
+  const getSpa = () => {
+    const requestOption = {
+      method: "GET",
+      header: { "Content-Type": "application/json" },
+    };
+    fetch("http://localhost:8080/api/v1/spas", requestOption)
+      .then((res) => res.json())
+      .then((data) => setSpaData(data))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getSpa();
+  }, []);
+
+
   // table header data
   const tableHeaders = [
     "Name",
     "Phone No.",
-    "City",
-    "Area",
+    // "City",
+    "Address",
+    // "Area",
+    "Landmark",
     "Close/Open",
     "More",
     "Verified",
@@ -97,9 +118,9 @@ const Spa = () => {
                   <>
                     <tr key={index}>
                       <td>{spa.name}</td>
-                      <td>{spa.phoneno}</td>
-                      <td>{spa.city}</td>
-                      <td>{spa.area}</td>
+                      <td>{spa.mobileNumber}</td>
+                      <td>{spa.address}</td>
+                      <td>{spa.landmark}</td>
                       <td>
                         <div class="form-check form-switch">
                           <label
@@ -197,7 +218,8 @@ const Spa = () => {
                       }}
                     >
                       <div className="image__container">
-                        <img src={require(`../assets/${spa.image}`)} alt="" />
+                        {/* <img src={require(spa.images[0])} alt="" /> */}
+                        image
                       </div>
                     </div>
                   </>
