@@ -45,7 +45,8 @@ apiv1.use("/", searchFilterRoute);
 apiv1.use("/", nearbyRoute);
 //For Discover experience
 apiv1.use("/discover-experiences", discoverRoute);
-
+//For City and area
+apiv1.use("/", );
 
 
 export default apiv1;

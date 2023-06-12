@@ -1,40 +1,49 @@
 // Author : Vishal & Rinal
 // Purpose : Defining spa model/schema.
 import mongoose from "mongoose";
+import  Services  from "../Models/servicesModel.js";
 
 const spaSchema = new mongoose.Schema({
-    name: {
-      type: String,     
-      required: true,
-    },
-    address: {
-      type: String,
-      required: true,
-    },
-    area: {
-      type: String,
-      required: true,
-    },
-    city: {
-      type: String,
-      required: true,
-    },
-    mobileNumber: {
-      type: String,
-      required: false
-    },
-    mainImage: {
-      type: String,
-      required: true,
-    },
-    images: {
-      type: [String],
-      required: true,
-    },
-    location: {
+  name: {
+    type: String,
+    required: true,
+  },
+  address: {
+    type: String,
+    required: true,
+  },
+  address: {
+    type: String,
+    required: true,
+  },
+  landmark: {
+    type: String,
+    required: true,
+  },
+  mobileNumber: {
+    type: String,
+    required: false,
+  },
+  bookingNumber: {
+    type: String,
+    required: false,
+  },
+  gmapLink: {
+    type: String,
+    required: false,
+  },
+  mainImage: {
+    type: String,
+    required: true,
+  },
+  images: {
+    type: [String],
+    required: true,
+  },
+  location: {
     type: {
       type: String,
-      enum: ['Point'],
+      enum: ["Point"],
       required: true,
     },
     coordinates: {
@@ -42,39 +51,60 @@ const spaSchema = new mongoose.Schema({
       required: true,
     },
   },
-    openTime: {
-      type: String,
-      required: true,
-    },
-    closeTime: {
-      type: String,
-      required: true,
-    },
-    facilities: {
-      type: [String],
-      required: false,
-    },
-   
-    catagory : {
-     type : [String],
-     required : true,
-    },
-    priority: {
-      type: Number,
-      default: 0,
-    },
-    aboutUs: {
-      type: String,
-      required: false,
-    },
+  openTime: {
+    type: String,
+    required: true,
   },
-  );
-   
-//creating sphare 
- spaSchema.index({location : '2dsphere'})
+  closeTime: {
+    type: String,
+    required: true,
+  },
+  facilities: {
+    type: [String],
+    required: false,
+  },
+  slug: {
+    type: String,
+    required: true,
+  },
+  priority: {
+    type: Number,
+    default: 0,
+  },
+  aboutUs: {
+    type: String,
+    required: false,
+  },
+  //open/close
+  open: {
+    type: Boolean,
+    default: false,
+  },
+  verified: {
+    type: Boolean,
+    default: false,
+  },
+  topRated: {
+    type: Boolean,
+    default: false,
+  },
+  premium: {
+    type: Boolean,
+    default: false,
+  },
+  luxurious: {
+    type: Boolean,
+    default: false,
+  },
+  services: [{ 
+    type: Schema.Types.ObjectId,
+     ref: Services }],
+});
+
+//creating sphare
+spaSchema.index({ location: "2dsphere" });
 //Creating Model of schema.
-   
-  
-  const spaModel = mongoose.model('spaModel', spaSchema);
-  
-  export default spaModel;
+
+const spaModel = mongoose.model("spaModel", spaSchema);
+
+export default spaModel;

@@ -4,16 +4,17 @@ const servicesrouter = express.Router();
 //const servicesController = require('../controllers/servicesController');
 import {addService,deleteService,updateService,getAllServices} from "../Controllers/servicesController.js";
 
+// Get all services
+servicesrouter.get('/', getAllServices);
+
 // Add a new service
 servicesrouter.post('/', addService);
-
-// Delete a service by ID
-servicesrouter.delete('/:id',deleteService);
 
 // Update a service by ID
 servicesrouter.put('/:id', updateService);
 
-// Get all services
-servicesrouter.get('/', getAllServices);
+// Delete a service by ID
+servicesrouter.delete('/:id',deleteService);
+
 
 export default servicesrouter;
