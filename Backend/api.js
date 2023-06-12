@@ -11,7 +11,12 @@ import spaRoute from "./Routes/spaRoute.js";
 import searchFilterRoute from "./Routes/searchFilterRoute.js";
 import nearbyRoute from "./Routes/nearbyRoute.js";
 import discoverRoute from './Routes/discoverRoute.js'
+import offerRouter from "./Routes/OfferRoute.js";
+import ThearpyRouter from "./Routes/ThrapiesRoute.js";
+import servicesrouter from "./Routes/ServicesRoute.js";
 const apiv1 = express.Router();
+
+
 
 // Define saperate route of invidual one
 //For Authentication
@@ -23,6 +28,16 @@ apiv1.use("/faqs", faqRoute);
 //Spa Related routes
 apiv1.use("/spas", spaRoute);
 //Dicsover
+
+// Offer
+apiv1.use("/Offer",offerRouter);
+
+// Therapy
+apiv1.use('/Therapy',ThearpyRouter)
+
+// services
+apiv1.use("/services",servicesrouter);
+
 // apiv1.use("/discover", spaRoute);
 //For Filter and search
 apiv1.use("/", searchFilterRoute);
@@ -30,6 +45,7 @@ apiv1.use("/", searchFilterRoute);
 apiv1.use("/", nearbyRoute);
 //For Discover experience
 apiv1.use("/discover-experiences", discoverRoute);
+
 
 
 export default apiv1;

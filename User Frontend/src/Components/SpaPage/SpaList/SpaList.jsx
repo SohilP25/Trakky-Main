@@ -123,7 +123,7 @@ const OfferContainer = () => {
   return (
     <div
       className="slider__outer-container offer__container"
-      style={{ width: "90%" }}
+      style={{ width: "135%" }}
     >
       <div className="slider__header">
         <h2>Grab the best deals</h2>
