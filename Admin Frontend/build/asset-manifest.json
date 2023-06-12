@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.c5a199a2.css",
-    "main.js": "/static/js/main.2cd5bd6c.js",
+    "main.js": "/static/js/main.36de821f.js",
     "static/media/Trakky logo white.png": "/static/media/Trakky logo white.14407c656e9ab308ae8e.png",
     "static/media/user.png": "/static/media/user.6e7127717311d758954e.png",
     "index.html": "/index.html",
     "main.c5a199a2.css.map": "/static/css/main.c5a199a2.css.map",
-    "main.2cd5bd6c.js.map": "/static/js/main.2cd5bd6c.js.map"
+    "main.36de821f.js.map": "/static/js/main.36de821f.js.map"
   },
   "entrypoints": [
     "static/css/main.c5a199a2.css",
-    "static/js/main.2cd5bd6c.js"
+    "static/js/main.36de821f.js"
   ]
 }
