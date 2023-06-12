@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./Page.css";
 
 import { IoIosArrowDropdown } from "react-icons/io";
@@ -6,17 +6,23 @@ import { IoIosArrowDropup } from "react-icons/io";
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 
-import { TherapyData } from "../data/mockData";
-
 const Therapy = () => {
+  // Getting Therapy Data
+  const [TherapyData, setTherapyData] = useState([]);
+
+  useEffect(() => {
+    const requestOption = {
+      method: "GET",
+      header: { "Content-Type": "application/json" },
+    };
+    fetch("http://localhost:8080/api/v1/therapy", requestOption)
+      .then((res) => res.json())
+      .then((data) => setTherapyData(data.data))
+      .catch((err) => console.log(err));
+  }, []);
+
   // table header data
-  const tableHeaders = [
-    "Name",
-    "Priority",
-    "Slug",
-    "More",
-    "Actions",
-  ];
+  const tableHeaders = ["Name", "Priority", "Slug", "More", "Actions"];
 
   // Handling view more button
   const [visible, setVisible] = useState(10);
@@ -88,9 +94,9 @@ const Therapy = () => {
                 return (
                   <>
                     <tr key={index}>
-                      <td>{therapy.name}</td>
-                      <td>{therapy.priority}</td>
-                      <td>{therapy.slug}</td>
+                      <td>{therapy.Name}</td>
+                      <td>{therapy.Priority}</td>
+                      <td>{therapy.Slug}</td>
                       <td>
                         {isDropdown === null ? (
                           <IoIosArrowDropdown
@@ -122,7 +128,11 @@ const Therapy = () => {
                       }}
                     >
                       <div className="image__container">
-                        <img src={require(`../assets/${therapy.image}`)} alt="" />
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur natus molestiae nam consequuntur accusamus numquam tenetur deserunt expedita mollitia nulla.
+                        {/* <img
+                          src={require(`../assets/${therapy.image}`)}
+                          alt=""
+                        /> */}
                       </div>
                     </div>
                   </>

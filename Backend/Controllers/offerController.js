@@ -27,21 +27,23 @@ export const getoffer = async (req, res) => {
 
 export const postOffer = async (req, res) => {
   try {
-    const { Name, Discount } = req.body;
+    const { Name, Slug , Select_Spa , Priority } = req.body;
     
     if (!req.file) {
       return res.status(400).json({ error: 'No file uploaded' });
     }
-
+    
     const { buffer, mimetype } = req.file;
 
     const newOffer = new OfferModel({
       Name,
+      Slug,
+      Select_Spa,
+      Priority,
       Image: {
         data: buffer,
         contentType: mimetype,
       },
-      Discount,
     });
 
     await newOffer.save();

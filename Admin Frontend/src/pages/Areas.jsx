@@ -39,9 +39,8 @@ const Areas = () => {
 
     const results = AreasData.filter(
       (item) =>
-        item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.area.toLowerCase().includes(searchTerm.toLowerCase())
+        item.areaName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.city.toLowerCase().includes(searchTerm.toLowerCase()) 
     );
 
     setSearchResults(results);
@@ -83,7 +82,7 @@ const Areas = () => {
               .map((area, index) => {
                 return (
                   <tr key={index}>
-                    <td>{area.areaname}</td>
+                    <td>{area.areaName}</td>
                     <td>{area.city}</td>
                     <td>{area.priority}</td>
                     <td>{area.date}</td>

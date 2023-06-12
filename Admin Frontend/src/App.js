@@ -17,8 +17,9 @@ import Areas from './pages/Areas'
 import Blog from "./pages/Blog.jsx";
 import BlogForm from "./pages/forms/BlogForm";
 import Faq from "./pages/Faq.jsx";
-import Inquiry from "./pages/Inquiry.jsx";
 import Signin from "./pages/Signin";
+import BookNow from "./pages/BookNow.jsx";
+import CallNow from "./pages/CallNow";
 
 
 function App() {
@@ -31,24 +32,25 @@ function App() {
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/offers" element={<Offer />} />
-          <Route path="/add-offer" element={<OffersForm />} />
+          <Route path="/addoffer" element={<OffersForm />} />
 
           <Route path="/spas" element={<Spa />} />
-          <Route path="/add-spa" element={<SpaForm />} />
+          <Route path="/addspa" element={<SpaForm />} />
 
           <Route path="/therapies" element={<Therapy />} />
-          <Route path="/add-therapy" element={<TherapyForm />} />
+          <Route path="/addtherapy" element={<TherapyForm />} />
 
           <Route path="/services" element={<Services />} />
-          <Route path="/add-service" element={<ServicesForm />} />
+          <Route path="/addservice" element={<ServicesForm />} />
 
           <Route path="/cities" element={<Cities />} />
           <Route path="/areas" element={<Areas />} />
 
           <Route path="/blogs" element={<Blog />} />
-          <Route path="/add-blog" element={<BlogForm />} />
+          <Route path="/addblog" element={<BlogForm />} />
 
-          <Route path="/inquiries" element={<Inquiry />} />
+          <Route path="/booknow" element={<BookNow />} />
+          <Route path="/callnow" element={<CallNow />} />
           <Route path="/faqs" element={<Faq />} />
           <Route path="/signin" element={<Signin />} />
 

@@ -42,13 +42,13 @@ const Sidebar = () => {
               </div>
 
               <div className="sidebar__topic_box">
-                <p className="sidebar_topic_title">Spa</p>
+                <p className="sidebar_topic_title">Spas</p>
                 <div className="sidebar_links">
                   <NavLink to={"/Spas"}>
                     <AiOutlineUnorderedList />
                     &nbsp;&nbsp; List Spa
                   </NavLink>
-                  <NavLink to={"/add-spa"}>
+                  <NavLink to={"/addspa"}>
                     <GrAdd />
                     &nbsp;&nbsp; Add Spa
                   </NavLink>
@@ -58,11 +58,11 @@ const Sidebar = () => {
               <div className="sidebar__topic_box">
                 <p className="sidebar_topic_title">Therapies</p>
                 <div className="sidebar_links">
-                  <NavLink to={"/Therapies"}>
+                  <NavLink to={"/therapies"}>
                     <AiOutlineUnorderedList />
                     &nbsp;&nbsp; List Therapies
                   </NavLink>
-                  <NavLink to={"/add-therapy"}>
+                  <NavLink to={"/addtherapy"}>
                     <GrAdd />
                     &nbsp;&nbsp; Add Therapy
                   </NavLink>
@@ -76,7 +76,7 @@ const Sidebar = () => {
                     <AiOutlineUnorderedList />
                     &nbsp;&nbsp; List Offers
                   </NavLink>
-                  <NavLink to={"/add-offer"}>
+                  <NavLink to={"/addoffer"}>
                     <GrAdd />
                     &nbsp;&nbsp; Add Offer
                   </NavLink>
@@ -90,7 +90,7 @@ const Sidebar = () => {
                     <AiOutlineUnorderedList />
                     &nbsp;&nbsp; List Services
                   </NavLink>
-                  <NavLink to={"/add-service"}>
+                  <NavLink to={"/addservice"}>
                     <GrAdd />
                     &nbsp;&nbsp; Add Service
                   </NavLink>
@@ -112,11 +112,15 @@ const Sidebar = () => {
               </div>
 
               <div className="sidebar__topic_box">
-                <p className="sidebar_topic_title">Inquiry</p>
+                <p className="sidebar_topic_title">Inquiries</p>
                 <div className="sidebar_links">
-                  <NavLink to={"/Inquiries"}>
+                  <NavLink to={"/booknow"}>
                     <AiOutlineUnorderedList />
-                    &nbsp;&nbsp; List Inquiry
+                    &nbsp;&nbsp; Book Now
+                  </NavLink>
+                  <NavLink to={"/callnow"}>
+                    <AiOutlineUnorderedList />
+                    &nbsp;&nbsp; Call Now
                   </NavLink>
                 </div>
               </div>
@@ -128,7 +132,7 @@ const Sidebar = () => {
                     <AiOutlineUnorderedList />
                     &nbsp;&nbsp; List Blogs
                   </NavLink>
-                  <NavLink to={"/add-blog"}>
+                  <NavLink to={"/addblog"}>
                     <GrAdd />
                     &nbsp;&nbsp; Add Blog
                   </NavLink>

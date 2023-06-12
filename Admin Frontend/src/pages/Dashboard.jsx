@@ -1,10 +1,10 @@
-import React from 'react'
-import { SpaData, CitiesData, InquiryData } from '../data/mockData.js'
-import './Dashboard.css'
+import React from "react";
+import { SpaData, CitiesData, CallNowData,BookNowData } from "../data/mockData.js";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   return (
-    <div className='dashboard__container'>
+    <div className="dashboard__container">
       <div className="spa_data_labels">
         <div className="data__container">
           <p>No of Spas</p>
@@ -18,11 +18,11 @@ const Dashboard = () => {
 
         <div className="data__container">
           <p>Inquiries</p>
-          <h1>{InquiryData.length}</h1>
+          <h1>{CallNowData.length + BookNowData.length}</h1>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

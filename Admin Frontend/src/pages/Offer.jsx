@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Page.css";
 
 import { IoIosArrowDropdown } from "react-icons/io";
@@ -6,12 +6,22 @@ import { IoIosArrowDropup } from "react-icons/io";
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 
-import { OffersData } from "../data/mockData";
-
 const Offer = () => {
+  const [offersData, setOffersData] = useState([]);
+  useEffect(() => {
+    const requestOption = {
+      method: "GET",
+      header: { "Content-Type": "application/json" },
+    };
+    fetch("http://localhost:8080/api/v1/offer", requestOption)
+      .then((res) => res.json())
+      .then((data) => setOffersData(data.data))
+      .catch((err) => console.log(err));
+  }, []);
+
   // table header data
   const tableHeaders = [
-    "Name",
+    "Offer Name",
     "Spa Name",
     "Priority",
     "Slug",
@@ -23,7 +33,7 @@ const Offer = () => {
   // Handling view more button
   const [visible, setVisible] = useState(10);
   const [show, setShow] = useState(true);
-  const length = OffersData.length;
+  const length = offersData.length;
 
   const showMoreItems = () => {
     if (visible < length) {
@@ -41,11 +51,11 @@ const Offer = () => {
     const searchTerm = event.target.value;
     setSearchTerm(searchTerm);
 
-    const results = OffersData.filter(
+    const results = offersData.filter(
       (item) =>
-        item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.area.toLowerCase().includes(searchTerm.toLowerCase())
+        item.offerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.spaName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.slug.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     setSearchResults(results);
@@ -86,16 +96,16 @@ const Offer = () => {
           </thead>
 
           <tbody>
-            {(searchTerm.length !== 0 ? searchResults : OffersData)
+            {(searchTerm.length !== 0 ? searchResults : offersData)
               .slice(0, visible)
               .map((spa, index) => {
                 return (
                   <>
                     <tr key={index}>
-                      <td>{spa.name}</td>
-                      <td>{spa.spaName}</td>
-                      <td>{spa.priority}</td>
-                      <td>{spa.slug}</td>
+                      <td>{spa.Name}</td>
+                      <td>{spa.Slug}</td>
+                      <td>{spa.Select_Spa}</td>
+                      <td>{spa.Priority}</td>
                       <td>
                         <div class="form-check form-switch">
                           <label
@@ -140,7 +150,8 @@ const Offer = () => {
                       }}
                     >
                       <div className="image__container">
-                        <img src={require(`../assets/${spa.image}`)} alt="" />
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, unde!
+                        {/* <img src={require(`../assets/${spa.image}`)} alt="" /> */}
                       </div>
                     </div>
                   </>
