@@ -5,22 +5,24 @@ const cityAreaRoutes = express.Router();
 import { getallCities,getAreaForCity,addCity,addCityToArea,updateCity,updateAreaOfCity,deleteCity,deleteArea } from "../Controllers/cityAreaController.js";
 
 // Get all cities
-app.get('/cities', getallCities);
+cityAreaRoutes.get('/cities', getallCities);
 // Get all areas for a specific city
-app.get('/cities/:cityId/areas',getAreaForCity);
+cityAreaRoutes.get('/cities/:cityId/areas',getAreaForCity);
 
 
 // Add a new city
-app.post('/cities', addCity);
+cityAreaRoutes.post('/cities', addCity);
 // Add a new area to a city
-app.post('/cities/:cityId/areas',addCityToArea);
+cityAreaRoutes.post('/cities/:cityId/areas',addCityToArea);
 
 
 // Update a city
-app.put('/cities/:cityId', updateCity);
+cityAreaRoutes.put('/cities/:cityId', updateCity);
 // Update an area
-app.put('/areas/:areaId',updateAreaOfCity);
+cityAreaRoutes.put('/areas/:areaId',updateAreaOfCity);
 
 // Delete a city
-app.delete('/cities/:cityId', deleteCity);
-app.delete('/areas/:areaId', deleteArea);
+cityAreaRoutes.delete('/cities/:cityId', deleteCity);
+cityAreaRoutes.delete('/areas/:areaId', deleteArea);
+
+export default cityAreaRoutes;
