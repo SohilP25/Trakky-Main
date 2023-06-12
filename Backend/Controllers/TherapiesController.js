@@ -57,7 +57,7 @@ import TherapyModel from "../Models/ThearpyModel.js";
     try {
       const { id } = req.params;
   
-      const result = await ThearpyModel.findOneAndDelete({ _id : id});
+      const result = await TherapyModel.findOneAndDelete({ _id : id});
       if (!result) {
         return res.status(404).send("Therapy not found");
       }
