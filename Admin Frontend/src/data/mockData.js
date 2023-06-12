@@ -3,6 +3,7 @@ const SpaData = [];
 
 for (let i = 1; i <= 43; i++) {
   const spa = {
+    id: i,
     name: `Spa ${i}`,
     phoneno: Math.floor(Math.random() * 9000000000) + 1000000000,
     city: i % 2 === 0 ? "Gandhinagar" : "Ahmedabad",
@@ -111,6 +112,7 @@ const ServicesData = [];
 
 for (let i = 1; i <= 20; i++) {
   const service = {
+    spaId: i%5,
     serviceName: `service ${i}`,
     category: `category ${i}`,
     price: 69 * (i * 5),
