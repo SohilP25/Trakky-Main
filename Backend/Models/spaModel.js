@@ -97,7 +97,7 @@ const spaSchema = new mongoose.Schema({
     default: false,
   },
   services: [{ 
-    type: Schema.Types.ObjectId,
+    type:  mongoose.Schema.Types.ObjectId,
      ref: Services }],
 });
 
