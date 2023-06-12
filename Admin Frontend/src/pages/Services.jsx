@@ -4,7 +4,7 @@ import "./Page.css";
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 
-import { ServicesData } from "../data/mockData";
+import { ServicesData, SpaData } from "../data/mockData";
 
 const Services = () => {
   // table header data
@@ -39,33 +39,65 @@ const Services = () => {
     const searchTerm = event.target.value;
     setSearchTerm(searchTerm);
 
-    const results = ServicesData.filter(
+    const results = SpaServices.filter(
       (item) =>
         item.serviceName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.time.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.description.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     setSearchResults(results);
   };
 
+  // handling dropdown list of spa name
+  const [SpaServices, setSpaServices] = useState([]);
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const spaNames = SpaData.map(spa => spa.name);
+
+  const handleChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
+  
+
   return (
-    <div className="main_list__container">
+     <div className="main_list__container">
       <div className="mini_navbar__container">
-        <form class="d-flex" onSubmit={(e) => e.preventDefault()}>
+        <form className="d-flex" onSubmit={(e) => e.preventDefault()}>
           <input
-            class="form-control me-2"
+            className="form-control me-2"
             type="search"
             placeholder="Search"
             aria-label="Search"
             value={searchTerm}
             onChange={handleSearch}
           />
-          <button class="btn btn-outline-success" type="submit">
+          <button className="btn btn-outline-success" type="submit">
             Search
           </button>
         </form>
+
+        <div className="form-group">
+          <select
+            placeholder="Select Spa"
+            value={selectedOption}
+            onChange={handleChange}
+            style={{
+              width: "10rem",
+            }}
+          >
+            <option value={""}>--select--</option>
+            {spaNames.map((name, index) => {
+              return (
+                <option key={index} value={name}>
+                  {name}
+                </option>
+              );
+            })}
+          </select>
+          <p>Selected Option: {selectedOption}</p>
+        </div>
       </div>
 
       <div className="list__container">
@@ -81,7 +113,7 @@ const Services = () => {
           </thead>
 
           <tbody>
-            {(searchTerm.length !== 0 ? searchResults : ServicesData)
+            {(searchTerm.length !== 0 ? searchResults : SpaServices)
               .slice(0, visible)
               .map((service, index) => {
                 return (

@@ -6,7 +6,7 @@ import TherapyModel from "../Models/ThearpyModel.js";
   
   //Logic function for receiving offers
   export const getThearpies = async (req, res) => {
-    const data = await ThearpyModel.find();
+    const data = await TherapyModel.find();
     try {
       res.status(200).json({
         message: "List of all offer",
