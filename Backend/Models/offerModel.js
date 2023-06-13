@@ -1,4 +1,3 @@
-
 // Author : Vishal patle
 // Purpose : Defining Offer model/schema.
 import mongoose from "mongoose";
