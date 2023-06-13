@@ -7,8 +7,9 @@ import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 
 const Offer = () => {
+  // Getting offer data
   const [offersData, setOffersData] = useState([]);
-  useEffect(() => {
+  const getOffer = () => {
     const requestOption = {
       method: "GET",
       header: { "Content-Type": "application/json" },
@@ -17,7 +18,27 @@ const Offer = () => {
       .then((res) => res.json())
       .then((data) => setOffersData(data.data))
       .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    getOffer();
   }, []);
+
+  // Deleting offer data
+  const deleteOffer = (id) => {
+    const requestOptions = {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer my-token",
+        "My-Custom-Header": "foobar",
+      },
+    };
+
+    fetch(`http://localhost:8080/api/v1/Offer/${id}`, requestOptions)
+    .then(() => console.log("offer deleted"))
+    .catch(err => console.log(err))
+
+    getOffer();
+  };
 
   // table header data
   const tableHeaders = [
@@ -103,9 +124,9 @@ const Offer = () => {
                   <>
                     <tr key={index}>
                       <td>{spa.Name}</td>
-                      <td>{spa.Slug}</td>
                       <td>{spa.Select_Spa}</td>
                       <td>{spa.Priority}</td>
+                      <td>{spa.Slug}</td>
                       <td>
                         <div class="form-check form-switch">
                           <label
@@ -137,7 +158,12 @@ const Offer = () => {
                         )}
                       </td>
                       <td>
-                        <AiFillDelete />
+                        <AiFillDelete
+                          style={{
+                            cursor: "pointer",
+                          }}
+                          onClick={() => deleteOffer(spa._id)}
+                        />
                         &nbsp;&nbsp;
                         <FaEdit />
                       </td>
@@ -150,7 +176,8 @@ const Offer = () => {
                       }}
                     >
                       <div className="image__container">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, unde!
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Earum, unde!
                         {/* <img src={require(`../assets/${spa.image}`)} alt="" /> */}
                       </div>
                     </div>

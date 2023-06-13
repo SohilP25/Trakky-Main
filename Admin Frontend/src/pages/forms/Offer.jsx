@@ -27,8 +27,8 @@ const OffersForm = () => {
 
     let requestOption = {
       method: "POST",
-      header: {
-        Accept: "application/json",
+      headers: {
+        "Accept": "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
@@ -111,7 +111,7 @@ const OffersForm = () => {
                 type="file"
                 name="image"
                 id="image"
-                onChange={(e) => convertToBase64}
+                onChange={(e) => convertToBase64(e)}
                 required
               />
             </div>
