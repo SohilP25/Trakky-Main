@@ -1,4 +1,3 @@
-
 // Author : Vishal patle
 // Purpose : Defining Offer model/schema.
 import mongoose from "mongoose";
@@ -29,10 +28,18 @@ const offerScheme = new mongoose.Schema({
           },
           
     },
-    Image : {
-        data : Buffer,
-        contentType : String,
-    },
+    Image: [
+        {
+          data: {
+            type: Buffer,
+            required: true,
+          },
+          contentType: {
+            type: String,
+            required: true,
+          },
+        },
+    ]
 }   
 );
 

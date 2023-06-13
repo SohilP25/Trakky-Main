@@ -1,55 +1,50 @@
 import React, { useState } from "react";
 import "./forms.css";
-
 const OffersForm = () => {
-  // Handling submit
   const [name, setName] = useState("");
   const [Slug, setSlug] = useState("");
   const [Priority, setPriority] = useState(null);
   const [spa, setspa] = useState("");
   const [Image, setImage] = useState(null);
 
-  const convertToBase64 = (e) => {
-    let reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = () => setImage(reader.result);
-    reader.onerror = (error) => console.log(error);
+  const handleFileChange = (event) => {
+    setImage(event.target.files[0]);
   };
 
-  const add_offer = () => {
-    let data = {
-      Name: name,
-      Slug: Slug,
-      Select_Spa: spa,
-      Priority: Priority,
-      Image: Image,
-    };
+  // Post Request Starts
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    let requestOption = {
-      method: "POST",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    };
-    fetch("/api/v1/Offer", requestOption).then(
-      (result) => {
-        result
-          .json()
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => console.log(error));
-      }
-    );
+    if (!Image) {
+      console.log("Please select a file");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("Name", name);
+    formData.append("Priority", Priority);
+    formData.append("Slug", Slug);
+    formData.append("Select_Spa", spa);
+    formData.append("Image", Image);
+
+    try {
+      await fetch("http://localhost:8080/api/v1/Offer", {
+        method: "POST",
+        body: formData,
+      });
+
+      alert("Offer uploaded successfully");
+    } catch (error) {
+      console.error("Error uploading image", error);
+    }
   };
+  // Post Request Ends
 
   return (
     <>
       <div className="main-container">
         <div className="container">
-          <form method="post">
+          <form method="post" onSubmit={handleSubmit}>
             <h1>Offer</h1>
             <div className="form-group">
               <label htmlFor="name">Name *</label>
@@ -84,6 +79,10 @@ const OffersForm = () => {
                 onChange={(e) => setspa(e.target.value)}
                 // multiple
               >
+                <option disabled selected value>
+                  {" "}
+                  -- select a Spa --{" "}
+                </option>
                 <option value="Spa 1">Spa 1</option>
                 <option value="Spa 2">Spa 2</option>
                 <option value="Spa 3">Spa 3</option>
@@ -102,7 +101,6 @@ const OffersForm = () => {
                 required
               />
             </div>
-
             <div className="form-group">
               <label htmlFor="image">Image *</label>
               <input
@@ -111,7 +109,7 @@ const OffersForm = () => {
                 type="file"
                 name="image"
                 id="image"
-                onChange={(e) => convertToBase64(e)}
+                onChange={handleFileChange}
                 required
               />
             </div>
@@ -119,7 +117,7 @@ const OffersForm = () => {
             <button
               className="submit-btn"
               type="submit"
-              onClick={() => add_offer}
+              onSubmit={handleSubmit}
             >
               Add Offer
             </button>

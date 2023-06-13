@@ -9,6 +9,7 @@ import { FaEdit } from "react-icons/fa";
 const Offer = () => {
   // Getting offer data
   const [offersData, setOffersData] = useState([]);
+
   const getOffer = () => {
     const requestOption = {
       method: "GET",
@@ -34,18 +35,17 @@ const Offer = () => {
     };
 
     fetch(`http://localhost:8080/api/v1/Offer/${id}`, requestOptions)
-    .then(() => console.log("offer deleted"))
+    .then(() => getOffer())
     .catch(err => console.log(err))
 
-    getOffer();
   };
 
   // table header data
   const tableHeaders = [
     "Offer Name",
     "Spa Name",
-    "Priority",
     "Slug",
+    "Priority",
     "Active",
     "More",
     "Action",
@@ -176,9 +176,11 @@ const Offer = () => {
                       }}
                     >
                       <div className="image__container">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Earum, unde!
-                        {/* <img src={require(`../assets/${spa.image}`)} alt="" /> */}
+                        {/* <img
+                          src="https://www.sammeechward.com/_next/image?url=https:%2F%2Fraw.githubusercontent.com%2Fmeech-ward%2Fsammeechward.com_mdx%2Fmaster%2Fcontent%2Farticles%2Fweb-dev%2Fuploading-images-express-and-react%2Fimages%2Fuploading-images-express-and-react.png&w=3840&q=75"
+                          alt=""
+                        /> */}
+                        <img src={spa.Image[0].data.data} alt="" />
                       </div>
                     </div>
                   </>
