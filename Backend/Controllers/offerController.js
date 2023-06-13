@@ -27,33 +27,37 @@ export const getoffer = async (req, res) => {
 
 export const postOffer = async (req, res) => {
   try {
-    const { Name, Slug , Select_Spa , Priority } = req.body;
-    
-    if (!req.file) {
-      return res.status(400).json({ error: 'No file uploaded' });
+    const { Name, Slug, Select_Spa, Priority } = req.body;
+
+    const images = [];
+    if (req.files && req.files.Image) {
+      for (const file of req.files.Image) {
+        const imageData = fs.readFileSync(file.path).toString('base64');
+        images.push({
+          data: imageData,
+          contentType: file.mimetype,
+        });
+        fs.unlinkSync(file.path); // Delete the temporary file
+      }
     }
-    
-    const { buffer, mimetype } = req.file;
 
     const newOffer = new OfferModel({
       Name,
       Slug,
       Select_Spa,
       Priority,
-      Image: {
-        data: buffer,
-        contentType: mimetype,
-      },
+      Image: images,
     });
 
     await newOffer.save();
 
-    res.status(201).json({ message: 'Offer created successfully', offer: newOffer });
+    res.status(201).json({ message: 'Therapy created successfully', offer: newOffer });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: 'Failed to create offer' });
+    res.status(500).json({ error: 'Failed to create therapy' });
   }
 };
+
 //Logic function for delete offers
 export const deleteOffer = async (req, res) => {
   try {

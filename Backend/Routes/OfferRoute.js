@@ -2,6 +2,7 @@
 // Purpose : Define offers creating and receiving routes
 
 import express from "express";
+
 //Importing logic functions from controllers
 
 import { getoffer, postOffer, deleteOffer } from "../Controllers/offerController.js";
@@ -14,7 +15,12 @@ const upload = multer({ dest: 'uploads/' });
 
 OfferRoute
   .get("/", getoffer)
-  .post("/", upload.single('image'), postOffer)
+  .post("/", upload.fields([
+     {
+      name : 'Image',
+      maxCount : 5
+     }
+  ]), postOffer)
   .delete("/:id", deleteOffer);
 
 export default OfferRoute;
