@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Page.css";
 
 import { IoIosArrowDropdown } from "react-icons/io";
@@ -10,7 +10,7 @@ const Therapy = () => {
   // Getting Therapy Data
   const [TherapyData, setTherapyData] = useState([]);
 
-  useEffect(() => {
+  const getTherapy = () => {
     const requestOption = {
       method: "GET",
       header: { "Content-Type": "application/json" },
@@ -19,7 +19,25 @@ const Therapy = () => {
       .then((res) => res.json())
       .then((data) => setTherapyData(data.data))
       .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    getTherapy();
   }, []);
+
+  // Deleting Therapy Data
+  const deleteTherapy = (id) => {
+    console.log("delete called");
+    fetch(`http://localhost:8080/api/v1/therapy/${id}`, {
+      method: "DELETE"
+    })
+      .then((result) => {
+        result.json().then((resp) => {
+          console.warn(resp);
+        });
+      })
+      .catch((err) => console.log(err));
+      getTherapy();
+  };
 
   // table header data
   const tableHeaders = ["Name", "Priority", "Slug", "More", "Actions"];
@@ -61,16 +79,16 @@ const Therapy = () => {
   return (
     <div className="main_list__container">
       <div className="mini_navbar__container">
-        <form class="d-flex" onSubmit={(e) => e.preventDefault()}>
+        <form className="d-flex" onSubmit={(e) => e.preventDefault()}>
           <input
-            class="form-control me-2"
+            className="form-control me-2"
             type="search"
             placeholder="Search"
             aria-label="Search"
             value={searchTerm}
             onChange={handleSearch}
           />
-          <button class="btn btn-outline-success" type="submit">
+          <button className="btn btn-outline-success" type="submit">
             Search
           </button>
         </form>
@@ -115,7 +133,12 @@ const Therapy = () => {
                         )}
                       </td>
                       <td>
-                        <AiFillDelete />
+                        <AiFillDelete
+                          onClick={() => deleteTherapy(therapy._id)}
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
                         &nbsp;&nbsp;
                         <FaEdit />
                       </td>
@@ -128,11 +151,8 @@ const Therapy = () => {
                       }}
                     >
                       <div className="image__container">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur natus molestiae nam consequuntur accusamus numquam tenetur deserunt expedita mollitia nulla.
-                        {/* <img
-                          src={require(`../assets/${therapy.image}`)}
-                          alt=""
-                        /> */}
+                        {/* <img src={require(`../assets/${therapy.Image}`)} alt="" /> */}
+                        Here image will appear
                       </div>
                     </div>
                   </>

@@ -1,67 +1,63 @@
 import React, { useState } from "react";
 import "./forms.css";
 
-const OffersForm = () => {
-  // Handling submit
-  const [name, setName] = useState("");
+const AreaForm = () => {
+  const [Name, setName] = useState("");
   const [Slug, setSlug] = useState("");
-  const [Priority, setPriority] = useState(null);
-  const [spa, setspa] = useState("");
-  const [Image, setImage] = useState(null);
+  const [Priority, setPriority] = useState(0);
+  const [Image, setImage] = useState("");
 
-  const convertToBase64 = (e) => {
+  const converttoBase64 = (e) => {
     let reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = () => setImage(reader.result);
     reader.onerror = (error) => console.log(error);
   };
 
-  const add_offer = () => {
+  const addTherapy = () => {
     let data = {
-      Name: name,
+      Name: Name,
       Slug: Slug,
-      Select_Spa: spa,
       Priority: Priority,
       Image: Image,
     };
-
-    let requestOption = {
+    const requestOptions = {
       method: "POST",
-      header: {
+      headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     };
-    fetch("/api/v1/Offer", requestOption).then(
-      (result) => {
-        result
-          .json()
-          .then((response) => {
-            console.log(response);
-          })
-          .catch((error) => console.log(error));
-      }
-    );
+
+    fetch("http://localhost:8080/api/v1/therapy", requestOptions)
+      .then((result) => {
+        result.json().then((res) => {
+          console.warn(res);
+        });
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
     <>
       <div className="main-container">
         <div className="container">
-          <form method="post">
-            <h1>Offer</h1>
+          <form method="post" encType="multipart/form-data">
+            <h1>Add Area</h1>
+
             <div className="form-group">
               <label htmlFor="name">Name *</label>
               <input
                 className="form-control"
                 type="text"
-                name="text"
+                name="name"
                 id="name"
-                placeholder="Enter Name"
+                placeholder="Enter name"
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
+
             <div className="form-group">
               <label htmlFor="slug">Slug *</label>
               <input
@@ -71,35 +67,18 @@ const OffersForm = () => {
                 id="slug"
                 placeholder="Enter slug"
                 onChange={(e) => setSlug(e.target.value)}
-                required
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="name">Select Spa(s) *</label>
-              <select
-                name="spa"
-                style={{ height: "fit-content" }}
-                className="form-control"
-                id="spas"
-                onChange={(e) => setspa(e.target.value)}
-                // multiple
-              >
-                <option value="Spa 1">Spa 1</option>
-                <option value="Spa 2">Spa 2</option>
-                <option value="Spa 3">Spa 3</option>
-                <option value="Spa 4">Spa 4</option>
-              </select>
-            </div>
+
             <div className="form-group">
               <label htmlFor="priority">Priority *</label>
               <input
                 className="form-control"
                 type="number"
-                name="number"
-                id="priority"
-                placeholder="Enter Priority"
+                name="text"
+                id="text"
+                placeholder="Enter Prioriy"
                 onChange={(e) => setPriority(e.target.value)}
-                required
               />
             </div>
 
@@ -111,17 +90,30 @@ const OffersForm = () => {
                 type="file"
                 name="image"
                 id="image"
-                onChange={(e) => convertToBase64}
-                required
+                multiple="multiple"
+                accept="image/*"
+                onChange={converttoBase64}
               />
+              <div className="image_preview"
+              style={{
+                margin: "1rem 0"
+              }}>
+                {Image === "" || Image === null ? (
+                  ""
+                ) : (
+                  <img
+                    src={Image}
+                    alt=""
+                    style={{
+                      width: "50%"
+                    }}
+                  />
+                )}
+              </div>
             </div>
 
-            <button
-              className="submit-btn"
-              type="submit"
-              onClick={() => add_offer}
-            >
-              Add Offer
+            <button className="submit-btn" type="submit" onClick={addTherapy}>
+              Add Therapy
             </button>
           </form>
         </div>
@@ -130,4 +122,4 @@ const OffersForm = () => {
   );
 };
 
-export default OffersForm;
+export default AreaForm;

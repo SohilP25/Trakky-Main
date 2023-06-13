@@ -104,9 +104,18 @@ const Sidebar = () => {
                     <AiOutlineUnorderedList />
                     &nbsp;&nbsp; List Cities
                   </NavLink>
+                  <NavLink to={"/addcity"}>
+                    <GrAdd />
+                    &nbsp;&nbsp; Add City
+                  </NavLink>
+
                   <NavLink to={"/areas"}>
                     <AiOutlineUnorderedList />
                     &nbsp;&nbsp; List Areas
+                  </NavLink>
+                  <NavLink to={"/addarea"}>
+                    <GrAdd />
+                    &nbsp;&nbsp; Add Area
                   </NavLink>
                 </div>
               </div>
