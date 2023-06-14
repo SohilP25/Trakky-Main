@@ -32,7 +32,7 @@ const TherapyForm = () => {
         body: therapyModel,
       });
 
-      alert("Offer uploaded successfully");
+      alert("Therapy uploaded successfully");
     } catch (error) {
       console.error("Error uploading image", error);
     }

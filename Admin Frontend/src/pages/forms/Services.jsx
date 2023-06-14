@@ -21,7 +21,7 @@ const ServicesForm = () => {
     }
 
     const formData = new FormData();
-    formData.append("Name", Name);
+    formData.append("Name", serviceName);
 
 
     try {

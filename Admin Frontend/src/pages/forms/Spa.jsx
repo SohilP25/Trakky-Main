@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./forms.css";
 
 const SpaForm = () => {
@@ -6,13 +6,18 @@ const SpaForm = () => {
   const [address, setAddress] = useState("");
   const [landmark, setLandmark] = useState("");
   const [mobileNumber, setMobileNumber] = useState(null);
-  const [mainImage, setMainImage] = useState(null);
-  const [images, setImages] = useState(null);
+  const [Image, setImage] = useState(null);
   const [openTime, setOpenTime] = useState("");
   const [closeTime, setCloseTime] = useState("");
-  const [facilities, setFacilities] = useState([]);
   const [slug, setSlug] = useState("");
   const [priority, setPriority] = useState(null);
+  const [bookingNumber, setBookingNumber] = useState(null);
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
+  const [GMapLink, setGMapLink] = useState(null);
+  const [area, setArea] = useState("");
+  const [city, setCity] = useState("");
+  const [facilities, setFacilities] = useState([]);
   const [aboutUs, setAboutUs] = useState("");
   const [open, setOpen] = useState(false);
   const [verified, setVerified] = useState(false);
@@ -20,18 +25,11 @@ const SpaForm = () => {
   const [premium, setPremium] = useState(false);
   const [luxurious, setLuxurious] = useState(false);
   const [services, setServices] = useState([]);
-  const [whatsAppNumber, setWhatsAppNumber] = useState(null);
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
-  const location = {
-    type: "Point",
-    coordinates: [longitude, latitude],
-  };
-
 
   const handleFileChange = (event) => {
-    setMainImage(event.target.files[0]);
+    setImage(event.target.files[0]);
   };
+
   // Post Request Starts
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -40,12 +38,20 @@ const SpaForm = () => {
       console.log("Please select a file");
       return;
     }
+    const location = {
+      type: "Point",
+      coordinates: [longitude, latitude],
+    };
 
     const formData = new FormData();
     formData.append("name", spaname);
     formData.append("address", address);
     formData.append("landmark", landmark);
     formData.append("mobileNumber", mobileNumber);
+    formData.append("bookingNumber", bookingNumber);
+    formData.append("gmapLink", GMapLink);
+    formData.append("imageUrl", Image);
+    formData.append("location", location);
     formData.append("openTime", openTime);
     formData.append("closeTime", closeTime);
     formData.append("facilities", facilities);
@@ -58,10 +64,8 @@ const SpaForm = () => {
     formData.append("premium", premium);
     formData.append("luxurious", luxurious);
     formData.append("services", services);
-    formData.append("location", location);
-    formData.append("mainImages", mainImage);
-    formData.append("images", images);
-    formData.append("whatsAppNumber", whatsAppNumber);
+    formData.append("area", area);
+    formData.append("city", city);
 
     try {
       await fetch("http://localhost:8080/api/v1/Offer", {
@@ -75,6 +79,37 @@ const SpaForm = () => {
     }
   };
   // Post Request Ends
+
+  // Getting city list
+  const [cityList, setCityList] = useState([])
+
+  useEffect(() => {
+	fetch("http://localhost:8080/api/v1/cities", {
+		method: 'GET'
+	})
+	.then((resp) => resp.json())
+	.then((data) => setCityList(data))
+	.catch((err) => console.log(err))
+  }, [])
+
+  const cityData = cityList.map(data => data.name)
+
+  // Getting area list
+  const [areaList, setAreaList] = useState([])
+
+  useEffect(() => {
+	fetch("http://localhost:8080/api/v1/areas", {
+		method: 'GET'
+	})
+	.then((resp) => resp.json())
+	.then((data) => setAreaList(data))
+	.catch((err) => console.log(err))
+  }, [])
+
+  const areaData = areaList.map(data => data.name)
+
+
+
 
   return (
     <div className="main-container">
@@ -123,7 +158,7 @@ const SpaForm = () => {
               placeholder="Enter WhatsApp Number"
               required
               autoComplete="off"
-              onChange={(e) => setWhatsAppNumber(e.target.value)}
+              onChange={(e) => setBookingNumber(e.target.value)}
             />
           </div>
 
@@ -138,7 +173,7 @@ const SpaForm = () => {
               placeholder="Enter Google Maps Link"
               required
               autoComplete="off"
-              onChange={(e) => setSpaName(e.target.value)}
+              onChange={(e) => setGMapLink(e.target.value)}
             />
           </div>
 
@@ -153,6 +188,7 @@ const SpaForm = () => {
               placeholder="Enter Latitude"
               required
               autoComplete="off"
+              onChange={(e) => setLatitude(e.target.value)}
             />
           </div>
 
@@ -167,6 +203,7 @@ const SpaForm = () => {
               placeholder="Enter Longitude"
               required
               autoComplete="off"
+              onChange={(e) => setLongitude(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -182,6 +219,7 @@ const SpaForm = () => {
                   placeholder="Enter Timings"
                   required
                   autoComplete="off"
+				  onChange={(e) => setOpenTime(e.target.value)}
                 />
               </div>
               <div className="to-time">
@@ -194,6 +232,7 @@ const SpaForm = () => {
                   placeholder="Enter Timings"
                   required
                   autoComplete="off"
+				  onChange={(e) => setCloseTime(e.target.value)}
                 />
               </div>
             </div>
@@ -209,6 +248,7 @@ const SpaForm = () => {
               placeholder="Enter address"
               required
               autoComplete="off"
+              onChange={(e) => setAddress(e.target.value)}
             />
           </div>
 
@@ -222,6 +262,7 @@ const SpaForm = () => {
               placeholder="Enter Landmark"
               required
               autoComplete="off"
+              onChange={(e) => setLandmark(e.target.value)}
             />
           </div>
 
@@ -235,9 +276,35 @@ const SpaForm = () => {
               placeholder="Enter Priority"
               required
               autoComplete="off"
+              onChange={(e) => setPriority(e.target.value)}
             />
           </div>
 
+
+          <div className="form-group">
+            <label htmlFor="city">City *</label>
+            <input
+              className="form-control"
+              type="dropdown"
+              name="city"
+              list="cities"
+              id="city"
+              placeholder="Select City"
+              required
+              autoComplete="off"
+              onChange={(e) => setCity(e.target.value)}
+            />
+
+            <datalist id="cities">
+              <option value="">--select--</option>
+			  {cityData.map((city, index) => {
+				return (
+					<option key={index} value={city}>{city}</option>
+				)
+			  })}
+            </datalist>
+          </div>
+		  
           <div className="form-group">
             <label htmlFor="area">Area *</label>
             <input
@@ -249,6 +316,7 @@ const SpaForm = () => {
               placeholder="Select Area"
               required
               autoComplete="off"
+              onChange={(e) => setArea(e.target.value)}
             />
 
             <datalist id="areas">
@@ -262,29 +330,6 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="city">City *</label>
-            <input
-              className="form-control"
-              type="dropdown"
-              name="city"
-              list="cities"
-              id="city"
-              placeholder="Select City"
-              required
-              autoComplete="off"
-            />
-
-            <datalist id="cities">
-              <option value="City 1" />
-              <option value="City 2" />
-              <option value="City 3" />
-              <option value="City 4" />
-              <option value="City 5" />
-              <option value="City 6" />
-            </datalist>
-          </div>
-
-          <div className="form-group">
             <label htmlFor="slug">Slug *</label>
             <input
               className="form-control"
@@ -294,6 +339,7 @@ const SpaForm = () => {
               placeholder="Enter slug"
               required
               autoComplete="off"
+              onChange={(e) => setSlug(e.target.value)}
             />
           </div>
 
@@ -311,7 +357,7 @@ const SpaForm = () => {
             />
           </div>
 
-          <div className="form-group">
+          {/* <div className="form-group">
             <label htmlFor="image">Image *</label>
             <input
               className="form-control"
@@ -324,7 +370,7 @@ const SpaForm = () => {
               required
               autoComplete="off"
             />
-          </div>
+          </div> */}
 
           <button className="submit-btn" onSubmit={handleSubmit} type="submit">
             add spa

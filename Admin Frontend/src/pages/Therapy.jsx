@@ -30,13 +30,7 @@ const Therapy = () => {
     fetch(`http://localhost:8080/api/v1/therapy/${id}`, {
       method: "DELETE",
     })
-<<<<<<< HEAD
       .then(() => getTherapy())
-=======
-      .then(() => {
-        getTherapy();
-      })
->>>>>>> f1509c1475d91875dc7eb631855f9a408ffe1a4d
       .catch((err) => console.log(err));
   };
 
