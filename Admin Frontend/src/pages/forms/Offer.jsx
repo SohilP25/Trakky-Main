@@ -1,5 +1,19 @@
 import React, { useState } from "react";
+// import axios from 'axios';
 import "./forms.css";
+
+// const { createProxyMiddleware } = require('http-proxy-middleware');
+
+// module.exports = function(app) {
+//   app.use(
+//     '/api',
+//     createProxyMiddleware({
+//       target: 'http://localhost:8080',
+//       changeOrigin: true,
+//     })
+//   );
+// };
+
 const OffersForm = () => {
   const [name, setName] = useState("");
   const [Slug, setSlug] = useState("");
@@ -8,6 +22,7 @@ const OffersForm = () => {
   const [Image, setImage] = useState(null);
 
   const handleFileChange = (event) => {
+    console.log(event.target.files[0]);
     setImage(event.target.files[0]);
   };
 
@@ -20,17 +35,17 @@ const OffersForm = () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("Name", name);
-    formData.append("Priority", Priority);
-    formData.append("Slug", Slug);
-    formData.append("Select_Spa", spa);
-    formData.append("Image", Image);
+    const offerModel = new FormData();
+    offerModel.append("Name", name);
+    offerModel.append("Slug", Slug);
+    offerModel.append("Select_Spa", spa);
+    offerModel.append("Priority", Priority);
+    offerModel.append("imageUrl", Image);
 
     try {
-      await fetch("http://localhost:8080/api/v1/Offer", {
+      await fetch("/api/v1/Offer", {
         method: "POST",
-        body: formData,
+        body: offerModel,
       });
 
       alert("Offer uploaded successfully");
@@ -127,5 +142,4 @@ const OffersForm = () => {
     </>
   );
 };
-
 export default OffersForm;
