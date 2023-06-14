@@ -24,9 +24,9 @@ export const getallCities = async (req, res) => {
 
 
   export const addCity =  async (req, res) => {
-    const { name } = req.body;
+    const { name ,Priority ,Current_time } = req.body;
     try {
-      const city = await City.create({ name });
+      const city = await City.create({ name ,Priority ,Current_time});
       res.json(city);
     } catch (error) {
       res.status(500).json({ error: 'An error occurred while adding a new city.' });
@@ -35,9 +35,9 @@ export const getallCities = async (req, res) => {
 
   export const addCityToArea = async (req, res) => {
     const { cityId } = req.params;
-    const { name } = req.body;
+    const { name ,Priority} = req.body;
     try {
-      const area = await Area.create({ name, city: cityId });
+      const area = await Area.create({ name, Priority ,city: cityId });
       res.json(area);
     } catch (error) {
       res.status(500).json({ error: 'An error occurred while adding a new area.' });
@@ -46,9 +46,9 @@ export const getallCities = async (req, res) => {
 
   export const updateCity = async (req, res) => {
     const { cityId } = req.params;
-    const { name } = req.body;
+    const { name ,Priority ,Current_time  } = req.body;
     try {
-      const city = await City.findByIdAndUpdate(cityId, { name }, { new: true });
+      const city = await City.findByIdAndUpdate(cityId, { name ,Priority ,Current_time }, { new: true });
       if (!city) {
         return res.status(404).json({ error: 'City not found.' });
       }
@@ -60,9 +60,9 @@ export const getallCities = async (req, res) => {
 
   export const updateAreaOfCity =  async (req, res) => {
     const { areaId } = req.params;
-    const { name } = req.body;
+    const { name ,Priority} = req.body;
     try {
-      const area = await Area.findByIdAndUpdate(areaId, { name }, { new: true });
+      const area = await Area.findByIdAndUpdate(areaId, { name ,Priority}, { new: true });
       if (!area) {
         return res.status(404).json({ error: 'Area not found.' });
       }

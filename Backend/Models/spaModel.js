@@ -32,6 +32,14 @@ const spaSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  City: {
+    type: String,
+    required: false,
+  },
+  Area: {
+    type: String,
+    required: false,
+  },
   // images: {
   //   type: [String],
   //   required: true,
