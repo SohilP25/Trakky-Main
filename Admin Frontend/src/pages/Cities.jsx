@@ -8,7 +8,7 @@ import { CitiesData } from "../data/mockData";
 
 const Cities = () => {
   // table header data
-  const tableHeaders = ["City Name", "Priority", "Updated At", "Actions"];
+  const tableHeaders = ["City Name", "Priority", "Actions"];
 
   // Handling view more button
   const [visible, setVisible] = useState(10);
@@ -77,7 +77,6 @@ const Cities = () => {
                   <tr key={index}>
                     <td>{city.cityName}</td>
                     <td>{city.priority}</td>
-                    <td>{city.date}</td>
 
                     <td>
                       <AiFillDelete />

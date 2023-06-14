@@ -30,7 +30,7 @@ const OffersForm = () => {
     offerModel.append("imageUrl", Image);
 
     try {
-      await fetch("/api/v1/Offer", {
+      await fetch("http://localhost:8080/api/v1/Offer", {
         method: "POST",
         body: offerModel,
       });

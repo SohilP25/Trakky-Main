@@ -139,7 +139,7 @@ const Services = () => {
 
         <div
           className="view_more__button"
-          style={{ display: show ? "block" : "none" }}
+          style={{ display: show && SpaServices.length > 10 ? "block" : "none" }}
         >
           <button onClick={showMoreItems}>View More</button>
         </div>

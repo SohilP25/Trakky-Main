@@ -5,39 +5,39 @@ const TherapyForm = () => {
   const [Name, setName] = useState("");
   const [Slug, setSlug] = useState("");
   const [Priority, setPriority] = useState(0);
-  const [Image, setImage] = useState("");
+  const [Image, setImage] = useState(null);
 
-  const converttoBase64 = (e) => {
-    let reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = () => setImage(reader.result);
-    reader.onerror = (error) => console.log(error);
+  const handleFileChange = (event) => {
+    setImage(event.target.files[0]);
   };
 
-  const addTherapy = () => {
-    let data = {
-      Name: Name,
-      Slug: Slug,
-      Priority: Priority,
-      Image: Image,
-    };
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    };
+  // Post Request Starts
+  const addTherapy = async (event) => {
+    event.preventDefault();
 
-    fetch("http://localhost:8080/api/v1/therapy", requestOptions)
-      .then((result) => {
-        result.json().then((res) => {
-          console.warn(res);
-        });
-      })
-      .catch((err) => console.log(err));
+    if (!Image) {
+      console.log("Please select a file");
+      return;
+    }
+
+    const therapyModel = new FormData();
+    therapyModel.append("Name", Name);
+    therapyModel.append("Slug", Slug);
+    therapyModel.append("Priority", Priority);
+    therapyModel.append("imageUrl", Image);
+
+    try {
+      await fetch("http://localhost:8080/api/v1/Therapy", {
+        method: "POST",
+        body: therapyModel,
+      });
+
+      alert("Offer uploaded successfully");
+    } catch (error) {
+      console.error("Error uploading image", error);
+    }
   };
+  // Post Request Ends
 
   return (
     <>
@@ -91,13 +91,15 @@ const TherapyForm = () => {
                 name="image"
                 id="image"
                 multiple="multiple"
+                onChange={handleFileChange}
                 accept="image/*"
-                onChange={converttoBase64}
               />
-              <div className="image_preview"
-              style={{
-                margin: "1rem 0"
-              }}>
+              <div
+                className="image_preview"
+                style={{
+                  margin: "1rem 0",
+                }}
+              >
                 {Image === "" || Image === null ? (
                   ""
                 ) : (
@@ -105,7 +107,7 @@ const TherapyForm = () => {
                     src={Image}
                     alt=""
                     style={{
-                      width: "50%"
+                      width: "50%",
                     }}
                   />
                 )}

@@ -1,7 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import "./forms.css";
 
 const ServicesForm = () => {
+  const [Select_Spa, setSelect_Spa] = useState("")
+  const [serviceName, setServiceName] = useState("")
+  const [servicetime, setServicetime] = useState(null)
+  const [description, setDescription] = useState("")
+  const [price, setPrice] = useState("")
+  const [discount, setDiscount] = useState(null)
+  const [therapy, setTherapy] = useState("")
+
+
+  // Post Request Starts
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!Image) {
+      console.log("Please select a file");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("Name", Name);
+
+
+    try {
+      await fetch("http://localhost:8080/api/v1/Service", {
+        method: "POST",
+        body: formData,
+      });
+
+      alert("Service uploaded successfully");
+    } catch (error) {
+      console.error("Error uploading image", error);
+    }
+  };
+  // Post Request Ends
+
   return (
     <>
       <div className="main-container">
@@ -89,12 +124,12 @@ const ServicesForm = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="price">Disount</label>
+              <label htmlFor="price">Disount *</label>
               <input
                 className="form-control"
                 type="text"
-                name="text"
-                id="text"
+                name="discount"
+                id="discount"
                 placeholder="Enter Discount"
                 autoComplete="off"
               />
