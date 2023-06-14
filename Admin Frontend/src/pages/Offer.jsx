@@ -9,7 +9,6 @@ import { FaEdit } from "react-icons/fa";
 const Offer = () => {
   // Getting offer data
   const [offersData, setOffersData] = useState([]);
-
   const getOffer = () => {
     const requestOption = {
       method: "GET",
@@ -24,19 +23,14 @@ const Offer = () => {
     getOffer();
   }, []);
 
-  // Deleting offer data
+  // Deleting Offers Data
   const deleteOffer = (id) => {
-    const requestOptions = {
+    console.log("delete called");
+    fetch(`http://localhost:8080/api/v1/Offer/${id}`, {
       method: "DELETE",
-      headers: {
-        Authorization: "Bearer my-token",
-        "My-Custom-Header": "foobar",
-      },
-    };
-
-    fetch(`http://localhost:8080/api/v1/Offer/${id}`, requestOptions)
-    .then(() => getOffer())
-    .catch(err => console.log(err))
+    })
+      .then(() => getOffer())
+      .catch((err) => console.log(err));
   };
 
   // table header data
@@ -175,11 +169,7 @@ const Offer = () => {
                       }}
                     >
                       <div className="image__container">
-                        {/* <img
-                          src="https://www.sammeechward.com/_next/image?url=https:%2F%2Fraw.githubusercontent.com%2Fmeech-ward%2Fsammeechward.com_mdx%2Fmaster%2Fcontent%2Farticles%2Fweb-dev%2Fuploading-images-express-and-react%2Fimages%2Fuploading-images-express-and-react.png&w=3840&q=75"
-                          alt=""
-                        /> */}
-                        <img src={spa.Image} alt="" />
+                        <img src={spa.imageUrl} alt="spaImage" />
                       </div>
                     </div>
                   </>
