@@ -27,6 +27,20 @@ const Spa = () => {
     getSpa();
   }, []);
 
+  // Deleting Spa
+  const deleteSpa = (id) => {
+    const requestOptions = {
+      method: "DELETE",
+      headers: {
+        Authorization: "Bearer my-token",
+        "My-Custom-Header": "foobar",
+      },
+    };
+
+    fetch(`http://localhost:8080/api/v1/Spas/${id}`, requestOptions)
+    .then(() => getSpa())
+    .catch(err => console.log(err))
+  };
 
   // table header data
   const tableHeaders = [
@@ -205,7 +219,7 @@ const Spa = () => {
                       </td>
 
                       <td>
-                        <AiFillDelete />
+                        <AiFillDelete onClick={() => deleteSpa(spa._id)} />
                         &nbsp;&nbsp;
                         <FaEdit />
                       </td>
