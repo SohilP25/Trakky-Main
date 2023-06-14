@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Page.css";
 
 import { AiFillDelete } from "react-icons/ai";
@@ -7,8 +7,25 @@ import { FaEdit } from "react-icons/fa";
 import { CitiesData } from "../data/mockData";
 
 const Cities = () => {
+
+  
+  // Getting city list
+  const [cityList, setCityList] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/v1/cities", {
+      method: "GET",
+    })
+      .then((resp) => resp.json())
+      .then((data) => setCityList(data))
+      .catch((err) => console.log(err));
+  }, []);
+
+
+
+
   // table header data
-  const tableHeaders = ["City Name", "Priority", "Actions"];
+  const tableHeaders = ["City Name", "Priority", "Updated At", "Actions"];
 
   // Handling view more button
   const [visible, setVisible] = useState(10);
@@ -70,14 +87,14 @@ const Cities = () => {
           </thead>
 
           <tbody>
-            {(searchTerm.length !== 0 ? searchResults : CitiesData)
+            {(searchTerm.length !== 0 ? searchResults : cityList)
               .slice(0, visible)
               .map((city, index) => {
                 return (
                   <tr key={index}>
-                    <td>{city.cityName}</td>
-                    <td>{city.priority}</td>
-
+                    <td>{city.name}</td>
+                    <td>{city.Priority}</td>
+                    <td>{city.Current_time}</td>
                     <td>
                       <AiFillDelete />
                       &nbsp;&nbsp;

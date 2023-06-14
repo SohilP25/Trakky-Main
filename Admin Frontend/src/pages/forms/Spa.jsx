@@ -81,35 +81,19 @@ const SpaForm = () => {
   // Post Request Ends
 
   // Getting city list
-  const [cityList, setCityList] = useState([])
+  const [cityList, setCityList] = useState([]);
 
   useEffect(() => {
-	fetch("http://localhost:8080/api/v1/cities", {
-		method: 'GET'
-	})
-	.then((resp) => resp.json())
-	.then((data) => setCityList(data))
-	.catch((err) => console.log(err))
-  }, [])
+    fetch("http://localhost:8080/api/v1/cities", {
+      method: "GET",
+    })
+      .then((resp) => resp.json())
+      .then((data) => setCityList(data))
+      .catch((err) => console.log(err));
+  }, []);
 
-  const cityData = cityList.map(data => data.name)
-
-  // Getting area list
-  const [areaList, setAreaList] = useState([])
-
-  useEffect(() => {
-	fetch("http://localhost:8080/api/v1/areas", {
-		method: 'GET'
-	})
-	.then((resp) => resp.json())
-	.then((data) => setAreaList(data))
-	.catch((err) => console.log(err))
-  }, [])
-
-  const areaData = areaList.map(data => data.name)
-
-
-
+  const cityData = cityList.map((data) => data.name);
+  const [areaData, setAreaData] = useState([]);
 
   return (
     <div className="main-container">
@@ -219,7 +203,7 @@ const SpaForm = () => {
                   placeholder="Enter Timings"
                   required
                   autoComplete="off"
-				  onChange={(e) => setOpenTime(e.target.value)}
+                  onChange={(e) => setOpenTime(e.target.value)}
                 />
               </div>
               <div className="to-time">
@@ -232,7 +216,7 @@ const SpaForm = () => {
                   placeholder="Enter Timings"
                   required
                   autoComplete="off"
-				  onChange={(e) => setCloseTime(e.target.value)}
+                  onChange={(e) => setCloseTime(e.target.value)}
                 />
               </div>
             </div>
@@ -280,7 +264,6 @@ const SpaForm = () => {
             />
           </div>
 
-
           <div className="form-group">
             <label htmlFor="city">City *</label>
             <input
@@ -292,19 +275,30 @@ const SpaForm = () => {
               placeholder="Select City"
               required
               autoComplete="off"
-              onChange={(e) => setCity(e.target.value)}
+              onChange={(e) => {
+                const city = e.target.value;
+                setCity(city)
+
+                // Find the selected city object from the cities list
+                const selectedCityObj = cityList.find((c) => c.name === city);
+
+                // Set the areas for the selected city
+                setArea(selectedCityObj.areas);
+              }}
             />
 
             <datalist id="cities">
               <option value="">--select--</option>
-			  {cityData.map((city, index) => {
-				return (
-					<option key={index} value={city}>{city}</option>
-				)
-			  })}
+              {cityData.map((city, index) => {
+                return (
+                  <option key={index} value={city}>
+                    {city}
+                  </option>
+                );
+              })}
             </datalist>
           </div>
-		  
+
           <div className="form-group">
             <label htmlFor="area">Area *</label>
             <input
@@ -320,12 +314,14 @@ const SpaForm = () => {
             />
 
             <datalist id="areas">
-              <option value="Area 1" />
-              <option value="Area 2" />
-              <option value="Area 3" />
-              <option value="Area 4" />
-              <option value="Area 5" />
-              <option value="Area 6" />
+            <option value="">--select--</option>
+              {areaData.map((area, index) => {
+                return (
+                  <option key={index} value={area}>
+                    {area}
+                  </option>
+                );
+              })}
             </datalist>
           </div>
 

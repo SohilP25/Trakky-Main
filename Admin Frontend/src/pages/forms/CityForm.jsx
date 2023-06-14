@@ -3,36 +3,36 @@ import "./forms.css";
 
 const CityForm = () => {
   const [Name, setName] = useState("");
-  const [Priority, setPriority] = useState(0);
+  const [Priority, setPriority] = useState(null);
 
-  const addCity = () => {
-    let data = {
-      Name: Name,
-      Priority: Priority,
-    };
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    };
+  // Post Request Starts
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-    fetch("http://localhost:8080/api/v1/cities", requestOptions)
-      .then((result) => {
-        result.json().then((res) => {
-          console.warn(res);
-        });
-      })
-      .catch((err) => console.log(err));
+    const formData = new FormData()
+    formData.append("name", Name)
+    formData.append("Priority", Priority)
+    formData.append("areas", [])
+
+
+    try {
+      await fetch("http://localhost:8080/api/v1/cities", {
+        method: "POST",
+        body: formData,
+      });
+
+      alert("City added successfully");
+    } catch (error) {
+      console.error("Error occured", error);
+    }
   };
+  // Post Request Ends
 
   return (
     <>
       <div className="main-container">
         <div className="container">
-          <form method="post" encType="multipart/form-data">
+          <form method="post" onSubmit={handleSubmit}>
             <h1>Add City</h1>
 
             <div className="form-group">
@@ -61,7 +61,7 @@ const CityForm = () => {
             </div>
 
 
-            <button className="submit-btn" type="submit" onClick={addCity}>
+            <button className="submit-btn" type="submit" onSubmit={handleSubmit}>
               Add City
             </button>
           </form>
