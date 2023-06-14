@@ -3,25 +3,34 @@ import mongoose from "mongoose";
 
 const serviceSchema = new mongoose.Schema(
     {
-      name: 
-        {  
+        select_spa: {
             type: String,
-            required: true 
-        },
-       price: 
-            { 
+            required: true
+          },
+        service_name: {
+            type: String,
+            required: true
+          },
+          service_time: {
+            type: String,
+            required: true
+          },
+          description: {
+            type: String,
+            required: true
+          },
+          price: {
             type: Number,
-            required: true 
-            },
-        category: 
-            { 
-                type: String,
-                required: true },
-        time: 
-            {
-                type: String,
-                required: true 
-            }
+            required: true
+          },
+          discount: {
+            type: Number,
+            required: true
+          },
+          therapies: {
+            type: String,
+            required: true
+          }
 }
 );
 
