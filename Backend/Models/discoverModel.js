@@ -16,10 +16,10 @@ const experienceScheme = mongoose.Schema(
             type: String,
             require: true
         },
-        image:{
-            data: Buffer,
-            contentType: String
-        }
+        imageUrl: {
+            type: String,
+            required: true,
+          }
     }
 )
 

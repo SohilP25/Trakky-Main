@@ -1,50 +1,43 @@
 // Author : Sohil
 // Purpose : Define experince posting and receiving logic that implemented in requests.
-import multer from 'multer'
 //setting options for multer
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
 import experienceModel from "../Models/discoverModel.js";
 
 //Logic function for receiving blogs
 export const getExperience = async (req, res) => {
-   const data = await blogModel.find();
-  
+   const data = await experienceModel.find();
+  try {
+    res.status(200).json({
+      message: "List of all experience",
+      data,
+      
+    });
+    console.log(res.body);
+    
+  } catch (error) {
+    res.status(500).json({
+      message: "Error on getting experience",
+      error,
+    });
+  }
 }
 
 //Logic function for creating(posting) blogs
 export const postExperience = async (req, res) => {
+  try {
     const data = req.body;
-    try {
-        console.log(data);
-        // if (!data.image) {
-        //     res.json({
-        //       success: false,
-        //       message: "You must provide at least 1 file"
-        //     });
-        //   }
-        //   else {
-            let imageUploadObject = {
-                title: req.body.title,
-                content: req.body.content,
-              image: {
-                data: req.body.image.buffer,
-                contentType: req.body.image.mimetype
-              }
-            };
-            const uploadObject = await experienceModel.create(imageUploadObject);
-        //   }
-          res.status(201).json({
-            message : "Experience Created",
-            Content : data
-        })
-    } catch (error) {
-        res.status(501).json({
-            message : "Error on creating experience",
-            error
-        })
-    }
-    
 
+    const fetchUrl = await req.file.location;      
 
+  const newExp =   new experienceModel({
+    ...data,
+    imageUrl: fetchUrl,
+  });
+
+    const expCreation = await experienceModel.create(newExp);
+    console.log(expCreation);
+    res.status(201).send("Exp. is created");
+  } catch (error) {
+    res.status(501).send("Error in Exp. creation")
+  }
 }
