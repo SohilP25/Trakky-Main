@@ -1,14 +1,10 @@
-// Author : Vishal & Rinal
+// Author : Vishal & Rinal & sohil
 // Purpose : Defining spa model/schema.
 import mongoose from "mongoose";
 import  Services  from "../Models/servicesModel.js";
 
 const spaSchema = new mongoose.Schema({
   name: {
-    type: String,
-    required: true,
-  },
-  address: {
     type: String,
     required: true,
   },
@@ -32,14 +28,14 @@ const spaSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  mainImage: {
+  imageUrl: {
     type: String,
     required: true,
   },
-  images: {
-    type: [String],
-    required: true,
-  },
+  // images: {
+  //   type: [String],
+  //   required: true,
+  // },
   location: {
     type: {
       type: String,
