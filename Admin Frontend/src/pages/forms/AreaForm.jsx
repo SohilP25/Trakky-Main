@@ -1,119 +1,124 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import "./forms.css";
 
 const AreaForm = () => {
   const [Name, setName] = useState("");
-  const [Slug, setSlug] = useState("");
   const [Priority, setPriority] = useState(0);
-  const [Image, setImage] = useState("");
+  const [city, setCity] = useState("")
+  const [cityId, setCityId] = useState(0)
 
-  const converttoBase64 = (e) => {
-    let reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = () => setImage(reader.result);
-    reader.onerror = (error) => console.log(error);
-  };
 
-  const addTherapy = () => {
+  const addArea = async (event) => {
+    event.preventDefault();
+
     let data = {
-      Name: Name,
-      Slug: Slug,
+      name: Name,
       Priority: Priority,
-      Image: Image,
+      city: city,
     };
-    const requestOptions = {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    };
+    try {
+      console.log(cityId)
+      console.log(data)
+      await fetch(`http://localhost:8080/api/v1/cities/${cityId}/areas`, {
+        method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        body: JSON.stringify(data),
+      });
 
-    fetch("http://localhost:8080/api/v1/therapy", requestOptions)
-      .then((result) => {
-        result.json().then((res) => {
-          console.warn(res);
-        });
-      })
-      .catch((err) => console.log(err));
+      alert("city uploaded successfully");
+    } catch (error) {
+      console.error("Error occured", error);
+    }
   };
+
+  
+  // Getting city list
+  const [cityList, setCityList] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/v1/cities", {
+      method: "GET",
+    })
+      .then((resp) => resp.json())
+      .then((data) => setCityList(data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  const cityData = cityList.map((data) => data.name);
 
   return (
     <>
       <div className="main-container">
         <div className="container">
-          <form method="post" encType="multipart/form-data">
+          <form method="post" onSubmit={addArea}>
             <h1>Add Area</h1>
 
             <div className="form-group">
-              <label htmlFor="name">Name *</label>
+              <label htmlFor="name">Area Name *</label>
               <input
                 className="form-control"
                 type="text"
-                name="name"
-                id="name"
+                name="areaname"
+                id="areaname"
                 placeholder="Enter name"
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-
             <div className="form-group">
-              <label htmlFor="slug">Slug *</label>
-              <input
-                className="form-control"
-                type="text"
-                name="text"
-                id="slug"
-                placeholder="Enter slug"
-                onChange={(e) => setSlug(e.target.value)}
-              />
-            </div>
+            <label htmlFor="city">City *</label>
+            <input
+              className="form-control"
+              type="dropdown"
+              name="city"
+              list="cities"
+              id="areacity"
+              placeholder="Select City"
+              required
+              autoComplete="off"
+              onChange={(e) => {
+                const city = e.target.value;
+                setCity(city);
+
+                // Find the selected city object from the cities list
+                const selectedCityObj = cityList.find((c) => c.name === city);
+
+                // Set the areas for the selected city
+                setCityId(selectedCityObj._id);
+              }}
+            />
+
+            <datalist id="cities">
+              <option value="">--select--</option>
+              {cityData.map((city, index) => {
+                return (
+                  <option key={index} value={city}>
+                    {city}
+                  </option>
+                );
+              })}
+            </datalist>
+          </div>
+
+
 
             <div className="form-group">
               <label htmlFor="priority">Priority *</label>
               <input
                 className="form-control"
                 type="number"
-                name="text"
-                id="text"
+                name="priority"
+                id="areapriority"
                 placeholder="Enter Prioriy"
                 onChange={(e) => setPriority(e.target.value)}
               />
             </div>
 
-            <div className="form-group">
-              <label htmlFor="image">Image *</label>
-              <input
-                className="form-control"
-                style={{ padding: "0.5rem" }}
-                type="file"
-                name="image"
-                id="image"
-                multiple="multiple"
-                accept="image/*"
-                onChange={converttoBase64}
-              />
-              <div className="image_preview"
-              style={{
-                margin: "1rem 0"
-              }}>
-                {Image === "" || Image === null ? (
-                  ""
-                ) : (
-                  <img
-                    src={Image}
-                    alt=""
-                    style={{
-                      width: "50%"
-                    }}
-                  />
-                )}
-              </div>
-            </div>
 
-            <button className="submit-btn" type="submit" onClick={addTherapy}>
-              Add Therapy
+            <button className="submit-btn" type="submit" onSubmit={addArea}>
+              Add Area
             </button>
           </form>
         </div>

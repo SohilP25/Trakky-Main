@@ -9,22 +9,45 @@ const CityForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const formData = new FormData()
-    formData.append("name", Name)
-    formData.append("Priority", Priority)
-    formData.append("areas", [])
+    // const formData = new FormData();
+    // formData.append("name", Name);
+    // formData.append("Priority", Priority);
+    // formData.append("areas", []);
 
+    // try {
+    //   console.log(formData);
+    //   await fetch("http://localhost:8080/api/v1/cities", {
+    //     method: "POST",
+    //     headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: formData,
+    //   });
 
-    try {
-      await fetch("http://localhost:8080/api/v1/cities", {
-        method: "POST",
-        body: formData,
-      });
+    //   alert("City added successfully");
+    // } catch (error) {
+    //   console.log("fail");
+    //   console.error("Error occured", error);
+    // }
 
-      alert("City added successfully");
-    } catch (error) {
-      console.error("Error occured", error);
-    }
+    let data = {
+      name: Name,
+      Priority: Priority,
+    };
+
+    fetch("http://localhost:8080/api/v1/cities/", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((result) => {
+        result.json().then((resp) => console.log(resp));
+      })
+      .catch((err) => console.log(err));
   };
   // Post Request Ends
 
@@ -47,7 +70,6 @@ const CityForm = () => {
               />
             </div>
 
-
             <div className="form-group">
               <label htmlFor="priority">Priority *</label>
               <input
@@ -60,8 +82,11 @@ const CityForm = () => {
               />
             </div>
 
-
-            <button className="submit-btn" type="submit" onSubmit={handleSubmit}>
+            <button
+              className="submit-btn"
+              type="submit"
+              onSubmit={handleSubmit}
+            >
               Add City
             </button>
           </form>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./forms.css";
+import axios from "axios";
 
 const SpaForm = () => {
   const [spaname, setSpaName] = useState("");
@@ -17,14 +18,6 @@ const SpaForm = () => {
   const [GMapLink, setGMapLink] = useState(null);
   const [area, setArea] = useState("");
   const [city, setCity] = useState("");
-  const [facilities, setFacilities] = useState([]);
-  const [aboutUs, setAboutUs] = useState("");
-  const [open, setOpen] = useState(false);
-  const [verified, setVerified] = useState(false);
-  const [topRated, setTopRated] = useState(false);
-  const [premium, setPremium] = useState(false);
-  const [luxurious, setLuxurious] = useState(false);
-  const [services, setServices] = useState([]);
 
   const handleFileChange = (event) => {
     setImage(event.target.files[0]);
@@ -42,44 +35,109 @@ const SpaForm = () => {
       type: "Point",
       coordinates: [longitude, latitude],
     };
+    let facilities = [];
+    let aboutUs = "";
+    let open = false;
+    let verified = false;
+    let topRated = false;
+    let premium = false;
+    let luxurious = false;
+    let services = [];
 
-    const formData = new FormData();
-    formData.append("name", spaname);
-    formData.append("address", address);
-    formData.append("landmark", landmark);
-    formData.append("mobileNumber", mobileNumber);
-    formData.append("bookingNumber", bookingNumber);
-    formData.append("gmapLink", GMapLink);
-    formData.append("imageUrl", Image);
-    formData.append("location", location);
-    formData.append("openTime", openTime);
-    formData.append("closeTime", closeTime);
-    formData.append("facilities", facilities);
-    formData.append("slug", slug);
-    formData.append("priority", priority);
-    formData.append("aboutUs", aboutUs);
-    formData.append("open", open);
-    formData.append("verified", verified);
-    formData.append("topRated", topRated);
-    formData.append("premium", premium);
-    formData.append("luxurious", luxurious);
-    formData.append("services", services);
-    formData.append("area", area);
-    formData.append("city", city);
+    let data = {
+      name: spaname,
+      address: address,
+      landmark: landmark,
+      mobileNumber: mobileNumber,
+      bookingnumber: bookingNumber,
+      gmapLink: GMapLink,
+      imageUrl: Image,
+      location: location,
+      openTime: openTime,
+      closeTime: closeTime,
+      facilities: facilities,
+      slug: slug,
+      priority: priority,
+      aboutUs: aboutUs,
+      open: open,
+      verified: verified,
+      topRated: topRated,
+      premium: premium,
+      luxurious: luxurious,
+      services: services,
+      Area: area,
+      City: city,
+    };
 
-    try {
-      await fetch("http://localhost:8080/api/v1/Offer", {
-        method: "POST",
-        body: formData,
-      });
+    // const formData = new FormData();
+    // formData.append("name", spaname);
+    // formData.append("address", address);
+    // formData.append("landmark", landmark);
+    // formData.append("mobileNumber", mobileNumber);
+    // formData.append("bookingNumber", bookingNumber);
+    // formData.append("gmapLink", GMapLink);
+    // formData.append("imageUrl", Image);
+    // formData.append("location", location);
+    // formData.append("openTime", openTime);
+    // formData.append("closeTime", closeTime);
+    // formData.append("facilities", JSON.stringify(facilities));
+    // formData.append("slug", slug);
+    // formData.append("priority", priority);
+    // formData.append("aboutUs", aboutUs);
+    // formData.append("open", open);
+    // formData.append("verified", verified);
+    // formData.append("topRated", topRated);
+    // formData.append("premium", premium);
+    // formData.append("luxurious", luxurious);
+    // formData.append("services", services);
+    // formData.append("Area", area);
+    // formData.append("City", city);
 
-      alert("Offer uploaded successfully");
-    } catch (error) {
-      console.error("Error uploading image", error);
-    }
-  };
+    // try {
+    //   console.log(data)
+    //   await fetch("http://localhost:8080/api/v1/spas", {
+    //     method: "POST",
+    //     headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: data,
+    //   });
+
+    //   alert("spas uploaded successfully");
+    // } catch (error) {
+    //   console.error("Error uploading image", error);
+    // }
+    console.log(data)
+    // fetch("http://localhost:8080/api/v1/spas", {
+  //     method: "POST",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(data),
+  //   })
+  //     .then((result) => {
+  //       result.json().then((resp) => {
+  //         console.log(resp);
+  //       });
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
+
+
+
+
+  axios.post("http://localhost:8080/api/v1/spas", data)
+  .then(response => {
+    console.log(response.data);
+  })
+  .catch(error => {
+    console.error(error);
+  });
   // Post Request Ends
-
+  }
   // Getting city list
   const [cityList, setCityList] = useState([]);
 
@@ -98,7 +156,7 @@ const SpaForm = () => {
   return (
     <div className="main-container">
       <div className="container">
-        <form method="post">
+        <form method="post" onSubmit={handleSubmit}>
           <h1>Spa</h1>
           <div className="form-group">
             <label htmlFor="name">Name of Spa *</label>
@@ -167,7 +225,7 @@ const SpaForm = () => {
               className="form-control"
               type="text"
               name="latitude"
-              id="directionlink"
+              id="latitude"
               contentEditable={false}
               placeholder="Enter Latitude"
               required
@@ -181,8 +239,8 @@ const SpaForm = () => {
             <input
               className="form-control"
               type="text"
-              name="directionlink"
-              id="directionlink"
+              name="longitude"
+              id="longitude"
               contentEditable={false}
               placeholder="Enter Longitude"
               required
@@ -277,13 +335,14 @@ const SpaForm = () => {
               autoComplete="off"
               onChange={(e) => {
                 const city = e.target.value;
-                setCity(city)
+                setCity(city);
 
                 // Find the selected city object from the cities list
                 const selectedCityObj = cityList.find((c) => c.name === city);
 
                 // Set the areas for the selected city
-                setArea(selectedCityObj.areas);
+                setAreaData(selectedCityObj.areas);
+                console.log(city, areaData);
               }}
             />
 
@@ -308,13 +367,13 @@ const SpaForm = () => {
               list="areas"
               id="area"
               placeholder="Select Area"
-              required
+              // required
               autoComplete="off"
               onChange={(e) => setArea(e.target.value)}
             />
 
             <datalist id="areas">
-            <option value="">--select--</option>
+              <option value="">--select--</option>
               {areaData.map((area, index) => {
                 return (
                   <option key={index} value={area}>

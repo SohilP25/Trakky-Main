@@ -1,15 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./forms.css";
 
 const ServicesForm = () => {
-  const [Select_Spa, setSelect_Spa] = useState("")
-  const [serviceName, setServiceName] = useState("")
-  const [servicetime, setServicetime] = useState(null)
-  const [description, setDescription] = useState("")
-  const [price, setPrice] = useState("")
-  const [discount, setDiscount] = useState(null)
-  const [therapy, setTherapy] = useState("")
+  const [selectSpa, setSelectSpa] = useState("");
+  const [serviceName, setServiceName] = useState("");
+  const [serviceTime, setServiceTime] = useState(null);
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [discount, setDiscount] = useState(null);
+  const [therapy, setTherapy] = useState("");
 
+  // Get therapies
+  const [therapyList, setTherapyList] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/v1/therapy", {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => setTherapyList(data.data))
+      .catch((err) => console.log(err));
+  }, []);
+  const therapyName = therapyList.map((data) => data.Name);
 
   // Post Request Starts
   const handleSubmit = async (event) => {
@@ -20,14 +32,33 @@ const ServicesForm = () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append("Name", serviceName);
+    // const formData = new FormData();
+    // formData.append("select_spa", selectSpa);
+    // formData.append("service_name", serviceName);
+    // formData.append("service_time", serviceTime);
+    // formData.append("description", description);
+    // formData.append("price", price);
+    // formData.append("discount", discount);
+    // formData.append("therapies", therapy);
 
-
+    let data = {
+      select_spa: selectSpa,
+      sevice_name: serviceName,
+      service_time: serviceTime,
+      description: description,
+      price: price,
+      discount: discount,
+      therapies: therapy
+    }
     try {
-      await fetch("http://localhost:8080/api/v1/Service", {
+      console.log(data);
+      await fetch("http://localhost:8080/api/v1/services", {
         method: "POST",
-        body: formData,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       });
 
       alert("Service uploaded successfully");
@@ -41,7 +72,7 @@ const ServicesForm = () => {
     <>
       <div className="main-container">
         <div className="container">
-          <form method="post">
+          <form method="post" onSubmit={handleSubmit}>
             <h1>Services</h1>
 
             <div className="form-group">
@@ -54,6 +85,7 @@ const ServicesForm = () => {
                 id="name"
                 placeholder="Select Spa"
                 autoComplete="off"
+                onChange={(e) => setSelectSpa(e.target.value)}
               />
               <datalist id="spa">
                 <option value="Spa 1" />
@@ -74,6 +106,7 @@ const ServicesForm = () => {
                 id="service"
                 placeholder="Enter Service Name"
                 autoComplete="off"
+                onChange={(e) => setServiceName(e.target.value)}
               />
             </div>
 
@@ -88,6 +121,7 @@ const ServicesForm = () => {
                 placeholder="Select Service time"
                 required
                 autoComplete="off"
+                onChange={(e) => setServiceTime(e.target.value)}
               />
               <datalist id="servicetime">
                 <option value="30 min" />
@@ -108,6 +142,7 @@ const ServicesForm = () => {
                 id="description"
                 placeholder="Enter Description"
                 autoComplete="off"
+                onChange={(e) => setDescription(e.target.value)}
               />
             </div>
 
@@ -121,6 +156,7 @@ const ServicesForm = () => {
                 placeholder="Enter Price"
                 required
                 autoComplete="off"
+                onChange={(e) => setPrice(e.target.value)}
               />
             </div>
             <div className="form-group">
@@ -132,6 +168,7 @@ const ServicesForm = () => {
                 id="discount"
                 placeholder="Enter Discount"
                 autoComplete="off"
+                onChange={(e) => setDiscount(e.target.value)}
               />
             </div>
 
@@ -146,18 +183,25 @@ const ServicesForm = () => {
                 placeholder="Select Therapy"
                 required
                 autoComplete="off"
+                onChange={(e) => setTherapy(e.target.value)}
               />
               <datalist id="therapies">
-                <option value="therapy 1" />
-                <option value="therapy 2" />
-                <option value="therapy 3" />
-                <option value="therapy 34" />
-                <option value="therapy 5" />
-                <option value="therapy 6" />
+                <option value="">--select--</option>
+                {therapyName.map((therapyname, index) => {
+                  return (
+                    <option value={therapyname} key={index}>
+                      {therapyname}
+                    </option>
+                  );
+                })}
               </datalist>
             </div>
 
-            <button className="submit-btn" type="submit">
+            <button
+              className="submit-btn"
+              onSubmit={handleSubmit}
+              type="submit"
+            >
               Add Service
             </button>
           </form>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Page.css";
 
 import { AiFillDelete } from "react-icons/ai";
@@ -8,13 +8,7 @@ import { AreasData } from "../data/mockData";
 
 const Areas = () => {
   // table header data
-  const tableHeaders = [
-    "Area Name",
-    "City",
-    "Priority",
-    "Updated At",
-    "Actions",
-  ];
+  const tableHeaders = ["Area Name", "City", "Actions"];
 
   // Handling view more button
   const [visible, setVisible] = useState(10);
@@ -40,14 +34,30 @@ const Areas = () => {
     const results = AreasData.filter(
       (item) =>
         item.areaName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.city.toLowerCase().includes(searchTerm.toLowerCase()) 
+        item.city.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     setSearchResults(results);
   };
 
+  // Getting area list
+  const [cityList, setCityList] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/v1/cities", {
+      method: "GET",
+    })
+      .then((resp) => resp.json())
+      .then((data) => setCityList(data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  // const cityName = cityList.map((data) => data.name);
+  // const [areaData, setAreaData] = useState([]);
+
   return (
     <div className="main_list__container">
+      {console.log(cityList)}
       <div className="mini_navbar__container">
         <form class="d-flex" onSubmit={(e) => e.preventDefault()}>
           <input
@@ -77,22 +87,26 @@ const Areas = () => {
           </thead>
 
           <tbody>
-            {(searchTerm.length !== 0 ? searchResults : AreasData)
+            {(searchTerm.length !== 0 ? searchResults : cityList)
               .slice(0, visible)
-              .map((area, index) => {
+              .map((city, index) => {
                 return (
-                  <tr key={index}>
-                    <td>{area.areaName}</td>
-                    <td>{area.city}</td>
-                    <td>{area.priority}</td>
-                    <td>{area.date}</td>
+                  <>
+                    {city.areas.map((area) => {
+                      return (
+                        <tr key={index}>
+                          <td>{area}</td>
+                          <td>{city.name}</td>
 
-                    <td>
-                      <AiFillDelete />
-                      &nbsp;&nbsp;
-                      <FaEdit />
-                    </td>
-                  </tr>
+                          <td>
+                            <AiFillDelete />
+                            &nbsp;&nbsp;
+                            <FaEdit />
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </>
                 );
               })}
           </tbody>
