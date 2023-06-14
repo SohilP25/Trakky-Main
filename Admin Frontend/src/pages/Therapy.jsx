@@ -28,15 +28,12 @@ const Therapy = () => {
   const deleteTherapy = (id) => {
     console.log("delete called");
     fetch(`http://localhost:8080/api/v1/therapy/${id}`, {
-      method: "DELETE"
+      method: "DELETE",
     })
-      .then((result) => {
-        result.json().then((resp) => {
-          console.warn(resp);
-        });
+      .then(() => {
+        getTherapy();
       })
       .catch((err) => console.log(err));
-      getTherapy();
   };
 
   // table header data
@@ -151,8 +148,7 @@ const Therapy = () => {
                       }}
                     >
                       <div className="image__container">
-                        {/* <img src={require(`../assets/${therapy.Image}`)} alt="" /> */}
-                        Here image will appear
+                        <img src={therapy.imageUrl} alt="" />
                       </div>
                     </div>
                   </>

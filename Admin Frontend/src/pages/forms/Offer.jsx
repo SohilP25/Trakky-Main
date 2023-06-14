@@ -1,18 +1,5 @@
 import React, { useState } from "react";
-// import axios from 'axios';
 import "./forms.css";
-
-// const { createProxyMiddleware } = require('http-proxy-middleware');
-
-// module.exports = function(app) {
-//   app.use(
-//     '/api',
-//     createProxyMiddleware({
-//       target: 'http://localhost:8080',
-//       changeOrigin: true,
-//     })
-//   );
-// };
 
 const OffersForm = () => {
   const [name, setName] = useState("");
@@ -22,7 +9,6 @@ const OffersForm = () => {
   const [Image, setImage] = useState(null);
 
   const handleFileChange = (event) => {
-    console.log(event.target.files[0]);
     setImage(event.target.files[0]);
   };
 
