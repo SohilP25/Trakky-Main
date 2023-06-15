@@ -49,7 +49,7 @@ const SpaForm = () => {
       address: address,
       landmark: landmark,
       mobileNumber: mobileNumber,
-      bookingnumber: bookingNumber,
+      bookingNumber: bookingNumber,
       gmapLink: GMapLink,
       imageUrl: Image,
       location: location,
@@ -93,21 +93,21 @@ const SpaForm = () => {
     // formData.append("Area", area);
     // formData.append("City", city);
 
-    // try {
-    //   console.log(data)
-    //   await fetch("http://localhost:8080/api/v1/spas", {
-    //     method: "POST",
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: data,
-    //   });
+    try {
+      console.log(data)
+      await fetch("http://localhost:8080/api/v1/spas", {
+        method: "POST",
+        // headers: {
+        //   Accept: "application/json",
+        //   "Content-Type": "application/json",
+        // },
+        body: data,
+      });
 
-    //   alert("spas uploaded successfully");
-    // } catch (error) {
-    //   console.error("Error uploading image", error);
-    // }
+      alert("spas uploaded successfully");
+    } catch (error) {
+      console.error("Error uploading image", error);
+    }
     console.log(data)
     // fetch("http://localhost:8080/api/v1/spas", {
   //     method: "POST",
@@ -129,13 +129,13 @@ const SpaForm = () => {
 
 
 
-  axios.post("http://localhost:8080/api/v1/spas", data)
-  .then(response => {
-    console.log(response.data);
-  })
-  .catch(error => {
-    console.error(error);
-  });
+  // axios.post("http://localhost:8080/api/v1/spas", data)
+  // .then(response => {
+  //   console.log(response.data);
+  // })
+  // .catch(error => {
+  //   console.error(error);
+  // });
   // Post Request Ends
   }
   // Getting city list

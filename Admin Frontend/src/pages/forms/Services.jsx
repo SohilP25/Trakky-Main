@@ -41,21 +41,29 @@ const ServicesForm = () => {
     // formData.append("discount", discount);
     // formData.append("therapies", therapy);
 
-    let data = {
-      select_spa: selectSpa,
-      sevice_name: serviceName,
-      service_time: serviceTime,
-      description: description,
-      price: price,
-      discount: discount,
-      therapies: therapy
-    }
+    let data =
+      // select_spa: selectSpa,
+      // sevice_name: serviceName,
+      // service_time: serviceTime,
+      // description: description,
+      // price: price,
+      // discount: discount,
+      // therapies: therapy
+
+      {
+        select_spa: selectSpa,
+        service_name: serviceName,
+        service_time: serviceTime,
+        description: description,
+        price: price,
+        discount: discount,
+        therapies: therapy,
+      };
     try {
       console.log(data);
       await fetch("http://localhost:8080/api/v1/services", {
         method: "POST",
         headers: {
-          Accept: "application/json",
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),

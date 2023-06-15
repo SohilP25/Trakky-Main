@@ -8,7 +8,7 @@ import { AreasData } from "../data/mockData";
 
 const Areas = () => {
   // table header data
-  const tableHeaders = ["Area Name", "City", "Actions"];
+  const tableHeaders = ["Area Name", "City", "Priority", "Actions"];
 
   // Handling view more button
   const [visible, setVisible] = useState(10);
@@ -41,23 +41,44 @@ const Areas = () => {
   };
 
   // Getting area list
-  const [cityList, setCityList] = useState([]);
+  const [areaData, setareaData] = useState([{}]);
+  const [allAreaList, setAllAreaList] = useState([{}]);
 
   useEffect(() => {
     fetch("http://localhost:8080/api/v1/cities", {
       method: "GET",
     })
       .then((resp) => resp.json())
-      .then((data) => setCityList(data))
+      .then((data) => {
+        const cityList = data;
+
+        cityList.map((city) => areaFunction(city));
+
+        setareaData(allAreaList);
+        console.log(allAreaList);
+      })
       .catch((err) => console.log(err));
   }, []);
 
-  // const cityName = cityList.map((data) => data.name);
-  // const [areaData, setAreaData] = useState([]);
+  const areaFunction = (city) => {
+    fetch(`http://localhost:8080/api/v1/cities/${city._id}/areas`, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((cityAreaList) => {
+        cityAreaList.map((area) =>
+          allAreaList.push({
+            cityName: city.name,
+            areaName: area.name,
+            areaPriority: area.Priority,
+          })
+        );
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div className="main_list__container">
-      {console.log(cityList)}
       <div className="mini_navbar__container">
         <form class="d-flex" onSubmit={(e) => e.preventDefault()}>
           <input
@@ -87,26 +108,15 @@ const Areas = () => {
           </thead>
 
           <tbody>
-            {(searchTerm.length !== 0 ? searchResults : cityList)
+            {(searchTerm.length !== 0 ? searchResults : areaData)
               .slice(0, visible)
-              .map((city, index) => {
+              .map((area, index) => {
                 return (
-                  <>
-                    {city.areas.map((area) => {
-                      return (
-                        <tr key={index}>
-                          <td>{area}</td>
-                          <td>{city.name}</td>
-
-                          <td>
-                            <AiFillDelete />
-                            &nbsp;&nbsp;
-                            <FaEdit />
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </>
+                  <tr key={index}>
+                    <td>{area.areaName}</td>
+                    <td>{area.cityName}</td>
+                    <td>{area.areaPriority}</td>
+                  </tr>
                 );
               })}
           </tbody>
