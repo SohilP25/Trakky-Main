@@ -19,16 +19,19 @@ export const createSpa = async (req, res) => {
 
         const fetchUrl = await req.file.location;      
   
-      const newSpa =   new spaModel({
+      const newSpa = new spaModel({
         ...data,
         imageUrl: fetchUrl,
       });
+      await newSpa.save();
+      console.log("new spa is : ",newSpa);
 
-        const spaCreation = await spaModel.create(newSpa);
-        console.log(spaCreation);
+        console.log("spaCreation");
         res.status(201).send("Spa is created");
       } catch (error) {
+        console.log(error);
         res.status(501).send("Error in spa creation")
+
       }
 };
 
