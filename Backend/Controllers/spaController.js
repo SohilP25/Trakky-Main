@@ -25,8 +25,6 @@ export const createSpa = async (req, res) => {
       });
       await newSpa.save();
       console.log("new spa is : ",newSpa);
-
-        console.log("spaCreation");
         res.status(201).send("Spa is created");
       } catch (error) {
         console.log(error);
