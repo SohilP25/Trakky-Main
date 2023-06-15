@@ -81,7 +81,7 @@ const Header = ({ page = "other" }) => {
         <img draggable="false" src={Search} alt="" />
         <form className="search-bar">
           <label
-            htmlFor="search"
+            htmlhtmlFor="search"
             id="searchLabel"
             style={{ fontWeight: "bold",
             display: (isFocused || searchText.length !== 0) ? "none" : "block"  }}

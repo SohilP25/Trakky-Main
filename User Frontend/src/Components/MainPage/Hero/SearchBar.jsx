@@ -18,7 +18,7 @@ const SearchBar = () => {
 
       <form className="search-bar">
         <label 
-          htmlFor="search" 
+          htmlhtmlFor="search" 
           id="searchLabel" 
           style={{ 
             fontWeight: "bold", 

@@ -48,7 +48,7 @@ const OffersForm = () => {
           <form method="post" onSubmit={handleSubmit}>
             <h1>Offer</h1>
             <div className="form-group">
-              <label htmlFor="name">Name *</label>
+              <label htmlhtmlFor="name">Name *</label>
               <input
                 className="form-control"
                 type="text"
@@ -59,7 +59,7 @@ const OffersForm = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="slug">Slug *</label>
+              <label htmlhtmlFor="slug">Slug *</label>
               <input
                 className="form-control"
                 type="text"
@@ -71,7 +71,7 @@ const OffersForm = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="name">Select Spa(s) *</label>
+              <label htmlhtmlFor="name">Select Spa(s) *</label>
               <select
                 name="spa"
                 style={{ height: "fit-content" }}
@@ -91,7 +91,7 @@ const OffersForm = () => {
               </select>
             </div>
             <div className="form-group">
-              <label htmlFor="priority">Priority *</label>
+              <label htmlhtmlFor="priority">Priority *</label>
               <input
                 className="form-control"
                 type="number"
@@ -103,7 +103,7 @@ const OffersForm = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="image">Image *</label>
+              <label htmlhtmlFor="image">Image *</label>
               <input
                 className="form-control"
                 style={{ padding: "0.5rem" }}

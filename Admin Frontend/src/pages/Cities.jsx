@@ -59,16 +59,16 @@ const Cities = () => {
   return (
     <div className="main_list__container">
       <div className="mini_navbar__container">
-        <form class="d-flex" onSubmit={(e) => e.preventDefault()}>
+        <form className="d-flex" onSubmit={(e) => e.preventDefault()}>
           <input
-            class="form-control me-2"
+            className="form-control me-2"
             type="search"
             placeholder="Search"
             aria-label="Search"
             value={searchTerm}
             onChange={handleSearch}
           />
-          <button class="btn btn-outline-success" type="submit">
+          <button className="btn btn-outline-success" type="submit">
             Search
           </button>
         </form>

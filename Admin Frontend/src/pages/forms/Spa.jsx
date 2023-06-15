@@ -22,122 +22,82 @@ const SpaForm = () => {
   const handleFileChange = (event) => {
     setImage(event.target.files[0]);
   };
-
+  // let facilities = [];
+  // let aboutUs = "";
+  // let open = false;
+  // let verified = false;
+  // let topRated = false;
+  // let premium = false;
+  // let luxurious = false;
+  // let services = [];
   // Post Request Starts
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const location = {
+      type: "Point",
+      coordinates: [longitude, latitude],
+    };
+
+    // let data = {
+    //   name: spaname,
+    //   address: address,
+    //   landmark: landmark,
+    //   mobileNumber: mobileNumber,
+    //   bookingNumber: bookingNumber,
+    //   gmapLink: GMapLink,
+    //   imageUrl: Image,
+    //   location: location,
+    //   openTime: openTime,
+    //   closeTime: closeTime,
+    //   facilities: facilities,
+    //   slug: slug,
+    //   priority: priority,
+    //   aboutUs: aboutUs,
+    //   open: open,
+    //   verified: verified,
+    //   topRated: topRated,
+    //   premium: premium,
+    //   luxurious: luxurious,
+    //   services: services,
+    //   Area: area,
+    //   City: city,
+    // };
 
     if (!Image) {
       console.log("Please select a file");
       return;
     }
-    const location = {
-      type: "Point",
-      coordinates: [longitude, latitude],
-    };
-    let facilities = [];
-    let aboutUs = "";
-    let open = false;
-    let verified = false;
-    let topRated = false;
-    let premium = false;
-    let luxurious = false;
-    let services = [];
-
-    let data = {
-      name: spaname,
-      address: address,
-      landmark: landmark,
-      mobileNumber: mobileNumber,
-      bookingNumber: bookingNumber,
-      gmapLink: GMapLink,
-      imageUrl: Image,
-      location: location,
-      openTime: openTime,
-      closeTime: closeTime,
-      facilities: facilities,
-      slug: slug,
-      priority: priority,
-      aboutUs: aboutUs,
-      open: open,
-      verified: verified,
-      topRated: topRated,
-      premium: premium,
-      luxurious: luxurious,
-      services: services,
-      Area: area,
-      City: city,
-    };
-
-    // const formData = new FormData();
-    // formData.append("name", spaname);
-    // formData.append("address", address);
-    // formData.append("landmark", landmark);
-    // formData.append("mobileNumber", mobileNumber);
-    // formData.append("bookingNumber", bookingNumber);
-    // formData.append("gmapLink", GMapLink);
-    // formData.append("imageUrl", Image);
-    // formData.append("location", location);
-    // formData.append("openTime", openTime);
-    // formData.append("closeTime", closeTime);
-    // formData.append("facilities", JSON.stringify(facilities));
-    // formData.append("slug", slug);
-    // formData.append("priority", priority);
-    // formData.append("aboutUs", aboutUs);
-    // formData.append("open", open);
-    // formData.append("verified", verified);
-    // formData.append("topRated", topRated);
-    // formData.append("premium", premium);
-    // formData.append("luxurious", luxurious);
-    // formData.append("services", services);
-    // formData.append("Area", area);
-    // formData.append("City", city);
+    const formData = new FormData();
+    formData.append("name", spaname);
+    formData.append("address", address);
+    formData.append("landmark", landmark);
+    formData.append("mobileNumber", mobileNumber);
+    formData.append("bookingNumber", bookingNumber);
+    formData.append("gmapLink", GMapLink);
+    formData.append("imageUrl", Image);
+    formData.append("location", location);
+    formData.append("openTime", openTime);
+    formData.append("closeTime", closeTime);
+    formData.append("slug", slug);
+    formData.append("priority", priority);
+    formData.append("Area", area);
+    formData.append("City", city);
 
     try {
-      console.log(data)
+      // console.log(formData);
       await fetch("http://localhost:8080/api/v1/spas", {
         method: "POST",
-        // headers: {
-        //   Accept: "application/json",
-        //   "Content-Type": "application/json",
-        // },
-        body: data,
+        body: formData,
       });
 
       alert("spas uploaded successfully");
     } catch (error) {
       console.error("Error uploading image", error);
     }
-    console.log(data)
-    // fetch("http://localhost:8080/api/v1/spas", {
-  //     method: "POST",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(data),
-  //   })
-  //     .then((result) => {
-  //       result.json().then((resp) => {
-  //         console.log(resp);
-  //       });
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
+  };
 
-
-
-
-
-  // axios.post("http://localhost:8080/api/v1/spas", data)
-  // .then(response => {
-  //   console.log(response.data);
-  // })
-  // .catch(error => {
-  //   console.error(error);
-  // });
-  // Post Request Ends
-  }
+  const [areaList, setAreaList] = useState([{}]);
   // Getting city list
   const [cityList, setCityList] = useState([]);
 
@@ -151,7 +111,7 @@ const SpaForm = () => {
   }, []);
 
   const cityData = cityList.map((data) => data.name);
-  const [areaData, setAreaData] = useState([]);
+  const [cityId, setCityId] = useState([]);
 
   return (
     <div className="main-container">
@@ -159,7 +119,7 @@ const SpaForm = () => {
         <form method="post" onSubmit={handleSubmit}>
           <h1>Spa</h1>
           <div className="form-group">
-            <label htmlFor="name">Name of Spa *</label>
+            <label htmlhtmlFor="name">Name of Spa *</label>
             <input
               className="form-control"
               type="text"
@@ -173,7 +133,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="phone">Phone Number *</label>
+            <label htmlhtmlFor="phone">Phone Number *</label>
             <input
               className="form-control"
               type="number"
@@ -189,7 +149,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="booknow">WhatsApp Number For Booking *</label>
+            <label htmlhtmlFor="booknow">WhatsApp Number For Booking *</label>
             <input
               className="form-control"
               type="number"
@@ -205,7 +165,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="directionlink">Google Maps Link *</label>
+            <label htmlhtmlFor="directionlink">Google Maps Link *</label>
             <input
               className="form-control"
               type="text"
@@ -220,7 +180,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="directionlink">Latitude *</label>
+            <label htmlhtmlFor="directionlink">Latitude *</label>
             <input
               className="form-control"
               type="text"
@@ -235,7 +195,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="directionlink">Longitude *</label>
+            <label htmlhtmlFor="directionlink">Longitude *</label>
             <input
               className="form-control"
               type="text"
@@ -249,10 +209,10 @@ const SpaForm = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="timings">Timings *</label>
+            <label htmlhtmlFor="timings">Timings *</label>
             <div className="time-container">
               <div className="from-time">
-                <label htmlFor="fromTime">From</label>
+                <label htmlhtmlFor="fromTime">From</label>
                 <input
                   className="form-control timings"
                   type="time"
@@ -265,7 +225,7 @@ const SpaForm = () => {
                 />
               </div>
               <div className="to-time">
-                <label htmlFor="toTime">To</label>
+                <label htmlhtmlFor="toTime">To</label>
                 <input
                   className="form-control timings"
                   type="time"
@@ -281,7 +241,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="address">Address *</label>
+            <label htmlhtmlFor="address">Address *</label>
             <input
               className="form-control"
               type="text"
@@ -295,7 +255,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="landmark">Landmark *</label>
+            <label htmlhtmlFor="landmark">Landmark *</label>
             <input
               className="form-control"
               type="text"
@@ -309,7 +269,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="priority">Priority *</label>
+            <label htmlhtmlFor="priority">Priority *</label>
             <input
               className="form-control"
               type="number"
@@ -323,7 +283,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="city">City *</label>
+            <label htmlhtmlFor="city">City *</label>
             <input
               className="form-control"
               type="dropdown"
@@ -341,8 +301,20 @@ const SpaForm = () => {
                 const selectedCityObj = cityList.find((c) => c.name === city);
 
                 // Set the areas for the selected city
-                setAreaData(selectedCityObj.areas);
-                console.log(city, areaData);
+                // setCityId(selectedCityObj.areas);
+
+                console.log(city, cityId);
+
+                fetch(
+                  `http://localhost:8080/api/v1/cities/${selectedCityObj._id}/areas`,
+                  {
+                    method: "GET",
+                    header: { "Content-Type": "application/json" },
+                  }
+                )
+                  .then((res) => res.json())
+                  .then((data) => setAreaList(data))
+                  .catch((err) => console.log(err));
               }}
             />
 
@@ -359,7 +331,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="area">Area *</label>
+            <label htmlhtmlFor="area">Area *</label>
             <input
               className="form-control"
               type="dropdown"
@@ -372,20 +344,25 @@ const SpaForm = () => {
               onChange={(e) => setArea(e.target.value)}
             />
 
-            <datalist id="areas">
+            <datalist
+              id="areas"
+              onChange={(e) => {
+                setArea(e.target.value);
+              }}
+            >
               <option value="">--select--</option>
-              {areaData.map((area, index) => {
+              {areaList.map((area, index) => {
                 return (
-                  <option key={index} value={area}>
-                    {area}
-                  </option>
+                  <>
+                    <option value={area.name}>{area.name}</option>
+                  </>
                 );
               })}
             </datalist>
           </div>
 
           <div className="form-group">
-            <label htmlFor="slug">Slug *</label>
+            <label htmlhtmlFor="slug">Slug *</label>
             <input
               className="form-control"
               type="text"
@@ -399,7 +376,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="image">Main Image *</label>
+            <label htmlhtmlFor="image">Main Image *</label>
             <input
               className="form-control"
               style={{ padding: "0.5rem" }}
@@ -413,7 +390,7 @@ const SpaForm = () => {
           </div>
 
           {/* <div className="form-group">
-            <label htmlFor="image">Image *</label>
+            <label htmlhtmlFor="image">Image *</label>
             <input
               className="form-control"
               style={{ padding: "0.5rem" }}

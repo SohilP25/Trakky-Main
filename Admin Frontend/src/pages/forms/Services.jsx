@@ -23,42 +23,37 @@ const ServicesForm = () => {
   }, []);
   const therapyName = therapyList.map((data) => data.Name);
 
+  // Getting spa details
+  const [SpaData, setSpaData] = useState([]);
+
+  const getSpa = () => {
+    const requestOption = {
+      method: "GET",
+      header: { "Content-Type": "application/json" },
+    };
+    fetch("http://localhost:8080/api/v1/spas", requestOption)
+      .then((res) => res.json())
+      .then((data) => setSpaData(data))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getSpa();
+  }, []);
+
   // Post Request Starts
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!Image) {
-      console.log("Please select a file");
-      return;
-    }
-
-    // const formData = new FormData();
-    // formData.append("select_spa", selectSpa);
-    // formData.append("service_name", serviceName);
-    // formData.append("service_time", serviceTime);
-    // formData.append("description", description);
-    // formData.append("price", price);
-    // formData.append("discount", discount);
-    // formData.append("therapies", therapy);
-
-    let data =
-      // select_spa: selectSpa,
-      // sevice_name: serviceName,
-      // service_time: serviceTime,
-      // description: description,
-      // price: price,
-      // discount: discount,
-      // therapies: therapy
-
-      {
-        select_spa: selectSpa,
-        service_name: serviceName,
-        service_time: serviceTime,
-        description: description,
-        price: price,
-        discount: discount,
-        therapies: therapy,
-      };
+    let data = {
+      select_spa: selectSpa,
+      service_name: serviceName,
+      service_time: serviceTime,
+      description: description,
+      price: price,
+      discount: discount,
+      therapies: therapy,
+    };
     try {
       console.log(data);
       await fetch("http://localhost:8080/api/v1/services", {
@@ -84,7 +79,7 @@ const ServicesForm = () => {
             <h1>Services</h1>
 
             <div className="form-group">
-              <label htmlFor="spa">Select Spa *</label>
+              <label htmlhtmlFor="spa">Select Spa *</label>
               <input
                 className="form-control"
                 type="dropdown"
@@ -96,17 +91,19 @@ const ServicesForm = () => {
                 onChange={(e) => setSelectSpa(e.target.value)}
               />
               <datalist id="spa">
-                <option value="Spa 1" />
-                <option value="Spa 2" />
-                <option value="Spa 3" />
-                <option value="Spa 34" />
-                <option value="Spa 5" />
-                <option value="Spa 6" />
+                <option value={""}>--select--</option>
+                {SpaData.map((spa, index) => {
+                  return (
+                    <option key={index} value={spa.name}>
+                      {spa.name}
+                    </option>
+                  );
+                })}
               </datalist>
             </div>
 
             <div className="form-group">
-              <label htmlFor="name">Service Name *</label>
+              <label htmlhtmlFor="name">Service Name *</label>
               <input
                 className="form-control"
                 type="text"
@@ -119,7 +116,7 @@ const ServicesForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="name">Service Time *</label>
+              <label htmlhtmlFor="name">Service Time *</label>
               <input
                 className="form-control"
                 type="dropdown"
@@ -142,7 +139,7 @@ const ServicesForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="name">Description *</label>
+              <label htmlhtmlFor="name">Description *</label>
               <input
                 className="form-control"
                 type="text"
@@ -155,7 +152,7 @@ const ServicesForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="price">Price *</label>
+              <label htmlhtmlFor="price">Price *</label>
               <input
                 className="form-control"
                 type="text"
@@ -168,7 +165,7 @@ const ServicesForm = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="price">Disount *</label>
+              <label htmlhtmlFor="price">Disount *</label>
               <input
                 className="form-control"
                 type="text"
@@ -181,7 +178,7 @@ const ServicesForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="therapies">Therapies (Category) *</label>
+              <label htmlhtmlFor="therapies">Therapies (Category) *</label>
               <input
                 className="form-control"
                 type="dropdown"
