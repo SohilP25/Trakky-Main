@@ -17,6 +17,7 @@ export const createSpa = async (req, res) => {
   try {
     const data = req.body;
 
+<<<<<<< HEAD
     const fetchUrl = await req.file.location;
     console.warn(data);
     console.warn(fetchUrl);
@@ -31,6 +32,22 @@ export const createSpa = async (req, res) => {
   } catch (error) {
     res.status(501).send("Error in spa creation");
   }
+=======
+        const fetchUrl = await req.file.location;      
+  
+      const newSpa = new spaModel({
+        ...data,
+        imageUrl: fetchUrl,
+      });
+      await newSpa.save();
+      console.log("new spa is : ",newSpa);
+        res.status(201).send("Spa is created");
+      } catch (error) {
+        console.log(error);
+        res.status(501).send("Error in spa creation")
+
+      }
+>>>>>>> ea36516c936d5b9448c04868706378564c50e698
 };
 
 //Logic function for Updating Spa.

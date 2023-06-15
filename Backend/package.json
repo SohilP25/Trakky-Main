@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node server.js"
   },
-  "author": "dbt",
+  "author": "sohil",
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.1397.0",
