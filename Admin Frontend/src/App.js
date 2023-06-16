@@ -22,6 +22,7 @@ import BookNow from "./pages/BookNow.jsx";
 import CallNow from "./pages/CallNow";
 import AreaForm from "./pages/forms/AreaForm";
 import CityForm from "./pages/forms/CityForm";
+import SpaUpdate from "./pages/forms/updateForms/SpaUpdate";
 
 
 function App() {
@@ -58,6 +59,9 @@ function App() {
           <Route path="/callnow" element={<CallNow />} />
           <Route path="/faqs" element={<Faq />} />
           <Route path="/signin" element={<Signin />} />
+          
+          {/* Update form routes */}
+          <Route path="/updateSpa" element={<SpaUpdate />} />
 
           <Route path="*" element={<Dashboard />} />
           {/* <Route path="/answer-faqs" element={<FaqForm />} />{" "} */}

@@ -1,9 +1,34 @@
 import React, { useEffect, useState } from "react";
-import "./forms.css";
-import axios from "axios";
+import "../forms.css";
 
-const SpaForm = () => {
-  const [spaname, setSpaName] = useState("");
+const SpaUpdate = (props) => {
+  console.log(props._id);
+
+  // Getting spa details
+  const [SpaData, setSpaData] = useState([]);
+  const getSpa = () => {
+    const requestOption = {
+      method: "GET",
+      header: { "Content-Type": "application/json" },
+    };
+    fetch(`http://localhost:8080/api/v1/spas`, requestOption)
+      .then((res) => res.json())
+      .then((data) => setSpaData(data))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getSpa();
+  }, []);
+  // const [findObject, setFindObject] = useState(null);
+  // function b(idToSearch) {
+  //   return SpaData.filter((item) => {
+  //     return item._id === idToSearch;
+  //   });
+  // }
+  // findObject = b(props._id);
+
+  const [spaname, setSpaName] = useState(props._id);
   const [address, setAddress] = useState("");
   const [landmark, setLandmark] = useState("");
   const [mobileNumber, setMobileNumber] = useState(null);
@@ -30,7 +55,9 @@ const SpaForm = () => {
   // let premium = false;
   // let luxurious = false;
   // let services = [];
+
   // Post Request Starts
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -128,6 +155,7 @@ const SpaForm = () => {
               placeholder="Enter Name"
               required
               autoComplete="off"
+              value={spaname}
               onChange={(e) => setSpaName(e.target.value)}
             />
           </div>
@@ -413,4 +441,4 @@ const SpaForm = () => {
   );
 };
 
-export default SpaForm;
+export default SpaUpdate;

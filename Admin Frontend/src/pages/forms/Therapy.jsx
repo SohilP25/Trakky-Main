@@ -47,7 +47,7 @@ const TherapyForm = () => {
             <h1>Add Therapy (Category)</h1>
 
             <div className="form-group">
-              <label htmlFor="name">Name *</label>
+              <label htmlhtmlFor="name">Name *</label>
               <input
                 className="form-control"
                 type="text"
@@ -59,7 +59,7 @@ const TherapyForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="slug">Slug *</label>
+              <label htmlhtmlFor="slug">Slug *</label>
               <input
                 className="form-control"
                 type="text"
@@ -71,7 +71,7 @@ const TherapyForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="priority">Priority *</label>
+              <label htmlhtmlFor="priority">Priority *</label>
               <input
                 className="form-control"
                 type="number"
@@ -83,7 +83,7 @@ const TherapyForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="image">Image *</label>
+              <label htmlhtmlFor="image">Image *</label>
               <input
                 className="form-control"
                 style={{ padding: "0.5rem" }}

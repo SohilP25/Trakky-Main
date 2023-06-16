@@ -48,11 +48,11 @@ const spaSchema = new mongoose.Schema({
     type: {
       type: String,
       enum: ["Point"],
-      required: true,
+      required: false,
     },
     coordinates: {
       type: [Number],
-      required: true,
+      required: false,
     },
   },
   openTime: {
@@ -72,16 +72,15 @@ const spaSchema = new mongoose.Schema({
     required: true,
   },
   priority: {
-    type : Number,
-    required : true,
+    type: Number,
+    required: true,
     validate: {
-        validator: async function (priority) {
-          // Check if any other therapy already has this priority assigned
-          const count = await mongoose.models.spaModel.countDocuments({ Priority: priority });
-          return count === 0; // Return true if no other therapy has this priority assigned
-        },
-        message: "Priority already assigned to another therapy.",
+      validator: async function (priority) {
+        const count = await mongoose.models.spaModel.countDocuments({ priority: priority });
+        return count === 0;
       },
+      message: "Priority already assigned to another SPA.",
+    },
   },
   aboutUs: {
     type: String,

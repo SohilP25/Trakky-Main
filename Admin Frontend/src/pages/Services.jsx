@@ -1,12 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Page.css";
 
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 
-import { ServicesData, SpaData } from "../data/mockData";
-
 const Services = () => {
+  // Getting services details
+  const [servicesData, setServicesData] = useState([]);
+
+  const getServices = () => {
+    const requestOption = {
+      method: "GET",
+      header: { "Content-Type": "application/json" },
+    };
+    fetch("http://localhost:8080/api/v1/services", requestOption)
+      .then((res) => res.json())
+      .then((data) => setServicesData(data))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getServices();
+  }, []);
+
+  // Getting spa details
+  const [SpaData, setSpaData] = useState([]);
+
+  const getSpa = () => {
+    const requestOption = {
+      method: "GET",
+      header: { "Content-Type": "application/json" },
+    };
+    fetch("http://localhost:8080/api/v1/spas", requestOption)
+      .then((res) => res.json())
+      .then((data) => setSpaData(data))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getSpa();
+  }, []);
+
+  //  Deleting Services Data starts
+  const deleteServices = (id) => {
+    console.log("delete called");
+    fetch(`http://localhost:8080/api/v1/services/${id}`, {
+      method: "DELETE",
+    })
+      .then(() => getServices())
+      .catch((err) => console.log(err));
+  };
+  // delete services ends
+
   // table header data
   const tableHeaders = [
     "Service Name",
@@ -21,7 +66,7 @@ const Services = () => {
   // Handling view more button
   const [visible, setVisible] = useState(10);
   const [show, setShow] = useState(true);
-  const length = ServicesData.length;
+  const length = servicesData.length;
 
   const showMoreItems = () => {
     if (visible < length) {
@@ -53,16 +98,14 @@ const Services = () => {
   const [SpaServices, setSpaServices] = useState([]);
   const [selectedOption, setSelectedOption] = useState("");
 
-  const spaNames = SpaData.map(spa => spa.name);
+  const spaNames = SpaData.map((spa) => spa.name);
 
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
   };
 
-  
-
   return (
-     <div className="main_list__container">
+    <div className="main_list__container">
       <div className="mini_navbar__container">
         <form className="d-flex" onSubmit={(e) => e.preventDefault()}>
           <input
@@ -113,24 +156,33 @@ const Services = () => {
           </thead>
 
           <tbody>
-            {(searchTerm.length !== 0 ? searchResults : SpaServices)
+            {(searchTerm.length !== 0 ? searchResults : servicesData)
               .slice(0, visible)
               .map((service, index) => {
                 return (
                   <>
-                    <tr key={index}>
-                      <td>{service.serviceName}</td>
-                      <td>{service.category}</td>
-                      <td>{service.price}</td>
-                      <td>{service.time}</td>
-                      <td>{service.discount}</td>
-                      <td>{service.description}</td>
-                      <td>
-                        <AiFillDelete />
-                        &nbsp;&nbsp;
-                        <FaEdit />
-                      </td>
-                    </tr>
+                    {console.log(service)}
+                    {service.select_spa === selectedOption ? (
+                      <tr key={index}>
+                        <td>{service.service_name}</td>
+                        <td>{service.therapies}</td>
+                        <td>{service.price}</td>
+                        <td>{service.service_time}</td>
+                        <td>{service.discount}</td>
+                        <td>{service.description}</td>
+                        <td>
+                          <AiFillDelete
+                            onClick={() => {
+                              deleteServices(service._id);
+                            }}
+                          />
+                          &nbsp;&nbsp;
+                          <FaEdit />
+                        </td>
+                      </tr>
+                    ) : (
+                      <></>
+                    )}
                   </>
                 );
               })}
@@ -139,7 +191,9 @@ const Services = () => {
 
         <div
           className="view_more__button"
-          style={{ display: show && SpaServices.length > 10 ? "block" : "none" }}
+          style={{
+            display: show && SpaServices.length > 10 ? "block" : "none",
+          }}
         >
           <button onClick={showMoreItems}>View More</button>
         </div>

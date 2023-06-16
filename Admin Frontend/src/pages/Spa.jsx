@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from "react";
 import "./Page.css";
+import { Link } from "react-router-dom";
 
 import { IoIosArrowDropdown } from "react-icons/io";
 import { IoIosArrowDropup } from "react-icons/io";
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
-
+import SpaUpdate from "./forms/updateForms/SpaUpdate";
+import Popup from "../components/Popup/Popup";
 
 const Spa = () => {
-
   // Getting spa details
-  const [SpaData, setSpaData] = useState([])
+  const [SpaData, setSpaData] = useState([]);
+
+  // Settings for switches
+  const [luxurious, setLuxurious] = useState(false);
+  const [topRated, setTopRated] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [premium, setPremium] = useState(false);
+  const [verified, setVerified] = useState(false);
 
   const getSpa = () => {
     const requestOption = {
@@ -27,28 +35,34 @@ const Spa = () => {
     getSpa();
   }, []);
 
-  // Deleting Spa
+  //  Deleting Spa Data
   const deleteSpa = (id) => {
-    const requestOptions = {
+    console.log("delete called");
+    fetch(`http://localhost:8080/api/v1/spas/${id}`, {
       method: "DELETE",
-      headers: {
-        Authorization: "Bearer my-token",
-        "My-Custom-Header": "foobar",
-      },
-    };
+    })
+      .then(() => getSpa())
+      .catch((err) => console.log(err));
+  };
+  const updateSpa = (id) => {
+    // PUT request using fetch inside useEffect React hook
 
-    fetch(`http://localhost:8080/api/v1/Spas/${id}`, requestOptions)
-    .then(() => getSpa())
-    .catch(err => console.log(err))
+    let item = {};
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title: "React Hooks PUT Request Example" }),
+    };
+    fetch(`http://localhost:8080/api/v1/spas/${id}`, requestOptions)
+      .then(() => getSpa())
+      .catch((err) => console.log(err));
   };
 
   // table header data
   const tableHeaders = [
     "Name",
     "Phone No.",
-    // "City",
     "Address",
-    // "Area",
     "Landmark",
     "Close/Open",
     "More",
@@ -93,20 +107,21 @@ const Spa = () => {
   // Handling the more button
   const [expandedRow, setExpandedRow] = useState(null);
   const [isDropdown, setIsDropdown] = useState(null);
+  const [spaUpdateFormTriggger, setSpaUpdateFormTriggger] = useState(false);
 
   return (
     <div className="main_list__container">
       <div className="mini_navbar__container">
-        <form class="d-flex" onSubmit={(e) => e.preventDefault()}>
+        <form className="d-flex" onSubmit={(e) => e.preventDefault()}>
           <input
-            class="form-control me-2"
+            className="form-control me-2"
             type="search"
             placeholder="Search"
             aria-label="Search"
             value={searchTerm}
             onChange={handleSearch}
           />
-          <button class="btn btn-outline-success" type="submit">
+          <button className="btn btn-outline-success" type="submit">
             Search
           </button>
         </form>
@@ -123,28 +138,58 @@ const Spa = () => {
               ))}
             </tr>
           </thead>
-
           <tbody>
             {(searchTerm.length !== 0 ? searchResults : SpaData)
               .slice(0, visible)
               .map((spa, index) => {
                 return (
                   <>
+                    {/* <div className="showPhotos">
+                      <Popup trigger={spaUpdateFormTriggger}>
+                        <div
+                          className="topbar"
+                          style={{
+                            width: "98%",
+                            margin: "1rem 1%",
+                            display: "flex",
+                            justifyContent: "flex-end",
+                          }}
+                        >
+                          <button
+                            onClick={() => setSpaUpdateFormTriggger(false)}
+                            style={{
+                              padding: "0.7rem 1.2rem",
+                              borderRadius: "10px",
+                              color: "white",
+                              backgroundColor: "#512DC8",
+                            }}
+                          >
+                            Close
+                          </button>
+                        </div>
+                        {console.log(spa._id)}
+                        {<SpaUpdate _id={spa._id} />}
+                      </Popup>
+                    </div> */}
+
                     <tr key={index}>
                       <td>{spa.name}</td>
                       <td>{spa.mobileNumber}</td>
                       <td>{spa.address}</td>
                       <td>{spa.landmark}</td>
                       <td>
-                        <div class="form-check form-switch">
+                        <div className="form-check form-switch">
                           <label
-                            class="form-check-label"
-                            for="flexSwitchCheckDefault"
+                            className="form-check-label"
+                            htmlFor="flexSwitchCheckDefault"
                           ></label>
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="checkbox"
                             id="flexSwitchCheckDefault"
+                            onChange={() => {
+                              setOpen(!open);
+                            }}
                           />
                         </div>
                       </td>
@@ -166,62 +211,80 @@ const Spa = () => {
                         )}
                       </td>
                       <td>
-                        <div class="form-check form-switch">
+                        <div className="form-check form-switch">
                           <label
-                            class="form-check-label"
-                            for="flexSwitchCheckDefault"
+                            className="form-check-label"
+                            htmlFor="flexSwitchCheckDefault"
                           ></label>
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="checkbox"
                             id="flexSwitchCheckDefault"
+                            onChange={() => {
+                              setVerified(!verified);
+                            }}
                           />
                         </div>
                       </td>
                       <td>
-                        <div class="form-check form-switch">
+                        <div className="form-check form-switch">
                           <label
-                            class="form-check-label"
-                            for="flexSwitchCheckDefault"
+                            className="form-check-label"
+                            htmlFor="flexSwitchCheckDefault"
                           ></label>
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="checkbox"
                             id="flexSwitchCheckDefault"
+                            onChange={() => {
+                              setTopRated(!topRated);
+                            }}
                           />
                         </div>
                       </td>
                       <td>
-                        <div class="form-check form-switch">
+                        <div className="form-check form-switch">
                           <label
-                            class="form-check-label"
-                            for="flexSwitchCheckDefault"
+                            className="form-check-label"
+                            htmlFor="flexSwitchCheckDefault"
                           ></label>
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="checkbox"
                             id="flexSwitchCheckDefault"
+                            onChange={() => {
+                              setPremium(!premium);
+                            }}
                           />
                         </div>
                       </td>
                       <td>
-                        <div class="form-check form-switch">
+                        <div className="form-check form-switch">
                           <label
-                            class="form-check-label"
-                            for="flexSwitchCheckDefault"
+                            className="form-check-label"
+                            htmlFor="flexSwitchCheckDefault"
                           ></label>
                           <input
-                            class="form-check-input"
+                            className="form-check-input"
                             type="checkbox"
                             id="flexSwitchCheckDefault"
+                            onChange={() => {
+                              setLuxurious(!luxurious);
+                            }}
                           />
                         </div>
                       </td>
-
                       <td>
                         <AiFillDelete onClick={() => deleteSpa(spa._id)} />
                         &nbsp;&nbsp;
-                        <FaEdit />
+                        {/* {console.log(spa._id)} */}
+                        <Link to={"/updateSpa"}>
+                          <FaEdit
+                          // onClick={() => {
+                          //   setSpaUpdateFormTriggger(true);
+                          // }}
+                          />
+                        </Link>
                       </td>
                     </tr>
 
@@ -232,8 +295,7 @@ const Spa = () => {
                       }}
                     >
                       <div className="image__container">
-                        {/* <img src={require(spa.images[0])} alt="" /> */}
-                        image
+                        <img src={spa.imageUrl} alt="" />
                       </div>
                     </div>
                   </>
