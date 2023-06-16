@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../forms.css";
-
+import axios from "axios";
 const SpaUpdate = (props) => {
   const [spaname, setSpaName] = useState(props.data.name);
   const [address, setAddress] = useState(props.data.address);
@@ -46,57 +46,50 @@ const SpaUpdate = (props) => {
   const cityData = cityList.map((data) => data.name);
   const [cityId, setCityId] = useState([]);
 
-  // update spa------------------------------------------------
-  const handleUpdated = (id) => {
-    // event.preventDefault();
-    // const location = {
-    //   type: "Point",
-    //   coordinates: [longitude, latitude],
-    // };
-    // if (!Image) {
-    //   console.log("Please select a file");
-    //   return;
-    // }
+  // Patch Request Starts
+
+  const PatchRequest = (id) => {
     // const formData = new FormData();
     // formData.append("name", spaname);
     // formData.append("address", address);
     // formData.append("landmark", landmark);
     // formData.append("mobileNumber", mobileNumber);
-    // formData.append("bookingNumber", bookingNumber);
-    // formData.append("gmapLink", GMapLink);
-    // formData.append("imageUrl", Image);
-    // formData.append("location", location);
     // formData.append("openTime", openTime);
     // formData.append("closeTime", closeTime);
     // formData.append("slug", slug);
     // formData.append("priority", priority);
+    // formData.append("bookingNumber", bookingNumber);
+    // formData.append("gmapLink", GMapLink);
     // formData.append("Area", area);
     // formData.append("City", city);
-
-    // console.log(formData);
-
-    fetch(`http://localhost:8080/api/v1/spas/${id}`, {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        spaname: "ABCD",
-      }),
-    })
-      .then(function (response) {
-        return response.json();
+    axios
+      .put(`http://localhost:8080/api/v1/spas/${id}`, {
+        name: "YOYOYOYOOY",
+        address: "F",
+        landmark: "F",
+        mobileNumber: "F",
+        bookingNumber: "F",
+        openTime: "F",
+        closeTime: "F",
+        slug: "F",
+        priority: 56,
+        gmapLink: "G",
+        Area: "Bhatar",
+        City: "Surat",
       })
-      .catch(function (err) {
-        console.log(err);
+      .then((res) => {
+        console.log(res.data);
+        alert("updated data");
+      })
+      .catch((error) => {
+        alert(JSON.stringify(error.response));
       });
   };
 
   return (
     <div className="main-container">
       <div className="container">
-        <form method="post">
+        <form>
           <h1>Spa</h1>
           <div className="form-group">
             <label htmlhtmlFor="name">Name of Spa *</label>
@@ -109,7 +102,9 @@ const SpaUpdate = (props) => {
               required
               autoComplete="off"
               value={spaname}
-              onChange={(e) => setSpaName(e.target.value)}
+              onChange={(e) => {
+                setSpaName(e.target.value);
+              }}
             />
           </div>
           <div className="form-group">
@@ -397,8 +392,8 @@ const SpaUpdate = (props) => {
 
           <button
             className="submit-btn"
-            onClick={() => handleUpdated(props.data._id)}
             type="submit"
+            onClick={() => PatchRequest(props.data._id)}
           >
             add spa
           </button>
