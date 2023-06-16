@@ -7,9 +7,12 @@ import { IoIosArrowDropup } from "react-icons/io";
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 import SpaUpdate from "./forms/updateForms/SpaUpdate";
-import Popup from "../components/Popup/Popup";
 
 const Spa = () => {
+  // update spa use state variables
+  const [updatespatrigger, setUpdateSpaTrigger] = useState(null)
+  const [updatespa, setUpdateSpa] = useState(null);
+
   // Getting spa details
   const [SpaData, setSpaData] = useState([]);
 
@@ -44,6 +47,7 @@ const Spa = () => {
       .then(() => getSpa())
       .catch((err) => console.log(err));
   };
+
   const updateSpa = (id) => {
     // PUT request using fetch inside useEffect React hook
 
@@ -144,34 +148,6 @@ const Spa = () => {
               .map((spa, index) => {
                 return (
                   <>
-                    {/* <div className="showPhotos">
-                      <Popup trigger={spaUpdateFormTriggger}>
-                        <div
-                          className="topbar"
-                          style={{
-                            width: "98%",
-                            margin: "1rem 1%",
-                            display: "flex",
-                            justifyContent: "flex-end",
-                          }}
-                        >
-                          <button
-                            onClick={() => setSpaUpdateFormTriggger(false)}
-                            style={{
-                              padding: "0.7rem 1.2rem",
-                              borderRadius: "10px",
-                              color: "white",
-                              backgroundColor: "#512DC8",
-                            }}
-                          >
-                            Close
-                          </button>
-                        </div>
-                        {console.log(spa._id)}
-                        {<SpaUpdate _id={spa._id} />}
-                      </Popup>
-                    </div> */}
-
                     <tr key={index}>
                       <td>{spa.name}</td>
                       <td>{spa.mobileNumber}</td>
@@ -278,15 +254,35 @@ const Spa = () => {
                         <AiFillDelete onClick={() => deleteSpa(spa._id)} />
                         &nbsp;&nbsp;
                         {/* {console.log(spa._id)} */}
-                        <Link to={"/updateSpa"}>
                           <FaEdit
-                          // onClick={() => {
-                          //   setSpaUpdateFormTriggger(true);
-                          // }}
+                          onClick={() => {
+                            setUpdateSpa(index)
+                            setUpdateSpaTrigger(index)
+                          }}
                           />
-                        </Link>
                       </td>
                     </tr>
+                    <div
+                      className="showPhotos"
+                      style={{
+                        display: updatespa === index ? "block" : "none",
+                      }}
+                    >
+                      <button
+                        onClick={() => {
+                          setUpdateSpa(null)
+                        }}
+                        style={{
+                          padding: "0.7rem 1.2rem",
+                          borderRadius: "10px",
+                          color: "white",
+                          backgroundColor: "#512DC8",
+                        }}
+                      >
+                        Close
+                      </button>
+                      <SpaUpdate data={spa} />
+                    </div>
 
                     <div
                       className="more_spa_detail__container"

@@ -28,7 +28,7 @@ const SpaUpdate = (props) => {
   // }
   // findObject = b(props._id);
 
-  const [spaname, setSpaName] = useState(props._id);
+  const [spaname, setSpaName] = useState(props.data.name);
   const [address, setAddress] = useState("");
   const [landmark, setLandmark] = useState("");
   const [mobileNumber, setMobileNumber] = useState(null);
