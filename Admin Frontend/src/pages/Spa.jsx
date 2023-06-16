@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Page.css";
+import { Link } from "react-router-dom";
 
 import { IoIosArrowDropdown } from "react-icons/io";
 import { IoIosArrowDropup } from "react-icons/io";
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
+import SpaUpdate from "./forms/updateForms/SpaUpdate";
+import Popup from "../components/Popup/Popup";
 
 const Spa = () => {
   // Getting spa details
@@ -44,9 +47,7 @@ const Spa = () => {
   const updateSpa = (id) => {
     // PUT request using fetch inside useEffect React hook
 
-    let item = {
-        
-    };
+    let item = {};
     const requestOptions = {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -106,6 +107,7 @@ const Spa = () => {
   // Handling the more button
   const [expandedRow, setExpandedRow] = useState(null);
   const [isDropdown, setIsDropdown] = useState(null);
+  const [spaUpdateFormTriggger, setSpaUpdateFormTriggger] = useState(false);
 
   return (
     <div className="main_list__container">
@@ -136,13 +138,40 @@ const Spa = () => {
               ))}
             </tr>
           </thead>
-
           <tbody>
             {(searchTerm.length !== 0 ? searchResults : SpaData)
               .slice(0, visible)
               .map((spa, index) => {
                 return (
                   <>
+                    {/* <div className="showPhotos">
+                      <Popup trigger={spaUpdateFormTriggger}>
+                        <div
+                          className="topbar"
+                          style={{
+                            width: "98%",
+                            margin: "1rem 1%",
+                            display: "flex",
+                            justifyContent: "flex-end",
+                          }}
+                        >
+                          <button
+                            onClick={() => setSpaUpdateFormTriggger(false)}
+                            style={{
+                              padding: "0.7rem 1.2rem",
+                              borderRadius: "10px",
+                              color: "white",
+                              backgroundColor: "#512DC8",
+                            }}
+                          >
+                            Close
+                          </button>
+                        </div>
+                        {console.log(spa._id)}
+                        {<SpaUpdate _id={spa._id} />}
+                      </Popup>
+                    </div> */}
+
                     <tr key={index}>
                       <td>{spa.name}</td>
                       <td>{spa.mobileNumber}</td>
@@ -248,7 +277,14 @@ const Spa = () => {
                       <td>
                         <AiFillDelete onClick={() => deleteSpa(spa._id)} />
                         &nbsp;&nbsp;
-                        <FaEdit />
+                        {/* {console.log(spa._id)} */}
+                        <Link to={"/updateSpa"}>
+                          <FaEdit
+                          // onClick={() => {
+                          //   setSpaUpdateFormTriggger(true);
+                          // }}
+                          />
+                        </Link>
                       </td>
                     </tr>
 

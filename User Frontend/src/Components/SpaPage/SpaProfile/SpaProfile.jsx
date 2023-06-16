@@ -65,7 +65,7 @@ const SpaProfile = () => {
             justifyContent: "flex-end"
           }}>
 
-          <button 
+          <button
             onClick={() => setSpaProfilePhotosTrigger(false)}
             style={{
               padding: "0.7rem 1.2rem",
