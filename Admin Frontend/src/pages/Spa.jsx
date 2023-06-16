@@ -47,21 +47,7 @@ const Spa = () => {
       .then(() => getSpa())
       .catch((err) => console.log(err));
   };
-
-  const updateSpa = (id) => {
-    // PUT request using fetch inside useEffect React hook
-
-    let item = {};
-    const requestOptions = {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title: "React Hooks PUT Request Example" }),
-    };
-    fetch(`http://localhost:8080/api/v1/spas/${id}`, requestOptions)
-      .then(() => getSpa())
-      .catch((err) => console.log(err));
-  };
-
+  
   // table header data
   const tableHeaders = [
     "Name",

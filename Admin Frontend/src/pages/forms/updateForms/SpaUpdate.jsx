@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "../forms.css";
 
 const SpaUpdate = (props) => {
-
   const [spaname, setSpaName] = useState(props.data.name);
   const [address, setAddress] = useState(props.data.address);
   const [landmark, setLandmark] = useState(props.data.landmark);
@@ -26,49 +25,9 @@ const SpaUpdate = (props) => {
   const [premium, setPremium] = useState(props.data.premium);
   const [verified, setVerified] = useState(props.data.verified);
 
-  // Post Request Starts
+  // Patch Request Starts
   const handleFileChange = (event) => {
     setImage(event.target.files[0]);
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const location = {
-      type: "Point",
-      coordinates: [longitude, latitude],
-    };
-    if (!Image) {
-      console.log("Please select a file");
-      return;
-    }
-    const formData = new FormData();
-    formData.append("name", spaname);
-    formData.append("address", address);
-    formData.append("landmark", landmark);
-    formData.append("mobileNumber", mobileNumber);
-    formData.append("bookingNumber", bookingNumber);
-    formData.append("gmapLink", GMapLink);
-    formData.append("imageUrl", Image);
-    formData.append("location", location);
-    formData.append("openTime", openTime);
-    formData.append("closeTime", closeTime);
-    formData.append("slug", slug);
-    formData.append("priority", priority);
-    formData.append("Area", area);
-    formData.append("City", city);
-
-    try {
-      // console.log(formData);
-      await fetch("http://localhost:8080/api/v1/spas", {
-        method: "POST",
-        body: formData,
-      });
-
-      alert("spas uploaded successfully");
-    } catch (error) {
-      console.error("Error uploading image", error);
-    }
   };
 
   const [areaList, setAreaList] = useState([{}]);
@@ -87,10 +46,57 @@ const SpaUpdate = (props) => {
   const cityData = cityList.map((data) => data.name);
   const [cityId, setCityId] = useState([]);
 
+  // update spa------------------------------------------------
+  const handleUpdated = (id) => {
+    // event.preventDefault();
+    // const location = {
+    //   type: "Point",
+    //   coordinates: [longitude, latitude],
+    // };
+    // if (!Image) {
+    //   console.log("Please select a file");
+    //   return;
+    // }
+    // const formData = new FormData();
+    // formData.append("name", spaname);
+    // formData.append("address", address);
+    // formData.append("landmark", landmark);
+    // formData.append("mobileNumber", mobileNumber);
+    // formData.append("bookingNumber", bookingNumber);
+    // formData.append("gmapLink", GMapLink);
+    // formData.append("imageUrl", Image);
+    // formData.append("location", location);
+    // formData.append("openTime", openTime);
+    // formData.append("closeTime", closeTime);
+    // formData.append("slug", slug);
+    // formData.append("priority", priority);
+    // formData.append("Area", area);
+    // formData.append("City", city);
+
+    // console.log(formData);
+
+    fetch(`http://localhost:8080/api/v1/spas/${id}`, {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        spaname: "ABCD",
+      }),
+    })
+      .then(function (response) {
+        return response.json();
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="main-container">
       <div className="container">
-        <form method="post" onSubmit={handleSubmit}>
+        <form method="post">
           <h1>Spa</h1>
           <div className="form-group">
             <label htmlhtmlFor="name">Name of Spa *</label>
@@ -106,7 +112,6 @@ const SpaUpdate = (props) => {
               onChange={(e) => setSpaName(e.target.value)}
             />
           </div>
-
           <div className="form-group">
             <label htmlhtmlFor="phone">Phone Number *</label>
             <input
@@ -390,7 +395,11 @@ const SpaUpdate = (props) => {
             />
           </div> */}
 
-          <button className="submit-btn" onSubmit={handleSubmit} type="submit">
+          <button
+            className="submit-btn"
+            onClick={() => handleUpdated(props.data._id)}
+            type="submit"
+          >
             add spa
           </button>
         </form>
@@ -398,5 +407,4 @@ const SpaUpdate = (props) => {
     </div>
   );
 };
-
 export default SpaUpdate;
