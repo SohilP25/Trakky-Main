@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./forms.css";
-import axios from "axios";
 
 const SpaForm = () => {
   const [spaname, setSpaName] = useState("");
@@ -25,24 +24,11 @@ const SpaForm = () => {
   const handleFileChange = (event) => {
     setImage(event.target.files[0]);
   };
-  // let facilities = [];
-  // let aboutUs = "";
-  // let open = false;
-  // let verified = false;
-  // let topRated = false;
-  // let premium = false;
-  // let luxurious = false;
-  // let services = [];
 
-  
   // Post Request Starts
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setLocation({
-      type: "Point",
-      coordinates: [longitude, latitude],
-    });
+   
     if (!Image) {
       console.log("Please select a file");
       return;
@@ -64,7 +50,7 @@ const SpaForm = () => {
     formData.append("City", city);
 
     try {
-      // console.log(formData);
+      console.log(formData);
       await fetch("http://localhost:8080/api/v1/spas", {
         method: "POST",
         body: formData,
@@ -76,8 +62,8 @@ const SpaForm = () => {
     }
   };
 
-  const [areaList, setAreaList] = useState([{}]);
   // Getting city list
+  const [areaList, setAreaList] = useState([{}]);
   const [cityList, setCityList] = useState([]);
 
   useEffect(() => {
@@ -277,25 +263,15 @@ const SpaForm = () => {
               onChange={(e) => {
                 const city = e.target.value;
                 setCity(city);
-
                 // Find the selected city object from the cities list
                 const selectedCityObj = cityList.find((c) => c.name === city);
-
-                // Set the areas for the selected city
-                // setCityId(selectedCityObj.areas);
-
-                console.log(city, cityId);
-
-                fetch(
-                  `http://localhost:8080/api/v1/cities/${selectedCityObj._id}/areas`,
-                  {
-                    method: "GET",
-                    header: { "Content-Type": "application/json" },
-                  }
-                )
-                  .then((res) => res.json())
-                  .then((data) => setAreaList(data))
-                  .catch((err) => console.log(err));
+                
+                fetch(`http://localhost:8080/api/v1/cities/${selectedCityObj._id}/areas`, {
+                  method: "GET",
+                  header: { "Content-Type": "application/json" },
+                }).then((res) => res.json())
+                .then((data) => setAreaList(data))
+                .catch((err) => console.log(err));
               }}
             />
 
@@ -320,7 +296,7 @@ const SpaForm = () => {
               list="areas"
               id="area"
               placeholder="Select Area"
-              // required
+              required
               autoComplete="off"
               onChange={(e) => setArea(e.target.value)}
             />
@@ -385,7 +361,13 @@ const SpaForm = () => {
             />
           </div> */}
 
-          <button className="submit-btn" onSubmit={handleSubmit} type="submit">
+          <button className="submit-btn" onSubmit={() => {
+            setLocation({
+              type: "Point",
+              coordinates: [longitude, latitude],
+            })
+            handleSubmit()
+            }} type="submit">
             add spa
           </button>
         </form>

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../forms.css";
+import axios from "axios";
+
 
 const SpaUpdate = (props) => {
   const [spaname, setSpaName] = useState(props.data.name);
@@ -46,57 +48,40 @@ const SpaUpdate = (props) => {
   const cityData = cityList.map((data) => data.name);
   const [cityId, setCityId] = useState([]);
 
-  // update spa------------------------------------------------
-  const handleUpdated = (id) => {
-    // event.preventDefault();
-    // const location = {
-    //   type: "Point",
-    //   coordinates: [longitude, latitude],
-    // };
-    // if (!Image) {
-    //   console.log("Please select a file");
-    //   return;
-    // }
-    // const formData = new FormData();
-    // formData.append("name", spaname);
-    // formData.append("address", address);
-    // formData.append("landmark", landmark);
-    // formData.append("mobileNumber", mobileNumber);
-    // formData.append("bookingNumber", bookingNumber);
-    // formData.append("gmapLink", GMapLink);
-    // formData.append("imageUrl", Image);
-    // formData.append("location", location);
-    // formData.append("openTime", openTime);
-    // formData.append("closeTime", closeTime);
-    // formData.append("slug", slug);
-    // formData.append("priority", priority);
-    // formData.append("Area", area);
-    // formData.append("City", city);
+  // Patch Request Starts
 
-    // console.log(formData);
+  const PatchRequest = (id) => {
+    const formData = new FormData();
+    formData.append("name", spaname);
+    formData.append("address", address);
+    formData.append("landmark", landmark);
+    formData.append("mobileNumber", mobileNumber);
+    formData.append("openTime", openTime);
+    formData.append("closeTime", closeTime);
+    formData.append("slug", slug);
+    formData.append("priority", priority);
+    formData.append("bookingNumber", bookingNumber);
+    formData.append("gmapLink", GMapLink);
+    formData.append("Area", area);
+    formData.append("City", city);
 
-    fetch(`http://localhost:8080/api/v1/spas/${id}`, {
-      method: "PATCH",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        spaname: "ABCD",
-      }),
-    })
-      .then(function (response) {
-        return response.json();
+    axios
+      .put(`http://localhost:8080/api/v1/spas/${id}`, {
+        body: formData
       })
-      .catch(function (err) {
-        console.log(err);
+      .then((res) => {
+        console.log(res.data);
+        alert("updated data");
+      })
+      .catch((error) => {
+        alert(JSON.stringify(error.response));
       });
   };
 
   return (
     <div className="main-container">
       <div className="container">
-        <form method="post">
+        <form method="PATCH">
           <h1>Spa</h1>
           <div className="form-group">
             <label htmlhtmlFor="name">Name of Spa *</label>
@@ -106,10 +91,12 @@ const SpaUpdate = (props) => {
               name="name"
               id="name"
               placeholder="Enter Name"
-              required
+              // required
               autoComplete="off"
               value={spaname}
-              onChange={(e) => setSpaName(e.target.value)}
+              onChange={(e) => {
+                setSpaName(e.target.value);
+              }}
             />
           </div>
           <div className="form-group">
@@ -123,7 +110,7 @@ const SpaUpdate = (props) => {
               id="phone"
               value={mobileNumber}
               placeholder="Enter Phone Number"
-              required
+              // required
               autoComplete="off"
               onChange={(e) => setMobileNumber(e.target.value)}
             />
@@ -140,7 +127,7 @@ const SpaUpdate = (props) => {
               id="booknow"
               value={bookingNumber}
               placeholder="Enter WhatsApp Number"
-              required
+              // required
               autoComplete="off"
               onChange={(e) => setBookingNumber(e.target.value)}
             />
@@ -156,7 +143,7 @@ const SpaUpdate = (props) => {
               value={GMapLink}
               contentEditable={false}
               placeholder="Enter Google Maps Link"
-              required
+              // required
               autoComplete="off"
               onChange={(e) => setGMapLink(e.target.value)}
             />
@@ -171,7 +158,7 @@ const SpaUpdate = (props) => {
               id="latitude"
               contentEditable={false}
               placeholder="Enter Latitude"
-              required
+              // required
               autoComplete="off"
               onChange={(e) => setLatitude(e.target.value)}
             />
@@ -186,7 +173,7 @@ const SpaUpdate = (props) => {
               id="longitude"
               contentEditable={false}
               placeholder="Enter Longitude"
-              required
+              // required
               autoComplete="off"
               onChange={(e) => setLongitude(e.target.value)}
             />
@@ -203,7 +190,7 @@ const SpaUpdate = (props) => {
                   id="timings"
                   placeholder="Enter Timings"
                   value={openTime}
-                  required
+                  // required
                   autoComplete="off"
                   onChange={(e) => setOpenTime(e.target.value)}
                 />
@@ -217,7 +204,7 @@ const SpaUpdate = (props) => {
                   id="timings"
                   placeholder="Enter Timings"
                   value={closeTime}
-                  required
+                  // required
                   autoComplete="off"
                   onChange={(e) => setCloseTime(e.target.value)}
                 />
@@ -234,7 +221,7 @@ const SpaUpdate = (props) => {
               id="address"
               value={address}
               placeholder="Enter address"
-              required
+              // required
               autoComplete="off"
               onChange={(e) => setAddress(e.target.value)}
             />
@@ -249,7 +236,7 @@ const SpaUpdate = (props) => {
               id="landmark"
               value={landmark}
               placeholder="Enter Landmark"
-              required
+              // required
               autoComplete="off"
               onChange={(e) => setLandmark(e.target.value)}
             />
@@ -264,7 +251,7 @@ const SpaUpdate = (props) => {
               id="priority"
               placeholder="Enter Priority"
               value={priority}
-              required
+              // required
               autoComplete="off"
               onChange={(e) => setPriority(e.target.value)}
             />
@@ -280,7 +267,7 @@ const SpaUpdate = (props) => {
               value={city}
               id="city"
               placeholder="Select City"
-              required
+              // required
               autoComplete="off"
               onChange={(e) => {
                 const city = e.target.value;
@@ -329,7 +316,7 @@ const SpaUpdate = (props) => {
               id="area"
               value={area}
               placeholder="Select Area"
-              // required
+              // // required
               autoComplete="off"
               onChange={(e) => setArea(e.target.value)}
             />
@@ -360,7 +347,7 @@ const SpaUpdate = (props) => {
               id="slug"
               value={slug}
               placeholder="Enter slug"
-              required
+              // required
               autoComplete="off"
               onChange={(e) => setSlug(e.target.value)}
             />
@@ -375,7 +362,7 @@ const SpaUpdate = (props) => {
               name="image"
               id="mainimage"
               onChange={handleFileChange}
-              required
+              // required
               autoComplete="off"
             />
           </div>
@@ -390,15 +377,15 @@ const SpaUpdate = (props) => {
               id="multipleimage"
               onChange={handleFileChange}
               multiple
-              required
+              // required
               autoComplete="off"
             />
           </div> */}
 
           <button
             className="submit-btn"
-            onClick={() => handleUpdated(props.data._id)}
             type="submit"
+            onClick={() => PatchRequest(props.data._id)}
           >
             add spa
           </button>

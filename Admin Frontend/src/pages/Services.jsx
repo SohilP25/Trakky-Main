@@ -131,6 +131,7 @@ const Services = () => {
             }}
           >
             <option value={""}>--select--</option>
+            {/* {console.log(spaNames)} */}
             {spaNames.map((name, index) => {
               return (
                 <option key={index} value={name}>
@@ -161,7 +162,7 @@ const Services = () => {
               .map((service, index) => {
                 return (
                   <>
-                    {console.log(service)}
+                    {/* {console.log(service)} */}
                     {service.select_spa === selectedOption ? (
                       <tr key={index}>
                         <td>{service.service_name}</td>

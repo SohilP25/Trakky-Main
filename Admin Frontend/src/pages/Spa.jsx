@@ -97,6 +97,7 @@ const Spa = () => {
   // Handling the more button
   const [expandedRow, setExpandedRow] = useState(null);
   const [isDropdown, setIsDropdown] = useState(null);
+  
   const [spaUpdateFormTriggger, setSpaUpdateFormTriggger] = useState(false);
   const [checked, setChecked] = useState(true);
 
