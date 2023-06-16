@@ -34,7 +34,7 @@ const SpaCard = (props) => {
               <span>$89</span> / Person
             </p>
           </div>
-          
+
           <div>
             <Link to={props.cardData.callLink} className="card-btn-link">
               Call Now
@@ -50,11 +50,7 @@ export const OfferCard = (props) => {
   return (
     <div className="offer-card">
       <Link to={"/offers"}>
-        <img
-          src={require(`../../../Assets/images/offers/${props.cardData}`)}
-          draggable="false"
-          alt="offers"
-        />
+        <img src={props.cardData.imageUrl} draggable="false" alt="offers" />
       </Link>
     </div>
   );
@@ -64,11 +60,7 @@ export const TherapyCard = (props) => {
   return (
     <div className="therapy-card">
       <Link>
-        <img
-          src={require(`../../../Assets/images/therapy/${props.cardData.img}`)}
-          draggable={false}
-          alt="therapy"
-        />
+        <img src={props.cardData.imageUrl} draggable={false} alt="therapy" />
         <p>{props.cardData.name}</p>
       </Link>
     </div>
@@ -92,22 +84,24 @@ export const SpaProfile = (props) => {
 export const SpaRoom = (props) => {
   return (
     <div className="spa_therapy_room">
-      <img 
-        src={require(`../../../Assets/images/spa/${props.cardData.photo}`)} 
-        alt="" 
+      <img
+        src={require(`../../../Assets/images/spa/${props.cardData.photo}`)}
+        alt=""
       />
       <p>{props.cardData.roomname}</p>
     </div>
-  )
-}
+  );
+};
 
 export default SpaCard;
-
 
 export const ImageCard = (props) => {
   return (
     <div className="slider_image_card">
-      <img src={require(`../../../Assets/images/spa/${props.cardData}`)} alt="" />
+      <img
+        src={require(`../../../Assets/images/spa/${props.cardData}`)}
+        alt=""
+      />
     </div>
-  )
-}
+  );
+};

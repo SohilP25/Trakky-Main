@@ -18,7 +18,10 @@ const SpaForm = () => {
   const [GMapLink, setGMapLink] = useState(null);
   const [area, setArea] = useState("");
   const [city, setCity] = useState("");
-
+  const [location, setLocation] = useState({
+    type: "Point",
+    coordinates: [longitude, latitude],
+  });
   const handleFileChange = (event) => {
     setImage(event.target.files[0]);
   };
@@ -30,40 +33,16 @@ const SpaForm = () => {
   // let premium = false;
   // let luxurious = false;
   // let services = [];
+
+  
   // Post Request Starts
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const location = {
+    setLocation({
       type: "Point",
       coordinates: [longitude, latitude],
-    };
-
-    // let data = {
-    //   name: spaname,
-    //   address: address,
-    //   landmark: landmark,
-    //   mobileNumber: mobileNumber,
-    //   bookingNumber: bookingNumber,
-    //   gmapLink: GMapLink,
-    //   imageUrl: Image,
-    //   location: location,
-    //   openTime: openTime,
-    //   closeTime: closeTime,
-    //   facilities: facilities,
-    //   slug: slug,
-    //   priority: priority,
-    //   aboutUs: aboutUs,
-    //   open: open,
-    //   verified: verified,
-    //   topRated: topRated,
-    //   premium: premium,
-    //   luxurious: luxurious,
-    //   services: services,
-    //   Area: area,
-    //   City: city,
-    // };
-
+    });
     if (!Image) {
       console.log("Please select a file");
       return;
@@ -205,7 +184,9 @@ const SpaForm = () => {
               placeholder="Enter Longitude"
               required
               autoComplete="off"
-              onChange={(e) => setLongitude(e.target.value)}
+              onChange={(e) => {
+                setLongitude(e.target.value);
+              }}
             />
           </div>
           <div className="form-group">

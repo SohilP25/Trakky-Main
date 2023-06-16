@@ -29,10 +29,6 @@ export const popularLocations = [
   "Spa in Prahladnagar",
   "Spa in Satellite",
   "Spa in Jagatpur",
-  "Spa in Shilaj",
-  "Spa in Gota",
-  "Spa in Sola",
-  "Spa in Ashram Road",
 ];
 
 export const filterTags = [

@@ -8,8 +8,7 @@ import Slider from "../../Common/Slider/Slider";
 import { popularLocations } from "../../../data";
 import SpaCard from "../SpaCard/SpaCard";
 import { SpaCardMini } from "../SpaCard/SpaCard";
-import { offers, spaNearYou } from "../../../data";
-
+import { spaNearYou } from "../../../data";
 
 const SpaNearMeList = (props) => {
   const [windowDimensions, setWindowDimensions] = useState(
@@ -30,17 +29,17 @@ const SpaNearMeList = (props) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const [visible, setVisible] = useState(4)
-  const [show, setShow] = useState(true)
-  const length = spaNearYou.length
+  const [visible, setVisible] = useState(4);
+  const [show, setShow] = useState(true);
+  const length = spaNearYou.length;
 
   const showMoreItems = () => {
     if (visible < length) {
-      setVisible(prevValue => prevValue + 4)
+      setVisible((prevValue) => prevValue + 4);
     } else {
-      setShow(false)
+      setShow(false);
     }
-  }
+  };
 
   return (
     <div>
@@ -51,18 +50,13 @@ const SpaNearMeList = (props) => {
       </div>
       <div className="spa_list_main__container">
         <div className="spa_list__container">
-
           {/* Displays list of cards according to window size */}
           {{ windowDimensions }.windowDimensions.width >= 765 ? (
             <div className="spa_list">
               {spaNearYou.slice(0, visible).map((data, index) => {
                 return (
                   <>
-                    {index === 2 ? (
-                      <OfferContainer />
-                    ) : (
-                      <></>
-                    )}
+                    {index === 2 ? <OfferContainer /> : <></>}
                     <>
                       <SpaCard
                         key={index}
@@ -84,11 +78,7 @@ const SpaNearMeList = (props) => {
               {spaNearYou.slice(0, visible).map((data, index) => {
                 return (
                   <>
-                    {index === 2 ? (
-                      <OfferContainer />
-                    ) : (
-                      null
-                    )}
+                    {index === 2 ? <OfferContainer /> : null}
                     <SpaCardMini
                       key={index}
                       name={data.name}
@@ -105,21 +95,39 @@ const SpaNearMeList = (props) => {
             </>
           )}
 
-          <div className="view_more__button"
-            style={{ display: show ? "block" : "none" }}>
+          <div
+            className="view_more__button"
+            style={{ display: show ? "block" : "none" }}
+          >
             <button onClick={showMoreItems}>View More</button>
           </div>
         </div>
 
         <PopularLocations />
-
       </div>
       <Footer />
-    </div >
+    </div>
   );
 };
 
 const OfferContainer = () => {
+  // Getting offers starts
+  const [offers, setOffers] = useState([]);
+  const getOffer = () => {
+    const requestOption = {
+      method: "GET",
+      header: { "Content-Type": "application/json" },
+    };
+    fetch("http://localhost:8080/api/v1/offer", requestOption)
+      .then((res) => res.json())
+      .then((data) => setOffers(data.data))
+      .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    getOffer();
+  }, []);
+  // Getting offers ends
+
   return (
     <div
       className="slider__outer-container offer__container"
@@ -130,7 +138,7 @@ const OfferContainer = () => {
       </div>
       <Slider cardList={offers} _name={"offer"} />
     </div>
-  )
+  );
 };
 
 const PopularLocations = () => {
@@ -142,16 +150,16 @@ const PopularLocations = () => {
 
       <div className="popular_location_list">
         <ul>
-          {
-            popularLocations.map((city, index) => {
-              return (
-                <li key={index}><Link to={'/city'}>{city}</Link></li>
-              )
-            })
-          }
+          {popularLocations.map((city, index) => {
+            return (
+              <li key={index}>
+                <Link to={"/city"}>{city}</Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>
-  )
+  );
 };
 export default SpaNearMeList;

@@ -2,61 +2,34 @@ import React, { useEffect, useState } from "react";
 import "../forms.css";
 
 const SpaUpdate = (props) => {
-  console.log(props._id);
-
-  // Getting spa details
-  const [SpaData, setSpaData] = useState([]);
-  const getSpa = () => {
-    const requestOption = {
-      method: "GET",
-      header: { "Content-Type": "application/json" },
-    };
-    fetch(`http://localhost:8080/api/v1/spas`, requestOption)
-      .then((res) => res.json())
-      .then((data) => setSpaData(data))
-      .catch((err) => console.log(err));
-  };
-
-  useEffect(() => {
-    getSpa();
-  }, []);
-  // const [findObject, setFindObject] = useState(null);
-  // function b(idToSearch) {
-  //   return SpaData.filter((item) => {
-  //     return item._id === idToSearch;
-  //   });
-  // }
-  // findObject = b(props._id);
 
   const [spaname, setSpaName] = useState(props.data.name);
-  const [address, setAddress] = useState("");
-  const [landmark, setLandmark] = useState("");
-  const [mobileNumber, setMobileNumber] = useState(null);
-  const [Image, setImage] = useState(null);
-  const [openTime, setOpenTime] = useState("");
-  const [closeTime, setCloseTime] = useState("");
-  const [slug, setSlug] = useState("");
-  const [priority, setPriority] = useState(null);
-  const [bookingNumber, setBookingNumber] = useState(null);
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
-  const [GMapLink, setGMapLink] = useState(null);
-  const [area, setArea] = useState("");
-  const [city, setCity] = useState("");
+  const [address, setAddress] = useState(props.data.address);
+  const [landmark, setLandmark] = useState(props.data.landmark);
+  const [mobileNumber, setMobileNumber] = useState(props.data.mobileNumber);
+  const [Image, setImage] = useState(props.data.imageUrl);
+  const [openTime, setOpenTime] = useState(props.data.openTime);
+  const [closeTime, setCloseTime] = useState(props.data.closeTime);
+  const [slug, setSlug] = useState(props.data.slug);
+  const [priority, setPriority] = useState(props.data.priority);
+  const [bookingNumber, setBookingNumber] = useState(props.data.bookingNumber);
+  const [latitude, setLatitude] = useState();
+  const [longitude, setLongitude] = useState();
+  const [GMapLink, setGMapLink] = useState(props.data.gmapLink);
+  const [area, setArea] = useState(props.data.Area);
+  const [city, setCity] = useState(props.data.City);
 
+  // For Switches
+  const [luxurious, setLuxurious] = useState(props.data.luxurious);
+  const [topRated, setTopRated] = useState(props.data.topRated);
+  const [open, setOpen] = useState(props.data.open);
+  const [premium, setPremium] = useState(props.data.premium);
+  const [verified, setVerified] = useState(props.data.verified);
+
+  // Post Request Starts
   const handleFileChange = (event) => {
     setImage(event.target.files[0]);
   };
-  // let facilities = [];
-  // let aboutUs = "";
-  // let open = false;
-  // let verified = false;
-  // let topRated = false;
-  // let premium = false;
-  // let luxurious = false;
-  // let services = [];
-
-  // Post Request Starts
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -65,32 +38,6 @@ const SpaUpdate = (props) => {
       type: "Point",
       coordinates: [longitude, latitude],
     };
-
-    // let data = {
-    //   name: spaname,
-    //   address: address,
-    //   landmark: landmark,
-    //   mobileNumber: mobileNumber,
-    //   bookingNumber: bookingNumber,
-    //   gmapLink: GMapLink,
-    //   imageUrl: Image,
-    //   location: location,
-    //   openTime: openTime,
-    //   closeTime: closeTime,
-    //   facilities: facilities,
-    //   slug: slug,
-    //   priority: priority,
-    //   aboutUs: aboutUs,
-    //   open: open,
-    //   verified: verified,
-    //   topRated: topRated,
-    //   premium: premium,
-    //   luxurious: luxurious,
-    //   services: services,
-    //   Area: area,
-    //   City: city,
-    // };
-
     if (!Image) {
       console.log("Please select a file");
       return;
@@ -169,6 +116,7 @@ const SpaUpdate = (props) => {
               maxLength={10}
               name="phone"
               id="phone"
+              value={mobileNumber}
               placeholder="Enter Phone Number"
               required
               autoComplete="off"
@@ -185,6 +133,7 @@ const SpaUpdate = (props) => {
               maxLength={10}
               name="booknow"
               id="booknow"
+              value={bookingNumber}
               placeholder="Enter WhatsApp Number"
               required
               autoComplete="off"
@@ -199,6 +148,7 @@ const SpaUpdate = (props) => {
               type="text"
               name="directionlink"
               id="directionlink"
+              value={GMapLink}
               contentEditable={false}
               placeholder="Enter Google Maps Link"
               required
@@ -247,6 +197,7 @@ const SpaUpdate = (props) => {
                   name="timings"
                   id="timings"
                   placeholder="Enter Timings"
+                  value={openTime}
                   required
                   autoComplete="off"
                   onChange={(e) => setOpenTime(e.target.value)}
@@ -260,6 +211,7 @@ const SpaUpdate = (props) => {
                   name="timings"
                   id="timings"
                   placeholder="Enter Timings"
+                  value={closeTime}
                   required
                   autoComplete="off"
                   onChange={(e) => setCloseTime(e.target.value)}
@@ -275,6 +227,7 @@ const SpaUpdate = (props) => {
               type="text"
               name="address"
               id="address"
+              value={address}
               placeholder="Enter address"
               required
               autoComplete="off"
@@ -289,6 +242,7 @@ const SpaUpdate = (props) => {
               type="text"
               name="landmark"
               id="landmark"
+              value={landmark}
               placeholder="Enter Landmark"
               required
               autoComplete="off"
@@ -304,6 +258,7 @@ const SpaUpdate = (props) => {
               name="priority"
               id="priority"
               placeholder="Enter Priority"
+              value={priority}
               required
               autoComplete="off"
               onChange={(e) => setPriority(e.target.value)}
@@ -317,6 +272,7 @@ const SpaUpdate = (props) => {
               type="dropdown"
               name="city"
               list="cities"
+              value={city}
               id="city"
               placeholder="Select City"
               required
@@ -347,7 +303,7 @@ const SpaUpdate = (props) => {
             />
 
             <datalist id="cities">
-              <option value="">--select--</option>
+              <option value={city}>--select--</option>
               {cityData.map((city, index) => {
                 return (
                   <option key={index} value={city}>
@@ -366,6 +322,7 @@ const SpaUpdate = (props) => {
               name="area"
               list="areas"
               id="area"
+              value={area}
               placeholder="Select Area"
               // required
               autoComplete="off"
@@ -378,7 +335,7 @@ const SpaUpdate = (props) => {
                 setArea(e.target.value);
               }}
             >
-              <option value="">--select--</option>
+              <option value={area}>--select--</option>
               {areaList.map((area, index) => {
                 return (
                   <>
@@ -396,6 +353,7 @@ const SpaUpdate = (props) => {
               type="text"
               name="text"
               id="slug"
+              value={slug}
               placeholder="Enter slug"
               required
               autoComplete="off"

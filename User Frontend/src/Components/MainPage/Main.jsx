@@ -13,8 +13,6 @@ import Footer from "../Common/Footer/Footer";
 // importing Data from Data.js
 import {
   spaNearYou,
-  offers,
-  therapy,
   topRatedSpa,
   LuxuriousSpa,
   topDestinationsLocations,
@@ -40,6 +38,45 @@ const Home = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   const [active, setActive] = useState(0);
+
+
+
+  // Getting offers starts
+  const [offers, setOffers] = useState([]);
+  const getOffer = () => {
+    const requestOption = {
+      method: "GET",
+      header: { "Content-Type": "application/json" },
+    };
+    fetch("http://localhost:8080/api/v1/offer", requestOption)
+      .then((res) => res.json())
+      .then((data) => setOffers(data.data))
+      .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    getOffer();
+  }, []);
+  // Getting offers ends
+
+
+
+  // Getting therapy starts
+  const [therapy, setTherapy] = useState([]);
+  const getTherapy = () => {
+    const requestOption = {
+      method: "GET",
+      header: { "Content-Type": "application/json" },
+    };
+    fetch("http://localhost:8080/api/v1/therapy", requestOption)
+      .then((res) => res.json())
+      .then((data) => setTherapy(data.data))
+      .catch((err) => console.log(err));
+  };
+  useEffect(() => {
+    getTherapy();
+  }, []);
+  // Getting therapy ends
+
   return (
     <div className="main__container">
       <Hero />
@@ -58,7 +95,7 @@ const Home = () => {
         <div className="slider__outer-container">
           <div className="slider__header">
             <h1>Therapies</h1>
-              <Link to={"/spa-list"}>More</Link>
+            <Link to={"/spa-list"}>More</Link>
             <p>Here are lots of interesting destinations to visit</p>
           </div>
           <Slider cardList={therapy} _name={"therapy"} />

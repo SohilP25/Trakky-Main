@@ -7,10 +7,10 @@ import { IoIosArrowDropup } from "react-icons/io";
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 import SpaUpdate from "./forms/updateForms/SpaUpdate";
-
+import Switch from "@mui/material/Switch";
 const Spa = () => {
   // update spa use state variables
-  const [updatespatrigger, setUpdateSpaTrigger] = useState(null)
+  const [updatespatrigger, setUpdateSpaTrigger] = useState(null);
   const [updatespa, setUpdateSpa] = useState(null);
 
   // Getting spa details
@@ -101,8 +101,8 @@ const Spa = () => {
     const results = SpaData.filter(
       (item) =>
         item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.area.toLowerCase().includes(searchTerm.toLowerCase())
+        item.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.landmark.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     setSearchResults(results);
@@ -112,7 +112,26 @@ const Spa = () => {
   const [expandedRow, setExpandedRow] = useState(null);
   const [isDropdown, setIsDropdown] = useState(null);
   const [spaUpdateFormTriggger, setSpaUpdateFormTriggger] = useState(false);
+  const [checked, setChecked] = useState(true);
 
+  const [Switches, setSwitches] = useState(null);
+  const [SwitchTrigger, setSwitchTrigger] = useState(null);
+
+  const [SwitchesVerified, setSwitchesVerified] = useState(null);
+  const [SwitchTriggerVerified, setSwitchTriggerVerified] = useState(null);
+
+  const [SwitchesTopRated, setSwitchesTopRated] = useState(null);
+  const [SwitchTriggerTopRated, setSwitchTriggerTopRated] = useState(null);
+
+  const [SwitchesPremium, setSwitchesPremium] = useState(null);
+  const [SwitchTriggerPremium, setSwitchTriggerPremium] = useState(null);
+
+  const [SwitchesLuxurious, setSwitchesLuxurious] = useState(null);
+  const [SwitchTriggerLuxurious, setSwitchTriggerLuxurious] = useState(null);
+
+  const handleChange = (event) => {
+    setChecked(!checked);
+  };
   return (
     <div className="main_list__container">
       <div className="mini_navbar__container">
@@ -154,7 +173,7 @@ const Spa = () => {
                       <td>{spa.address}</td>
                       <td>{spa.landmark}</td>
                       <td>
-                        <div className="form-check form-switch">
+                        {/* <div className="form-check form-switch">
                           <label
                             className="form-check-label"
                             htmlFor="flexSwitchCheckDefault"
@@ -167,7 +186,14 @@ const Spa = () => {
                               setOpen(!open);
                             }}
                           />
-                        </div>
+                        </div> */}
+                        <Switch
+                          onChange={() => {
+                            setSwitches(index);
+                            setSwitchTrigger(index);
+                          }}
+                          inputProps={{ "aria-label": "controlled" }}
+                        />
                       </td>
                       <td>
                         {isDropdown === null ? (
@@ -187,79 +213,51 @@ const Spa = () => {
                         )}
                       </td>
                       <td>
-                        <div className="form-check form-switch">
-                          <label
-                            className="form-check-label"
-                            htmlFor="flexSwitchCheckDefault"
-                          ></label>
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="flexSwitchCheckDefault"
-                            onChange={() => {
-                              setVerified(!verified);
-                            }}
-                          />
-                        </div>
+                        <Switch
+                          onChange={() => {
+                            setSwitchesVerified(index);
+                            setSwitchTriggerVerified(index);
+                          }}
+                          inputProps={{ "aria-label": "controlled" }}
+                        />
                       </td>
                       <td>
-                        <div className="form-check form-switch">
-                          <label
-                            className="form-check-label"
-                            htmlFor="flexSwitchCheckDefault"
-                          ></label>
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="flexSwitchCheckDefault"
-                            onChange={() => {
-                              setTopRated(!topRated);
-                            }}
-                          />
-                        </div>
+                        <Switch
+                          onChange={() => {
+                            setSwitchesTopRated(index);
+                            setSwitchTriggerTopRated(index);
+                          }}
+                          inputProps={{ "aria-label": "controlled" }}
+                        />
                       </td>
                       <td>
-                        <div className="form-check form-switch">
-                          <label
-                            className="form-check-label"
-                            htmlFor="flexSwitchCheckDefault"
-                          ></label>
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="flexSwitchCheckDefault"
-                            onChange={() => {
-                              setPremium(!premium);
-                            }}
-                          />
-                        </div>
+                        <Switch
+                          onChange={() => {
+                            setSwitchesPremium(index);
+                            setSwitchTriggerPremium(index);
+                          }}
+                          inputProps={{ "aria-label": "controlled" }}
+                        />
                       </td>
                       <td>
-                        <div className="form-check form-switch">
-                          <label
-                            className="form-check-label"
-                            htmlFor="flexSwitchCheckDefault"
-                          ></label>
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="flexSwitchCheckDefault"
-                            onChange={() => {
-                              setLuxurious(!luxurious);
-                            }}
-                          />
-                        </div>
+                        <Switch
+                          onChange={() => {
+                            setSwitchesLuxurious(index);
+                            setSwitchTriggerLuxurious(index);
+                          }}
+                          inputProps={{ "aria-label": "controlled" }}
+                        />
                       </td>
                       <td>
                         <AiFillDelete onClick={() => deleteSpa(spa._id)} />
                         &nbsp;&nbsp;
                         {/* {console.log(spa._id)} */}
-                          <FaEdit
+                        <FaEdit
                           onClick={() => {
-                            setUpdateSpa(index)
-                            setUpdateSpaTrigger(index)
+                            setUpdateSpa(index);
+                            setUpdateSpaTrigger(index);
                           }}
-                          />
+                        />
                       </td>
                     </tr>
                     <div
@@ -270,7 +268,7 @@ const Spa = () => {
                     >
                       <button
                         onClick={() => {
-                          setUpdateSpa(null)
+                          setUpdateSpa(null);
                         }}
                         style={{
                           padding: "0.7rem 1.2rem",
