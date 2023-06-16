@@ -49,19 +49,6 @@ const SpaUpdate = (props) => {
   
   // PUT Request Starts
   const PatchRequest = (id) => {
-    // const formData = new FormData();
-    // formData.append("name", spaname);
-    // formData.append("address", address);
-    // formData.append("landmark", landmark);
-    // formData.append("mobileNumber", mobileNumber);
-    // formData.append("openTime", openTime);
-    // formData.append("closeTime", closeTime);
-    // formData.append("slug", slug);
-    // formData.append("priority", priority);
-    // formData.append("bookingNumber", bookingNumber);
-    // formData.append("gmapLink", GMapLink);
-    // formData.append("Area", area);
-    // formData.append("City", city);
     axios
       .put(`http://localhost:8080/api/v1/spas/${id}`, {
         name: spaname,
@@ -84,7 +71,6 @@ const SpaUpdate = (props) => {
       .catch((error) => {
         alert(JSON.stringify(error.response));
       });
-      // console.log(luxurious);
   };
 
   return (

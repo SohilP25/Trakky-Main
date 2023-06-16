@@ -8,6 +8,10 @@ import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 import SpaUpdate from "./forms/updateForms/SpaUpdate";
 import Switch from "@mui/material/Switch";
+import axios from 'axios'
+
+
+
 const Spa = () => {
   // update spa use state variables
   const [updatespatrigger, setUpdateSpaTrigger] = useState(null);
@@ -97,28 +101,95 @@ const Spa = () => {
   // Handling the more button
   const [expandedRow, setExpandedRow] = useState(null);
   const [isDropdown, setIsDropdown] = useState(null);
+
   
-  const [spaUpdateFormTriggger, setSpaUpdateFormTriggger] = useState(false);
-  const [checked, setChecked] = useState(true);
-
-  const [Switches, setSwitches] = useState(null);
-  const [SwitchTrigger, setSwitchTrigger] = useState(null);
-
-  const [SwitchesVerified, setSwitchesVerified] = useState(null);
-  const [SwitchTriggerVerified, setSwitchTriggerVerified] = useState(null);
-
-  const [SwitchesTopRated, setSwitchesTopRated] = useState(null);
-  const [SwitchTriggerTopRated, setSwitchTriggerTopRated] = useState(null);
-
-  const [SwitchesPremium, setSwitchesPremium] = useState(null);
-  const [SwitchTriggerPremium, setSwitchTriggerPremium] = useState(null);
-
-  const [SwitchesLuxurious, setSwitchesLuxurious] = useState(null);
-  const [SwitchTriggerLuxurious, setSwitchTriggerLuxurious] = useState(null);
-
-  const handleChange = (event) => {
-    setChecked(!checked);
+  // Updating status button
+  const statusSwitch = (id, currentStatus) => {
+    axios
+      .put(`http://localhost:8080/api/v1/spas/${id}`, {
+        open: currentStatus,
+      })
+      .then((res) => {
+        console.log(res.data);
+        alert("updated verified");
+      })
+      .then(() => getSpa())
+      .catch((error) => {
+        alert(JSON.stringify(error.response));
+      });
   };
+
+
+  // Updating verify button
+  const verifySwitch = (id, currentStatus) => {
+    axios
+      .put(`http://localhost:8080/api/v1/spas/${id}`, {
+        verified: currentStatus,
+      })
+      .then((res) => {
+        console.log(res.data);
+        alert("updated verified");
+      })
+      .then(() => getSpa())
+      .catch((error) => {
+        alert(JSON.stringify(error.response));
+      });
+  };
+
+
+  // Updating topRated button
+  const topRatedSwitch = (id, currentStatus) => {
+    axios
+      .put(`http://localhost:8080/api/v1/spas/${id}`, {
+        topRated: currentStatus,
+      })
+      .then((res) => {
+        console.log(res.data);
+        alert("updated verified");
+      })
+      .then(() => getSpa())
+      .catch((error) => {
+        alert(JSON.stringify(error.response));
+      });
+  };
+
+
+  // Updating premium button
+  const premiumSwitch = (id, currentStatus) => {
+    axios
+      .put(`http://localhost:8080/api/v1/spas/${id}`, {
+        premium: currentStatus,
+      })
+      .then((res) => {
+        console.log(res.data);
+        alert("updated verified");
+      })
+      .then(() => getSpa())
+      .catch((error) => {
+        alert(JSON.stringify(error.response));
+      });
+  };
+
+  // Updating luxurious button
+  const luxuriousSwitch = (id, currentStatus) => {
+    axios
+      .put(`http://localhost:8080/api/v1/spas/${id}`, {
+        luxurious: currentStatus,
+      })
+      .then((res) => {
+        console.log(res.data);
+        alert("updated verified");
+      })
+      .then(() => getSpa())
+      .catch((error) => {
+        alert(JSON.stringify(error.response));
+      });
+  };
+
+
+
+
+
   return (
     <div className="main_list__container">
       <div className="mini_navbar__container">
@@ -160,24 +231,10 @@ const Spa = () => {
                       <td>{spa.address}</td>
                       <td>{spa.landmark}</td>
                       <td>
-                        {/* <div className="form-check form-switch">
-                          <label
-                            className="form-check-label"
-                            htmlFor="flexSwitchCheckDefault"
-                          ></label>
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="flexSwitchCheckDefault"
-                            onChange={() => {
-                              setOpen(!open);
-                            }}
-                          />
-                        </div> */}
                         <Switch
+                        checked={spa.open}
                           onChange={() => {
-                            setSwitches(index);
-                            setSwitchTrigger(index);
+                            statusSwitch(spa._id, !spa.open)
                           }}
                           inputProps={{ "aria-label": "controlled" }}
                         />
@@ -201,36 +258,36 @@ const Spa = () => {
                       </td>
                       <td>
                         <Switch
+                          checked={spa.verified}
                           onChange={() => {
-                            setSwitchesVerified(index);
-                            setSwitchTriggerVerified(index);
+                            verifySwitch(spa._id, !spa.verified)
                           }}
                           inputProps={{ "aria-label": "controlled" }}
                         />
                       </td>
                       <td>
                         <Switch
+                          checked={spa.topRated}
                           onChange={() => {
-                            setSwitchesTopRated(index);
-                            setSwitchTriggerTopRated(index);
+                            topRatedSwitch(spa._id, !spa.topRated)
                           }}
                           inputProps={{ "aria-label": "controlled" }}
                         />
                       </td>
                       <td>
                         <Switch
+                          checked={spa.premium}
                           onChange={() => {
-                            setSwitchesPremium(index);
-                            setSwitchTriggerPremium(index);
+                            premiumSwitch(spa._id, !spa.premium)
                           }}
                           inputProps={{ "aria-label": "controlled" }}
                         />
                       </td>
                       <td>
                         <Switch
+                          checked={spa.luxurious}
                           onChange={() => {
-                            setSwitchesLuxurious(index);
-                            setSwitchTriggerLuxurious(index);
+                            luxuriousSwitch(spa._id, !spa.luxurious)
                           }}
                           inputProps={{ "aria-label": "controlled" }}
                         />
