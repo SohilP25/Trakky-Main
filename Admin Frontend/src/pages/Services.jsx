@@ -3,6 +3,7 @@ import "./Page.css";
 
 import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
+import ServiceUpdate from "./forms/updateForms/ServcieUpdate";
 
 const Services = () => {
   // Getting services details
@@ -104,6 +105,11 @@ const Services = () => {
     setSelectedOption(event.target.value);
   };
 
+
+  // useStates of update spa
+  const [updatespa, setUpdatespa] = useState(null)
+
+
   return (
     <div className="main_list__container">
       <div className="mini_navbar__container">
@@ -164,23 +170,49 @@ const Services = () => {
                   <>
                     {/* {console.log(service)} */}
                     {service.select_spa === selectedOption ? (
-                      <tr key={index}>
-                        <td>{service.service_name}</td>
-                        <td>{service.therapies}</td>
-                        <td>{service.price}</td>
-                        <td>{service.service_time}</td>
-                        <td>{service.discount}</td>
-                        <td>{service.description}</td>
-                        <td>
-                          <AiFillDelete
+                      <>
+                        <tr key={index}>
+                          <td>{service.service_name}</td>
+                          <td>{service.therapies}</td>
+                          <td>{service.price}</td>
+                          <td>{service.service_time}</td>
+                          <td>{service.discount}</td>
+                          <td>{service.description}</td>
+                          <td>
+                            <AiFillDelete
+                              onClick={() => {
+                                deleteServices(service._id);
+                              }}
+                            />
+                            &nbsp;&nbsp;
+                            <FaEdit onClick={() => {
+                              setUpdatespa(index)
+                            }} />
+                          </td>
+                        </tr>
+
+                        <div
+                          className="showPhotos"
+                          style={{
+                            display: updatespa === index ? "block" : "none",
+                          }}
+                        >
+                          <button
                             onClick={() => {
-                              deleteServices(service._id);
+                              setUpdatespa(null);
                             }}
-                          />
-                          &nbsp;&nbsp;
-                          <FaEdit />
-                        </td>
-                      </tr>
+                            style={{
+                              padding: "0.7rem 1.2rem",
+                              borderRadius: "10px",
+                              color: "white",
+                              backgroundColor: "#512DC8",
+                            }}
+                          >
+                            Close
+                          </button>
+                          <ServiceUpdate data={service} />
+                        </div>
+                      </>
                     ) : (
                       <></>
                     )}

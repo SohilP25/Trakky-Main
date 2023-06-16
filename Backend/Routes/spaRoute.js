@@ -19,7 +19,7 @@ spaRoute
   // For creating spa.
   .post("/", upload.single("imageUrl"), createSpa)
   // For updating details of spa.
-  .patch("/:id", updateSpa)
+  .put("/:id", updateSpa)
   // For deleting details of spa.
   .delete("/:id", deleteSpa);
 export default spaRoute;

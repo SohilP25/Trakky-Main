@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import "./forms.css";
+import "../forms.css";
+import axios from "axios";
 
 const ServiceUpdate = (props) => {
-  const [selectSpa, setSelectSpa] = useState(props.select_spa);
-  const [serviceName, setServiceName] = useState(props.service_name);
-  const [serviceTime, setServiceTime] = useState(props.service_time);
-  const [description, setDescription] = useState(props.description);
-  const [price, setPrice] = useState(props.price);
-  const [discount, setDiscount] = useState(props.discount);
-  const [therapy, setTherapy] = useState(props.therapy);
+  const [selectSpa, setSelectSpa] = useState(props.data.select_spa);
+  const [serviceName, setServiceName] = useState(props.data.service_name);
+  const [serviceTime, setServiceTime] = useState(props.data.service_time);
+  const [description, setDescription] = useState(props.data.description);
+  const [price, setPrice] = useState(props.data.price);
+  const [discount, setDiscount] = useState(props.data.discount);
+  const [therapy, setTherapy] = useState(props.data.therapies);
 
   // Get therapies
   const [therapyList, setTherapyList] = useState([]);
@@ -41,41 +42,33 @@ const ServiceUpdate = (props) => {
     getSpa();
   }, []);
 
-  // PUT Request Starts
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    let data = {
-      select_spa: selectSpa,
-      service_name: serviceName,
-      service_time: serviceTime,
-      description: description,
-      price: price,
-      discount: discount,
-      therapies: therapy,
-    };
-    try {
-      console.log(data);
-      await fetch("http://localhost:8080/api/v1/services", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+ // PUT Request Starts
+ const PatchRequest = (id) => {
+    axios
+      .put(`http://localhost:8080/api/v1/services/${id}`, {
+        select_spa: selectSpa,
+        service_name: serviceName,
+        service_time: serviceTime,
+        description: description,
+        price: price,
+        discount: discount,
+        therapies: therapy,
+      })
+      .then((res) => {
+        console.log(res.data);
+        alert("updated data");
+      })
+      .catch((error) => {
+        alert(JSON.stringify(error.response));
       });
-
-      alert("Service uploaded successfully");
-    } catch (error) {
-      console.error("Error uploading image", error);
-    }
+      // console.log(luxurious);
   };
-  // Post Request Ends
 
   return (
     <>
       <div className="main-container">
         <div className="container">
-          <form method="post" onSubmit={handleSubmit}>
+          <form>
             <h1>Services</h1>
 
             <div className="form-group">
@@ -211,7 +204,7 @@ const ServiceUpdate = (props) => {
 
             <button
               className="submit-btn"
-              onSubmit={handleSubmit}
+              onSubmit={() => PatchRequest(props._id)}
               type="submit"
             >
               Add Service
