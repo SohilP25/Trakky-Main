@@ -60,8 +60,8 @@ const Therapy = () => {
 
     const results = TherapyData.filter(
       (item) =>
-        item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.slug.toLowerCase().includes(searchTerm.toLowerCase())
+        item.Name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.Slug.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     setSearchResults(results);

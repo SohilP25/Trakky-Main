@@ -67,9 +67,9 @@ const Offer = () => {
 
     const results = offersData.filter(
       (item) =>
-        item.offerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.spaName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.slug.toLowerCase().includes(searchTerm.toLowerCase())
+        item.Name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.Select_Spa.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.Slug.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     setSearchResults(results);
