@@ -14,7 +14,8 @@ import discoverRoute from './Routes/discoverRoute.js'
 import offerRouter from "./Routes/OfferRoute.js";
 import ThearpyRouter from "./Routes/ThrapiesRoute.js";
 import servicesrouter from "./Routes/ServicesRoute.js";
-import cityAreaRoutes from './Routes/cityAreaRoute.js'
+import cityAreaRoutes from './Routes/cityAreaRoute.js';
+import logRoutes from "./Routes/logsRoutes.js";
 const apiv1 = express.Router();
 
 
@@ -49,5 +50,8 @@ apiv1.use("/discover-experiences", discoverRoute);
 //For City and area
 apiv1.use("/", cityAreaRoutes);
 
+
+// routes for inquries and logs
+apiv1.use("/logs",logRoutes)
 
 export default apiv1;

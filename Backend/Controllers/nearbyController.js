@@ -17,7 +17,8 @@ export const nearbySpa = async (req, res) => {
             distanceField: 'dist.calculated',
             maxDistance: 1000 * 1609,
             spherical: true,
-          },
+          }
+          
         },
       ]);
   
@@ -28,7 +29,7 @@ export const nearbySpa = async (req, res) => {
       });
     } catch (error) {
       console.log(error);
-      res.status(400).json({ msg: 'Failed to fetch data' });
+      res.status(400).json({error});
     }
   };
   
