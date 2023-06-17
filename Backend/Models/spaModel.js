@@ -44,7 +44,7 @@ const spaSchema = new mongoose.Schema({
   //   type: [String],
   //   required: true,
   // },
-  location: {
+  spaLocation: {
     type: {
       type: String,
       enum: ["Point"],
@@ -113,7 +113,7 @@ const spaSchema = new mongoose.Schema({
 });
 
 //creating sphare
-spaSchema.index({ location: "2dsphere" });
+spaSchema.index({ spaLocation: "2dsphere" });
 //Creating Model of schema.
 
 const spaModel = mongoose.model("spaModel", spaSchema);
