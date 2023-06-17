@@ -16,7 +16,6 @@ const Header = ({ page = "other" }) => {
   const [show, setShow] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const [searchText, setSearchText] = useState("")
 
   useEffect(() => {
     const controlNavbar = () => {
@@ -46,7 +45,22 @@ const Header = ({ page = "other" }) => {
   const [isFocused, setIsFocused] = useState(false)
   const ref = useRef(null)
 
+
+  const [searchText, setSearchText] = useState("");
+  const [searchResultList, setSearchResultList] = useState([{}]);
+
+  // getting search result
+  const getSearchResult = (text) => {
+    fetch(`http://localhost:8080/api/v1/search?name=${text}`, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => setSearchResultList(data.data))
+      .catch((err) => console.log(err));
+  };
+
   return (
+    <div>
     <div
       className={`navbar__container ${show && "hidden"}`}
       style={{
@@ -97,7 +111,10 @@ const Header = ({ page = "other" }) => {
             id="search"
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
-            onChange={(e) => setSearchText(e.target.value)}
+            onChange={(e) => {
+              setSearchText(e.target.value)
+              getSearchResult(e.target.value)
+            }}
             style={{
               fontSize: (isFocused || searchText.length !== 0) ? "larger" : ""
             }}
@@ -121,6 +138,34 @@ const Header = ({ page = "other" }) => {
           Register Spa
         </button>
       </div> */}
+    </div>
+
+    <div
+        className="search_result__container"
+        style={{
+          display: searchText === "" ? "none" : "block",
+          width: "40%",
+          margin: "0 23% 0 37%"
+        }}
+      >
+        <ul>
+          {searchResultList.map((spa, index) => {
+            return (
+              <>
+                <li key={index}>
+                  <Link to={`spas${spa.slug}`}>{spa.name}</Link>
+                </li>
+                {/* <li key={index}>
+                  <Link to={`city/${spa.City}`}>{spa.City}</Link>
+                </li>
+                <li key={index}>
+                  <Link to={`area/${spa.Area}`}>{spa.Area}</Link>
+                </li> */}
+              </>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 };

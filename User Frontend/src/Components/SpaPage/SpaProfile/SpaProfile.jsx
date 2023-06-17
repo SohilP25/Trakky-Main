@@ -178,8 +178,8 @@ const SpaProfile = () => {
               </div>
               <div className="spa-information-tags-offers">
                 <div className="spa-information-tags">
-                  <li>{spa.premium && "Premium"}</li>
-                  <li>{spa.luxurious && "Luxurious"}</li>
+                  {spa.premium && <li>Premium</li>}
+                  {spa.luxurious && <li>Luxurious</li>}
                   {/* <li>{spa.trending && "Trending"}</li> */}
                 </div>
                 {/* <div className="spa-information-offer">

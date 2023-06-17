@@ -3,14 +3,17 @@ import "./Hero.css";
 
 import Header from "../../Common/Header/Header";
 import SearchBar from "./SearchBar";
-import Typed from 'react-typed';
+import Typed from "react-typed";
 
 const Hero = () => {
-
   return (
     <section>
       <div className="video-bg">
-        <img src={require(`./../../../Assets/images/other/background_video_image.png`)} className="video-bg" alt="" />
+        <img
+          src={require(`./../../../Assets/images/other/background_video_image.png`)}
+          className="video-bg"
+          alt=""
+        />
         {/* <video className="video-bg" autoPlay loop muted>
           <source src={require(`./../../../Assets/videos/horizontal_.webm`)} />
         </video> */}
@@ -25,7 +28,7 @@ const Hero = () => {
               strings={[
                 "Get the best massage therapy spa here!",
                 "Select best therapies according to your need",
-                "One stop solution for your relaxation & refreshment needs."
+                "One stop solution for your relaxation & refreshment needs.",
               ]}
               typeSpeed={10}
               backSpeed={5}
@@ -36,8 +39,10 @@ const Hero = () => {
           </h1>
           {/* <p>Discover and book beauty & wellness professionals near you</p> */}
         </div>
+
+        <SearchBar />
+
         
-       <SearchBar/>
       </div>
     </section>
   );
