@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 // importing other stuff
 import { Link } from "react-router-dom";
 // import GiftCard from "../../Assets/images/other/Gift Cards.png";
@@ -37,8 +36,6 @@ const Home = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   const [active, setActive] = useState(0);
-
-
 
   // const [NearBySpas, setNearBySpas] = useState([{}]);
 
@@ -123,7 +120,7 @@ const Home = () => {
         <div className="slider__outer-container">
           <div className="slider__header">
             <h1>Therapies</h1>
-            <Link to={"/therapylist"}>More</Link>
+            <Link to={"/therapies"}>More</Link>
             <p>Here are lots of interesting therapies to try out</p>
           </div>
           <Slider cardList={therapy} _name={"therapy"} />
@@ -136,7 +133,7 @@ const Home = () => {
         <div className="slider__header">
           <h1>Spa Near You</h1>
           <div className="slider_buttons">
-            <Link to={"/spanearyoulist"}>More</Link>
+            <Link to={"/spanearyou"}>More</Link>
           </div>
         </div>
         <Slider cardList={spaNearYou} _name={"spa"} />
@@ -216,7 +213,7 @@ const Home = () => {
         <div className="slider__header">
           <h1>Top Rated Spa</h1>
           <div className="slider_buttons">
-            <Link to={"/topratedspalist"}>More</Link>
+            <Link to={"/topratedspas"}>More</Link>
           </div>
         </div>
         <Slider cardList={topRatedSpas} _name={"spa"} />
@@ -232,7 +229,7 @@ const Home = () => {
         <div className="slider__header">
           <h1>Luxurious Spa</h1>
           <div className="slider_buttons">
-            <Link to={"/spalist/luxuriousspa"}>More</Link>
+            <Link to={"/luxuriousspas"}>More</Link>
           </div>
         </div>
         <Slider cardList={luxuriousSpas} _name={"spa"} />

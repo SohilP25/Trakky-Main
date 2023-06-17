@@ -79,7 +79,7 @@ const ServicesForm = () => {
             <h1>Services</h1>
 
             <div className="form-group">
-              <label htmlhtmlFor="spa">Select Spa *</label>
+              <label htmlFor="spa">Select Spa *</label>
               <input
                 className="form-control"
                 type="dropdown"
@@ -103,7 +103,7 @@ const ServicesForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlhtmlFor="name">Service Name *</label>
+              <label htmlFor="name">Service Name *</label>
               <input
                 className="form-control"
                 type="text"
@@ -116,7 +116,7 @@ const ServicesForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlhtmlFor="name">Service Time *</label>
+              <label htmlFor="name">Service Time *</label>
               <input
                 className="form-control"
                 type="dropdown"
@@ -139,7 +139,7 @@ const ServicesForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlhtmlFor="name">Description *</label>
+              <label htmlFor="name">Description *</label>
               <input
                 className="form-control"
                 type="text"
@@ -152,7 +152,7 @@ const ServicesForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlhtmlFor="price">Price *</label>
+              <label htmlFor="price">Price *</label>
               <input
                 className="form-control"
                 type="text"
@@ -165,7 +165,7 @@ const ServicesForm = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlhtmlFor="price">Disount *</label>
+              <label htmlFor="price">Disount *</label>
               <input
                 className="form-control"
                 type="text"
@@ -178,7 +178,7 @@ const ServicesForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlhtmlFor="therapies">Therapies (Category) *</label>
+              <label htmlFor="therapies">Therapies (Category) *</label>
               <input
                 className="form-control"
                 type="dropdown"

@@ -14,11 +14,15 @@ import { FcLike } from "react-icons/fc";
 const SpaCard = ({
   img,
   name,
-  offers,
-  location,
-  ratings,
-  reviewsCount,
-  basePrice,
+  // offers,
+  address,
+  landmark,
+  bookingNumber,
+  mobileNumber,
+  city,
+  area,
+  openTime,
+  closeTime,
 }) => {
   const [isLiked, setIsLiked] = useState(false);
 
@@ -26,12 +30,8 @@ const SpaCard = ({
     <div className="spa_card">
       <div className="image__container">
         <p className="spa_tag">Premium</p>
-        <img
-          src={require(`../../../Assets/images/spa/${img}`)}
-          alt="Spa"
-          draggable="false"
-        />
-        <p className="spa_offer_tag">{offers}</p>
+        <img src={img} alt="Spa" draggable="false" />
+        {/* <p className="spa_offer_tag">{offers}</p> */}
       </div>
 
       <div className="spa_information__container">
@@ -40,7 +40,13 @@ const SpaCard = ({
             <h2>
               <Link to={"/spa-profile"}>{name}</Link>
             </h2>
-            <p>{location}</p>
+            {/* <p>{location}</p> */}
+
+            <p>
+              {/* {address}  */}
+              {landmark} <br />
+              {area} , {city}
+            </p>
           </div>
           <div className="spa_offer_tag__box">
             {isLiked ? (
@@ -68,7 +74,6 @@ const SpaCard = ({
             </p>
           </div> */}
         </div>
-
         <div className="row3">
           <div className="spa_rating__box">
             {/* <Star stars={ratings} reviews={reviewsCount} /> */}
@@ -83,57 +88,61 @@ const SpaCard = ({
   );
 };
 
-export const Star = ({ stars, reviews }) => {
-  const ratingStar = Array.from({ length: 5 }, (_, index) => {
-    let number = index + 0.5;
+// export const Star = ({ stars, reviews }) => {
+//   const ratingStar = Array.from({ length: 5 }, (_, index) => {
+//     let number = index + 0.5;
 
-    return (
-      <span key={index}>
-        {stars >= index + 1 ? (
-          <FaStar className="icon" />
-        ) : stars >= number ? (
-          <FaStarHalfAlt className="icon" />
-        ) : (
-          <AiOutlineStar className="icon" />
-        )}
-      </span>
-    );
-  });
+//     return (
+//       <span key={index}>
+//         {stars >= index + 1 ? (
+//           <FaStar className="icon" />
+//         ) : stars >= number ? (
+//           <FaStarHalfAlt className="icon" />
+//         ) : (
+//           <AiOutlineStar className="icon" />
+//         )}
+//       </span>
+//     );
+//   });
 
-  return (
-    <div>
-      <span>{stars}</span>&nbsp;{ratingStar}
-      <div
-        style={{
-          display: "inline-block",
-        }}
-      >
-        &nbsp;({reviews}&nbsp;reviews)
-      </div>
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       <span>{stars}</span>&nbsp;{ratingStar}
+//       <div
+//         style={{
+//           display: "inline-block",
+//         }}
+//       >
+//         &nbsp;({reviews}&nbsp;reviews)
+//       </div>
+//     </div>
+//   );
+// };
 
 // SpaCardMini will appear when screen is of mobile size
 export const SpaCardMini = ({
   img,
   name,
-  offers,
-  location,
-  ratings,
-  reviewsCount,
-  basePrice,
+  // offers,
+  address,
+  landmark,
+  bookingNumber,
+  mobileNumber,
+  city,
+  area,
+  openTime,
+  closeTime,
+  // location,
+  // ratings,
+  // reviewsCount,
+  // basePrice,
 }) => {
   return (
     <div className="mini_spa_card">
       <div className="main_mini_spa__container">
         <div className="mini_spa_image__container">
           <p className="spa_tag">Premium</p>
-          <img
-            src={require(`../../../Assets/images/spa/${img}`)}
-            alt="Spa"
-            draggable="false"
-          />
+          <img src={img} alt="Spa" draggable="false" />
           <p
             className="spa_offer_tag"
             style={{
@@ -142,7 +151,7 @@ export const SpaCardMini = ({
               margin: "0 1%",
             }}
           >
-            {offers}
+            {/* {offers} */}
           </p>
         </div>
 
@@ -150,27 +159,35 @@ export const SpaCardMini = ({
           <Link to="/spa-profile">
             <div className="spa_name">
               <h2>{name}</h2>
-              <p>{location}</p>
+              {/* <p>{location}</p> */}
+              <p>
+                {address} <br />
+                {landmark} <br />
+                {area} , {city}
+              </p>
             </div>
 
             <div className="spa_icon__box">
-              <img src={CardIcons} draggable="false" alt="" />
+              {/* <img src={CardIcons} draggable="false" alt="" /> */}
             </div>
 
             <div className="mini_spa_rating__box spa_rating__box">
-              <Star stars={ratings} reviews={reviewsCount} />
+              {/* <Star stars={ratings} reviews={reviewsCount} /> */}
             </div>
           </Link>
           <div className="mini_spa_price__box">
             <div className="mini_spa_price_tag">
-              <img src={ManIcon} alt="" draggable="false" />
+              {/* <img src={ManIcon} alt="" draggable="false" /> */}
               <p>
-                &nbsp;₹ <span id="spa-price">{basePrice}</span> Onwards
+                {/* &nbsp;₹ <span id="spa-price">{basePrice}</span> Onwards */}
+                Open Time: {openTime}
+                <br />
+                Close Time: {closeTime}
               </p>
             </div>
 
             <div className="spa_like__box">
-              <img src={LikeIcon} alt="" />
+              {/* <img src={LikeIcon} alt="" /> */}
             </div>
           </div>
         </div>

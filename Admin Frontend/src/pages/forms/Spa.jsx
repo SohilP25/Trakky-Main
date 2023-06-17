@@ -85,7 +85,7 @@ const SpaForm = () => {
         <form method="post" onSubmit={handleSubmit}>
           <h1>Spa</h1>
           <div className="form-group">
-            <label htmlhtmlFor="name">Name of Spa *</label>
+            <label htmlFor="name">Name of Spa *</label>
             <input
               className="form-control"
               type="text"
@@ -99,7 +99,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlhtmlFor="phone">Phone Number *</label>
+            <label htmlFor="phone">Phone Number *</label>
             <input
               className="form-control"
               type="number"
@@ -115,7 +115,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlhtmlFor="booknow">WhatsApp Number For Booking *</label>
+            <label htmlFor="booknow">WhatsApp Number For Booking *</label>
             <input
               className="form-control"
               type="number"
@@ -131,7 +131,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlhtmlFor="directionlink">Google Maps Link *</label>
+            <label htmlFor="directionlink">Google Maps Link *</label>
             <input
               className="form-control"
               type="text"
@@ -146,7 +146,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlhtmlFor="directionlink">Latitude *</label>
+            <label htmlFor="directionlink">Latitude *</label>
             <input
               className="form-control"
               type="text"
@@ -161,7 +161,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlhtmlFor="directionlink">Longitude *</label>
+            <label htmlFor="directionlink">Longitude *</label>
             <input
               className="form-control"
               type="text"
@@ -177,10 +177,10 @@ const SpaForm = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlhtmlFor="timings">Timings *</label>
+            <label htmlFor="timings">Timings *</label>
             <div className="time-container">
               <div className="from-time">
-                <label htmlhtmlFor="fromTime">From</label>
+                <label htmlFor="fromTime">From</label>
                 <input
                   className="form-control timings"
                   type="time"
@@ -193,7 +193,7 @@ const SpaForm = () => {
                 />
               </div>
               <div className="to-time">
-                <label htmlhtmlFor="toTime">To</label>
+                <label htmlFor="toTime">To</label>
                 <input
                   className="form-control timings"
                   type="time"
@@ -209,7 +209,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlhtmlFor="address">Address *</label>
+            <label htmlFor="address">Address *</label>
             <input
               className="form-control"
               type="text"
@@ -223,7 +223,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlhtmlFor="landmark">Landmark *</label>
+            <label htmlFor="landmark">Landmark *</label>
             <input
               className="form-control"
               type="text"
@@ -237,7 +237,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlhtmlFor="priority">Priority *</label>
+            <label htmlFor="priority">Priority *</label>
             <input
               className="form-control"
               type="number"
@@ -251,7 +251,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlhtmlFor="city">City *</label>
+            <label htmlFor="city">City *</label>
             <input
               className="form-control"
               type="dropdown"
@@ -289,7 +289,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlhtmlFor="area">Area *</label>
+            <label htmlFor="area">Area *</label>
             <input
               className="form-control"
               type="dropdown"
@@ -320,7 +320,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlhtmlFor="slug">Slug *</label>
+            <label htmlFor="slug">Slug *</label>
             <input
               className="form-control"
               type="text"
@@ -334,7 +334,7 @@ const SpaForm = () => {
           </div>
 
           <div className="form-group">
-            <label htmlhtmlFor="image">Main Image *</label>
+            <label htmlFor="image">Main Image *</label>
             <input
               className="form-control"
               style={{ padding: "0.5rem" }}
@@ -354,7 +354,7 @@ const SpaForm = () => {
           </div>
 
           {/* <div className="form-group">
-            <label htmlhtmlFor="image">Image *</label>
+            <label htmlFor="image">Image *</label>
             <input
               className="form-control"
               style={{ padding: "0.5rem" }}

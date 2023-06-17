@@ -8,7 +8,7 @@ import { AreasData } from "../data/mockData";
 
 const Areas = () => {
   // table header data
-  const tableHeaders = ["Area Name", "City", "Priority", "Actions"];
+  const tableHeaders = ["Area Name", "City", "Priority" /*"Actions"*/];
 
   // Handling view more button
   const [visible, setVisible] = useState(10);
@@ -43,6 +43,7 @@ const Areas = () => {
   // Getting area list
   const [areaData, setareaData] = useState([{}]);
   const [allAreaList, setAllAreaList] = useState([{}]);
+  let uniqueAreaData = [{}];
 
   useEffect(() => {
     fetch("http://localhost:8080/api/v1/cities", {
@@ -55,7 +56,6 @@ const Areas = () => {
         cityList.map((city) => areaFunction(city));
 
         setareaData(allAreaList);
-        console.log(allAreaList);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -77,6 +77,9 @@ const Areas = () => {
       .catch((err) => console.log(err));
   };
 
+  for (let i = 1; i < areaData.length / 2; i++) {
+    uniqueAreaData[i - 1] = areaData[i];
+  }
   return (
     <div className="main_list__container">
       <div className="mini_navbar__container">
@@ -108,7 +111,7 @@ const Areas = () => {
           </thead>
 
           <tbody>
-            {(searchTerm.length !== 0 ? searchResults : areaData)
+            {(searchTerm.length !== 0 ? searchResults : uniqueAreaData)
               .slice(0, visible)
               .map((area, index) => {
                 return (

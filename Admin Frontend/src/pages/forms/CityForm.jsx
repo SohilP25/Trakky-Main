@@ -59,7 +59,7 @@ const CityForm = () => {
             <h1>Add City</h1>
 
             <div className="form-group">
-              <label htmlhtmlFor="name">City Name *</label>
+              <label htmlFor="name">City Name *</label>
               <input
                 className="form-control"
                 type="text"
@@ -71,7 +71,7 @@ const CityForm = () => {
             </div>
 
             <div className="form-group">
-              <label htmlhtmlFor="priority">Priority *</label>
+              <label htmlFor="priority">Priority *</label>
               <input
                 className="form-control"
                 type="number"
