@@ -57,7 +57,7 @@ const AreaForm = () => {
             <h1>Add Area</h1>
 
             <div className="form-group">
-              <label htmlhtmlFor="name">Area Name *</label>
+              <label htmlFor="name">Area Name *</label>
               <input
                 className="form-control"
                 type="text"
@@ -68,7 +68,7 @@ const AreaForm = () => {
               />
             </div>
             <div className="form-group">
-            <label htmlhtmlFor="city">City *</label>
+            <label htmlFor="city">City *</label>
             <input
               className="form-control"
               type="dropdown"
@@ -105,7 +105,7 @@ const AreaForm = () => {
 
 
             <div className="form-group">
-              <label htmlhtmlFor="priority">Priority *</label>
+              <label htmlFor="priority">Priority *</label>
               <input
                 className="form-control"
                 type="number"

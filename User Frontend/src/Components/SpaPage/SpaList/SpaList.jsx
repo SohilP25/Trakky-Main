@@ -8,9 +8,8 @@ import Slider from "../../Common/Slider/Slider";
 import { popularLocations } from "../../../data";
 import SpaCard from "../SpaCard/SpaCard";
 import { SpaCardMini } from "../SpaCard/SpaCard";
-import { spaNearYou } from "../../../data";
 
-const SpaNearMeList = (props) => {
+const SpaNearMeList = ({ name, url }) => {
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
@@ -20,7 +19,48 @@ const SpaNearMeList = (props) => {
       height = window.innerHeight;
     return { width, height };
   }
+  // Getting Spa Details
+  const [therapy, setTherapy] = useState([]);
 
+  const [spas, setSpas] = useState([{}]);
+  const [topRatedSpas, setTopRatedSpas] = useState([{}]);
+  const [luxuriousSpas, setLuxuriousSpas] = useState([{}]);
+
+  useEffect(() => {
+    // Getting offers starts
+    const requestOption = {
+      method: "GET",
+      header: { "Content-Type": "application/json" },
+    };
+    // Getting therapy starts
+    fetch("http://localhost:8080/api/v1/therapy", requestOption)
+      .then((res) => res.json())
+      .then((data) => setTherapy(data.data))
+      .catch((err) => console.log(err));
+
+    // Getting spas starts
+    fetch("http://localhost:8080/api/v1/spas", requestOption)
+      .then((res) => res.json())
+      .then((data) => {
+        setSpas(data);
+        const toprated = data.filter((spa) => spa.topRated);
+        const luxurious = data.filter((spa) => spa.luxurious);
+        setTopRatedSpas(toprated);
+        setLuxuriousSpas(luxurious);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  let ListValue = [{}];
+  if (url === "luxuriousSpas") {
+    ListValue = luxuriousSpas;
+  } else if (url === "topRatedSpas") {
+    ListValue = topRatedSpas;
+  }else{
+    // ListValue=spaNearYou;
+    ListValue=topRatedSpas;
+  }
+ 
   useEffect(() => {
     function handleResize() {
       setWindowDimensions(getWindowDimensions());
@@ -31,7 +71,7 @@ const SpaNearMeList = (props) => {
 
   const [visible, setVisible] = useState(4);
   const [show, setShow] = useState(true);
-  const length = spaNearYou.length;
+  const length = ListValue.length;
 
   const showMoreItems = () => {
     if (visible < length) {
@@ -44,29 +84,36 @@ const SpaNearMeList = (props) => {
   return (
     <div>
       <Hero />
-
       <div className="spa_list__header">
-        <h1>Spa near me</h1>
+        <h1>{name}</h1>
       </div>
       <div className="spa_list_main__container">
         <div className="spa_list__container">
           {/* Displays list of cards according to window size */}
           {{ windowDimensions }.windowDimensions.width >= 765 ? (
             <div className="spa_list">
-              {spaNearYou.slice(0, visible).map((data, index) => {
+              {ListValue.map((data, index) => {
                 return (
                   <>
-                    {index === 2 ? <OfferContainer /> : <></>}
+                    {index === 2 ? <OfferContainer  /> : <></>}
                     <>
                       <SpaCard
                         key={index}
                         name={data.name}
-                        img={data.img}
-                        location={data.location}
-                        offers={data.offers}
-                        basePrice={data.basePrice}
-                        ratings={data.ratings}
-                        reviewsCount={data.reviewsCount}
+                        img={data.imageUrl}
+                        address={data.address}
+                        landmark={data.landmark}
+                        openTime={data.openTime}
+                        closeTime={data.closeTime}
+                        city={data.City}
+                        area={data.Area}
+                        mobileNumber={data.mobileNumber}
+                        bookingNumber={data.bookingNumber}
+                        // location={data.location}
+                        // offers={data.offers}
+                        // basePrice={data.basePrice}
+                        // ratings={data.ratings}
+                        // reviewsCount={data.reviewsCount}
                       />
                     </>
                   </>
@@ -75,19 +122,27 @@ const SpaNearMeList = (props) => {
             </div>
           ) : (
             <>
-              {spaNearYou.slice(0, visible).map((data, index) => {
+              {ListValue.map((data, index) => {
                 return (
                   <>
                     {index === 2 ? <OfferContainer /> : null}
                     <SpaCardMini
-                      key={index}
-                      name={data.name}
-                      img={data.img}
-                      location={data.location}
-                      offers={data.offers}
-                      basePrice={data.basePrice}
-                      ratings={data.ratings}
-                      reviewsCount={data.reviewsCount}
+                    key={index}
+                    name={data.name}
+                    img={data.imageUrl}
+                    address={data.address}
+                    landmark={data.landmark}
+                    openTime={data.openTime}
+                    closeTime={data.closeTime}
+                    city={data.City}
+                    area={data.Area}
+                    mobileNumber={data.mobileNumber}
+                    bookingNumber={data.bookingNumber}
+                    // location={data.location}
+                    // offers={data.offers}
+                    // basePrice={data.basePrice}
+                    // ratings={data.ratings}
+                    // reviewsCount={data.reviewsCount}
                     />
                   </>
                 );
