@@ -8,7 +8,6 @@ import Img7 from "./Assets/images/other/img3.png";
 import Img8 from "./Assets/images/other/img4.png";
 import Img9 from "./Assets/images/other/img5.png";
 
-
 export const spaImages = [
   "spa-image1.png",
   "spa-image2.png",
@@ -372,23 +371,24 @@ export const topDestinationsSmallDevice = [
 ];
 export const spaProfile = [
   {
-    img: "spa-image1.png",
+    img: "https://plus.unsplash.com/premium_photo-1686777550406-98c56a8bd590?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
     offers: "COUPLE THERAPY 50% OFF",
   },
   {
-    img: "spa-image2.png",
+    img: "https://images.unsplash.com/photo-1686907470279-ffb1f9f2a574?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=465&q=80",
     offers: "COUPLE THERAPY 50% OFF",
   },
   {
-    img: "spa-image3.png",
+    img: "https://images.unsplash.com/photo-1686940975039-d2dff3322a85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
     offers: "COUPLE THERAPY 50% OFF",
   },
   {
-    img: "spa-image4.png",
+    img: "https://plus.unsplash.com/premium_photo-1686777550406-98c56a8bd590?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
     offers: "COUPLE THERAPY 50% OFF",
   },
+
   {
-    img: "spa-image5.png",
+    img: "https://images.unsplash.com/photo-1686940975039-d2dff3322a85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80",
     offers: "COUPLE THERAPY 50% OFF",
   },
 ];
@@ -536,7 +536,6 @@ export const spaFacilitiesData = [
     ],
   },
 ];
-
 
 export const spaProfilePhotos = [
   {

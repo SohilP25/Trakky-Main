@@ -71,7 +71,7 @@ export const SpaProfile = (props) => {
     <div className="spa-profile-card">
       <img
         className="spa-profile-card-img"
-        src={require(`../../../Assets/images/spa/${props.cardData.imageUrl}`)}
+        src={props.cardData.img}
         draggable={false}
         alt="spa"
       />

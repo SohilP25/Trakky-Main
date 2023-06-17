@@ -7,10 +7,10 @@ import spaImage2 from "../../../Assets/images/spa/spa-image2.png";
 import spaImage3 from "../../../Assets/images/spa/spa-image3.png";
 import spaImage4 from "../../../Assets/images/spa/spa-image4.png";
 import spaImage5 from "../../../Assets/images/spa/spa-image5.png";
-// import Star from "./../../../Assets/images/icons/star.svg";
+import Star from "./../../../Assets/images/icons/star.svg";
 import Phone from "./../../../Assets/images/icons/phone.svg";
-// import Man from "./../../../Assets/images/icons/man.svg";
-// import Grids from "./../../../Assets/images/icons/four-grids.svg";
+import Man from "./../../../Assets/images/icons/man.svg";
+import Grids from "./../../../Assets/images/icons/four-grids.svg";
 
 import Hero from "./../Hero/Hero";
 import Footer from "./../../Common/Footer/Footer";
@@ -22,13 +22,13 @@ import Slider from "../../Common/Slider/Slider";
 import {
   spaProfile,
   spaServices,
-  spaOffers,
+  // spaOffers,
   // spaFacilitiesData,
   spaRoomPhotos,
-  // spaProfilePhotos,
+  spaProfilePhotos,
 } from "../../../data";
-// import Popup from "../../Common/Popup/Popup";
-// import Gallery from "../../Common/Gallery/Gallery";
+import Popup from "../../Common/Popup/Popup";
+import Gallery from "../../Common/Gallery/Gallery";
 
 // window dimensions
 function getWindowDimensions() {
@@ -54,7 +54,6 @@ const SpaProfile = () => {
 
   const [spas, setSpas] = useState([{}]);
   const [spa, setSpa] = useState({});
-  // let spaData;
   useEffect(() => {
     fetch("http://localhost:8080/api/v1/spas", {
       method: "GET",
@@ -67,12 +66,11 @@ const SpaProfile = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-
+  const [spaProfilePhotosTrigger, setSpaProfilePhotosTrigger] = useState(false)
   return (
     <>
-      {/* {console.log(spa)} */}
       <Hero />
-      {/* <div className="showPhotos">
+      <div className="showPhotos">
         <Popup trigger={spaProfilePhotosTrigger}>
           <div className="topbar"
           style={{
@@ -96,7 +94,7 @@ const SpaProfile = () => {
           <Gallery photos={spaProfilePhotos} />
 
         </Popup>
-      </div> */}
+      </div>
 
       {/* Altering Grid layout for smaller devices */}
       {{ windowDimensions }.windowDimensions.width >= 600 ? (
@@ -118,10 +116,10 @@ const SpaProfile = () => {
               <div className="image-5">
                 <img src={spaImage5} alt="" />
                 <div className="show-all-photos">
-            {/* <button onClick={() => setSpaProfilePhotosTrigger(true)}>
+                  <button onClick={() => setSpaProfilePhotosTrigger(true)}>
                     <img src={Grids} alt="" />Show all photos
-                  </button> */}
-            </div>
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -249,6 +247,7 @@ const SpaProfile = () => {
               </li>
             </div>
           </div>
+ 
           <Slider cardList={spaProfile} _name="spaProfile" />
 
           <div className="spa-information-mini-title">
@@ -309,9 +308,7 @@ const SpaProfile = () => {
                 <li>
                   <Link to={"/callnow"}>Call Now</Link>
                 </li>
-                <li>
-                  {/* <Link to={spa.gmapLink}>Get Directions</Link> */}
-                </li>
+                <li>{/* <Link to={spa.gmapLink}>Get Directions</Link> */}</li>
               </div>
             </div>
           </div>
@@ -459,7 +456,6 @@ const Offers = (props) => {
 
   // Getting services details
   const [offerData, setOfferData] = useState([{}]);
-
   const getOffer = () => {
     const requestOption = {
       method: "GET",
@@ -468,15 +464,15 @@ const Offers = (props) => {
     fetch("http://localhost:8080/api/v1/offer", requestOption)
       .then((res) => res.json())
       .then((data) => {
-        let offers = (data.data).filter((offer) => offer.Select_Spa === props.spaname);
-        setOfferData(offers);
+        setOfferData(data.data);
+        // console.log(data.data);
       })
       .catch((err) => console.log(err));
   };
 
   useEffect(() => {
     getOffer();
-  }, []);
+  },[]);
 
   const [offerCounter, setOfferCounter] = useState(0);
 
@@ -488,12 +484,11 @@ const Offers = (props) => {
 
       <div className="servos__list">
         <ul>
-          {offerData.slice(0, visible).map((offer, index) => {
+          {offerData.map((offer, index) => {
             return (
               <>
-                {/* {offer.Select_Spa === props.spaname ? ( */}
+                {offer.Select_Spa === props.spaname ? (
                 <li key={index}>
-                  {console.log(offer)}
                   {() => {
                     setOfferCounter(++offerCounter);
                   }}
@@ -519,20 +514,20 @@ const Offers = (props) => {
                     </div>
                   </div>
                 </li>
-                {/* ) : (
+                 ) : (
                   <></>
-                )} */}
+                )} 
               </>
             );
           })}
         </ul>
       </div>
-      <div
+      {/* <div
         className="view_more__button"
         style={{ display: show && offerCounter > 3 ? "block" : "none" }}
       >
         <button onClick={showMoreItems}>View More</button>
-      </div>
+      </div> */}
     </div>
   );
 };
