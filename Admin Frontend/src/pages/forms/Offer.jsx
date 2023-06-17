@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./forms.css";
 
 const OffersForm = () => {
@@ -40,6 +40,24 @@ const OffersForm = () => {
     }
   };
   // Post Request Ends
+
+  // Getting spa details
+  const [SpaData, setSpaData] = useState([]);
+
+  const getSpa = () => {
+    const requestOption = {
+      method: "GET",
+      header: { "Content-Type": "application/json" },
+    };
+    fetch("http://localhost:8080/api/v1/spas", requestOption)
+      .then((res) => res.json())
+      .then((data) => setSpaData(data))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getSpa();
+  }, []);
 
   return (
     <>
@@ -84,10 +102,13 @@ const OffersForm = () => {
                   {" "}
                   -- select a Spa --{" "}
                 </option>
-                <option value="Spa 1">Spa 1</option>
-                <option value="Spa 2">Spa 2</option>
-                <option value="Spa 3">Spa 3</option>
-                <option value="Spa 4">Spa 4</option>
+                {SpaData.map((spa, index) => {
+                  return (
+                    <option key={index} value={spa.name}>
+                      {spa.name}
+                    </option>
+                  );
+                })}
               </select>
             </div>
             <div className="form-group">

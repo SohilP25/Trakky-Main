@@ -10,9 +10,10 @@ const Hero = () => {
   return (
     <section>
       <div className="video-bg">
-        <video className="video-bg" autoPlay loop muted>
+        <img src={require(`./../../../Assets/images/other/background_video_image.png`)} className="video-bg" alt="" />
+        {/* <video className="video-bg" autoPlay loop muted>
           <source src={require(`./../../../Assets/videos/horizontal_.webm`)} />
-        </video>
+        </video> */}
       </div>
 
       <Header page="home" />
@@ -22,10 +23,9 @@ const Hero = () => {
           <h1>
             <Typed
               strings={[
-                "Discover top-rated massage spa therapies in your area.",
-                "Everything happening around me is very random",
-                "I believe life is an intelligent thing: that things aren't random.",
-                "United, we alter the world with random acts of kindness.",
+                "Get the best massage therapy spa here!",
+                "Select best therapies according to your need",
+                "One stop solution for your relaxation & refreshment needs."
               ]}
               typeSpeed={10}
               backSpeed={5}
@@ -34,7 +34,7 @@ const Hero = () => {
               showCursor={false}
             />
           </h1>
-          <p>Discover and book beauty & wellness professionals near you</p>
+          {/* <p>Discover and book beauty & wellness professionals near you</p> */}
         </div>
         
        <SearchBar/>
