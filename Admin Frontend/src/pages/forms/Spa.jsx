@@ -11,6 +11,7 @@ const SpaForm = () => {
   const [landmark, setLandmark] = useState("");
   const [mobileNumber, setMobileNumber] = useState(null);
   const [Image, setImage] = useState(null);
+  const [files, setFiles] = useState([]);
   const [openTime, setOpenTime] = useState("");
   const [closeTime, setCloseTime] = useState("");
   const [slug, setSlug] = useState("");
@@ -27,6 +28,10 @@ const SpaForm = () => {
     setImage(event.target.files[0]);
   };
 
+  const handleMultipleImages = (e) => {
+    setFiles([...files, ...e.target.files]);
+    console.log(files);
+  };
   // Post Request Starts
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -42,6 +47,7 @@ const SpaForm = () => {
     formData.append("bookingNumber", bookingNumber);
     formData.append("gmapLink", GMapLink);
     formData.append("imageUrl", Image);
+    formData.append("mulImgUrl", files);
     formData.append("spaLocation", location);
     formData.append("openTime", openTime);
     formData.append("closeTime", closeTime);
@@ -50,7 +56,8 @@ const SpaForm = () => {
     formData.append("Area", area);
     formData.append("City", city);
 
-    console.log(formData); // this will not give output
+    console.log(formData.get("mulImgUrl")); // this will not give output
+    console.log(files);
     try {
       await fetch("http://localhost:8080/api/v1/spas", {
         method: "POST",
@@ -363,7 +370,7 @@ const SpaForm = () => {
             />
           </div>
 
-          {/* <div className="form-group">
+          <div className="form-group">
             <label htmlFor="image">Image *</label>
             <input
               className="form-control"
@@ -371,17 +378,17 @@ const SpaForm = () => {
               type="file"
               name="image"
               id="multipleimage"
-              onChange={handleFileChange}
               multiple
               required
               autoComplete="off"
+              onChange={handleMultipleImages}
             />
-          </div> */}
+          </div>
 
           <button
             className="submit-btn"
             onSubmit={() => {
-              handleSubmit()
+              handleSubmit();
             }}
             type="submit"
           >
