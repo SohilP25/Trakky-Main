@@ -103,7 +103,7 @@ const SpaNearMeList = (props) => {
           </div>
         </div>
 
-        <PopularLocations />
+        {/* <PopularLocations /> */}
       </div>
       <Footer />
     </div>

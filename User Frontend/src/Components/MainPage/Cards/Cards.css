@@ -117,7 +117,7 @@
 }
 
 .therapy-card {
-    width: 8rem;
+    width: 10rem;
     height: auto;
 }
 
@@ -125,6 +125,8 @@
     border-radius: 80px;
     width: 100%;
     height: 100%;
+    max-width: 10rem;
+    max-height: 10rem;
     pointer-events: none;
 }
 
@@ -145,6 +147,8 @@
 .offer-card a,
 .therapy-card a {
     cursor: pointer;
+    height: fit-content;
+    display: block;
 }
 
 .offer-card a img {
@@ -155,6 +159,7 @@
 }
 
 @media screen and (max-width: 700px) {
+    .therapy-card a img,
     .therapy-card {
         width: 7rem;
     }
@@ -169,6 +174,7 @@
 }
 
 @media screen and (max-width: 430px) {
+    .therapy-card a img,
     .therapy-card {
         width: 5rem;
     }

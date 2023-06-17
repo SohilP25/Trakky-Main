@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./forms.css";
 
+// Problem:
+// location is perfect from frontend but 
+// cannot able to add in database (backend side look up)
+
 const SpaForm = () => {
   const [spaname, setSpaName] = useState("");
   const [address, setAddress] = useState("");
@@ -17,10 +21,8 @@ const SpaForm = () => {
   const [GMapLink, setGMapLink] = useState(null);
   const [area, setArea] = useState("");
   const [city, setCity] = useState("");
-  const [location, setLocation] = useState({
-    type: "Point",
-    coordinates: [longitude, latitude],
-  });
+  const [location, setLocation] = useState({});
+
   const handleFileChange = (event) => {
     setImage(event.target.files[0]);
   };
@@ -28,7 +30,6 @@ const SpaForm = () => {
   // Post Request Starts
   const handleSubmit = async (event) => {
     event.preventDefault();
-   
     if (!Image) {
       console.log("Please select a file");
       return;
@@ -49,8 +50,8 @@ const SpaForm = () => {
     formData.append("Area", area);
     formData.append("City", city);
 
+    console.log(formData) // this will not give output
     try {
-      console.log(formData);
       await fetch("http://localhost:8080/api/v1/spas", {
         method: "POST",
         body: formData,
@@ -340,7 +341,13 @@ const SpaForm = () => {
               type="file"
               name="image"
               id="mainimage"
-              onChange={handleFileChange}
+              onChange={() => {
+                handleFileChange()
+                setLocation({
+                  type: "Point",
+                  coordinates: [longitude, latitude],
+                })
+              }}
               required
               autoComplete="off"
             />
@@ -362,10 +369,10 @@ const SpaForm = () => {
           </div> */}
 
           <button className="submit-btn" onSubmit={() => {
-            setLocation({
-              type: "Point",
-              coordinates: [longitude, latitude],
-            })
+            // setLocation({
+            //   type: "Point",
+            //   coordinates: [longitude, latitude],
+            // })
             handleSubmit()
             }} type="submit">
             add spa

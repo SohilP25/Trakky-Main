@@ -65,14 +65,14 @@ const Header = ({ page = "other" }) => {
           </Link>
         }
       </div>
-      <div
+      {/* <div
         className="nav-links__container"
         style={{ display: navState ? "" : "none" }}
       >
         <li>Trakky Sentence</li>
         <li>Experiences</li>
         <li>Online Experiences</li>
-      </div>
+      </div> */}
 
       <div
         className={`search__container navbar_search-top ${navState ? "" : "none-other"
@@ -111,7 +111,7 @@ const Header = ({ page = "other" }) => {
         />
       </div>
 
-      <div className="register-spa">
+      {/* <div className="register-spa">
         <button
           style={{
             color: navState ? "" : "black",
@@ -120,7 +120,7 @@ const Header = ({ page = "other" }) => {
         >
           Register Spa
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

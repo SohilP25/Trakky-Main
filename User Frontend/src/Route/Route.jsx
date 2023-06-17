@@ -13,8 +13,8 @@ const Router = () => {
       <ScrollToTop />
       <Routes>
         <Route path="/" index exact Component={Home} />
-        <Route path="/spa-list" index exact Component={SpaList} />
-        <Route path="/spa-profile" index exact Component={SpaProfile} />
+        <Route path="/spalist/:listname" index exact Component={SpaList} />
+        <Route path="/spas/:slug" index exact element={<SpaProfile />} />
       </Routes>
     </BrowserRouter>
   );

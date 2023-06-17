@@ -58,7 +58,7 @@ const SpaCard = ({
         </div>
 
         <div className="row2">
-          <div className="spa_icon__box">
+          {/* <div className="spa_icon__box">
             <img src={CardIcons} draggable="false" alt="" />
           </div>
           <div className="spa_price_tag">
@@ -66,12 +66,12 @@ const SpaCard = ({
             <p>
               &nbsp;₹ <span id="spa-price">{basePrice}</span> Onwards
             </p>
-          </div>
+          </div> */}
         </div>
 
         <div className="row3">
           <div className="spa_rating__box">
-            <Star stars={ratings} reviews={reviewsCount} />
+            {/* <Star stars={ratings} reviews={reviewsCount} /> */}
           </div>
           <div className="spa_booking_buttons">
             <Link>Book Now</Link>

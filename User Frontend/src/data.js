@@ -27,8 +27,6 @@ export const popularLocations = [
   "Spa in Memnagar",
   "Spa in Naranpura",
   "Spa in Prahladnagar",
-  "Spa in Satellite",
-  "Spa in Jagatpur",
 ];
 
 export const filterTags = [

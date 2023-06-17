@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 
 // importing other stuff
 import { Link } from "react-router-dom";
-import GiftCard from "../../Assets/images/other/Gift Cards.png";
-import Image from "../../Assets/images/other/image.jpeg";
+// import GiftCard from "../../Assets/images/other/Gift Cards.png";
+// import Image from "../../Assets/images/other/image.jpeg";
 import "./Main.css";
 
 // importing components
@@ -13,11 +13,9 @@ import Footer from "../Common/Footer/Footer";
 // importing Data from Data.js
 import {
   spaNearYou,
-  topRatedSpa,
-  LuxuriousSpa,
-  topDestinationsLocations,
-  topDestinations,
-  topDestinationsSmallDevice,
+  // topDestinationsLocations,
+  // topDestinations,
+  // topDestinationsSmallDevice,
 } from "../../data";
 
 // window dimensions
@@ -26,6 +24,7 @@ function getWindowDimensions() {
     height = window.innerHeight;
   return { width, height };
 }
+
 const Home = () => {
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
@@ -41,9 +40,43 @@ const Home = () => {
 
 
 
-  // Getting offers starts
+  // const [NearBySpas, setNearBySpas] = useState([{}]);
+
+  // const getNearBySpas = () => {
+  //   fetch("http://localhost:8080/api/v1/nearbylocation", {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       longitude: longitude,
+  //       latitude: lattitude,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => setNearBySpas(data.data))
+  //     .catch((err) => console.log(err));
+  // };
+
+  // console.log(lattitude);
+  // console.log(longitude);
+  // getNearBySpas();
+
+  const [lattitude, setLattitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+
   const [offers, setOffers] = useState([]);
-  const getOffer = () => {
+  const [therapy, setTherapy] = useState([]);
+
+  const [spas, setSpas] = useState([{}]);
+  const [topRatedSpas, setTopRatedSpas] = useState([{}]);
+  const [luxuriousSpas, setLuxuriousSpas] = useState([{}]);
+
+  useEffect(() => {
+    // Getting latitude and longitude of user
+    navigator.geolocation.getCurrentPosition((position) => {
+      setLattitude(position.coords.latitude);
+      setLongitude(position.coords.longitude);
+    });
+
+    // Getting offers starts
     const requestOption = {
       method: "GET",
       header: { "Content-Type": "application/json" },
@@ -52,30 +85,25 @@ const Home = () => {
       .then((res) => res.json())
       .then((data) => setOffers(data.data))
       .catch((err) => console.log(err));
-  };
-  useEffect(() => {
-    getOffer();
-  }, []);
-  // Getting offers ends
 
-
-
-  // Getting therapy starts
-  const [therapy, setTherapy] = useState([]);
-  const getTherapy = () => {
-    const requestOption = {
-      method: "GET",
-      header: { "Content-Type": "application/json" },
-    };
+    // Getting therapy starts
     fetch("http://localhost:8080/api/v1/therapy", requestOption)
       .then((res) => res.json())
       .then((data) => setTherapy(data.data))
       .catch((err) => console.log(err));
-  };
-  useEffect(() => {
-    getTherapy();
+
+    // Getting spas starts
+    fetch("http://localhost:8080/api/v1/spas", requestOption)
+      .then((res) => res.json())
+      .then((data) => {
+        setSpas(data);
+        const toprated = data.filter((spa) => spa.topRated);
+        const luxurious = data.filter((spa) => spa.luxurious);
+        setTopRatedSpas(toprated);
+        setLuxuriousSpas(luxurious);
+      })
+      .catch((err) => console.log(err));
   }, []);
-  // Getting therapy ends
 
   return (
     <div className="main__container">
@@ -95,8 +123,8 @@ const Home = () => {
         <div className="slider__outer-container">
           <div className="slider__header">
             <h1>Therapies</h1>
-            <Link to={"/spa-list"}>More</Link>
-            <p>Here are lots of interesting destinations to visit</p>
+            <Link to={"/therapylist"}>More</Link>
+            <p>Here are lots of interesting therapies to try out</p>
           </div>
           <Slider cardList={therapy} _name={"therapy"} />
         </div>
@@ -108,7 +136,7 @@ const Home = () => {
         <div className="slider__header">
           <h1>Spa Near You</h1>
           <div className="slider_buttons">
-            <Link to={"/spa-list"}>More</Link>
+            <Link to={"/spanearyoulist"}>More</Link>
           </div>
         </div>
         <Slider cardList={spaNearYou} _name={"spa"} />
@@ -116,13 +144,13 @@ const Home = () => {
       {/* Spa Near You Ends */}
 
       {/* Top Destinations Starts-------------------------- */}
-      <div className="top-destinations__container">
+      {/* <div className="top-destinations__container">
         <div className="top-destinations__header">
           <h1>Top Destinations</h1>
           <p>Sost Brilliant reasons Entrada should be your one-stop-shop! </p>
-          <div className="top-destinations__tags">
-            {/* Location tags */}
-            {topDestinationsLocations.map((location, index) => {
+          <div className="top-destinations__tags"> */}
+      {/* Location tags */}
+      {/* {topDestinationsLocations.map((location, index) => {
               return (
                 <li
                   onClick={() => {
@@ -139,11 +167,11 @@ const Home = () => {
               );
             })}
           </div>
-        </div>
-        {/* images starts------------ */}
+        </div> */}
+      {/* images starts------------ */}
 
-        {/* Altering Grid layout for smaller devices */}
-        {{ windowDimensions }.windowDimensions.width >= 725 ? (
+      {/* Altering Grid layout for smaller devices */}
+      {/* {{ windowDimensions }.windowDimensions.width >= 725 ? (
           <div className="top-destinations-img__container">
             {topDestinations.map(({ img, heading, subHeading }, index) => {
               return (
@@ -180,7 +208,7 @@ const Home = () => {
             )}
           </div>
         )}
-      </div>
+      </div> */}
       {/* Top Destinations Ends*/}
 
       {/* Top Rated Spa Starts --------------------------------------*/}
@@ -188,10 +216,10 @@ const Home = () => {
         <div className="slider__header">
           <h1>Top Rated Spa</h1>
           <div className="slider_buttons">
-            <Link to={"/spa-list"}>More</Link>
+            <Link to={"/topratedspalist"}>More</Link>
           </div>
         </div>
-        <Slider cardList={topRatedSpa} _name={"spa"} />
+        <Slider cardList={topRatedSpas} _name={"spa"} />
       </div>
       {/* Top Rated Spa Ends */}
 
@@ -204,15 +232,15 @@ const Home = () => {
         <div className="slider__header">
           <h1>Luxurious Spa</h1>
           <div className="slider_buttons">
-            <Link to={"/spa-list"}>More</Link>
+            <Link to={"/spalist/luxuriousspa"}>More</Link>
           </div>
         </div>
-        <Slider cardList={LuxuriousSpa} _name={"spa"} />
+        <Slider cardList={luxuriousSpas} _name={"spa"} />
       </div>
       {/* Luxurious Spa Ends */}
 
       {/* Discover Trakky Experiences Starts --------------------------------------*/}
-      <div className="trakky_experiences">
+      {/* <div className="trakky_experiences">
         <h1>Discover Trakky Experiences</h1>
         <div className="trakky_experiences_image__container">
           <div className="left__">
@@ -230,11 +258,11 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       {/* Discover Trakky Experiences Ends */}
 
       {/* Upper Footer Desktop  Starts --------------------------------------*/}
-      <div className="upper__footer_desktop">
+      {/* <div className="upper__footer_desktop">
         <div className="left__container">
           <h1>Trakky Experience</h1>
           <Link to={"/learn-more"}>Learn more</Link>
@@ -242,19 +270,18 @@ const Home = () => {
         <div className="right__container">
           <img src={GiftCard} alt="" />
         </div>
-      </div>
+      </div> */}
       {/* Upper Footer Desktop Ends */}
 
       {/* Upper Footer Mobile Starts---------------------------- */}
-      <div className="upper__footer_mobile">
+      {/* <div className="upper__footer_mobile">
         <h1>Trakky Experience</h1>
         <img src={GiftCard} alt="" />
         <Link to={"/learn-more"}>Learn more</Link>
-      </div>
+      </div> */}
       {/* Upper Footer Mobile Ends */}
       <Footer />
     </div>
   );
 };
-
 export default Home;
