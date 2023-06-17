@@ -42,8 +42,8 @@ const ServiceUpdate = (props) => {
     getSpa();
   }, []);
 
- // PUT Request Starts
- const PatchRequest = (id) => {
+  // PUT Request
+  const patchRequest = (id) => {
     axios
       .put(`http://localhost:8080/api/v1/services/${id}`, {
         select_spa: selectSpa,
@@ -56,23 +56,28 @@ const ServiceUpdate = (props) => {
       })
       .then((res) => {
         console.log(res.data);
-        alert("updated data");
+        alert("Service Updated Successfully");
+        
       })
       .catch((error) => {
         alert(JSON.stringify(error.response));
       });
-      // console.log(luxurious);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    patchRequest(props.data._id);
   };
 
   return (
     <>
       <div className="main-container">
         <div className="container">
-          <form>
+          <form onSubmit={handleSubmit}>
             <h1>Services</h1>
 
             <div className="form-group">
-              <label htmlhtmlFor="spa">Select Spa *</label>
+              <label htmlFor="spa">Select Spa *</label>
               <input
                 className="form-control"
                 type="dropdown"
@@ -97,7 +102,7 @@ const ServiceUpdate = (props) => {
             </div>
 
             <div className="form-group">
-              <label htmlhtmlFor="name">Service Name *</label>
+              <label htmlFor="name">Service Name *</label>
               <input
                 className="form-control"
                 type="text"
@@ -111,7 +116,7 @@ const ServiceUpdate = (props) => {
             </div>
 
             <div className="form-group">
-              <label htmlhtmlFor="name">Service Time *</label>
+              <label htmlFor="name">Service Time *</label>
               <input
                 className="form-control"
                 type="dropdown"
@@ -135,7 +140,7 @@ const ServiceUpdate = (props) => {
             </div>
 
             <div className="form-group">
-              <label htmlhtmlFor="name">Description *</label>
+              <label htmlFor="name">Description *</label>
               <input
                 className="form-control"
                 type="text"
@@ -149,7 +154,7 @@ const ServiceUpdate = (props) => {
             </div>
 
             <div className="form-group">
-              <label htmlhtmlFor="price">Price *</label>
+              <label htmlFor="price">Price *</label>
               <input
                 className="form-control"
                 type="text"
@@ -163,7 +168,7 @@ const ServiceUpdate = (props) => {
               />
             </div>
             <div className="form-group">
-              <label htmlhtmlFor="price">Disount *</label>
+              <label htmlFor="price">Discount *</label>
               <input
                 className="form-control"
                 type="text"
@@ -177,7 +182,7 @@ const ServiceUpdate = (props) => {
             </div>
 
             <div className="form-group">
-              <label htmlhtmlFor="therapies">Therapies (Category) *</label>
+              <label htmlFor="therapies">Therapies (Category) *</label>
               <input
                 className="form-control"
                 type="dropdown"
@@ -202,13 +207,10 @@ const ServiceUpdate = (props) => {
               </datalist>
             </div>
 
-            <button
-              className="submit-btn"
-              onSubmit={() => PatchRequest(props._id)}
-              type="submit"
-            >
-              Add Service
+            <button className="submit-btn" type="submit" onClick={handleSubmit}>
+              Update Service
             </button>
+            {console.log(props.data._id)}
           </form>
         </div>
       </div>

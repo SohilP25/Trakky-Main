@@ -8,9 +8,7 @@ import { AiFillDelete } from "react-icons/ai";
 import { FaEdit } from "react-icons/fa";
 import SpaUpdate from "./forms/updateForms/SpaUpdate";
 import Switch from "@mui/material/Switch";
-import axios from 'axios'
-
-
+import axios from "axios";
 
 const Spa = () => {
   // update spa use state variables
@@ -19,13 +17,6 @@ const Spa = () => {
 
   // Getting spa details
   const [SpaData, setSpaData] = useState([]);
-
-  // Settings for switches
-  const [luxurious, setLuxurious] = useState(false);
-  const [topRated, setTopRated] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [premium, setPremium] = useState(false);
-  const [verified, setVerified] = useState(false);
 
   const getSpa = () => {
     const requestOption = {
@@ -51,7 +42,7 @@ const Spa = () => {
       .then(() => getSpa())
       .catch((err) => console.log(err));
   };
-  
+
   // table header data
   const tableHeaders = [
     "Name",
@@ -102,7 +93,7 @@ const Spa = () => {
   const [expandedRow, setExpandedRow] = useState(null);
   const [isDropdown, setIsDropdown] = useState(null);
 
-  
+  // PUT Requests for Switches!!!
   // Updating status button
   const statusSwitch = (id, currentStatus) => {
     axios
@@ -111,14 +102,13 @@ const Spa = () => {
       })
       .then((res) => {
         console.log(res.data);
-        alert("updated verified");
+        alert("updated Spa Status");
       })
       .then(() => getSpa())
       .catch((error) => {
         alert(JSON.stringify(error.response));
       });
   };
-
 
   // Updating verify button
   const verifySwitch = (id, currentStatus) => {
@@ -128,14 +118,13 @@ const Spa = () => {
       })
       .then((res) => {
         console.log(res.data);
-        alert("updated verified");
+        alert("updated Verified Spa");
       })
       .then(() => getSpa())
       .catch((error) => {
         alert(JSON.stringify(error.response));
       });
   };
-
 
   // Updating topRated button
   const topRatedSwitch = (id, currentStatus) => {
@@ -145,14 +134,13 @@ const Spa = () => {
       })
       .then((res) => {
         console.log(res.data);
-        alert("updated verified");
+        alert("updated Top Rated Spa");
       })
       .then(() => getSpa())
       .catch((error) => {
         alert(JSON.stringify(error.response));
       });
   };
-
 
   // Updating premium button
   const premiumSwitch = (id, currentStatus) => {
@@ -162,7 +150,7 @@ const Spa = () => {
       })
       .then((res) => {
         console.log(res.data);
-        alert("updated verified");
+        alert("Updated Premium Spa");
       })
       .then(() => getSpa())
       .catch((error) => {
@@ -178,17 +166,13 @@ const Spa = () => {
       })
       .then((res) => {
         console.log(res.data);
-        alert("updated verified");
+        alert("Updated Luxurious Spa");
       })
       .then(() => getSpa())
       .catch((error) => {
         alert(JSON.stringify(error.response));
       });
   };
-
-
-
-
 
   return (
     <div className="main_list__container">
@@ -232,9 +216,9 @@ const Spa = () => {
                       <td>{spa.landmark}</td>
                       <td>
                         <Switch
-                        checked={spa.open}
+                          checked={spa.open}
                           onChange={() => {
-                            statusSwitch(spa._id, !spa.open)
+                            statusSwitch(spa._id, !spa.open);
                           }}
                           inputProps={{ "aria-label": "controlled" }}
                         />
@@ -260,7 +244,7 @@ const Spa = () => {
                         <Switch
                           checked={spa.verified}
                           onChange={() => {
-                            verifySwitch(spa._id, !spa.verified)
+                            verifySwitch(spa._id, !spa.verified);
                           }}
                           inputProps={{ "aria-label": "controlled" }}
                         />
@@ -269,7 +253,7 @@ const Spa = () => {
                         <Switch
                           checked={spa.topRated}
                           onChange={() => {
-                            topRatedSwitch(spa._id, !spa.topRated)
+                            topRatedSwitch(spa._id, !spa.topRated);
                           }}
                           inputProps={{ "aria-label": "controlled" }}
                         />
@@ -278,7 +262,7 @@ const Spa = () => {
                         <Switch
                           checked={spa.premium}
                           onChange={() => {
-                            premiumSwitch(spa._id, !spa.premium)
+                            premiumSwitch(spa._id, !spa.premium);
                           }}
                           inputProps={{ "aria-label": "controlled" }}
                         />
@@ -287,7 +271,7 @@ const Spa = () => {
                         <Switch
                           checked={spa.luxurious}
                           onChange={() => {
-                            luxuriousSwitch(spa._id, !spa.luxurious)
+                            luxuriousSwitch(spa._id, !spa.luxurious);
                           }}
                           inputProps={{ "aria-label": "controlled" }}
                         />

@@ -66,7 +66,7 @@ const SpaUpdate = (props) => {
       })
       .then((res) => {
         console.log(res.data);
-        alert("updated data");
+        alert("Spa Updated Successfully");
       })
       .catch((error) => {
         alert(JSON.stringify(error.response));

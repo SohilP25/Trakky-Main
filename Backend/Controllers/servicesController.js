@@ -1,5 +1,5 @@
 // Rinal DUtt
-import  Services  from "../Models/servicesModel.js";
+import Services from "../Models/servicesModel.js";
 
 // Add a new service
 export const addService = async (req, res) => {
@@ -8,7 +8,7 @@ export const addService = async (req, res) => {
     const createservice = await Services.create(services);
     res.status(201).json(createservice);
   } catch (error) {
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 
@@ -17,9 +17,9 @@ export const deleteService = async (req, res) => {
   try {
     const { id } = req.params;
     await Services.findByIdAndRemove(id);
-    res.status(204).end({msg : "succesfully deleted"});
+    res.status(204).end({ msg: "succesfully deleted" });
   } catch (error) {
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 
@@ -39,37 +39,79 @@ export const deleteService = async (req, res) => {
 //   }
 // };
 
+// export const updateService = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const {
+//       select_spa,
+//       service_name,
+//       service_time,
+//       description,
+//       price,
+//       discount,
+//       therapies,
+//     } = req.body;
+
+//     // Check if the provided ID is a valid MongoDB ObjectId
+//     // Find the service by ID and update its properties
+//     const updatedService = await Services.findByIdAndUpdate(
+//       id,
+//       {
+//         select_spa,
+//         service_name,
+//         service_time,
+//         description,
+//         price,
+//         discount,
+//         therapies,
+//       },
+//       { new: true }
+//     );
+
+//     // Check if the service exists
+//     if (!updatedService) {
+//       return res.status(404).json({ error: "Service not found" });
+//     }
+
+//     res.json(updatedService);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// };
+
 export const updateService = async (req, res) => {
-    try {
-      const { id } = req.params;
-      const { name, price, category, time } = req.body;
+  try {
+      const id = req.params.id;
+      const updates = req.body;
+      const options = { new: true };
+    
+      // Extract query from request headers
+      const query = req.headers.query;
   
-      // Check if the provided ID is a valid MongoDB ObjectId
-      // Find the service by ID and update its properties
-      const updatedService = await Services.findByIdAndUpdate(
-        id,
-        { name, price, category, time },
-        { new: true }
-      );
-  
-      // Check if the service exists
-      if (!updatedService) {
-        return res.status(404).json({ error: 'Service not found' });
+      let queryObj = {};
+      if (query) {
+        queryObj = JSON.parse(query);
       }
   
-      res.json(updatedService);
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal server error' });
-    }
-  };
+      const result = await Services.findOneAndUpdate({ _id: id, ...queryObj }, updates, options);
+      if (!result) {
+        return res.status(404).send("Data not found");
+      }
   
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(500).send(err);
+    }
+};
+
+
 // Get all services
- export const  getAllServices = async (req, res) => {
+export const getAllServices = async (req, res) => {
   try {
     const services = await Services.find();
     res.json(services);
   } catch (error) {
-    res.status(500).json({ error: 'Internal server error' });
+    res.status(500).json({ error: "Internal server error" });
   }
 };
