@@ -120,7 +120,7 @@ const Home = () => {
         <div className="slider__outer-container">
           <div className="slider__header">
             <h1>Therapies</h1>
-            <Link to={"/therapies"}>More</Link>
+            <div></div>
             <p>Here are lots of interesting therapies to try out</p>
           </div>
           <Slider cardList={therapy} _name={"therapy"} />

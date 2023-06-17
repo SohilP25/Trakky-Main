@@ -6,42 +6,42 @@ import "./Cards.css";
 
 const SpaCard = (props) => {
   return (
-    <Link to={`spas${props.cardData.slug}`}>
-      <div className="card">
-        <div className="card-image">
-          <img src={props.cardData.imageUrl} alt="spa" />
-        </div>
+    <div className="card">
+      <div className="card-image">
+        <img src={props.cardData.imageUrl} alt="spa" />
+      </div>
 
-        <div className="discount_tag">
-          <p>couple therapy 50% off</p>
-        </div>
+      <div className="discount_tag">
+        <p>couple therapy 50% off</p>
+      </div>
 
-        {/* <div className="card_icons">
+      {/* <div className="card_icons">
           <img src={cardIcons} alt="" />
         </div> */}
 
-        <div className="information__container">
+      <div className="information__container">
+        <Link to={`spas${props.cardData.slug}`}>
           <h3>{props.cardData.name}</h3>
           <p>
             {props.cardData.Area},&nbsp;{props.cardData.City}
           </p>
-        </div>
+        </Link>
+      </div>
 
-        <div className="information__container_lower">
-          <div>
-            {/* <p id="price-tag">
+      <div className="information__container_lower">
+        <div>
+          {/* <p id="price-tag">
               <span>$89</span> / Person
             </p> */}
-          </div>
+        </div>
 
-          <div>
-            <Link to={"/contact"} className="card-btn-link">
-              Call Now
-            </Link>
-          </div>
+        <div>
+          <a href="tel:+917984553527" className="card-btn-link">
+            Call Now
+          </a>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
