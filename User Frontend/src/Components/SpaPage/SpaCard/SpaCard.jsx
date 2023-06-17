@@ -84,8 +84,8 @@ const SpaCard = ({
             </p>
           </div>
           <div className="spa_booking_buttons">
-            <Link>Book Now</Link>
-            <Link>Call Now</Link>
+            <a href="https://wa.me/+919328382710">Book Now</a>
+            <a href="tel:+919328382710">Call Now</a>
           </div>
         </div>
       </div>
