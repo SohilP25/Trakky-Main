@@ -16,7 +16,6 @@ const Header = ({ page = "other" }) => {
   const [show, setShow] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-
   useEffect(() => {
     const controlNavbar = () => {
       if (typeof window !== "undefined") {
@@ -42,9 +41,8 @@ const Header = ({ page = "other" }) => {
   // If navState is true => navbar of home page is rendered.
   const navState = page !== "other";
 
-  const [isFocused, setIsFocused] = useState(false)
-  const ref = useRef(null)
-
+  const [isFocused, setIsFocused] = useState(false);
+  const ref = useRef(null);
 
   const [searchText, setSearchText] = useState("");
   const [searchResultList, setSearchResultList] = useState([{}]);
@@ -61,25 +59,25 @@ const Header = ({ page = "other" }) => {
 
   return (
     <div>
-    <div
-      className={`navbar__container ${show && "hidden"}`}
-      style={{
-        background: !navState && show ? "#FAF8ED" : "",
-        position: show ? "fixed" : !navState ? "relative" : "absolute",
-      }}
-    >
-      <div className="logo__container">
-        {
-          <Link to="/">
-            <img
-              src={navState ? trakkyWhite : trakkyPurple}
-              draggable="false"
-              alt=""
-            />
-          </Link>
-        }
-      </div>
-      {/* <div
+      <div
+        className={`navbar__container ${show && "hidden"}`}
+        style={{
+          background: !navState && show ? "#FAF8ED" : "",
+          position: show ? "fixed" : !navState ? "relative" : "absolute",
+        }}
+      >
+        <div className="logo__container">
+          {
+            <Link to="/">
+              <img
+                src={navState ? trakkyWhite : trakkyPurple}
+                draggable="false"
+                alt=""
+              />
+            </Link>
+          }
+        </div>
+        {/* <div
         className="nav-links__container"
         style={{ display: navState ? "" : "none" }}
       >
@@ -88,47 +86,51 @@ const Header = ({ page = "other" }) => {
         <li>Online Experiences</li>
       </div> */}
 
-      <div
-        className={`search__container navbar_search-top ${navState ? "" : "none-other"
+        <div
+          className={`search__container navbar_search-top ${
+            navState ? "" : "none-other"
           }`}
-      >
-        <img draggable="false" src={Search} alt="" />
-        <form className="search-bar">
-          <label
-            htmlFor="search"
-            id="searchLabel"
-            style={{ fontWeight: "bold",
-            display: (isFocused || searchText.length !== 0) ? "none" : "block"  }}
-          >
-            What to?
-          </label>
-          <input
-            ref={ref}
-            type="text"
-            placeholder="Spa name • Area • City • Therapy"
-            name="search"
-            autoComplete="off"
-            id="search"
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-            onChange={(e) => {
-              setSearchText(e.target.value)
-              getSearchResult(e.target.value)
-            }}
-            style={{
-              fontSize: (isFocused || searchText.length !== 0) ? "larger" : ""
-            }}
+        >
+          <img draggable="false" src={Search} alt="" />
+          <form className="search-bar">
+            <label
+              htmlFor="search"
+              id="searchLabel"
+              style={{
+                fontWeight: "bold",
+                display:
+                  isFocused || searchText.length !== 0 ? "none" : "block",
+              }}
+            >
+              What to?
+            </label>
+            <input
+              ref={ref}
+              type="text"
+              placeholder="Spa name • Area • City • Therapy"
+              name="search"
+              autoComplete="off"
+              id="search"
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+              onChange={(e) => {
+                setSearchText(e.target.value);
+                getSearchResult(e.target.value);
+              }}
+              style={{
+                fontSize: isFocused || searchText.length !== 0 ? "larger" : "",
+              }}
+            />
+          </form>
+          <img
+            draggable="false"
+            src={Filters}
+            alt=""
+            style={{ height: "2.5rem" }}
           />
-        </form>
-        <img
-          draggable="false"
-          src={Filters}
-          alt=""
-          style={{ height: "2.5rem" }}
-        />
-      </div>
+        </div>
 
-      {/* <div className="register-spa">
+        {/* <div className="register-spa">
         <button
           style={{
             color: navState ? "" : "black",
@@ -138,14 +140,14 @@ const Header = ({ page = "other" }) => {
           Register Spa
         </button>
       </div> */}
-    </div>
+      </div>
 
-    <div
+      <div
         className="search_result__container"
         style={{
           display: searchText === "" ? "none" : "block",
           width: "40%",
-          margin: "0 23% 0 37%"
+          margin: "0 23% 0 37%",
         }}
       >
         <ul>
@@ -153,7 +155,12 @@ const Header = ({ page = "other" }) => {
             return (
               <>
                 <li key={index}>
-                  <Link to={`spas${spa.slug}`}>{spa.name}</Link>
+                  <Link
+                    to={`/spas${spa.slug}`}
+                    onClick={() => window.location.href.reload()}
+                  >
+                    {spa.name}
+                  </Link>
                 </li>
                 {/* <li key={index}>
                   <Link to={`city/${spa.City}`}>{spa.City}</Link>

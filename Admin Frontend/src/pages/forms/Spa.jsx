@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./forms.css";
 
-// Problem:
-// location is perfect from frontend but
-// cannot able to add in database (backend side look up)
-
 const SpaForm = () => {
   const [spaname, setSpaName] = useState("");
   const [address, setAddress] = useState("");
   const [landmark, setLandmark] = useState("");
   const [mobileNumber, setMobileNumber] = useState(null);
   const [Image, setImage] = useState(null);
-  const [files, setFiles] = useState([]);
   const [openTime, setOpenTime] = useState("");
   const [closeTime, setCloseTime] = useState("");
   const [slug, setSlug] = useState("");
@@ -22,19 +17,19 @@ const SpaForm = () => {
   const [GMapLink, setGMapLink] = useState(null);
   const [area, setArea] = useState("");
   const [city, setCity] = useState("");
-  const [location, setLocation] = useState({});
-
+  const [aboutUs, setAboutUs] = useState("");
+  const [location, setLocation] = useState({
+    type: "Point",
+    coordinates: [longitude, latitude],
+  });
   const handleFileChange = (event) => {
     setImage(event.target.files[0]);
   };
 
-  const handleMultipleImages = (e) => {
-    setFiles([...files, ...e.target.files]);
-    console.log(files);
-  };
   // Post Request Starts
   const handleSubmit = async (event) => {
     event.preventDefault();
+   
     if (!Image) {
       console.log("Please select a file");
       return;
@@ -47,18 +42,17 @@ const SpaForm = () => {
     formData.append("bookingNumber", bookingNumber);
     formData.append("gmapLink", GMapLink);
     formData.append("imageUrl", Image);
-    formData.append("mulImgUrl", files);
-    formData.append("spaLocation", location);
+    formData.append("location", location);
     formData.append("openTime", openTime);
     formData.append("closeTime", closeTime);
     formData.append("slug", slug);
     formData.append("priority", priority);
     formData.append("Area", area);
     formData.append("City", city);
+    formData.append("aboutUs", aboutUs);
 
-    console.log(formData.get("mulImgUrl")); // this will not give output
-    console.log(files);
     try {
+      console.log(formData);
       await fetch("http://localhost:8080/api/v1/spas", {
         method: "POST",
         body: formData,
@@ -68,8 +62,6 @@ const SpaForm = () => {
     } catch (error) {
       console.error("Error uploading image", error);
     }
-
-    console.log(formData.get("spaLocation"));
   };
 
   // Getting city list
@@ -165,13 +157,7 @@ const SpaForm = () => {
               placeholder="Enter Latitude"
               required
               autoComplete="off"
-              onChange={(e) => {
-                setLatitude(e.target.value);
-                setLocation({
-                  type: "Point",
-                  coordinates: [longitude, e.target.value],
-                });
-              }}
+              onChange={(e) => setLatitude(e.target.value)}
             />
           </div>
 
@@ -188,10 +174,6 @@ const SpaForm = () => {
               autoComplete="off"
               onChange={(e) => {
                 setLongitude(e.target.value);
-                setLocation({
-                  type: "Point",
-                  coordinates: [e.target.value, latitude],
-                });
               }}
             />
           </div>
@@ -285,17 +267,13 @@ const SpaForm = () => {
                 setCity(city);
                 // Find the selected city object from the cities list
                 const selectedCityObj = cityList.find((c) => c.name === city);
-
-                fetch(
-                  `http://localhost:8080/api/v1/cities/${selectedCityObj._id}/areas`,
-                  {
-                    method: "GET",
-                    header: { "Content-Type": "application/json" },
-                  }
-                )
-                  .then((res) => res.json())
-                  .then((data) => setAreaList(data))
-                  .catch((err) => console.log(err));
+                
+                fetch(`http://localhost:8080/api/v1/cities/${selectedCityObj._id}/areas`, {
+                  method: "GET",
+                  header: { "Content-Type": "application/json" },
+                }).then((res) => res.json())
+                .then((data) => setAreaList(data))
+                .catch((err) => console.log(err));
               }}
             />
 
@@ -355,6 +333,19 @@ const SpaForm = () => {
               onChange={(e) => setSlug(e.target.value)}
             />
           </div>
+          <div className="form-group">
+            <label htmlFor="slug">About Us *</label>
+            <input
+              className="form-control"
+              type="text"
+              name="text"
+              id="aboutus"
+              placeholder="Enter About us"
+              required
+              autoComplete="off"
+              onChange={(e) => setAboutUs(e.target.value)}
+            />
+          </div>
 
           <div className="form-group">
             <label htmlFor="image">Main Image *</label>
@@ -370,7 +361,7 @@ const SpaForm = () => {
             />
           </div>
 
-          <div className="form-group">
+          {/* <div className="form-group">
             <label htmlFor="image">Image *</label>
             <input
               className="form-control"
@@ -378,20 +369,20 @@ const SpaForm = () => {
               type="file"
               name="image"
               id="multipleimage"
+              onChange={handleFileChange}
               multiple
               required
               autoComplete="off"
-              onChange={handleMultipleImages}
             />
-          </div>
+          </div> */}
 
-          <button
-            className="submit-btn"
-            onSubmit={() => {
-              handleSubmit();
-            }}
-            type="submit"
-          >
+          <button className="submit-btn" onSubmit={() => {
+            setLocation({
+              type: "Point",
+              coordinates: [longitude, latitude],
+            })
+            handleSubmit()
+            }} type="submit">
             add spa
           </button>
         </form>

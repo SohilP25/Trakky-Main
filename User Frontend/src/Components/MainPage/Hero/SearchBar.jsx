@@ -76,7 +76,12 @@ const SearchBar = () => {
             return (
               <>
                 <li key={index}>
-                  <Link to={`spas${spa.slug}`}>{spa.name}</Link>
+                  <Link
+                    to={`/spas${spa.slug}`}
+                    onClick={() => window.location.href.reload()}
+                  >
+                    {spa.name}
+                  </Link>
                 </li>
                 {/* <li key={index}>
                   <Link to={`city/${spa.City}`}>{spa.City}</Link>
