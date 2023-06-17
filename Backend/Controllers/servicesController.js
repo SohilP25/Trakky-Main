@@ -24,61 +24,6 @@ export const deleteService = async (req, res) => {
 };
 
 // Update a service by ID
-// export const updateService = async (req, res) => {
-//   try {
-//     const { id } = req.params.id;
-//     const { name, price, category, time } = req.body;
-//     const updatedService = await Services.findByIdAndUpdate(
-//       id,
-//       { name, price, category, time },
-//       { new: true }
-//     );
-//     res.json(updatedService);
-//   } catch (error) {
-//     res.status(500).json({ error: 'Internal server error' });
-//   }
-// };
-
-// export const updateService = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const {
-//       select_spa,
-//       service_name,
-//       service_time,
-//       description,
-//       price,
-//       discount,
-//       therapies,
-//     } = req.body;
-
-//     // Check if the provided ID is a valid MongoDB ObjectId
-//     // Find the service by ID and update its properties
-//     const updatedService = await Services.findByIdAndUpdate(
-//       id,
-//       {
-//         select_spa,
-//         service_name,
-//         service_time,
-//         description,
-//         price,
-//         discount,
-//         therapies,
-//       },
-//       { new: true }
-//     );
-
-//     // Check if the service exists
-//     if (!updatedService) {
-//       return res.status(404).json({ error: "Service not found" });
-//     }
-
-//     res.json(updatedService);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// };
 
 export const updateService = async (req, res) => {
   try {
