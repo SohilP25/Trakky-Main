@@ -6,16 +6,10 @@ import "./Cards.css";
 
 const SpaCard = (props) => {
   return (
-    <Link to={{ 
-      pathname: `spas${props.cardData.slug}`,
-      state: props.cardData
-    }}>
+    <Link to={`spas${props.cardData.slug}`}>
       <div className="card">
         <div className="card-image">
-          <img
-            src={props.cardData.imageUrl}
-            alt="spa"
-          />
+          <img src={props.cardData.imageUrl} alt="spa" />
         </div>
 
         <div className="discount_tag">
@@ -28,7 +22,9 @@ const SpaCard = (props) => {
 
         <div className="information__container">
           <h3>{props.cardData.name}</h3>
-          <p>{props.cardData.Area},&nbsp;{props.cardData.City}</p>
+          <p>
+            {props.cardData.Area},&nbsp;{props.cardData.City}
+          </p>
         </div>
 
         <div className="information__container_lower">
@@ -39,7 +35,7 @@ const SpaCard = (props) => {
           </div>
 
           <div>
-            <Link to={'/contact'} className="card-btn-link">
+            <Link to={"/contact"} className="card-btn-link">
               Call Now
             </Link>
           </div>

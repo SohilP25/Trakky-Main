@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./forms.css";
 
 // Problem:
-// location is perfect from frontend but 
+// location is perfect from frontend but
 // cannot able to add in database (backend side look up)
 
 const SpaForm = () => {
@@ -42,7 +42,7 @@ const SpaForm = () => {
     formData.append("bookingNumber", bookingNumber);
     formData.append("gmapLink", GMapLink);
     formData.append("imageUrl", Image);
-    formData.append("location", location);
+    formData.append("spaLocation", location);
     formData.append("openTime", openTime);
     formData.append("closeTime", closeTime);
     formData.append("slug", slug);
@@ -50,7 +50,7 @@ const SpaForm = () => {
     formData.append("Area", area);
     formData.append("City", city);
 
-    console.log(formData) // this will not give output
+    console.log(formData); // this will not give output
     try {
       await fetch("http://localhost:8080/api/v1/spas", {
         method: "POST",
@@ -61,6 +61,8 @@ const SpaForm = () => {
     } catch (error) {
       console.error("Error uploading image", error);
     }
+
+    console.log(formData.get("spaLocation"));
   };
 
   // Getting city list
@@ -156,7 +158,13 @@ const SpaForm = () => {
               placeholder="Enter Latitude"
               required
               autoComplete="off"
-              onChange={(e) => setLatitude(e.target.value)}
+              onChange={(e) => {
+                setLatitude(e.target.value);
+                setLocation({
+                  type: "Point",
+                  coordinates: [longitude, e.target.value],
+                });
+              }}
             />
           </div>
 
@@ -173,6 +181,10 @@ const SpaForm = () => {
               autoComplete="off"
               onChange={(e) => {
                 setLongitude(e.target.value);
+                setLocation({
+                  type: "Point",
+                  coordinates: [e.target.value, latitude],
+                });
               }}
             />
           </div>
@@ -266,13 +278,17 @@ const SpaForm = () => {
                 setCity(city);
                 // Find the selected city object from the cities list
                 const selectedCityObj = cityList.find((c) => c.name === city);
-                
-                fetch(`http://localhost:8080/api/v1/cities/${selectedCityObj._id}/areas`, {
-                  method: "GET",
-                  header: { "Content-Type": "application/json" },
-                }).then((res) => res.json())
-                .then((data) => setAreaList(data))
-                .catch((err) => console.log(err));
+
+                fetch(
+                  `http://localhost:8080/api/v1/cities/${selectedCityObj._id}/areas`,
+                  {
+                    method: "GET",
+                    header: { "Content-Type": "application/json" },
+                  }
+                )
+                  .then((res) => res.json())
+                  .then((data) => setAreaList(data))
+                  .catch((err) => console.log(err));
               }}
             />
 
@@ -341,13 +357,7 @@ const SpaForm = () => {
               type="file"
               name="image"
               id="mainimage"
-              onChange={() => {
-                handleFileChange()
-                setLocation({
-                  type: "Point",
-                  coordinates: [longitude, latitude],
-                })
-              }}
+              onChange={handleFileChange}
               required
               autoComplete="off"
             />
@@ -368,13 +378,13 @@ const SpaForm = () => {
             />
           </div> */}
 
-          <button className="submit-btn" onSubmit={() => {
-            // setLocation({
-            //   type: "Point",
-            //   coordinates: [longitude, latitude],
-            // })
-            handleSubmit()
-            }} type="submit">
+          <button
+            className="submit-btn"
+            onSubmit={() => {
+              handleSubmit()
+            }}
+            type="submit"
+          >
             add spa
           </button>
         </form>

@@ -109,6 +109,8 @@ const SpaNearMeList = ({ name, url }) => {
                         area={data.Area}
                         mobileNumber={data.mobileNumber}
                         bookingNumber={data.bookingNumber}
+                        slug={data.slug}
+                        premium={data.premium}
                         // location={data.location}
                         // offers={data.offers}
                         // basePrice={data.basePrice}
@@ -138,6 +140,7 @@ const SpaNearMeList = ({ name, url }) => {
                     area={data.Area}
                     mobileNumber={data.mobileNumber}
                     bookingNumber={data.bookingNumber}
+                    premium={data.premium}
                     // location={data.location}
                     // offers={data.offers}
                     // basePrice={data.basePrice}

@@ -37,9 +37,9 @@ const Offer = () => {
   const tableHeaders = [
     "Offer Name",
     "Spa Name",
-    "Slug",
     "Priority",
-    "Active",
+    "Slug",
+    // "Active",
     "More",
     "Action",
   ];
@@ -120,7 +120,7 @@ const Offer = () => {
                       <td>{spa.Select_Spa}</td>
                       <td>{spa.Priority}</td>
                       <td>{spa.Slug}</td>
-                      <td>
+                      {/* <td>
                         <div class="form-check form-switch">
                           <label
                             class="form-check-label"
@@ -132,7 +132,7 @@ const Offer = () => {
                             id="flexSwitchCheckDefault"
                           />
                         </div>
-                      </td>
+                      </td> */}
                       <td>
                         {isDropdown === null ? (
                           <IoIosArrowDropdown

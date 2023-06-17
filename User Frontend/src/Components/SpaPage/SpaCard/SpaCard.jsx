@@ -23,13 +23,15 @@ const SpaCard = ({
   area,
   openTime,
   closeTime,
+  premium,
+  slug,
 }) => {
   const [isLiked, setIsLiked] = useState(false);
 
   return (
     <div className="spa_card">
       <div className="image__container">
-        <p className="spa_tag">Premium</p>
+        {premium && <p className="spa_tag">Premium</p>}
         <img src={img} alt="Spa" draggable="false" />
         {/* <p className="spa_offer_tag">{offers}</p> */}
       </div>
@@ -38,13 +40,13 @@ const SpaCard = ({
         <div className="row1">
           <div className="spa_name">
             <h2>
-              <Link to={"/spa-profile"}>{name}</Link>
+              <Link to={`/spas${slug}`}>{name}</Link>
             </h2>
             {/* <p>{location}</p> */}
 
             <p>
               {/* {address}  */}
-              {landmark} <br />
+              {/* {landmark} <br /> */}
               {area} , {city}
             </p>
           </div>
@@ -77,6 +79,9 @@ const SpaCard = ({
         <div className="row3">
           <div className="spa_rating__box">
             {/* <Star stars={ratings} reviews={reviewsCount} /> */}
+            <p className="time_tag">
+              {openTime}&nbsp;-&nbsp;{closeTime}
+            </p>
           </div>
           <div className="spa_booking_buttons">
             <Link>Book Now</Link>
@@ -132,6 +137,7 @@ export const SpaCardMini = ({
   area,
   openTime,
   closeTime,
+  premium,
   // location,
   // ratings,
   // reviewsCount,
@@ -141,9 +147,9 @@ export const SpaCardMini = ({
     <div className="mini_spa_card">
       <div className="main_mini_spa__container">
         <div className="mini_spa_image__container">
-          <p className="spa_tag">Premium</p>
+          {premium && <p className="spa_tag">Premium</p>}
           <img src={img} alt="Spa" draggable="false" />
-          <p
+          {/* <p
             className="spa_offer_tag"
             style={{
               width: "98%",
@@ -151,38 +157,38 @@ export const SpaCardMini = ({
               margin: "0 1%",
             }}
           >
-            {/* {offers} */}
-          </p>
+            {offers}
+          </p> */}
         </div>
 
         <div className="mini_spa_information__container">
-          <Link to="/spa-profile">
-            <div className="spa_name">
+          <div className="spa_name">
+            <Link to="/spa-profile">
               <h2>{name}</h2>
               {/* <p>{location}</p> */}
+              {/* <p>{address}</p> */}
+              {/* <p>{landmark}</p> */}
               <p>
-                {address} <br />
-                {landmark} <br />
-                {area} , {city}
+                {area}, {city}
               </p>
-            </div>
+            </Link>
+          </div>
 
-            <div className="spa_icon__box">
-              {/* <img src={CardIcons} draggable="false" alt="" /> */}
-            </div>
+          <div className="spa_icon__box">
+            {/* <img src={CardIcons} draggable="false" alt="" /> */}
+          </div>
 
-            <div className="mini_spa_rating__box spa_rating__box">
-              {/* <Star stars={ratings} reviews={reviewsCount} /> */}
-            </div>
-          </Link>
+          <div className="mini_spa_rating__box spa_rating__box">
+            {/* <Star stars={ratings} reviews={reviewsCount} /> */}
+          </div>
           <div className="mini_spa_price__box">
             <div className="mini_spa_price_tag">
               {/* <img src={ManIcon} alt="" draggable="false" /> */}
-              <p>
-                {/* &nbsp;₹ <span id="spa-price">{basePrice}</span> Onwards */}
-                Open Time: {openTime}
-                <br />
-                Close Time: {closeTime}
+              {/* <p>
+                &nbsp;₹ <span id="spa-price">{basePrice}</span> Onwards
+              </p> */}
+              <p className="time_tag">
+                {openTime}&nbsp;-&nbsp;{closeTime}
               </p>
             </div>
 

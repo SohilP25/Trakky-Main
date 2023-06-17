@@ -23,9 +23,9 @@ import {
   spaProfile,
   spaServices,
   spaOffers,
-  spaFacilitiesData,
+  // spaFacilitiesData,
   spaRoomPhotos,
-  spaProfilePhotos,
+  // spaProfilePhotos,
 } from "../../../data";
 // import Popup from "../../Common/Popup/Popup";
 // import Gallery from "../../Common/Gallery/Gallery";
@@ -54,25 +54,23 @@ const SpaProfile = () => {
 
   const [spas, setSpas] = useState([{}]);
   const [spa, setSpa] = useState({});
+  // let spaData;
   useEffect(() => {
     fetch("http://localhost:8080/api/v1/spas", {
       method: "GET",
     })
       .then((res) => res.json())
-      .then((data) => setSpas(data))
+      .then((data) => {
+        setSpas(data);
+        let spaData = data.find((spa) => spa.slug === `/${slug}`);
+        setSpa(spaData);
+      })
       .catch((err) => console.log(err));
   }, []);
 
-  let spaData = spas.find((spa) => spa.slug === `/${slug}`);
-  console.log(spaData);
-  setSpa(spaData);
-  console.log(spa);
-  // const spa = spaList[0]
-  // console.log(spa)
-  // const [isLiked, setIsLiked] = useState(false)
-  // const [spaProfilePhotosTrigger, setSpaProfilePhotosTrigger] = useState(false)
   return (
     <>
+      {/* {console.log(spa)} */}
       <Hero />
       {/* <div className="showPhotos">
         <Popup trigger={spaProfilePhotosTrigger}>
@@ -120,12 +118,17 @@ const SpaProfile = () => {
               <div className="image-5">
                 <img src={spaImage5} alt="" />
                 <div className="show-all-photos">
-                  {/* <button onClick={() => setSpaProfilePhotosTrigger(true)}>
+            {/* <button onClick={() => setSpaProfilePhotosTrigger(true)}>
                     <img src={Grids} alt="" />Show all photos
                   </button> */}
-                </div>
+            </div>
               </div>
             </div>
+
+            {/* <div className="spa__image__container">
+              <img src={spa.imageUrl} alt="" />
+            </div> */}
+
             <div className="spa-information__container">
               <div className="spa-information-title">
                 <h1>{spa.name}</h1>
@@ -179,9 +182,9 @@ const SpaProfile = () => {
                   <li>{spa.luxurious && "Luxurious"}</li>
                   {/* <li>{spa.trending && "Trending"}</li> */}
                 </div>
-                <div className="spa-information-offer">
-                  {/* <li>COUPLE THERAPY 50% OFF</li> */}
-                </div>
+                {/* <div className="spa-information-offer">
+                  <li>COUPLE THERAPY 50% OFF</li>
+                </div> */}
               </div>
               <div className="spa-information-contact">
                 <div className="spa-information-bookings">
@@ -249,7 +252,7 @@ const SpaProfile = () => {
           <Slider cardList={spaProfile} _name="spaProfile" />
 
           <div className="spa-information-mini-title">
-            <h2>{spa.name}</h2>
+            {/* <h2>{spa.name}</h2> */}
             <h3
               style={{
                 color: "#6B7280",
@@ -261,14 +264,14 @@ const SpaProfile = () => {
             >
               {/* 203, Sarthak Pulse Mall, Second Floor, PDPU Circle, Bhajipura,
               Service Rd, Kudasan, Gandhinagar, Gujarat 382421 */}
-              {spa.address}
+              {/* {spa.address} */}
             </h3>
             <div
               className="spa-information-tags"
               style={{ justifyContent: "flex-start" }}
             >
-              <li>{spa.premium && "Premium"}</li>
-              <li>{spa.luxurious && "Luxurious"}</li>
+              {/* <li>{spa.premium && "Premium"}</li> */}
+              {/* <li>{spa.luxurious && "Luxurious"}</li> */}
               {/* <li>{spa.trending && "Trending"}</li> */}
             </div>
 
@@ -283,7 +286,7 @@ const SpaProfile = () => {
                   draggable="false"
                   style={{ width: "1rem", height: "1rem" }}
                 />
-                {spa.mobileNumber}
+                {/* {spa.mobileNumber} */}
               </li>
               <li className="spa-price" style={{ fontSize: "1rem" }}>
                 {/* <img
@@ -307,7 +310,7 @@ const SpaProfile = () => {
                   <Link to={"/callnow"}>Call Now</Link>
                 </li>
                 <li>
-                  <Link to={spa.gmapLink}>Get Directions</Link>
+                  {/* <Link to={spa.gmapLink}>Get Directions</Link> */}
                 </li>
               </div>
             </div>
@@ -317,11 +320,11 @@ const SpaProfile = () => {
 
       <div className="spa_offers-services__container">
         <div className="spa_profile__left_container">
-          <Services />
+          <Services spaname={spa.name} />
         </div>
 
         <div className="spa_profile__right_container">
-          <Offers />
+          <Offers spaname={spa.name} />
           {/* <SpaFacilities spaName={spa.name} /> */}
         </div>
       </div>
@@ -330,7 +333,7 @@ const SpaProfile = () => {
 
       <hr className="hr_line" />
 
-      <SpaRooms />
+      {/* <SpaRooms /> */}
 
       <Footer />
     </>
@@ -353,7 +356,7 @@ const SpaRooms = () => {
 // properties of services and offers are same, so for them I'm using
 // 'servos' as a common name
 
-const Services = () => {
+const Services = (props) => {
   const [visible, setVisible] = useState(5);
   const length = spaServices.length;
   const [show, setShow] = useState(true);
@@ -366,6 +369,26 @@ const Services = () => {
     }
   }
 
+  // Getting services details
+  const [servicesData, setServicesData] = useState([]);
+
+  const getServices = () => {
+    const requestOption = {
+      method: "GET",
+      header: { "Content-Type": "application/json" },
+    };
+    fetch("http://localhost:8080/api/v1/services", requestOption)
+      .then((res) => res.json())
+      .then((data) => setServicesData(data))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getServices();
+  }, []);
+
+  const [serviceCounter, setServiceCounter] = useState(0);
+
   return (
     <div className="services__container">
       <div className="servos__header">
@@ -374,38 +397,46 @@ const Services = () => {
 
       <div className="servos__list">
         <ul>
-          {spaServices.slice(0, visible).map((therapy, index) => {
+          {servicesData.slice(0, visible).map((service, index) => {
             return (
-              <li key={index}>
-                <div className="services_list__container">
-                  <div className="service_list__left_container">
-                    <div className="service_name">
-                      <h3>{therapy.therapyName}</h3>
-                    </div>
-                    <div className="service_description">
-                      <p>{therapy.description}</p>
-                    </div>
-                  </div>
+              <>
+                {service.select_spa === props.spaname ? (
+                  <li key={index}>
+                    {() => setServiceCounter(++serviceCounter)}
+                    <div className="services_list__container">
+                      <div className="service_list__left_container">
+                        <div className="service_name">
+                          <h3>{service.service_name}</h3>
+                        </div>
+                        <div className="service_description">
+                          <p>{service.description}</p>
+                        </div>
+                      </div>
 
-                  <div className="service_list__right_container">
-                    <div className="service_price">
-                      <p>
-                        <span>₹ {therapy.price}</span> / 60 Min{" "}
-                      </p>
+                      <div className="service_list__right_container">
+                        <div className="service_price">
+                          <p>
+                            <span>₹ {service.price}</span> /{" "}
+                            {service.service_time}{" "}
+                          </p>
+                        </div>
+                        <div className="services__button">
+                          <Link>Call Now</Link>
+                        </div>
+                      </div>
                     </div>
-                    <div className="services__button">
-                      <Link>Call Now</Link>
-                    </div>
-                  </div>
-                </div>
-              </li>
+                  </li>
+                ) : (
+                  <></>
+                )}
+              </>
             );
           })}
         </ul>
       </div>
       <div
         className="view_more__button"
-        style={{ display: show ? "block" : "none" }}
+        style={{ display: show && serviceCounter > 5 ? "block" : "none" }}
       >
         <button onClick={showMoreItems}>View More</button>
       </div>
@@ -413,7 +444,7 @@ const Services = () => {
   );
 };
 
-const Offers = () => {
+const Offers = (props) => {
   const [visible, setVisible] = useState(3);
   const length = spaServices.length;
   const [show, setShow] = useState(true);
@@ -426,6 +457,29 @@ const Offers = () => {
     }
   }
 
+  // Getting services details
+  const [offerData, setOfferData] = useState([{}]);
+
+  const getOffer = () => {
+    const requestOption = {
+      method: "GET",
+      header: { "Content-Type": "application/json" },
+    };
+    fetch("http://localhost:8080/api/v1/offer", requestOption)
+      .then((res) => res.json())
+      .then((data) => {
+        let offers = (data.data).filter((offer) => offer.Select_Spa === props.spaname);
+        setOfferData(offers);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getOffer();
+  }, []);
+
+  const [offerCounter, setOfferCounter] = useState(0);
+
   return (
     <div className="spa_offers__container">
       <div className="servos__header">
@@ -434,38 +488,48 @@ const Offers = () => {
 
       <div className="servos__list">
         <ul>
-          {spaOffers.slice(0, visible).map((therapy, index) => {
+          {offerData.slice(0, visible).map((offer, index) => {
             return (
-              <li key={index}>
-                <div className="offers_list__container">
-                  <div className="offers_list__upper_container">
-                    <div className="offers_name">
-                      <h3>{therapy.offerName}</h3>
-                    </div>
-                    <div className="offers_description">
+              <>
+                {/* {offer.Select_Spa === props.spaname ? ( */}
+                <li key={index}>
+                  {console.log(offer)}
+                  {() => {
+                    setOfferCounter(++offerCounter);
+                  }}
+                  <div className="offers_list__container">
+                    <div className="offers_list__upper_container">
+                      <div className="offers_name">
+                        <h3>{offer.Name}</h3>
+                      </div>
+                      {/* <div className="offers_description">
                       <p>{therapy.description}</p>
+                    </div> */}
                     </div>
-                  </div>
 
-                  <div className="offers_list__bottom_container">
-                    <div className="offers_price">
-                      <p>
+                    <div className="offers_list__bottom_container">
+                      <div className="offers_price">
+                        {/* <p>
                         <span>₹ {therapy.price}</span> / 60 Min{" "}
-                      </p>
-                    </div>
-                    <div className="offers__button">
-                      <Link>Call Now</Link>
+                      </p> */}
+                      </div>
+                      <div className="offers__button">
+                        <Link>Call Now</Link>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </li>
+                </li>
+                {/* ) : (
+                  <></>
+                )} */}
+              </>
             );
           })}
         </ul>
       </div>
       <div
         className="view_more__button"
-        style={{ display: show ? "block" : "none" }}
+        style={{ display: show && offerCounter > 3 ? "block" : "none" }}
       >
         <button onClick={showMoreItems}>View More</button>
       </div>
