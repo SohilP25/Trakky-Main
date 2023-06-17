@@ -28,8 +28,12 @@ const spaSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  imageUrl: {
+  imgUrl: {
     type: String,
+    required: true,
+  },
+  mulImgUrl: {
+    type: [String],
     required: true,
   },
   City: {
@@ -44,7 +48,7 @@ const spaSchema = new mongoose.Schema({
   //   type: [String],
   //   required: true,
   // },
-  location: {
+  spaLocation: {
     type: {
       type: String,
       enum: ["Point"],
