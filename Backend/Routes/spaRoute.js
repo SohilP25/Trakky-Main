@@ -13,13 +13,22 @@ import { upload } from "../Middleware/imageUpload.js";
 
 const spaRoute = express.Router();
 
+
 spaRoute
   // For receiving spa and it's details
   .get("/", getallSpa)
   // For creating spa.
-  .post("/", upload.single("imageUrl"), createSpa)
+  .post("/", upload.fields([{
+    name: 'imgUrl', maxCount: 1
+  }, {
+    name: 'mulImgUrl', maxCount: 3
+  }]), createSpa)
   // For updating details of spa.
   .put("/:id", updateSpa)
   // For deleting details of spa.
   .delete("/:id", deleteSpa);
+
+
+
+
 export default spaRoute;
