@@ -16,7 +16,7 @@ export const getallSallon = async (req, res) => {
 export const createSallon = async (req, res) => {
   try {
     const data = await req.body;
-    const sallonLocation2 = await req.body.spaLocation;
+    const sallonLocation2 = await req.body.sallonLocation;
 
     const imgAryFetch =  JSON.parse(JSON.stringify(await req.files));
     console.log(imgAryFetch);
