@@ -318,9 +318,12 @@ const Spa = () => {
                     >
                       <div className="image__container">
                         <img src={spa.imgUrl} alt="" />
-                        <img src={spa.mulImgUrl[0]} alt="" />
+                        {/* <img src={spa.mulImgUrl[0]} alt="" />
                         <img src={spa.mulImgUrl[1]} alt="" />
-                        <img src={spa.mulImgUrl[2]} alt="" />
+                        <img src={spa.mulImgUrl[2]} alt="" /> */}
+                        {spa.mulImgUrl.map((img, index) => {
+                          return <img src={img} key={index} alt="img" />;
+                        })}
                       </div>
                     </div>
                   </>

@@ -13,8 +13,8 @@ const SpaForm = () => {
   const [slug, setSlug] = useState("");
   const [priority, setPriority] = useState(null);
   const [bookingNumber, setBookingNumber] = useState(null);
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
   const [GMapLink, setGMapLink] = useState(null);
   const [area, setArea] = useState("");
   const [city, setCity] = useState("");
@@ -55,10 +55,10 @@ const SpaForm = () => {
     for (let i = 0; i < files.length; i++) {
       formData.append("mulImgUrl", files[i]);
     }
-    // formData.append("spaLocation", location.type);
-    formData.append("spaLocation", location);
-    // for (let i = 0; i < 2; i++) {
-    // }
+    formData.append("spaLocation", {
+      type: "Point",
+      coordinates: location.coordinates,
+    });
     formData.append("openTime", openTime);
     formData.append("closeTime", closeTime);
     formData.append("slug", slug);
@@ -194,7 +194,12 @@ const SpaForm = () => {
               required
               autoComplete="off"
               onChange={(e) => {
-                setLongitude(e.target.value);
+                // setLongitude(e.target.value);
+                setLocation({
+                  type: "Point",
+                  coordinates: [Number(e.target.value), Number(latitude)],
+                });
+                console.log([e.target.value, latitude]);
               }}
             />
           </div>
@@ -404,14 +409,11 @@ const SpaForm = () => {
           <button
             className="submit-btn"
             onSubmit={() => {
-              setLocation({
-                type: "Point",
-                coordinates: [longitude, latitude],
-              });
               handleSubmit();
             }}
             type="submit"
           >
+            {/* {console.log(location)} */}
             add spa
           </button>
         </form>
