@@ -7,6 +7,7 @@ const SpaForm = () => {
   const [landmark, setLandmark] = useState("");
   const [mobileNumber, setMobileNumber] = useState(null);
   const [Image, setImage] = useState(null);
+  const [files, setFiles] = useState([]);
   const [openTime, setOpenTime] = useState("");
   const [closeTime, setCloseTime] = useState("");
   const [slug, setSlug] = useState("");
@@ -26,10 +27,15 @@ const SpaForm = () => {
     setImage(event.target.files[0]);
   };
 
+
+  const handleMultipleFiles = (e) => {
+    setFiles([...files, ...e.target.files]);
+  };
+
   // Post Request Starts
   const handleSubmit = async (event) => {
     event.preventDefault();
-   
+
     if (!Image) {
       console.log("Please select a file");
       return;
@@ -41,7 +47,8 @@ const SpaForm = () => {
     formData.append("mobileNumber", mobileNumber);
     formData.append("bookingNumber", bookingNumber);
     formData.append("gmapLink", GMapLink);
-    formData.append("imageUrl", Image);
+    formData.append("imgUrl", Image);
+    formData.append("mulImgUrl", files);
     formData.append("location", location);
     formData.append("openTime", openTime);
     formData.append("closeTime", closeTime);
@@ -59,6 +66,7 @@ const SpaForm = () => {
       });
 
       alert("spas uploaded successfully");
+      console.log(formData.get("files"))
     } catch (error) {
       console.error("Error uploading image", error);
     }
@@ -267,13 +275,17 @@ const SpaForm = () => {
                 setCity(city);
                 // Find the selected city object from the cities list
                 const selectedCityObj = cityList.find((c) => c.name === city);
-                
-                fetch(`http://localhost:8080/api/v1/cities/${selectedCityObj._id}/areas`, {
-                  method: "GET",
-                  header: { "Content-Type": "application/json" },
-                }).then((res) => res.json())
-                .then((data) => setAreaList(data))
-                .catch((err) => console.log(err));
+
+                fetch(
+                  `http://localhost:8080/api/v1/cities/${selectedCityObj._id}/areas`,
+                  {
+                    method: "GET",
+                    header: { "Content-Type": "application/json" },
+                  }
+                )
+                  .then((res) => res.json())
+                  .then((data) => setAreaList(data))
+                  .catch((err) => console.log(err));
               }}
             />
 
@@ -361,7 +373,7 @@ const SpaForm = () => {
             />
           </div>
 
-          {/* <div className="form-group">
+          <div className="form-group">
             <label htmlFor="image">Image *</label>
             <input
               className="form-control"
@@ -369,20 +381,24 @@ const SpaForm = () => {
               type="file"
               name="image"
               id="multipleimage"
-              onChange={handleFileChange}
+              onChange={handleMultipleFiles}
               multiple
               required
               autoComplete="off"
             />
-          </div> */}
+          </div>
 
-          <button className="submit-btn" onSubmit={() => {
-            setLocation({
-              type: "Point",
-              coordinates: [longitude, latitude],
-            })
-            handleSubmit()
-            }} type="submit">
+          <button
+            className="submit-btn"
+            onSubmit={() => {
+              setLocation({
+                type: "Point",
+                coordinates: [longitude, latitude],
+              });
+              handleSubmit();
+            }}
+            type="submit"
+          >
             add spa
           </button>
         </form>
