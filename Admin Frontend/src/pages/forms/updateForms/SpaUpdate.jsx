@@ -19,13 +19,11 @@ const SpaUpdate = (props) => {
   const [GMapLink, setGMapLink] = useState(props.data.gmapLink);
   const [area, setArea] = useState(props.data.Area);
   const [city, setCity] = useState(props.data.City);
-  // const [Image, setImage] = useState(props.data.imgUrl);
-  // const [mulImgUrl, setMulImgUrl] = useState(props.data.mulImgUrl);
+
 
   // const handleFileChange = (event) => {
   //   setImage(event.target.files[0]);
   // };
-  
 
   const [areaList, setAreaList] = useState([{}]);
   // Getting city list
