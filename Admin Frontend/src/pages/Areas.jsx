@@ -9,19 +9,7 @@ import { AreasData } from "../data/mockData";
 const Areas = () => {
   // table header data
   const tableHeaders = ["Area Name", "City", "Priority" /*"Actions"*/];
-
-  // Handling view more button
-  const [visible, setVisible] = useState(10);
-  const [show, setShow] = useState(true);
-  const length = AreasData.length;
-
-  const showMoreItems = () => {
-    if (visible < length) {
-      setVisible((prevValue) => prevValue + 10);
-    } else {
-      setShow(false);
-    }
-  };
+ 
 
   // Handling Searchbar events
   const [searchTerm, setSearchTerm] = useState("");
@@ -43,7 +31,7 @@ const Areas = () => {
   // Getting area list
   const [areaData, setareaData] = useState([{}]);
   const [allAreaList, setAllAreaList] = useState([{}]);
-  let uniqueAreaData = [{}];
+  let uniqueAreaData = [];
 
   useEffect(() => {
     fetch("http://localhost:8080/api/v1/cities", {
@@ -80,6 +68,18 @@ const Areas = () => {
   for (let i = 1; i < areaData.length / 2; i++) {
     uniqueAreaData[i - 1] = areaData[i];
   }
+   // Handling view more button
+   const [visible, setVisible] = useState(10);
+   const [show, setShow] = useState(true);
+   const length = uniqueAreaData.length;
+ 
+   const showMoreItems = () => {
+     if (visible < length) {
+       setVisible((prevValue) => prevValue + 10);
+     } else {
+       setShow(false);
+     }
+   };
   return (
     <div className="main_list__container">
       <div className="mini_navbar__container">
