@@ -16,6 +16,7 @@ import ThearpyRouter from "./Routes/ThrapiesRoute.js";
 import servicesrouter from "./Routes/ServicesRoute.js";
 import cityAreaRoutes from './Routes/cityAreaRoute.js';
 import logRoutes from "./Routes/logsRoutes.js";
+import sallonRoute from "./Routes/sallonRoute.js";
 const apiv1 = express.Router();
 
 
@@ -29,7 +30,8 @@ apiv1.use("/blogs", blogRoute);
 apiv1.use("/faqs", faqRoute);
 //Spa Related routes
 apiv1.use("/spas", spaRoute);
-//Dicsover
+//sallon Related routes
+apiv1.use("/sallon", sallonRoute);
 
 // Offer
 apiv1.use("/Offer",offerRouter);
