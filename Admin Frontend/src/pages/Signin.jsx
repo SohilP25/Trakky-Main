@@ -10,6 +10,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
+
 function Copyright(props) {
   return (
     <Typography
@@ -82,10 +83,10 @@ const Signin = () => {
               margin="normal"
               required
               fullWidth
-              name="pin"
-              label="Pin"
+              name="password"
+              label="password"
               type="number"
-              id="pin"
+              id="password"
               autoComplete="off"
             />
             {/* <FormControlLabel
