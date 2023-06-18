@@ -6,10 +6,11 @@ const SpaUpdate = (props) => {
   const [address, setAddress] = useState(props.data.address);
   const [landmark, setLandmark] = useState(props.data.landmark);
   const [mobileNumber, setMobileNumber] = useState(props.data.mobileNumber);
-  const [Image, setImage] = useState(props.data.imageUrl);
+  // const [Image, setImage] = useState(props.data.imageUrl);
   const [openTime, setOpenTime] = useState(props.data.openTime);
   const [closeTime, setCloseTime] = useState(props.data.closeTime);
   const [slug, setSlug] = useState(props.data.slug);
+  const [aboutUs, setAboutUs] = useState(props.data.aboutUs);
   const [priority, setPriority] = useState(props.data.priority);
   const [bookingNumber, setBookingNumber] = useState(props.data.bookingNumber);
   const [latitude, setLatitude] = useState();
@@ -26,9 +27,9 @@ const SpaUpdate = (props) => {
   const [verified, setVerified] = useState(props.data.verified);
 
   // Patch Request Starts
-  const handleFileChange = (event) => {
-    setImage(event.target.files[0]);
-  };
+  // const handleFileChange = (event) => {
+  //   setImage(event.target.files[0]);
+  // };
 
   const [areaList, setAreaList] = useState([{}]);
   // Getting city list
@@ -63,6 +64,7 @@ const SpaUpdate = (props) => {
         gmapLink: GMapLink,
         Area: area,
         City: city,
+        aboutUs: aboutUs,
       })
       .then((res) => {
         console.log(res.data);
@@ -331,6 +333,19 @@ const SpaUpdate = (props) => {
               placeholder="Enter slug"
               autoComplete="off"
               onChange={(e) => setSlug(e.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="aboutUs">About Us *</label>
+            <input
+              className="form-control"
+              type="text"
+              name="text"
+              id="aboutUs"
+              value={aboutUs}
+              placeholder="Enter slug"
+              autoComplete="off"
+              onChange={(e) => setAboutUs(e.target.value)}
             />
           </div>
 

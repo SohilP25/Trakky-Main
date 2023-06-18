@@ -30,11 +30,11 @@ const spaSchema = new mongoose.Schema({
   },
   imgUrl: {
     type: String,
-    required: true,
+    required: false,
   },
   mulImgUrl: {
     type: [String],
-    required: true,
+    required: false,
   },
   City: {
     type: String,

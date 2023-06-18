@@ -16,6 +16,8 @@ export const getallSallon = async (req, res) => {
 export const createSallon = async (req, res) => {
   try {
     const data = await req.body;
+    const sallonLocation2 = await req.body.sallonLocation;
+
     const imgAryFetch =  JSON.parse(JSON.stringify(await req.files));
     console.log(imgAryFetch);
     const imgUrlMain = imgAryFetch.imgUrl[0].location;
@@ -31,6 +33,7 @@ export const createSallon = async (req, res) => {
       ...data,
       imgUrl : imgUrlMain,
       mulImgUrl: imgAry,
+      sallonLocation : JSON.parse(sallonLocation2),
     });
 
     await newSallon.save();

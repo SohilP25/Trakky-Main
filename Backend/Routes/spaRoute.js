@@ -13,7 +13,6 @@ import { upload } from "../Middleware/imageUpload.js";
 
 const spaRoute = express.Router();
 
-
 spaRoute
   // For receiving spa and it's details
   .get("/", getallSpa)
@@ -21,7 +20,7 @@ spaRoute
   .post("/", upload.fields([{
     name: 'imgUrl', maxCount: 1
   }, {
-    name: 'mulImgUrl', maxCount: 3
+    name: 'mulImgUrl', maxCount: 10
   }]), createSpa)
   // For updating details of spa.
   .put("/:id", updateSpa)

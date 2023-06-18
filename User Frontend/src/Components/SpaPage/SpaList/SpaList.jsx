@@ -100,7 +100,7 @@ const SpaNearMeList = ({ name, url }) => {
                       <SpaCard
                         key={index}
                         name={data.name}
-                        img={data.imageUrl}
+                        img={data.imgUrl}
                         address={data.address}
                         landmark={data.landmark}
                         openTime={data.openTime}
@@ -131,7 +131,7 @@ const SpaNearMeList = ({ name, url }) => {
                     <SpaCardMini
                     key={index}
                     name={data.name}
-                    img={data.imageUrl}
+                    img={data.imgUrl}
                     address={data.address}
                     landmark={data.landmark}
                     openTime={data.openTime}

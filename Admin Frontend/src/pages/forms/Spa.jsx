@@ -7,13 +7,14 @@ const SpaForm = () => {
   const [landmark, setLandmark] = useState("");
   const [mobileNumber, setMobileNumber] = useState(null);
   const [Image, setImage] = useState(null);
+  const [files, setFiles] = useState([{}]);
   const [openTime, setOpenTime] = useState("");
   const [closeTime, setCloseTime] = useState("");
   const [slug, setSlug] = useState("");
   const [priority, setPriority] = useState(null);
   const [bookingNumber, setBookingNumber] = useState(null);
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
   const [GMapLink, setGMapLink] = useState(null);
   const [area, setArea] = useState("");
   const [city, setCity] = useState("");
@@ -22,14 +23,23 @@ const SpaForm = () => {
     type: "Point",
     coordinates: [longitude, latitude],
   });
+
   const handleFileChange = (event) => {
     setImage(event.target.files[0]);
+  };
+
+  var images = [];
+  const handleMultipleFiles = (e) => {
+    for (let i = 0; i < e.target.files.length; i++) {
+      images.push(e.target.files[i]);
+    }
+    setFiles(images);
   };
 
   // Post Request Starts
   const handleSubmit = async (event) => {
     event.preventDefault();
-   
+    console.log(files);
     if (!Image) {
       console.log("Please select a file");
       return;
@@ -41,8 +51,14 @@ const SpaForm = () => {
     formData.append("mobileNumber", mobileNumber);
     formData.append("bookingNumber", bookingNumber);
     formData.append("gmapLink", GMapLink);
-    formData.append("imageUrl", Image);
-    formData.append("location", location);
+    formData.append("imgUrl", Image);
+    for (let i = 0; i < files.length; i++) {
+      formData.append("mulImgUrl", files[i]);
+    }
+    formData.append("spaLocation", {
+      type: "Point",
+      coordinates: location.coordinates,
+    });
     formData.append("openTime", openTime);
     formData.append("closeTime", closeTime);
     formData.append("slug", slug);
@@ -52,11 +68,16 @@ const SpaForm = () => {
     formData.append("aboutUs", aboutUs);
 
     try {
-      console.log(formData);
+      // console.log(formData);
+      console.log(formData.get("mulImgUrl"));
       await fetch("http://localhost:8080/api/v1/spas", {
         method: "POST",
         body: formData,
       });
+
+      for (var pair of formData.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
+      }
 
       alert("spas uploaded successfully");
     } catch (error) {
@@ -173,7 +194,12 @@ const SpaForm = () => {
               required
               autoComplete="off"
               onChange={(e) => {
-                setLongitude(e.target.value);
+                // setLongitude(e.target.value);
+                setLocation({
+                  type: "Point",
+                  coordinates: [Number(e.target.value), Number(latitude)],
+                });
+                console.log([e.target.value, latitude]);
               }}
             />
           </div>
@@ -267,13 +293,17 @@ const SpaForm = () => {
                 setCity(city);
                 // Find the selected city object from the cities list
                 const selectedCityObj = cityList.find((c) => c.name === city);
-                
-                fetch(`http://localhost:8080/api/v1/cities/${selectedCityObj._id}/areas`, {
-                  method: "GET",
-                  header: { "Content-Type": "application/json" },
-                }).then((res) => res.json())
-                .then((data) => setAreaList(data))
-                .catch((err) => console.log(err));
+
+                fetch(
+                  `http://localhost:8080/api/v1/cities/${selectedCityObj._id}/areas`,
+                  {
+                    method: "GET",
+                    header: { "Content-Type": "application/json" },
+                  }
+                )
+                  .then((res) => res.json())
+                  .then((data) => setAreaList(data))
+                  .catch((err) => console.log(err));
               }}
             />
 
@@ -334,7 +364,7 @@ const SpaForm = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="slug">About Us *</label>
+            <label htmlFor="aboutUs">About Us *</label>
             <input
               className="form-control"
               type="text"
@@ -361,7 +391,7 @@ const SpaForm = () => {
             />
           </div>
 
-          {/* <div className="form-group">
+          <div className="form-group">
             <label htmlFor="image">Image *</label>
             <input
               className="form-control"
@@ -369,20 +399,21 @@ const SpaForm = () => {
               type="file"
               name="image"
               id="multipleimage"
-              onChange={handleFileChange}
+              onChange={handleMultipleFiles}
               multiple
               required
               autoComplete="off"
             />
-          </div> */}
+          </div>
 
-          <button className="submit-btn" onSubmit={() => {
-            setLocation({
-              type: "Point",
-              coordinates: [longitude, latitude],
-            })
-            handleSubmit()
-            }} type="submit">
+          <button
+            className="submit-btn"
+            onSubmit={() => {
+              handleSubmit();
+            }}
+            type="submit"
+          >
+            {/* {console.log(location)} */}
             add spa
           </button>
         </form>
