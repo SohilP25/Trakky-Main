@@ -16,8 +16,10 @@ export const getallSpa = async (req, res) => {
 export const createSpa = async (req, res) => {
   try {
     const data = await req.body;
+    const spaLocation2 = await req.body.spaLocation;
+    // console.log(spaLocation2);
     const imgAryFetch =  JSON.parse(JSON.stringify(await req.files));
-    console.log(imgAryFetch);
+    // console.log(imgAryFetch);
     const imgUrlMain = imgAryFetch.imgUrl[0].location;
     const imgUrlMult = imgAryFetch.mulImgUrl;
     // console.log("imgUrlMain : ",imgUrlMain );
@@ -31,6 +33,7 @@ export const createSpa = async (req, res) => {
       ...data,
       imgUrl : imgUrlMain,
       mulImgUrl: imgAry,
+      spaLocation : JSON.parse(spaLocation2)
     });
 
     await newSpa.save();

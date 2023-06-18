@@ -13,8 +13,8 @@ const SpaForm = () => {
   const [slug, setSlug] = useState("");
   const [priority, setPriority] = useState(null);
   const [bookingNumber, setBookingNumber] = useState(null);
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
+  const [latitude, setLatitude] = useState(0);
+  const [longitude, setLongitude] = useState(0);
   const [GMapLink, setGMapLink] = useState(null);
   const [area, setArea] = useState("");
   const [city, setCity] = useState("");
@@ -43,7 +43,7 @@ const SpaForm = () => {
   // Post Request Starts
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(files);
+    // console.log(files);
     if (!Image) {
       console.log("Please select a file");
       return;
@@ -59,14 +59,13 @@ const SpaForm = () => {
     for (let i = 0; i < files.length; i++) {
       formData.append("mulImgUrl", files[i]);
     }
-    // formData.append("spaLocation", location.type);
-    formData.append("spaLocation", JSON.stringify(location));
-    // for (let i = 0; i < 2; i++) {
-    // }
-    // formData.set("spaLocation[type]", location.type);
-    // formData.set("spaLocation[coordinates][0]", location.coordinates[0]);
-    // formData.set("spaLocation[coordinates][1]", location.coordinates[1]);
-    
+    formData.append(
+      "spaLocation",
+      JSON.stringify({
+        type: "Point",
+        coordinates: [location.coordinates[0], location.coordinates[1]],
+      })
+    );
     formData.append("openTime", openTime);
     formData.append("closeTime", closeTime);
     formData.append("slug", slug);
@@ -77,15 +76,15 @@ const SpaForm = () => {
 
     try {
       // console.log(formData);
-      console.log(formData.get("mulImgUrl"));
+      // console.log(formData.get("mulImgUrl"));
       await fetch("http://localhost:8080/api/v1/spas", {
         method: "POST",
         body: formData,
       });
 
-      for (var pair of formData.entries()) {
-        console.log(pair[0] + ", " + pair[1]);
-      }
+      // for (var pair of formData.entries()) {
+      //   console.log(pair[0] + ", " + pair[1]);
+      // }
 
       alert("spas uploaded successfully");
     } catch (error) {
@@ -203,6 +202,11 @@ const SpaForm = () => {
               autoComplete="off"
               onChange={(e) => {
                 setLongitude(e.target.value);
+                setLocation({
+                  type: "Point",
+                  coordinates: [e.target.value, latitude],
+                });
+                // console.log([e.target.value, latitude]);
               }}
             />
           </div>
@@ -412,10 +416,6 @@ const SpaForm = () => {
           <button
             className="submit-btn"
             onSubmit={() => {
-              setLocation({
-                type: "Point",
-                coordinates: [longitude, latitude],
-              });
               handleSubmit();
             }}
             type="submit"

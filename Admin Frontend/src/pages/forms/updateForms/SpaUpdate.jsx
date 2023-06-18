@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../forms.css";
 import axios from "axios";
 const SpaUpdate = (props) => {
+  
   const [spaname, setSpaName] = useState(props.data.name);
   const [address, setAddress] = useState(props.data.address);
   const [landmark, setLandmark] = useState(props.data.landmark);
@@ -13,23 +14,18 @@ const SpaUpdate = (props) => {
   const [aboutUs, setAboutUs] = useState(props.data.aboutUs);
   const [priority, setPriority] = useState(props.data.priority);
   const [bookingNumber, setBookingNumber] = useState(props.data.bookingNumber);
-  const [latitude, setLatitude] = useState();
-  const [longitude, setLongitude] = useState();
+  const [latitude, setLatitude] = useState(props.data.spaLocation.coordinates[1]);
+  const [longitude, setLongitude] = useState(props.data.spaLocation.coordinates[0]);
   const [GMapLink, setGMapLink] = useState(props.data.gmapLink);
   const [area, setArea] = useState(props.data.Area);
   const [city, setCity] = useState(props.data.City);
+  // const [Image, setImage] = useState(props.data.imgUrl);
+  // const [mulImgUrl, setMulImgUrl] = useState(props.data.mulImgUrl);
 
-  // For Switches
-  const [luxurious, setLuxurious] = useState(props.data.luxurious);
-  const [topRated, setTopRated] = useState(props.data.topRated);
-  const [open, setOpen] = useState(props.data.open);
-  const [premium, setPremium] = useState(props.data.premium);
-  const [verified, setVerified] = useState(props.data.verified);
-
-  // Patch Request Starts
   // const handleFileChange = (event) => {
   //   setImage(event.target.files[0]);
   // };
+  
 
   const [areaList, setAreaList] = useState([{}]);
   // Getting city list
@@ -47,7 +43,6 @@ const SpaUpdate = (props) => {
   const cityData = cityList.map((data) => data.name);
   const [cityId, setCityId] = useState([]);
 
-  
   // PUT Request Starts
   const PatchRequest = (id) => {
     axios
@@ -65,6 +60,10 @@ const SpaUpdate = (props) => {
         Area: area,
         City: city,
         aboutUs: aboutUs,
+        spaLocation: {
+          type: "Point",
+          coordinates: [longitude, latitude],
+        },
       })
       .then((res) => {
         console.log(res.data);
@@ -73,6 +72,8 @@ const SpaUpdate = (props) => {
       .catch((error) => {
         alert(JSON.stringify(error.response));
       });
+      
+      console.log(longitude,latitude)
   };
 
   return (
@@ -135,7 +136,6 @@ const SpaUpdate = (props) => {
               name="directionlink"
               id="directionlink"
               value={GMapLink}
-              contentEditable={false}
               placeholder="Enter Google Maps Link"
               autoComplete="off"
               onChange={(e) => setGMapLink(e.target.value)}
@@ -146,13 +146,12 @@ const SpaUpdate = (props) => {
             <label htmlFor="directionlink">Latitude *</label>
             <input
               className="form-control"
-              type="text"
               name="latitude"
               id="latitude"
-              contentEditable={false}
               placeholder="Enter Latitude"
-              autoComplete="off"
+              value={latitude}
               onChange={(e) => setLatitude(e.target.value)}
+              type="number"
             />
           </div>
 
@@ -160,12 +159,11 @@ const SpaUpdate = (props) => {
             <label htmlFor="directionlink">Longitude *</label>
             <input
               className="form-control"
-              type="text"
+              type="number"
               name="longitude"
               id="longitude"
-              contentEditable={false}
               placeholder="Enter Longitude"
-              autoComplete="off"
+              value={longitude}
               onChange={(e) => setLongitude(e.target.value)}
             />
           </div>
