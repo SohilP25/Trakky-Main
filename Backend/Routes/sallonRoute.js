@@ -21,7 +21,7 @@ sallonRoute
   .post("/", upload.fields([{
     name: 'imgUrl', maxCount: 1
   }, {
-    name: 'mulImgUrl', maxCount: 3
+    name: 'mulImgUrl', maxCount: 10
   }]), createSallon)
   // For updating details of spa.
   .put("/:id", updateSallon)
