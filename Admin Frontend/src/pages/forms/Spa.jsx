@@ -39,7 +39,7 @@ const SpaForm = () => {
   // Post Request Starts
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(files);
+    // console.log(files);
     if (!Image) {
       console.log("Please select a file");
       return;
@@ -55,10 +55,13 @@ const SpaForm = () => {
     for (let i = 0; i < files.length; i++) {
       formData.append("mulImgUrl", files[i]);
     }
-    formData.append("spaLocation", {
-      type: "Point",
-      coordinates: location.coordinates,
-    });
+    formData.append(
+      "spaLocation",
+      JSON.stringify({
+        type: "Point",
+        coordinates: [location.coordinates[0], location.coordinates[1]],
+      })
+    );
     formData.append("openTime", openTime);
     formData.append("closeTime", closeTime);
     formData.append("slug", slug);
@@ -69,15 +72,15 @@ const SpaForm = () => {
 
     try {
       // console.log(formData);
-      console.log(formData.get("mulImgUrl"));
+      // console.log(formData.get("mulImgUrl"));
       await fetch("http://localhost:8080/api/v1/spas", {
         method: "POST",
         body: formData,
       });
 
-      for (var pair of formData.entries()) {
-        console.log(pair[0] + ", " + pair[1]);
-      }
+      // for (var pair of formData.entries()) {
+      //   console.log(pair[0] + ", " + pair[1]);
+      // }
 
       alert("spas uploaded successfully");
     } catch (error) {
@@ -194,12 +197,12 @@ const SpaForm = () => {
               required
               autoComplete="off"
               onChange={(e) => {
-                // setLongitude(e.target.value);
+                setLongitude(e.target.value);
                 setLocation({
                   type: "Point",
-                  coordinates: [Number(e.target.value), Number(latitude)],
+                  coordinates: [e.target.value, latitude],
                 });
-                console.log([e.target.value, latitude]);
+                // console.log([e.target.value, latitude]);
               }}
             />
           </div>
@@ -413,7 +416,6 @@ const SpaForm = () => {
             }}
             type="submit"
           >
-            {/* {console.log(location)} */}
             add spa
           </button>
         </form>
