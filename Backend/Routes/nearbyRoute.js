@@ -7,6 +7,6 @@ import {nearbySpa}  from "../Controllers/nearbyController.js";
 const nearbyRoute = express.Router();
 
 nearbyRoute
-.post("/nearbylocation",nearbySpa);
+.post("/nearbyspalocation",nearbySpa);
 
 export default nearbyRoute;

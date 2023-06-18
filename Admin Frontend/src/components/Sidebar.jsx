@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 // My imports
 import "./Sidebar.css";
 import { AiOutlineMenu } from "react-icons/ai";
@@ -8,7 +8,6 @@ import { AiOutlineUnorderedList } from "react-icons/ai";
 import { GrAdd } from "react-icons/gr";
 
 import trakkyLogo from "../assets/Trakky logo white.png";
-
 
 const Sidebar = () => {
   const [isActive, setIsActive] = useState(true);
@@ -29,7 +28,9 @@ const Sidebar = () => {
                 />
               </div>
               <div className="trakky__logo">
-                <img src={trakkyLogo} alt="" />
+                <Link to="/">
+                  <img src={trakkyLogo} alt="" className="trakky__logo_img" />
+                </Link>
               </div>
             </div>
 
@@ -96,7 +97,7 @@ const Sidebar = () => {
                   </NavLink>
                 </div>
               </div>
-              
+
               <div className="sidebar__topic_box">
                 <p className="sidebar_topic_title">Cities</p>
                 <div className="sidebar_links">
@@ -133,7 +134,7 @@ const Sidebar = () => {
                   </NavLink>
                 </div>
               </div>
-              
+
               <div className="sidebar__topic_box">
                 <p className="sidebar_topic_title">Blogs</p>
                 <div className="sidebar_links">
@@ -157,8 +158,6 @@ const Sidebar = () => {
                   </NavLink>
                 </div>
               </div>
-
-
             </div>
           </div>
         </div>

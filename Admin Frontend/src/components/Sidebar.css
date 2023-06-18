@@ -24,9 +24,11 @@
     justify-content: center;
     align-items: center;
 }
-.trakky__logo img {
+.trakky__logo_img{
     width: 50%;
     height: auto;
+    display: flex;
+    margin: 0 auto;
 }
 
 .sidebar__topic_box {
