@@ -1,5 +1,5 @@
-// Author : Vishal & Rinal
-// Purpose : Define Spa CRUD operation logic that implemented in requests
+// Author : Vishal
+// Purpose : Define Sallon CRUD operation logic that implemented in requests
 import sallonModel from "../Models/sallonModel.js";
 
 //Logic function for receiving all Spas.

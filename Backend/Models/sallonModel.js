@@ -1,5 +1,5 @@
-// Author : Vishal & Rinal & sohil
-// Purpose : Defining spa model/schema.
+// Author : Vishal
+// Purpose : Defining sallon model/schema.
 import mongoose from "mongoose";
 import  Services  from "../Models/servicesModel.js";
 

@@ -1,5 +1,5 @@
 // Author : Vishal
-// Purpose : Define spa related routes
+// Purpose : Define sallon related routes
 
 import express from "express";
 //Importing logic functions from controllers.
