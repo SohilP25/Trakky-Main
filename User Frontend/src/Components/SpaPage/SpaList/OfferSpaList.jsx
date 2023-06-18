@@ -23,6 +23,9 @@ const OfferSpaList = ({ name, url }) => {
   const [offers, setOffers] = useState([]);
   const [spas, setSpas] = useState([{}]);
 
+  const [topRatedSpas, setTopRatedSpas] = useState([{}])
+  const [luxuriousSpas, setLuxuriousSpas] = useState([{}])
+
   useEffect(() => {
     // Getting offers starts
     const requestOption = {

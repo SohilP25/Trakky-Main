@@ -21,8 +21,12 @@ const SpaForm = () => {
   const [aboutUs, setAboutUs] = useState("");
   const [location, setLocation] = useState({
     type: "Point",
-    coordinates: [longitude, latitude],
+    coordinates: [343, 345],
   });
+  // const [location, setLocation] = useState({
+  //   type: "Point",
+  //   coordinates: [longitude, latitude],
+  // });
 
   const handleFileChange = (event) => {
     setImage(event.target.files[0]);
@@ -56,9 +60,13 @@ const SpaForm = () => {
       formData.append("mulImgUrl", files[i]);
     }
     // formData.append("spaLocation", location.type);
-    formData.append("spaLocation", location);
+    formData.append("spaLocation", JSON.stringify(location));
     // for (let i = 0; i < 2; i++) {
     // }
+    // formData.set("spaLocation[type]", location.type);
+    // formData.set("spaLocation[coordinates][0]", location.coordinates[0]);
+    // formData.set("spaLocation[coordinates][1]", location.coordinates[1]);
+    
     formData.append("openTime", openTime);
     formData.append("closeTime", closeTime);
     formData.append("slug", slug);

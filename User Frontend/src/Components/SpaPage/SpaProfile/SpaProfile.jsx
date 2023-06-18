@@ -7,9 +7,9 @@ import spaImage2 from "../../../Assets/images/spa/spa-image2.png";
 import spaImage3 from "../../../Assets/images/spa/spa-image3.png";
 import spaImage4 from "../../../Assets/images/spa/spa-image4.png";
 import spaImage5 from "../../../Assets/images/spa/spa-image5.png";
-import Star from "./../../../Assets/images/icons/star.svg";
+// import Star from "./../../../Assets/images/icons/star.svg";
 import Phone from "./../../../Assets/images/icons/phone.svg";
-import Man from "./../../../Assets/images/icons/man.svg";
+// import Man from "./../../../Assets/images/icons/man.svg";
 import Grids from "./../../../Assets/images/icons/four-grids.svg";
 
 import Hero from "./../Hero/Hero";
@@ -66,33 +66,35 @@ const SpaProfile = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-  const [spaProfilePhotosTrigger, setSpaProfilePhotosTrigger] = useState(false)
+  const [spaProfilePhotosTrigger, setSpaProfilePhotosTrigger] = useState(false);
   return (
     <>
       <Hero />
       <div className="showPhotos">
         <Popup trigger={spaProfilePhotosTrigger}>
-          <div className="topbar"
-          style={{
-            width: "98%",
-            margin: "1rem 1%",
-            display: "flex",
-            justifyContent: "flex-end"
-          }}>
-
-          <button
-            onClick={() => setSpaProfilePhotosTrigger(false)}
+          <div
+            className="topbar"
             style={{
-              padding: "0.7rem 1.2rem",
-              borderRadius: "10px",
-              color: "white",
-              backgroundColor: "#512DC8"
+              width: "98%",
+              margin: "1rem 1%",
+              display: "flex",
+              justifyContent: "flex-end",
             }}
-            >Close</button>
+          >
+            <button
+              onClick={() => setSpaProfilePhotosTrigger(false)}
+              style={{
+                padding: "0.7rem 1.2rem",
+                borderRadius: "10px",
+                color: "white",
+                backgroundColor: "#512DC8",
+              }}
+            >
+              Close
+            </button>
           </div>
 
           <Gallery photos={spaProfilePhotos} />
-
         </Popup>
       </div>
 
@@ -102,22 +104,24 @@ const SpaProfile = () => {
           <div className="spa-description__container">
             <div className="spa-images__container">
               <div className="image-1">
-                <img src={spaImage1} alt="" />
+                <img src={spa.imgUrl} alt="" />
               </div>
-              <div className="image-2">
-                <img src={spaImage2} alt="" />
-              </div>
-              <div className="image-3">
-                <img src={spaImage3} alt="" />
-              </div>
+              {(spa.mulImgUrl).map((url, index) => {
+                return (
+                  <div className={`image-${index+2}`}>
+                    <img src={url} alt="" />
+                  </div>
+                );
+              })}
               <div className="image-4">
-                <img src={spaImage4} alt="" />
+                <img src={spa.mulImgUrl[2]} alt="" />
               </div>
               <div className="image-5">
                 <img src={spaImage5} alt="" />
                 <div className="show-all-photos">
                   <button onClick={() => setSpaProfilePhotosTrigger(true)}>
-                    <img src={Grids} alt="" />Show all photos
+                    <img src={Grids} alt="" />
+                    Show all photos
                   </button>
                 </div>
               </div>
@@ -247,7 +251,7 @@ const SpaProfile = () => {
               </li>
             </div>
           </div>
- 
+
           <Slider cardList={spaProfile} _name="spaProfile" />
 
           <div className="spa-information-mini-title">
@@ -472,7 +476,7 @@ const Offers = (props) => {
 
   useEffect(() => {
     getOffer();
-  },[]);
+  }, []);
 
   const [offerCounter, setOfferCounter] = useState(0);
 
@@ -488,35 +492,35 @@ const Offers = (props) => {
             return (
               <>
                 {offer.Select_Spa === props.spaname ? (
-                <li key={index}>
-                  {() => {
-                    setOfferCounter(++offerCounter);
-                  }}
-                  <div className="offers_list__container">
-                    <div className="offers_list__upper_container">
-                      <div className="offers_name">
-                        <h3>{offer.Name}</h3>
-                      </div>
-                      {/* <div className="offers_description">
+                  <li key={index}>
+                    {() => {
+                      setOfferCounter(++offerCounter);
+                    }}
+                    <div className="offers_list__container">
+                      <div className="offers_list__upper_container">
+                        <div className="offers_name">
+                          <h3>{offer.Name}</h3>
+                        </div>
+                        {/* <div className="offers_description">
                       <p>{therapy.description}</p>
                     </div> */}
-                    </div>
+                      </div>
 
-                    <div className="offers_list__bottom_container">
-                      <div className="offers_price">
-                        {/* <p>
+                      <div className="offers_list__bottom_container">
+                        <div className="offers_price">
+                          {/* <p>
                         <span>₹ {therapy.price}</span> / 60 Min{" "}
                       </p> */}
-                      </div>
-                      <div className="offers__button">
-                        <Link>Call Now</Link>
+                        </div>
+                        <div className="offers__button">
+                          <Link>Call Now</Link>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </li>
-                 ) : (
+                  </li>
+                ) : (
                   <></>
-                )} 
+                )}
               </>
             );
           })}
