@@ -6,10 +6,11 @@ const SpaUpdate = (props) => {
   const [address, setAddress] = useState(props.data.address);
   const [landmark, setLandmark] = useState(props.data.landmark);
   const [mobileNumber, setMobileNumber] = useState(props.data.mobileNumber);
-  const [Image, setImage] = useState(props.data.imgUrl);
+  // const [Image, setImage] = useState(props.data.imageUrl);
   const [openTime, setOpenTime] = useState(props.data.openTime);
   const [closeTime, setCloseTime] = useState(props.data.closeTime);
   const [slug, setSlug] = useState(props.data.slug);
+  const [aboutUs, setAboutUs] = useState(props.data.aboutUs);
   const [priority, setPriority] = useState(props.data.priority);
   const [bookingNumber, setBookingNumber] = useState(props.data.bookingNumber);
   const [latitude, setLatitude] = useState();
@@ -17,7 +18,6 @@ const SpaUpdate = (props) => {
   const [GMapLink, setGMapLink] = useState(props.data.gmapLink);
   const [area, setArea] = useState(props.data.Area);
   const [city, setCity] = useState(props.data.City);
-  const [aboutUs, setAboutUs] = useState(props.data.aboutUs);
 
   // For Switches
   const [luxurious, setLuxurious] = useState(props.data.luxurious);
@@ -27,9 +27,9 @@ const SpaUpdate = (props) => {
   const [verified, setVerified] = useState(props.data.verified);
 
   // Patch Request Starts
-  const handleFileChange = (event) => {
-    setImage(event.target.files[0]);
-  };
+  // const handleFileChange = (event) => {
+  //   setImage(event.target.files[0]);
+  // };
 
   const [areaList, setAreaList] = useState([{}]);
   // Getting city list
@@ -47,9 +47,10 @@ const SpaUpdate = (props) => {
   const cityData = cityList.map((data) => data.name);
   const [cityId, setCityId] = useState([]);
 
+  
   // PUT Request Starts
   const PatchRequest = (id) => {
-     axios
+    axios
       .put(`http://localhost:8080/api/v1/spas/${id}`, {
         name: spaname,
         address: address,
@@ -334,7 +335,6 @@ const SpaUpdate = (props) => {
               onChange={(e) => setSlug(e.target.value)}
             />
           </div>
-
           <div className="form-group">
             <label htmlFor="aboutUs">About Us *</label>
             <input
@@ -343,7 +343,7 @@ const SpaUpdate = (props) => {
               name="text"
               id="aboutUs"
               value={aboutUs}
-              placeholder="Enter About Us"
+              placeholder="Enter slug"
               autoComplete="off"
               onChange={(e) => setAboutUs(e.target.value)}
             />
