@@ -43,7 +43,7 @@ export const filterTags = [
 export const spaNearYou = [
   {
     name: "Aroma The Luxurious Spa",
-    img: "spa-image1.png",
+    imgUrl: "https://trakky-new.s3.ap-south-1.amazonaws.com/image-1687083329843.jpeg",
     location: "Kudasan, Gandhinagar",
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
@@ -52,10 +52,12 @@ export const spaNearYou = [
     ratings: 4.6,
     reviewsCount: 138,
     basePrice: 999,
+    Area: "Kudasan",
+    City: "Gandhinagar"
   },
   {
     name: "Aroma The Luxurious Spa",
-    img: "spa-image1.png",
+    imgUrl: "https://trakky-new.s3.ap-south-1.amazonaws.com/image-1687083329843.jpeg",
     location: "Kudasan, Gandhinagar",
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
@@ -64,10 +66,12 @@ export const spaNearYou = [
     ratings: 5,
     reviewsCount: 138,
     basePrice: 999,
+    Area: "Kudasan",
+    City: "Gandhinagar"
   },
   {
     name: "Aroma The Luxurious Spa",
-    img: "spa-image1.png",
+    imgUrl: "https://trakky-new.s3.ap-south-1.amazonaws.com/image-1687083329843.jpeg",
     location: "Kudasan, Gandhinagar",
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
@@ -76,10 +80,12 @@ export const spaNearYou = [
     ratings: 5,
     reviewsCount: 138,
     basePrice: 999,
+    Area: "Kudasan",
+    City: "Gandhinagar"
   },
   {
     name: "Aroma The Luxurious Spa",
-    img: "spa-image1.png",
+    imgUrl: "https://trakky-new.s3.ap-south-1.amazonaws.com/image-1687083329843.jpeg",
     location: "Kudasan, Gandhinagar",
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
@@ -88,10 +94,12 @@ export const spaNearYou = [
     ratings: 4,
     reviewsCount: 138,
     basePrice: 999,
+    Area: "Kudasan",
+    City: "Gandhinagar"
   },
   {
     name: "Aroma The Luxurious Spa",
-    img: "spa-image1.png",
+    imgUrl: "https://trakky-new.s3.ap-south-1.amazonaws.com/image-1687083329843.jpeg",
     location: "Kudasan, Gandhinagar",
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
@@ -100,10 +108,12 @@ export const spaNearYou = [
     ratings: 2,
     reviewsCount: 138,
     basePrice: 999,
+    Area: "Kudasan",
+    City: "Gandhinagar"
   },
   {
     name: "Aroma The Luxurious Spa",
-    img: "spa-image1.png",
+    imgUrl: "https://trakky-new.s3.ap-south-1.amazonaws.com/image-1687083329843.jpeg",
     location: "Kudasan, Gandhinagar",
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
@@ -112,10 +122,12 @@ export const spaNearYou = [
     ratings: 5,
     reviewsCount: 138,
     basePrice: 999,
+    Area: "Kudasan",
+    City: "Gandhinagar"
   },
   {
     name: "Aroma The Luxurious Spa",
-    img: "spa-image1.png",
+    imgUrl: "https://trakky-new.s3.ap-south-1.amazonaws.com/image-1687083329843.jpeg",
     location: "Kudasan, Gandhinagar",
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
@@ -124,10 +136,12 @@ export const spaNearYou = [
     ratings: 3,
     reviewsCount: 138,
     basePrice: 999,
+    Area: "Kudasan",
+    City: "Gandhinagar"
   },
   {
     name: "Aroma The Luxurious Spa",
-    img: "spa-image1.png",
+    imgUrl: "https://trakky-new.s3.ap-south-1.amazonaws.com/image-1687083329843.jpeg",
     location: "Kudasan, Gandhinagar",
     phone: Number("09667050051"),
     therapy: "Couple Therapy",
@@ -136,6 +150,8 @@ export const spaNearYou = [
     ratings: 2,
     reviewsCount: 138,
     basePrice: 999,
+    Area: "Kudasan",
+    City: "Gandhinagar"
   },
 ];
 
@@ -537,44 +553,6 @@ export const spaFacilitiesData = [
   },
 ];
 
-export const spaProfilePhotos = [
-  {
-    id: 1,
-    imgSrc: Img1,
-  },
-  {
-    id: 2,
-    imgSrc: Img2,
-  },
-  {
-    id: 3,
-    imgSrc: Img3,
-  },
-  {
-    id: 4,
-    imgSrc: Img4,
-  },
-  {
-    id: 5,
-    imgSrc: Img5,
-  },
-  {
-    id: 6,
-    imgSrc: Img6,
-  },
-  {
-    id: 7,
-    imgSrc: Img7,
-  },
-  {
-    id: 8,
-    imgSrc: Img8,
-  },
-  {
-    id: 9,
-    imgSrc: Img9,
-  },
-];
 
 export const spaRoomPhotos = [
   {

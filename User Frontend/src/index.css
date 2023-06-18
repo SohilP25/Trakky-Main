@@ -38,4 +38,5 @@ body {
     width: auto;
     background-color: #FFFFFF;
     font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
 }

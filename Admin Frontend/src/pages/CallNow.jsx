@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Page.css";
+import { AiFillDelete } from "react-icons/ai";
 
-import { CallNowData } from "../data/mockData";
 
 const CallNow = () => {
   // table header data
@@ -9,10 +9,34 @@ const CallNow = () => {
     "Spa Name",
     "Url Slug",
     "Time",
-    "Date",
     "Service",
-    "Category",
+    "Action"
   ];
+
+  // Getting call logs data
+  const [CallNowData, setCallNowData] = useState([{}])
+  const getLogs = () => {
+    fetch('http://localhost:8080/api/v1/logs', {
+      method: 'GET'
+    })
+    .then(res => res.json())
+    .then(data => setCallNowData(data))
+    .catch(err => console.log(err))
+  }
+  useEffect(() => {
+    getLogs();
+  }, [])
+  
+
+  // Delete logs
+  const deleteLog = (id) => {
+    fetch(`http://localhost:8080/api/v1/logs/${id}`, {
+      method: 'DELETE'
+    })
+    .then(() => getLogs())
+    .catch(err => console.log(err))
+  }
+
 
   // Handling view more button
   const [visible, setVisible] = useState(10);
@@ -39,8 +63,7 @@ const CallNow = () => {
       (item) =>
         item.spaName.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.urlSlug.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.service.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.category.toLowerCase().includes(searchTerm.toLowerCase())
+        item.service.toLowerCase().includes(searchTerm.toLowerCase()) 
     );
 
     setSearchResults(results);
@@ -86,10 +109,16 @@ const CallNow = () => {
                     <tr key={index}>
                       <td>{callnow.spaName}</td>
                       <td>{callnow.urlSlug}</td>
-                      <td>{callnow.time}</td>
                       <td>{callnow.date}</td>
                       <td>{callnow.service}</td>
-                      <td>{callnow.category}</td>
+                      <td>
+                      <AiFillDelete
+                          onClick={() => deleteLog(callnow._id)}
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        />
+                      </td>
                     </tr>
                   </>
                 );

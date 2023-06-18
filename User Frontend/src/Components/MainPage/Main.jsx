@@ -56,22 +56,35 @@ const Home = () => {
   // console.log(longitude);
   // getNearBySpas();
 
-  const [lattitude, setLattitude] = useState("");
-  const [longitude, setLongitude] = useState("");
-
+  
   const [offers, setOffers] = useState([]);
   const [therapy, setTherapy] = useState([]);
 
   const [spas, setSpas] = useState([{}]);
   const [topRatedSpas, setTopRatedSpas] = useState([{}]);
   const [luxuriousSpas, setLuxuriousSpas] = useState([{}]);
-
+  const [lattitude, setLattitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+  
   useEffect(() => {
     // Getting latitude and longitude of user
     navigator.geolocation.getCurrentPosition((position) => {
       setLattitude(position.coords.latitude);
       setLongitude(position.coords.longitude);
     });
+
+    fetch("http://localhost:8080/api/v1/nearbylocation", {
+      method: "POST",
+      header: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        longitude: longitude,
+        latitude: lattitude,
+      }),
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
 
     // Getting offers starts
     const requestOption = {
@@ -106,7 +119,7 @@ const Home = () => {
     <div className="main__container">
       <Hero />
       {/* Offer Starts------------------- */}
-      <div className="slider__outer-container offer__container">
+      <div className="slider__outer-container offer__container" id="offers">
         <div className="slider__header">
           <h2>Grab the best deals</h2>
           {/* <Link to={'/deals'}>more</Link> */}
@@ -116,7 +129,7 @@ const Home = () => {
       {/* Offer Ends */}
 
       {/* Therapy Starts------------------- */}
-      <div className="therapy__container">
+      {/* <div className="therapy__container" id="therapies">
         <div className="slider__outer-container">
           <div className="slider__header">
             <h1>Therapies</h1>
@@ -125,7 +138,7 @@ const Home = () => {
           </div>
           <Slider cardList={therapy} _name={"therapy"} />
         </div>
-      </div>
+      </div> */}
       {/* Therapy Ends */}
 
       {/* Spa Near You Starts------------------- */}

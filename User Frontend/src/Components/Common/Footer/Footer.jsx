@@ -22,98 +22,104 @@ const Footer = () => {
           <div className="social_media__container">
             <ul>
               <li style={{ marginLeft: 0 }}>
-                <Link to={"https://www.google.com"} target="_blank">
+                <Link to={"https://g.co/kgs/spvB6L"} target="_blank">
                   <img src={GoogleIcon} alt="" />
                 </Link>
               </li>
               <li>
-                <Link to={"https://www.facebook.com"} target="_blank">
+                <Link
+                  to={"https://www.facebook.com/Trakky.in?mibextid=ZbWKwL"}
+                  target="_blank"
+                >
                   <img src={FacebookIcon} alt="" />
                 </Link>
               </li>
               <li>
-                <Link to={"https://www.instagram.com"} target="_blank">
+                <Link
+                  to={"https://www.instagram.com/trakky_india/"}
+                  target="_blank"
+                >
                   <img src={InstagramIcon} alt="" />
                 </Link>
               </li>
               <li>
-                <Link to={"https://www.twitter.com"} target="_blank">
+                <Link to={"https://twitter.com/trakky5?t=I9aYy64mlfcTN5Liu28tzQ&s=08"} target="_blank">
                   <img src={TwitterIcon} alt="" />
                 </Link>
               </li>
             </ul>
           </div>
         </div>
-        <div className="footer__column2">
-          <p>Resources</p>
+        {/* <div className="footer__column2">
+          <p>Catogories</p>
 
           <ul>
             <li>
-              <Link to={"/help-center"}>Help Center</Link>
+              <Link to={"/spanearyou"}>Spa near you</Link>
             </li>
             <li>
-              <Link to={"/help-center"}>Help Center</Link>
+              <Link to={"/toprated"}>Top rated</Link>
             </li>
             <li>
-              <Link to={"/help-center"}>Help Center</Link>
+              <Link to={"/luxurious"}>Luxurious</Link>
             </li>
             <li>
-              <Link to={"/help-center"}>Help Center</Link>
+              <Link to={"/trending"}>Trending</Link>
             </li>
           </ul>
-        </div>
-        <div className="footer__column3">
-          <p>Travellers</p>
+        </div> */}
+        {/* <div className="footer__column3">
+          <p>What we offer</p>
 
           <ul>
             <li>
-              <Link to={"/help-center"}>Help Center</Link>
+              <Link to={"/"}>Services</Link>
             </li>
             <li>
-              <Link to={"/help-center"}>Help Center</Link>
+              <Link to={"/offers"}>Offers</Link>
             </li>
             <li>
-              <Link to={"/help-center"}>Help Center</Link>
+              <Link to={"/luxuriousspa"}>Best spas</Link>
             </li>
             <li>
-              <Link to={"/help-center"}>Help Center</Link>
+              <Link to={"/"}>Help Center</Link>
             </li>
           </ul>
-        </div>
+        </div> */}
         <div className="footer__column4">
-          <p>Company</p>
+          <p>What we offer</p>
 
           <ul>
             <li>
-              <Link to={"/help-center"}>Help Center</Link>
+              <a href="#therapies">Therapies</a>
             </li>
             <li>
-              <Link to={"/help-center"}>Help Center</Link>
+              <a href="#offers">Offers</a>
             </li>
             <li>
-              <Link to={"/help-center"}>Help Center</Link>
+              <Link to={"/luxuriousspa"}>Best spas</Link>
             </li>
-            <li>
-              <Link to={"/help-center"}>Help Center</Link>
-            </li>
+            {/* <li>
+              <Link to={"/"}>Help Center</Link>
+            </li> */}
           </ul>
         </div>
         <div className="footer__column5">
-          <p>Company</p>
+          <p>Catogories</p>
 
           <ul>
             <li>
-              <Link to={"/help-center"}>Help Center</Link>
+              <Link to={"/spanearyou"}>Spa near you</Link>
             </li>
             <li>
-              <Link to={"/help-center"}>Help Center</Link>
+              <Link to={"/topratedspas"}>Top rated</Link>
             </li>
             <li>
-              <Link to={"/help-center"}>Help Center</Link>
+              <Link to={"/luxuriousspas"}>Luxurious</Link>
             </li>
-            <li>
-              <Link to={"/help-center"}>Help Center</Link>
-            </li>
+            {/* <li>
+    <Link to={"/trending"}>Trending</Link>
+  </li> */}
           </ul>
         </div>
       </div>

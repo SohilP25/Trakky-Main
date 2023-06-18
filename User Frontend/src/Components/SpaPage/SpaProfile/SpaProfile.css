@@ -36,28 +36,58 @@
 .image-1 {
     grid-area: image1;
     width: fit-content;
+    width: 100%;
+    height: 100%;
+}
 
+.image-1 img {
+    width: 100%;
+    height: 100%;
+}
+.image-2 img {
+    width: 100%;
+    height: 100%;
+}
+.image-3 img {
+    width: 100%;
+    height: 100%;
+}
+.image-4 img {
+    width: 100%;
+    height: 100%;
+}
+.image-5 img {
+    width: 100%;
+    height: 100%;
 }
 
 .image-2 {
     grid-area: image-2;
     width: fit-content;
+    width: 100%;
+    height: 100%;
 }
 
 .image-3 {
     grid-area: image-3;
     width: fit-content;
+    width: 100%;
+    height: 100%;
 }
 
 .image-4 {
     grid-area: image-4;
     width: fit-content;
+    width: 100%;
+    height: 100%;
 }
 
 .image-5 {
     grid-area: image-5;
     position: relative;
     width: fit-content;
+    width: 100%;
+    height: 100%;
 }
 
 .show-all-photos {

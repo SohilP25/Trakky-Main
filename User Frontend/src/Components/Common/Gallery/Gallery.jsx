@@ -7,7 +7,7 @@ import { IoMdClose } from 'react-icons/io'
 const Gallery = (props) => {
   // let data = props.photolist;
 
-  let data = props.photos;
+  var data = props.photos;
 
   const [model, setModel] = useState(false);
   const [tempimgSrc, setTempimgSrc] = useState("");
@@ -30,10 +30,10 @@ const Gallery = (props) => {
             <div
               className="pics"
               key={index}
-              onClick={() => getImg(item.imgSrc)}
+              onClick={() => getImg(item)}
             >
               <img
-                src={item.imgSrc}
+                src={item}
                 alt=""
                 style={{
                   width: "100%",

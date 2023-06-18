@@ -28,6 +28,43 @@ const SpaCard = ({
 }) => {
   const [isLiked, setIsLiked] = useState(false);
 
+  // creating logs
+  // const createLog = (spaName, urlSlug, service="None") => {
+  //   fetch("http://localhost:8080/api/v1/logs", {
+  //     method: "POST",
+  //     body: JSON.stringify({
+  //       spaName: spaName,
+  //       urlSlug: urlSlug,
+  //       service: service,
+  //     }),
+  //   })
+  //   .then((res) => res)
+  //   .catch(err => console.log(err))
+  // };
+
+  const createLog = (spaName, urlSlug, service = "None") => {
+    fetch("http://localhost:8080/api/v1/logs", {
+      method: "POST",
+      body: JSON.stringify({
+        spaName: spaName,
+        urlSlug: urlSlug,
+        service: service,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // Handle the response data
+        console.log(data);
+      })
+      .catch((err) => {
+        // Handle the error
+        console.error(err);
+      });
+  };
+
   return (
     <div className="spa_card">
       <div className="image__container">
@@ -85,7 +122,12 @@ const SpaCard = ({
           </div>
           <div className="spa_booking_buttons">
             <a href="https://wa.me/+919328382710">Book Now</a>
-            <a href="tel:+919328382710">Call Now</a>
+            <a
+              href={`tel:+${mobileNumber}`}
+              onClick={() => createLog(name, slug)}
+            >
+              Call Now
+            </a>
           </div>
         </div>
       </div>
@@ -138,11 +180,25 @@ export const SpaCardMini = ({
   openTime,
   closeTime,
   premium,
+  slug,
   // location,
   // ratings,
   // reviewsCount,
   // basePrice,
 }) => {
+  // creating logs
+  const createLog = (spaName, urlSlug, service="None") => {
+    fetch("http://localhost:8080/api/v1/logs", {
+      method: "POST",
+      body: JSON.stringify({
+        spaName: spaName,
+        urlSlug: urlSlug,
+        service: service,
+      }),
+    })
+    .then((res) => res)
+    .catch(err => console.log(err))
+  };
   return (
     <div className="mini_spa_card">
       <div className="main_mini_spa__container">
@@ -201,10 +257,15 @@ export const SpaCardMini = ({
 
       <div className="mini_spa_buttons">
         <div style={{ borderRight: "1px solid gray" }}>
-          <Link>Book Now</Link>
+          <a href={`wa.me/${bookingNumber}`}>Book Now</a>
         </div>
         <div>
-          <Link>Call Now</Link>
+          <a
+            href={`tel:${mobileNumber}`}
+            onClick={() => createLog(name, slug)}
+          >
+            Call Now
+          </a>
         </div>
       </div>
     </div>

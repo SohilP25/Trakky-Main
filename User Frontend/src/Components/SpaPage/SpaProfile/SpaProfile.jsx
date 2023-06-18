@@ -67,6 +67,21 @@ const SpaProfile = () => {
       .catch((err) => console.log(err));
   }, []);
   const [spaProfilePhotosTrigger, setSpaProfilePhotosTrigger] = useState(false);
+
+  // creating logs
+  const createLog = (spaName, urlSlug, service) => {
+    fetch("http://localhost:8080/api/v1/logs", {
+      method: "POST",
+      body: JSON.stringify({
+        spaName: spaName,
+        urlSlug: urlSlug,
+        service: service,
+      }),
+    })
+    .then((res) => res)
+    .catch(err => console.log(err))
+  };
+
   return (
     <>
       <Hero />
@@ -93,8 +108,9 @@ const SpaProfile = () => {
               Close
             </button>
           </div>
-
-          <Gallery photos={spaProfilePhotos} />
+          <Gallery
+            photos={spa.mulImgUrl ? [spa.imgUrl, ...spa.mulImgUrl] : []}
+          />
         </Popup>
       </div>
 
@@ -106,21 +122,29 @@ const SpaProfile = () => {
               <div className="image-1">
                 <img src={spa.imgUrl} alt="" />
               </div>
-              {(spa.mulImgUrl).map((url, index) => {
-                return (
-                  <div className={`image-${index+2}`}>
-                    <img src={url} alt="" />
-                  </div>
-                );
-              })}
-              <div className="image-4">
-                <img src={spa.mulImgUrl[2]} alt="" />
-              </div>
+              {spa.mulImgUrl ? (
+                spa.mulImgUrl.map((url, index) => {
+                  return (
+                    <div className={`image-${index + 2}`}>
+                      <img src={url} alt="" />
+                    </div>
+                  );
+                })
+              ) : (
+                <></>
+              )}
               <div className="image-5">
                 <img src={spaImage5} alt="" />
                 <div className="show-all-photos">
                   <button onClick={() => setSpaProfilePhotosTrigger(true)}>
-                    <img src={Grids} alt="" />
+                    <img
+                      src={Grids}
+                      style={{
+                        height: "unset",
+                        width: "unset",
+                      }}
+                      alt=""
+                    />
                     Show all photos
                   </button>
                 </div>
@@ -194,7 +218,12 @@ const SpaProfile = () => {
                     <Link to={"/whatsapplink"}>Book Now</Link>
                   </li>
                   <li>
-                    <Link to={"/callnow"}>Call Now</Link>
+                    <a
+                      href={`tel:${spa.mobileNumber}`}
+                      onClick={() => createLog(spa.name, spa.slug, "")}
+                    >
+                      Call Now
+                    </a>
                   </li>
                   <li>
                     <Link to={spa.gmapLink}>Get Directions</Link>
@@ -310,7 +339,12 @@ const SpaProfile = () => {
                   <Link to={"/whatsapplink"}>Book Now</Link>
                 </li>
                 <li>
-                  <Link to={"/callnow"}>Call Now</Link>
+                  <a
+                    href={`tel:${spa.mobileNumber}`}
+                    onClick={() => createLog(spa.name, spa.slug, "")}
+                  >
+                    Call Now
+                  </a>
                 </li>
                 <li>{/* <Link to={spa.gmapLink}>Get Directions</Link> */}</li>
               </div>
@@ -321,11 +355,15 @@ const SpaProfile = () => {
 
       <div className="spa_offers-services__container">
         <div className="spa_profile__left_container">
-          <Services spaname={spa.name} />
+          <Services spaname={spa.name} mobileNumber={spa.mobileNumber} />
         </div>
 
         <div className="spa_profile__right_container">
-          <Offers spaname={spa.name} />
+          <Offers
+            spaname={spa.name}
+            mobileNumber={spa.mobileNumber}
+            slug={spa.slug}
+          />
           {/* <SpaFacilities spaName={spa.name} /> */}
         </div>
       </div>
@@ -389,16 +427,33 @@ const Services = (props) => {
   }, []);
 
   const [serviceCounter, setServiceCounter] = useState(0);
+  // creating logs
+  const createLog = (spaName, urlSlug, service) => {
+    fetch("http://localhost:8080/api/v1/logs", {
+      method: "POST",
+      body: JSON.stringify({
+        spaName: spaName,
+        urlSlug: urlSlug,
+        service: service,
+      }),
+    })
+    .then((res) => res)
+    .catch(err => console.log(err))
+  };
 
   return (
     <div className="services__container">
+      {/* style={{
+      display: serviceCounter !== 0 ? "block" : "none"
+    }}> */}
       <div className="servos__header">
         <h2>Services</h2>
       </div>
 
       <div className="servos__list">
         <ul>
-          {servicesData.slice(0, visible).map((service, index) => {
+          {/* {servicesData.slice(0, visible).map((service, index) => { */}
+          {servicesData.map((service, index) => {
             return (
               <>
                 {service.select_spa === props.spaname ? (
@@ -422,7 +477,8 @@ const Services = (props) => {
                           </p>
                         </div>
                         <div className="services__button">
-                          <Link>Call Now</Link>
+                          <a href={`tel:${props.mobileNumber}`}
+                          onClick={() => createLog(props.spaname, props.slug, service.service_name)}>Call Now</a>
                         </div>
                       </div>
                     </div>
@@ -479,9 +535,25 @@ const Offers = (props) => {
   }, []);
 
   const [offerCounter, setOfferCounter] = useState(0);
+  // creating logs
+  const createLog = (spaName, urlSlug, service) => {
+    fetch("http://localhost:8080/api/v1/logs", {
+      method: "POST",
+      body: JSON.stringify({
+        spaName: spaName,
+        urlSlug: urlSlug,
+        service: service,
+      }),
+    })
+    .then((res) => res)
+    .catch(err => console.log(err))
+  };
 
   return (
     <div className="spa_offers__container">
+      {/* style={{
+       display: offerCounter !== 0 ? "block" : "none"
+     }}> */}
       <div className="servos__header">
         <h2>Offers</h2>
       </div>
@@ -513,7 +585,14 @@ const Offers = (props) => {
                       </p> */}
                         </div>
                         <div className="offers__button">
-                          <Link>Call Now</Link>
+                          <a
+                            href={`tel:${props.mobileNumber}`}
+                            onClick={() =>
+                              createLog(props.spaname, props.slug, offer.Name)
+                            }
+                          >
+                            Call Now
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -577,7 +656,12 @@ const Offers = (props) => {
 
 const AboutUsSpa = (props) => {
   return (
-    <div className="spa_about_us__container">
+    <div
+      className="spa_about_us__container"
+      style={{
+        display: props.about !== "" ? "block" : "none",
+      }}
+    >
       <div className="servos__header">
         <h2>About Us</h2>
       </div>

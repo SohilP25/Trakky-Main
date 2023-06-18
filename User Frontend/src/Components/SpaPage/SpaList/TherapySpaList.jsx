@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./SpaList.css";
 
 import Hero from "../Hero/Hero";
@@ -9,7 +9,12 @@ import { popularLocations } from "../../../data";
 import SpaCard from "../SpaCard/SpaCard";
 import { SpaCardMini } from "../SpaCard/SpaCard";
 
-const SpaNearMeList = ({ name, url }) => {
+const TherapySpaList = () => {
+  const params = useParams();
+  const { slug } = params;
+
+  console.log(slug);
+
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
@@ -21,10 +26,8 @@ const SpaNearMeList = ({ name, url }) => {
   }
   // Getting Spa Details
   const [therapy, setTherapy] = useState([]);
-
   const [spas, setSpas] = useState([{}]);
-  const [topRatedSpas, setTopRatedSpas] = useState([{}]);
-  const [luxuriousSpas, setLuxuriousSpas] = useState([{}]);
+
 
   useEffect(() => {
     // Getting offers starts
@@ -33,33 +36,32 @@ const SpaNearMeList = ({ name, url }) => {
       header: { "Content-Type": "application/json" },
     };
     // Getting therapy starts
-    fetch("http://localhost:8080/api/v1/therapy", requestOption)
+    fetch("http://localhost:8080/api/v1/offer", requestOption)
       .then((res) => res.json())
-      .then((data) => setTherapy(data.data))
+      .then((data) => setOffers(data.data))
       .catch((err) => console.log(err));
 
     // Getting spas starts
     fetch("http://localhost:8080/api/v1/spas", requestOption)
       .then((res) => res.json())
-      .then((data) => {
-        setSpas(data);
-        const toprated = data.filter((spa) => spa.topRated);
-        const luxurious = data.filter((spa) => spa.luxurious);
-        setTopRatedSpas(toprated);
-        setLuxuriousSpas(luxurious);
-      })
+      .then((data) => setSpas(data))
       .catch((err) => console.log(err));
   }, []);
+  
+  var ListValue = [{}];
+  var spaNames = [];
 
-  let ListValue = [{}];
-  if (url === "luxuriousSpas") {
-    ListValue = luxuriousSpas;
-  } else if (url === "topRatedSpas") {
-    ListValue = topRatedSpas;
-  }else{
-    // ListValue=spaNearYou;
-    ListValue=topRatedSpas;
+  if (offers && spas) {
+    var requiredOffers = offers.filter(offer => offer.Slug === `/${slug}`)
+    spaNames = requiredOffers.map(offer => offer.Select_Spa)
+    // console.log(spaNames)
+    var requiredSpas = spas.filter(data => spaNames.includes(data.name))
+    // console.log(requiredSpas)
+    ListValue = requiredSpas
   }
+
+  console.log(ListValue)
+
  
   useEffect(() => {
     function handleResize() {
@@ -85,7 +87,7 @@ const SpaNearMeList = ({ name, url }) => {
     <div>
       <Hero />
       <div className="spa_list__header">
-        <h1>{name}</h1>
+        <h1>Best Offers For You</h1>
       </div>
       <div className="spa_list_main__container">
         <div className="spa_list__container">
@@ -141,7 +143,6 @@ const SpaNearMeList = ({ name, url }) => {
                     mobileNumber={data.mobileNumber}
                     bookingNumber={data.bookingNumber}
                     premium={data.premium}
-                    slug={data.slug}
                     // location={data.location}
                     // offers={data.offers}
                     // basePrice={data.basePrice}
@@ -221,4 +222,4 @@ const PopularLocations = () => {
     </div>
   );
 };
-export default SpaNearMeList;
+export default TherapySpaList;
