@@ -317,7 +317,10 @@ const Spa = () => {
                       }}
                     >
                       <div className="image__container">
-                        <img src={spa.imageUrl} alt="" />
+                        <img src={spa.imgUrl} alt="" />
+                        <img src={spa.mulImgUrl[0]} alt="" />
+                        <img src={spa.mulImgUrl[1]} alt="" />
+                        <img src={spa.mulImgUrl[2]} alt="" />
                       </div>
                     </div>
                   </>

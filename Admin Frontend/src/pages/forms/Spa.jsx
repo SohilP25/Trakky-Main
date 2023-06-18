@@ -7,7 +7,7 @@ const SpaForm = () => {
   const [landmark, setLandmark] = useState("");
   const [mobileNumber, setMobileNumber] = useState(null);
   const [Image, setImage] = useState(null);
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState([{}]);
   const [openTime, setOpenTime] = useState("");
   const [closeTime, setCloseTime] = useState("");
   const [slug, setSlug] = useState("");
@@ -23,19 +23,23 @@ const SpaForm = () => {
     type: "Point",
     coordinates: [longitude, latitude],
   });
+
   const handleFileChange = (event) => {
     setImage(event.target.files[0]);
   };
 
-
+  var images = [];
   const handleMultipleFiles = (e) => {
-    setFiles([...files, ...e.target.files]);
+    for (let i = 0; i < e.target.files.length; i++) {
+      images.push(e.target.files[i]);
+    }
+    setFiles(images);
   };
 
   // Post Request Starts
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    console.log(files);
     if (!Image) {
       console.log("Please select a file");
       return;
@@ -48,8 +52,13 @@ const SpaForm = () => {
     formData.append("bookingNumber", bookingNumber);
     formData.append("gmapLink", GMapLink);
     formData.append("imgUrl", Image);
-    formData.append("mulImgUrl", files);
-    formData.append("location", location);
+    for (let i = 0; i < files.length; i++) {
+      formData.append("mulImgUrl", files[i]);
+    }
+    // formData.append("spaLocation", location.type);
+    formData.append("spaLocation", location);
+    // for (let i = 0; i < 2; i++) {
+    // }
     formData.append("openTime", openTime);
     formData.append("closeTime", closeTime);
     formData.append("slug", slug);
@@ -59,14 +68,18 @@ const SpaForm = () => {
     formData.append("aboutUs", aboutUs);
 
     try {
-      console.log(formData);
+      // console.log(formData);
+      console.log(formData.get("mulImgUrl"));
       await fetch("http://localhost:8080/api/v1/spas", {
         method: "POST",
         body: formData,
       });
 
+      for (var pair of formData.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
+      }
+
       alert("spas uploaded successfully");
-      console.log(formData.get("files"))
     } catch (error) {
       console.error("Error uploading image", error);
     }
@@ -346,7 +359,7 @@ const SpaForm = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="slug">About Us *</label>
+            <label htmlFor="aboutUs">About Us *</label>
             <input
               className="form-control"
               type="text"

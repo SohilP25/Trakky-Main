@@ -13,7 +13,6 @@ import { upload } from "../Middleware/imageUpload.js";
 
 const spaRoute = express.Router();
 
-
 spaRoute
   // For receiving spa and it's details
   .get("/", getallSpa)
