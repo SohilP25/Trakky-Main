@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Header.css";
 
-import trakkyWhite from "./../../../Assets/images/logos/Trakky logo white.png";
+import trakkyWhite from "./../../../Assets/images/logos/Trakky logo purple.png";
 import trakkyPurple from "./../../../Assets/images/logos/Trakky logo purple.png";
 import Search from "../../../Assets/images/icons/search.svg";
 import Filters from "../../../Assets/images/icons/filters.svg";

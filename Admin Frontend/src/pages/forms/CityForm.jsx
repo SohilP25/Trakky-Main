@@ -46,6 +46,7 @@ const CityForm = () => {
     })
       .then((result) => {
         result.json().then((resp) => console.log(resp));
+        alert("City Uploaded Successfully");
       })
       .catch((err) => console.log(err));
   };

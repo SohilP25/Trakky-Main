@@ -11,22 +11,7 @@ const Areas = () => {
   const tableHeaders = ["Area Name", "City", "Priority" /*"Actions"*/];
  
 
-  // Handling Searchbar events
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-
-  const handleSearch = (event) => {
-    const searchTerm = event.target.value;
-    setSearchTerm(searchTerm);
-
-    const results = AreasData.filter(
-      (item) =>
-        item.areaName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        item.city.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    setSearchResults(results);
-  };
+  
 
   // Getting area list
   const [areaData, setareaData] = useState([{}]);
@@ -80,6 +65,22 @@ const Areas = () => {
        setShow(false);
      }
    };
+   // Handling Searchbar events
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
+  const handleSearch = (event) => {
+    const searchTerm = event.target.value;
+    setSearchTerm(searchTerm);
+
+    const results = uniqueAreaData.filter(
+      (item) =>
+        item.areaName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.cityName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    setSearchResults(results);
+  };
   return (
     <div className="main_list__container">
       <div className="mini_navbar__container">

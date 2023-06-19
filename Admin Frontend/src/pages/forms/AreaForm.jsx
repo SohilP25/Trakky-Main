@@ -28,7 +28,7 @@ const AreaForm = () => {
         body: JSON.stringify(data),
       });
 
-      alert("city uploaded successfully");
+      alert("Area uploaded successfully");
     } catch (error) {
       console.error("Error occured", error);
     }

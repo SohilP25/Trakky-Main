@@ -9,14 +9,14 @@ const Hero = () => {
   return (
     <section>
       <div className="video-bg">
-        <img
-          src={require(`./../../../Assets/images/other/background_video_image.png`)}
+        {/* <video
+          src={require(``)}
           className="video-bg"
           alt=""
-        />
-        {/* <video className="video-bg" autoPlay loop muted>
-          <source src={require(`./../../../Assets/videos/horizontal_.webm`)} />
-        </video> */}
+        /> */}
+        <video className="video-bg" autoPlay loop muted>
+          <source src={require(`./../../../Assets/videos/TrakkyVideo.mp4`)} />
+        </video>
       </div>
 
       <Header page="home" />
