@@ -9,14 +9,15 @@ const secret = process.env.JWT_SCREATE_KEY
 const authMiddleWare = async (req, res, next) => {
     try {
         console.log(req.headers);
-        const token =await req.headers.authorization.split(" ")[1];
+        const token = await req.headers.authorization;
+        console.log(token);
         if (token) {
             const decoded = jwt.verify(token, secret);
             req.body._id = decoded?.id;
         }
         next();
     } catch (error) {
-        res.status(403).send(`access denied ${error}`);
+        res.status(403).send(`access denied, ERROR : ${error}`);
     }
 }
 
