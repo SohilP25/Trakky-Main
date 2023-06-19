@@ -142,7 +142,7 @@ const Home = () => {
       {/* Therapy Ends */}
 
       {/* Spa Near You Starts------------------- */}
-      <div className="slider__outer-container">
+      {/* <div className="slider__outer-container">
         <div className="slider__header">
           <h1>Spa Near You</h1>
           <div className="slider_buttons">
@@ -150,7 +150,7 @@ const Home = () => {
           </div>
         </div>
         <Slider cardList={spaNearYou} _name={"spa"} />
-      </div>
+      </div> */}
       {/* Spa Near You Ends */}
 
       {/* Top Destinations Starts-------------------------- */}

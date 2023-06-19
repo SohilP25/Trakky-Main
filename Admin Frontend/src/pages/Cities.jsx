@@ -48,11 +48,10 @@ const Cities = () => {
     const searchTerm = event.target.value;
     setSearchTerm(searchTerm);
 
-    const results = CitiesData.filter(
+    const results = cityList.filter(
       (item) =>
-        item.cityName.toLowerCase().includes(searchTerm.toLowerCase())
+        item.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
     setSearchResults(results);
   };
 

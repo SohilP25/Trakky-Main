@@ -91,13 +91,13 @@ const Footer = () => {
 
           <ul>
             <li>
-              <a href="#therapies">Therapies</a>
+              {/* <a href="#therapies">Therapies</a> */}
             </li>
             <li>
               <a href="#offers">Offers</a>
             </li>
             <li>
-              <Link to={"/luxuriousspa"}>Best spas</Link>
+              <Link to={"/luxuriousspas"}>Best spas</Link>
             </li>
             {/* <li>
               <Link to={"/"}>Help Center</Link>
@@ -105,7 +105,7 @@ const Footer = () => {
           </ul>
         </div>
         <div className="footer__column5">
-          <p>Catogories</p>
+          <p>Categories</p>
 
           <ul>
             <li>
@@ -126,8 +126,8 @@ const Footer = () => {
 
       <div className="footer__copyright">
         <p>
-          © Copyright 2023 Trakky. All Rights Reserved by Trakky Techno Services
-          Pvt Ltd. | Handcrafted in India by Trakky
+          © Copyright 2023 <Link to={"/"}>Trakky</Link>. All Rights Reserved by Trakky Techno Services
+          Pvt Ltd. | Handcrafted in India by <Link to={"/"}>Trakky</Link>
         </p>
       </div>
     </div>
